@@ -1,0 +1,82 @@
+---
+interface Props {
+  slots?: number;
+}
+
+const { slots = 0 } = Astro.props;
+---
+
+<section class="bg-[var(--color-secondary)] px-4 py-16 sm:px-8">
+  <div
+    class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2"
+  >
+    <div>
+      <h2
+        class="mb-6 font-['JetBrains_Mono_Variable'] font-bold text-4xl sm:text-5xl lg:text-6xl"
+      >
+        <span class="title-3d text-[var(--color-primary)]">¡Despega!</span>
+      </h2>
+
+      <p class="mb-8 max-w-2xl font-['Montserrat_Variable'] text-lg sm:text-xl">
+        Con una tarifa mensual única, tú te olvidas de preocuparte por los
+        detalles técnicos y te enfocas en lo que realmente importa: <b>hacer crecer
+        tu negocio</b>.
+      </p>
+
+      <div class="mb-12">
+        <h3
+          class="mb-4 font-['JetBrains_Mono_Variable'] font-bold text-2xl sm:text-3xl"
+        >
+          Asegura tu plaza
+        </h3>
+        <p class="max-w-2xl font-['Montserrat_Variable'] text-lg">
+          Valoramos a cada uno de nuestros clientes y nos esforzamos por brindar
+          un servicio excepcional. Para mantener nuestros altos estándares, solo
+          abrimos un número limitado de plazas cada mes. Este enfoque garantiza
+          que recibas la atención y el servicio experto que mereces.
+        </p>
+      </div>
+
+      <div
+        class="inline-block bg-white px-6 py-3 text-black"
+        style="
+        border: var(--border-brutal);
+        box-shadow: var(--shadow-brutal);
+      "
+      >
+        <span class="font-['JetBrains_Mono_Variable'] font-bold text-4xl"
+          >{slots}</span
+        >
+        <span
+          class="ml-2 bg-black font-['JetBrains_Mono_Variable'] text-white text-xl"
+          >PLAZAS DISPONIBLES</span
+        >
+      </div>
+    </div>
+
+    <div
+      class="relative bg-[var(--color-background)]"
+      style="
+      border: var(--border-brutal);
+      box-shadow: var(--shadow-brutal);
+    "
+    >
+      <img
+        src="/creative-launch.jpg"
+        alt="Ilustración de cohete"
+        class="h-full w-full object-contain p-8"
+      />
+      <div
+        class="absolute bottom-4 right-4 bg-[var(--color-background)] p-2"
+        style="
+        border: var(--border-brutal);
+      "
+      >
+        <span class="font-['JetBrains_Mono_Variable'] text-sm"
+          >🚀 ¡Despega con nosotros!</span
+        >
+      </div>
+    </div>
+  </div>
+</section>
+

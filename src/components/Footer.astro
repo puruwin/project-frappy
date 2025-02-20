@@ -1,0 +1,55 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-black text-white py-16 px-4">
+  <div class="max-w-7xl mx-auto">
+    <!-- Sección superior -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4 font-['JetBrains_Mono_Variable']">
+        ¿Tienes preguntas? Hablemos.
+      </h2>
+      <p class="text-lg mb-8 max-w-2xl mx-auto font-['Montserrat_Variable']">
+        Descubre cómo Frappé puede impulsar tu presencia digital y llevar tu negocio al siguiente nivel.
+      </p>
+      <a 
+        href="https://wa.me/+34608962213"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-[var(--color-primary)] text-black px-8 py-3 font-bold transition-transform hover:-translate-y-1 font-['JetBrains_Mono_Variable']"
+        style="border: var(--border-brutal);"
+      >
+        Iniciar chat
+      </a>
+    </div>
+
+    <!-- Navegación y Copyright -->
+    <div class="max-w-4xl mx-auto">
+      <nav class="grid grid-cols-2 sm:grid-cols-3 gap-8 mb-12">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold font-['JetBrains_Mono_Variable'] title-3d text-[var(--color-primary)]">
+            Frappé
+          </h2>
+        </div>
+        <div>
+          <ul class="space-y-2 font-['Montserrat_Variable']">
+            <li><a href="#sobre-nosotros" class="hover:text-[var(--color-primary)]">Sobre nosotros</a></li>
+            <li><a href="#precios" class="hover:text-[var(--color-primary)]">Precios</a></li>
+            <li><a href="#faq" class="hover:text-[var(--color-primary)]">Preguntas frecuentes</a></li>
+          </ul>
+        </div>
+        <div class="col-span-2 sm:col-span-1">
+          <ul class="space-y-2 font-['Montserrat_Variable']">
+            <li><a href="/privacidad" class="hover:text-[var(--color-primary)]">Política de privacidad</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="border-t border-gray-800 pt-8 text-center sm:text-left">
+        <p class="text-sm text-gray-400 font-['Montserrat_Variable']">
+          © {currentYear} Frappé. Todos los derechos reservados.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer> 

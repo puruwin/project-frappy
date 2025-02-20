@@ -1,0 +1,79 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = "Sobre Frappé" } = Astro.props;
+---
+
+<section class="bg-[var(--color-background)] py-24 px-4 sm:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="relative" style="
+        border: var(--border-brutal);
+        box-shadow: var(--shadow-brutal);
+      ">
+        <div class="bg-[var(--color-primary)] p-8 sm:p-12">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 font-['JetBrains_Mono_Variable']">
+            Diseño web que marca la diferencia
+          </h2>
+          <div class="space-y-4 font-['Montserrat_Variable'] text-base sm:text-lg text-black">
+            <p>
+              En Frappé, construimos soluciones web de alto rendimiento. Nos especializamos en crear sitios web optimizados que no solo funcionan perfectamente, sino que también impulsan el crecimiento de tu negocio.
+            </p>
+            <p>
+              Nuestro equipo ha colaborado con empresas líderes como Banco Santander, BBVA, SegurCaixa Adeslas y Air Europa, desarrollando plataformas web robustas que mejoran la experiencia del usuario y maximizan el rendimiento.
+            </p>
+          </div>
+        </div>
+        <div class="absolute -bottom-4 -right-4 bg-black text-white px-4 py-2 font-['JetBrains_Mono_Variable']" style="
+          border: var(--border-brutal);
+        ">
+          Agencia Digital
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-6">
+        <div class="bg-white p-6" style="
+          border: var(--border-brutal);
+          box-shadow: var(--shadow-brutal);
+        ">
+          <h3 class="text-xl font-bold mb-2 font-['JetBrains_Mono_Variable']">Innovación</h3>
+          <p class="font-['Montserrat_Variable'] text-sm">
+            Combinamos diseño moderno con tecnología de vanguardia para crear experiencias web únicas y memorables.
+          </p>
+        </div>
+
+        <div class="bg-[var(--color-secondary)] p-6" style="
+          border: var(--border-brutal);
+          box-shadow: var(--shadow-brutal);
+        ">
+          <h3 class="text-xl font-bold mb-2 font-['JetBrains_Mono_Variable']">Trayectoria</h3>
+          <p class="font-['Montserrat_Variable'] text-sm">
+            Experiencia comprobada trabajando con grandes empresas y marcas reconocidas.
+          </p>
+        </div>
+
+        <div class="bg-[var(--color-background-offset)] p-6" style="
+          border: var(--border-brutal);
+          box-shadow: var(--shadow-brutal);
+        ">
+          <h3 class="text-xl font-bold mb-2 font-['JetBrains_Mono_Variable']">Tecnología</h3>
+          <p class="font-['Montserrat_Variable'] text-sm">
+            Desarrollo con las últimas tecnologías para garantizar sitios web rápidos, seguros y escalables.
+          </p>
+        </div>
+
+        <div class="bg-[var(--color-primary)] p-6" style="
+          border: var(--border-brutal);
+          box-shadow: var(--shadow-brutal);
+        ">
+          <h3 class="text-xl font-bold mb-2 font-['JetBrains_Mono_Variable']">Compromiso</h3>
+          <p class="font-['Montserrat_Variable'] text-sm">
+            Dedicación total a la visión y el éxito de cada proyecto que desarrollamos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 

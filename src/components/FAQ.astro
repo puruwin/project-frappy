@@ -1,0 +1,82 @@
+---
+interface Props {
+  question: string;
+  answer: string;
+}
+
+const { question, answer } = Astro.props;
+---
+
+<div class="faq-item mb-8">
+  <button
+    class="font-['JetBrains_Mono_Variable'] flex w-full items-center justify-between bg-[var(--color-background)] p-3 sm:p-4 text-left text-sm sm:text-base transition-all duration-200"
+    style="
+      border: var(--border-brutal);
+    "
+  >
+    <span class="pr-4">{question}</span>
+    <span class="transform transition-transform duration-200 text-xl sm:text-2xl flex-shrink-0 bg-[var(--color-primary)] text-white h-8 w-8 flex items-center justify-center" style="border: var(--border-brutal);">+</span>
+  </button>
+  <div
+    class="answer hidden bg-white p-4 sm:p-6 font-['Montserrat_Variable'] leading-relaxed text-xs sm:text-sm -mt-1 relative transition-all duration-200"
+    style="
+      border: var(--border-brutal);
+      border-top: none;
+      margin-left: 4px;
+    "
+  >
+    <div class="absolute top-0 left-0 w-full h-1 bg-black -mt-1"></div>
+    {answer}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll(".faq-item button").forEach((button) => {
+    button.addEventListener("click", () => {
+      const faqItem = button.closest('.faq-item');
+      const answer = button.nextElementSibling;
+      const plusSign = button.querySelector("span:last-child") as HTMLElement;
+      
+      // Cerrar todas las otras preguntas
+      document.querySelectorAll('.faq-item').forEach((item) => {
+        if (item !== faqItem) {
+          const otherAnswer = item.querySelector('.answer');
+          const otherPlusSign = item.querySelector("button span:last-child") as HTMLElement;
+          otherAnswer?.classList.add('hidden');
+          if (otherPlusSign) {
+            otherPlusSign.style.transform = 'rotate(0)';
+            otherPlusSign.innerHTML = '+';
+          }
+        }
+      });
+
+      if (answer && plusSign) {
+        answer.classList.toggle("hidden");
+        const isHidden = answer.classList.contains("hidden");
+        plusSign.style.transform = isHidden ? "rotate(0)" : "rotate(45deg)";
+        plusSign.innerHTML = isHidden ? "+" : "×";
+        (button as HTMLElement).style.transform = isHidden ? "" : "translateY(-2px)";
+      }
+    });
+  });
+</script>
+
+<style>
+  .faq-item button {
+    box-shadow: var(--shadow-brutal);
+  }
+
+  .faq-item button:hover {
+    box-shadow: var(--shadow-brutal-lg);
+    transform: translateY(-2px);
+  }
+
+  .faq-item .answer {
+    box-shadow: var(--shadow-brutal);
+  }
+
+  .faq-item .answer:not(.hidden) {
+    box-shadow: var(--shadow-brutal-lg);
+  }
+</style>
+

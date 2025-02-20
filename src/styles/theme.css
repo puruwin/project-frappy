@@ -1,0 +1,44 @@
+body {
+  --color-primary: #ff6b81;
+  --color-secondary: #78c7e7;
+  --color-text: #000000;
+  --color-text-offset: #7b3f00;
+  --color-background: #fceecf;
+  --color-background-offset: #a8e6cf;
+
+  /* Bordes neobrutalist */
+  --border-brutal: 3px solid var(--color-text);
+  --border-brutal-thick: 5px solid var(--color-text);
+  
+  /* Sombras características */
+  --shadow-brutal: 5px 5px 0 0 var(--color-text);
+  --shadow-brutal-lg: 8px 8px 0 0 var(--color-text);
+  
+  /* Espaciado irregular para layouts */
+  --spacing-brutal-sm: clamp(0.5rem, 1vw, 1rem);
+  --spacing-brutal-md: clamp(1rem, 2vw, 2rem);
+  --spacing-brutal-lg: clamp(2rem, 4vw, 4rem);
+  
+  /* Rotaciones para elementos desalineados */
+  --tilt-brutal-sm: rotate(-2deg);
+  --tilt-brutal-md: rotate(3deg);
+  
+  /* Transiciones bruscas */
+  --transition-brutal: transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25);
+
+  /* Tipografía */
+  --font-mono: 'JetBrains Mono Variable', monospace;
+  --font-sans: 'Montserrat Variable', system-ui, sans-serif;
+  font-family: var(--font-sans);
+}
+
+.pricing-plan {
+  /* Asegura que las tarjetas tengan una altura mínima para mantener la uniformidad */
+  min-height: 500px;
+}
+
+@media (max-width: 768px) {
+  .pricing-plan {
+    width: 100%;
+  }
+}

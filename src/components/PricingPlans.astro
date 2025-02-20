@@ -1,0 +1,67 @@
+---
+import PricingPlan from "./PricingPlan.astro";
+
+const basicFeatures = [
+    "✔ - Diseño web básico (1 landing page)",
+    "✔ - Hosting incluido",
+    "✔ - Dominio incluido",
+    "✔ - Soporte técnico básico",
+    "✔ - 2 cambios menores/mes",
+    "✔ - SEO básico",
+    "Opcional: Configuración inicial de Google Ads (+150€ pago único)",
+    "X - Integraciones adicionales",
+    "X - Reportes de rendimiento",
+];
+
+const standardFeatures = [
+    "✔ - Diseño web (hasta 3 páginas)",
+    "✔ - Hosting incluido",
+    "✔ - Dominio incluido",
+    "✔ - Soporte técnico con backups mensuales",
+    "✔ - 4 cambios menores/mes",
+    "✔ - SEO básico",
+    "Opcional: Configuración inicial de Google Ads (+150€ pago único)",
+    "✔ - Integraciones adicionales: formularios básicos.",
+    "✔ - Reportes mensuales (SEO y tráfico).",
+];
+
+const premiumFeatures = [
+    "✔ - Diseño web (hasta 5 páginas)",
+    "✔ - Hosting incluido",
+    "✔ - Dominio incluido",
+    "✔ - Soporte técnico con backups semanales",
+    "✔ - Cambios menores ilimitados",
+    "✔ - SEO básico",
+    "✔ - Configuración inicial de Google Ads y gestión mensual (hasta 2 campañas)",
+    "✔ - Integraciones adicionales: formularios avanzados, maps, chatbot, etc.",
+    "✔ - Reportes mensuales (SEO y tráfico).",
+];
+---
+
+<section class="py-16 px-4 sm:px-8">
+  <div class="max-w-7xl mx-auto">    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <PricingPlan
+        title="Básico"
+        price="40€/mes"
+        features={basicFeatures}
+        color="background"
+      />
+      
+      <PricingPlan
+        title="Standard"
+        price="70€/mes"
+        features={standardFeatures}
+        isPopular={true}
+        color="primary"
+      />
+      
+      <PricingPlan
+        title="Premium"
+        price="130€/mes"
+        features={premiumFeatures}
+        color="background"
+      />
+    </div>
+  </div>
+</section> 

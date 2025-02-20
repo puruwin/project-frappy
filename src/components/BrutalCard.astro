@@ -1,0 +1,53 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  buttonText?: string;
+  variant?: 'default' | 'secondary';
+}
+
+const { 
+  title, 
+  description, 
+  buttonText = "Click me", 
+  variant = 'default'
+} = Astro.props;
+
+const styles = {
+  default: {
+    background: 'bg-white',
+    text: 'text-default',
+    button: 'bg-primary',
+    border: 'var(--border-brutal)',
+    shadow: 'var(--shadow-brutal)',
+    tilt: 'var(--tilt-brutal-sm)'
+  },
+  secondary: {
+    background: 'bg-secondary',
+    text: 'text-white',
+    button: 'bg-offset text-text-offset',
+    border: 'var(--border-brutal-thick)',
+    shadow: 'var(--shadow-brutal-lg)',
+    tilt: 'var(--tilt-brutal-md)'
+  }
+};
+
+const currentStyle = styles[variant];
+---
+
+<div class={`${currentStyle.background} p-8 max-w-md mx-auto`} style={`
+  border: ${currentStyle.border};
+  box-shadow: ${currentStyle.shadow};
+  transform: ${currentStyle.tilt};
+`}>
+  <h2 class={`text-2xl font-bold mb-4 ${currentStyle.text}`}>{title}</h2>
+  <p class={`mb-4 ${currentStyle.text}`}>{description}</p>
+  <button class={`${currentStyle.button} px-4 py-2 hover:transform hover:translate-y-[-5px]`} style={`
+    border: var(--border-brutal);
+    box-shadow: var(--shadow-brutal);
+    transition: var(--transition-brutal);
+  `}>
+    {buttonText}
+  </button>
+  <slot />
+</div> 

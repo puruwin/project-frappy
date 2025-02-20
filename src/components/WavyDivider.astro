@@ -1,0 +1,69 @@
+---
+const { id, topColor = "#fceecf", bottomColor = "#78c7e7" } = Astro.props;
+---
+
+<div id={id} class="wave-divider">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <!-- Onda de fondo -->
+    <path class="wave-fill" d="M0,30 
+      C60,30 60,50 120,50 
+      C180,50 180,30 240,30 
+      C300,30 300,50 360,50 
+      C420,50 420,30 480,30 
+      C540,30 540,50 600,50 
+      C660,50 660,30 720,30 
+      C780,30 780,50 840,50 
+      C900,50 900,30 960,30 
+      C1020,30 1020,50 1080,50 
+      C1140,50 1140,30 1200,30 
+      C1260,30 1260,50 1320,50 
+      C1380,50 1380,30 1440,30 
+      L1440,120 L0,120 Z" 
+    />
+    <!-- Borde negro que sigue la onda -->
+    <path class="wave-border" d="M0,30 
+      C60,30 60,50 120,50 
+      C180,50 180,30 240,30 
+      C300,30 300,50 360,50 
+      C420,50 420,30 480,30 
+      C540,30 540,50 600,50 
+      C660,50 660,30 720,30 
+      C780,30 780,50 840,50 
+      C900,50 900,30 960,30 
+      C1020,30 1020,50 1080,50 
+      C1140,50 1140,30 1200,30 
+      C1260,30 1260,50 1320,50 
+      C1380,50 1380,30 1440,30"
+      fill="none"
+      stroke="black"
+      stroke-width="3"
+    />
+  </svg>
+</div>
+
+<style define:vars={{ topColor, bottomColor }}>
+  .wave-divider {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    background-color: var(--topColor);
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+
+  .wave-divider svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .wave-fill {
+    fill: var(--bottomColor);
+  }
+
+  .wave-border {
+    filter: drop-shadow(3px 3px 0 rgba(0,0,0,0.3));
+  }
+</style> 

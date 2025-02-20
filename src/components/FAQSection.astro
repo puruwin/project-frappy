@@ -1,0 +1,47 @@
+---
+import FAQ from "./FAQ.astro";
+
+const faqs = [
+  {
+    question: "¿Qué incluye exactamente el hosting y dominio?",
+    answer: "El hosting incluye el alojamiento de tu sitio web en servidores seguros y de alta velocidad. El dominio es tu dirección web personalizada (www.tuempresa.com). Nos encargamos de toda la gestión y renovación de ambos servicios mientras mantengas tu plan activo."
+  },
+  {
+    question: "¿Qué se considera un 'cambio menor'?",
+    answer: "Los cambios menores incluyen actualizaciones de texto, imágenes, enlaces y pequeños ajustes de diseño. No incluyen cambios estructurales o la creación de nuevas páginas o funcionalidades."
+  },
+  {
+    question: "¿Puedo cambiar de plan en cualquier momento?",
+    answer: "Sí, puedes actualizar o cambiar tu plan en cualquier momento. Los cambios se aplicarán en el siguiente ciclo de facturación y ajustaremos los servicios según el nuevo plan seleccionado."
+  },
+  {
+    question: "¿Qué significa 'SEO básico'?",
+    answer: "El SEO básico incluye la optimización de títulos, descripciones, palabras clave, metadatos y estructura básica del sitio para buscadores. También incluye la configuración de Google Search Console y sitemap."
+  },
+  {
+    question: "¿Cómo funciona el soporte técnico?",
+    answer: "El soporte técnico está disponible por email y chat en horario laboral. Los tiempos de respuesta varían según el plan: Básico (24h), Standard (12h), Premium (4h). Las copias de seguridad se realizan según la frecuencia especificada en cada plan."
+  },
+  {
+    question: "¿Qué pasa si necesito más páginas de las incluidas en mi plan?",
+    answer: "Puedes solicitar páginas adicionales con un costo extra por página, o considerar actualizar a un plan superior que incluya más páginas. Consulta con nosotros para obtener un presupuesto personalizado."
+  }
+];
+---
+
+<section class="py-16 px-4 sm:px-8 bg-[var(--color-background-offset)]">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 sm:mb-16 text-center font-['JetBrains_Mono_Variable']">
+      Preguntas Frecuentes
+    </h2>
+    
+    <div class="max-w-3xl mx-auto">
+      {faqs.map(faq => (
+        <FAQ 
+          question={faq.question}
+          answer={faq.answer}
+        />
+      ))}
+    </div>
+  </div>
+</section> 

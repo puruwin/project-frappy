@@ -1,0 +1,40 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+}
+
+const { 
+  title = "Frappé",
+  subtitle = "Desarrollo web con un toque diferente",
+  description = "Creamos experiencias digitales únicas combinando diseño atractivo con tecnología de vanguardia. Simple, directo y memorable."
+} = Astro.props;
+---
+
+<div id="hero" class="bg-[var(--color-background-offset)] mt-[60px] sm:mt-[76px] min-h-[calc(100vh-120px)] sm:min-h-[calc(100vh-140px)] flex items-center">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4 sm:px-8">
+    <div class="text-center lg:text-left pt-12 sm:pt-16 lg:pt-0">
+      <h1 class="text-4xl sm:text-7xl lg:text-9xl font-bold mb-6 text-primary font-['JetBrains_Mono_Variable'] title-3d">
+        {title}
+      </h1>
+      <h2 class="text-xl sm:text-2xl font-medium mb-4 text-[#4a4a4a] font-['Montserrat_Variable']">
+        {subtitle}
+      </h2>
+      <p class="text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 text-[#666666] leading-relaxed font-['Montserrat_Variable']">
+        {description}
+      </p>
+    </div>
+    
+    <div class="relative mt-8 lg:mt-0" style="
+      border: var(--border-brutal);
+      box-shadow: var(--shadow-brutal);
+    ">
+      <img 
+        src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80" 
+        alt="Código en una pantalla" 
+        class="w-full h-[250px] sm:h-[300px] lg:h-[400px] object-cover"
+      />
+    </div>
+  </div>
+</div> 
