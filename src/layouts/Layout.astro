@@ -8,13 +8,6 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-
-// Declarar el tipo de window.dataLayer
-declare global {
-  interface Window {
-    dataLayer: any[];
-  }
-}
 ---
 
 <!doctype html>
@@ -22,26 +15,19 @@ declare global {
   <head>
     <!-- Google Tag Manager -->
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      const userConsentStatus = localStorage.getItem('cookieConsent') === 'accepted';
-      
-      (function(w,d,s,l,i){
+      (function (w, d, s, l, i) {
         w[l] = w[l] || [];
-        w[l].push({
-          'gtm.start': new Date().getTime(),
-          event: 'gtm.js',
-          cookie_consent: userConsentStatus ? 'accepted' : 'pending'
-        });
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
         var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l!='dataLayer'?'&l='+l:'';
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
         j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id='+i+dl;
-        f?.parentNode?.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-WV5P6GRH');
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WV5P6GRH");
     </script>
     <!-- End Google Tag Manager -->
-    
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
@@ -49,13 +35,17 @@ declare global {
   </head>
   <body class="h-full overflow-x-hidden bg-default text-default text-base">
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WV5P6GRH"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-ABCDEFGH"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
     <!-- End Google Tag Manager (noscript) -->
-    
+
     <slot />
     <CookieConsent />
     <IntersectionObserver />
   </body>
 </html>
-
