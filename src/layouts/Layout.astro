@@ -23,14 +23,14 @@ declare global {
     <!-- Google Tag Manager -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      const hasConsent = localStorage.getItem('cookieConsent') === 'accepted';
+      const userConsentStatus = localStorage.getItem('cookieConsent') === 'accepted';
       
       (function(w,d,s,l,i){
         w[l] = w[l] || [];
         w[l].push({
           'gtm.start': new Date().getTime(),
           event: 'gtm.js',
-          cookie_consent: hasConsent ? 'accepted' : 'pending'
+          cookie_consent: userConsentStatus ? 'accepted' : 'pending'
         });
         var f = d.getElementsByTagName(s)[0],
         j = d.createElement(s),
