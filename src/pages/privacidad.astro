@@ -1,4 +1,5 @@
 ---
+import Layout from "../layouts/Layout.astro";
 import "@fontsource/public-sans/700.css";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/jetbrains-mono";
@@ -11,84 +12,79 @@ const title = "Política de Privacidad | Frappé";
 const email = "frappecreativity@gmail.com";
 ---
 
-<!doctype html>
-<html lang="es" class="h-full motion-safe:scroll-smooth">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <title>{title}</title>
-  </head>
-  <body class="h-full overflow-x-hidden bg-default text-default text-base">
-    <BrutalHeader title="Frappé" />
-    
-    <main class="mt-[76px] py-16 sm:py-24 px-4">
-      <div class="max-w-3xl mx-auto">
-        <h1 class="text-4xl sm:text-5xl font-bold mb-12 font-['JetBrains_Mono_Variable']">
-          Política de Privacidad
-        </h1>
-        
-        <div class="prose prose-lg max-w-none font-['Montserrat_Variable']">
-          <p class="lead">
-            En Frappé, nos tomamos muy en serio la privacidad de nuestros usuarios y clientes. Esta Política de Privacidad describe cómo recopilamos, usamos y protegemos la información que obtenemos a través de nuestra landing page.
-          </p>
+<Layout title={title}>
+  <Fragment slot="head">
+    <link rel="icon" href="/frappe_icon.png" type="image/png" />
+  </Fragment>
 
-          <h2 class="font-['JetBrains_Mono_Variable']">1. Información que recopilamos</h2>
-          <p>Podemos recopilar la siguiente información cuando visitas nuestra página:</p>
-          <ul>
-            <li>Datos personales proporcionados voluntariamente (nombre, correo electrónico, teléfono, etc.).</li>
-            <li>Información técnica (dirección IP, tipo de navegador, sistema operativo, etc.).</li>
-            <li>Datos de navegación mediante cookies u otras tecnologías de seguimiento.</li>
-          </ul>
+  <BrutalHeader title="Frappé" />
+  
+  <main class="mt-[76px] py-16 sm:py-24 px-4">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-12 font-['JetBrains_Mono_Variable']">
+        Política de Privacidad
+      </h1>
+      
+      <div class="prose prose-lg max-w-none font-['Montserrat_Variable']">
+        <p class="lead">
+          En Frappé, nos tomamos muy en serio la privacidad de nuestros usuarios y clientes. Esta Política de Privacidad describe cómo recopilamos, usamos y protegemos la información que obtenemos a través de nuestra landing page.
+        </p>
 
-          <h2 class="font-['JetBrains_Mono_Variable']">2. Uso de la información</h2>
-          <p>Usamos la información recopilada para:</p>
-          <ul>
-            <li>Responder consultas y solicitudes de contacto.</li>
-            <li>Mejorar la experiencia de usuario en nuestra web.</li>
-            <li>Enviar información relevante sobre nuestros servicios, siempre con el consentimiento previo del usuario.</li>
-            <li>Cumplir con obligaciones legales y de seguridad.</li>
-          </ul>
+        <h2 class="font-['JetBrains_Mono_Variable']">1. Información que recopilamos</h2>
+        <p>Podemos recopilar la siguiente información cuando visitas nuestra página:</p>
+        <ul>
+          <li>Datos personales proporcionados voluntariamente (nombre, correo electrónico, teléfono, etc.).</li>
+          <li>Información técnica (dirección IP, tipo de navegador, sistema operativo, etc.).</li>
+          <li>Datos de navegación mediante cookies u otras tecnologías de seguimiento.</li>
+        </ul>
 
-          <h2 class="font-['JetBrains_Mono_Variable']">3. Protección de la información</h2>
-          <p>
-            Implementamos medidas de seguridad adecuadas para proteger los datos personales contra accesos no autorizados, pérdidas o modificaciones.
-          </p>
+        <h2 class="font-['JetBrains_Mono_Variable']">2. Uso de la información</h2>
+        <p>Usamos la información recopilada para:</p>
+        <ul>
+          <li>Responder consultas y solicitudes de contacto.</li>
+          <li>Mejorar la experiencia de usuario en nuestra web.</li>
+          <li>Enviar información relevante sobre nuestros servicios, siempre con el consentimiento previo del usuario.</li>
+          <li>Cumplir con obligaciones legales y de seguridad.</li>
+        </ul>
 
-          <h2 class="font-['JetBrains_Mono_Variable']">4. Compartición de la información</h2>
-          <p>No vendemos ni compartimos datos personales con terceros, salvo en los siguientes casos:</p>
-          <ul>
-            <li>Cuando sea necesario para prestar un servicio solicitado.</li>
-            <li>Si es requerido por ley o por una autoridad competente.</li>
-          </ul>
+        <h2 class="font-['JetBrains_Mono_Variable']">3. Protección de la información</h2>
+        <p>
+          Implementamos medidas de seguridad adecuadas para proteger los datos personales contra accesos no autorizados, pérdidas o modificaciones.
+        </p>
 
-          <h2 class="font-['JetBrains_Mono_Variable']">5. Uso de cookies</h2>
-          <p>
-            Nuestra página puede usar cookies para mejorar la experiencia del usuario. Puedes configurar tu navegador para rechazar las cookies, aunque esto podría afectar algunas funcionalidades del sitio.
-          </p>
+        <h2 class="font-['JetBrains_Mono_Variable']">4. Compartición de la información</h2>
+        <p>No vendemos ni compartimos datos personales con terceros, salvo en los siguientes casos:</p>
+        <ul>
+          <li>Cuando sea necesario para prestar un servicio solicitado.</li>
+          <li>Si es requerido por ley o por una autoridad competente.</li>
+        </ul>
 
-          <h2 class="font-['JetBrains_Mono_Variable']">6. Derechos del usuario</h2>
-          <p>Como usuario, tienes derecho a:</p>
-          <ul>
-            <li>Acceder, rectificar o eliminar tus datos personales.</li>
-            <li>Retirar tu consentimiento en cualquier momento.</li>
-            <li>Oponerte al uso de tus datos para ciertos fines.</li>
-          </ul>
-          <p>Para ejercer estos derechos, puedes contactarnos en <a href={`mailto:${email}`} class="text-primary hover:underline">{email}</a>.</p>
+        <h2 class="font-['JetBrains_Mono_Variable']">5. Uso de cookies</h2>
+        <p>
+          Nuestra página puede usar cookies para mejorar la experiencia del usuario. Puedes configurar tu navegador para rechazar las cookies, aunque esto podría afectar algunas funcionalidades del sitio.
+        </p>
 
-          <h2 class="font-['JetBrains_Mono_Variable']">7. Cambios en la política de privacidad</h2>
-          <p>
-            Nos reservamos el derecho de modificar esta política en cualquier momento. Cualquier cambio será publicado en esta página.
-          </p>
+        <h2 class="font-['JetBrains_Mono_Variable']">6. Derechos del usuario</h2>
+        <p>Como usuario, tienes derecho a:</p>
+        <ul>
+          <li>Acceder, rectificar o eliminar tus datos personales.</li>
+          <li>Retirar tu consentimiento en cualquier momento.</li>
+          <li>Oponerte al uso de tus datos para ciertos fines.</li>
+        </ul>
+        <p>Para ejercer estos derechos, puedes contactarnos en <a href={`mailto:${email}`} class="text-primary hover:underline">{email}</a>.</p>
 
-          <h2 class="font-['JetBrains_Mono_Variable']">8. Contacto</h2>
-          <p>
-            Si tienes dudas sobre esta Política de Privacidad, puedes escribirnos a <a href={`mailto:${email}`} class="text-primary hover:underline">{email}</a>.
-          </p>
-        </div>
+        <h2 class="font-['JetBrains_Mono_Variable']">7. Cambios en la política de privacidad</h2>
+        <p>
+          Nos reservamos el derecho de modificar esta política en cualquier momento. Cualquier cambio será publicado en esta página.
+        </p>
+
+        <h2 class="font-['JetBrains_Mono_Variable']">8. Contacto</h2>
+        <p>
+          Si tienes dudas sobre esta Política de Privacidad, puedes escribirnos a <a href={`mailto:${email}`} class="text-primary hover:underline">{email}</a>.
+        </p>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <Footer />
-  </body>
-</html> 
+  <Footer />
+</Layout> 

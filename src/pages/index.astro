@@ -1,4 +1,5 @@
 ---
+import Layout from "../layouts/Layout.astro";
 import "@fontsource/public-sans/700.css";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/jetbrains-mono";
@@ -24,16 +25,11 @@ const keywords =
   "desarrollo web, diseño web, agencia digital, sitios web rápidos, desarrollo frontend, landing pages, SEO, diseño personalizado";
 ---
 
-<!doctype html>
-<html lang="es" class="h-full motion-safe:scroll-smooth">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<Layout title={title}>
+  <Fragment slot="head">
     <link rel="icon" href="/frappe_icon.png" type="image/png" />
     <meta name="generator" content={generator} />
-
     <!-- SEO básico -->
-    <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <link rel="canonical" href={site} />
@@ -82,23 +78,20 @@ const keywords =
         ]
       }
     </script>
-  </head>
-  <body
-    class="h-full overflow-x-hidden bg-default text-default text-base selection:bg-secondary selection:text-white"
-  >
-    <BrutalHeader title="Frappé" />
-    <Hero />
-    <WavyDivider id="sobre-nosotros" topColor="#a8e6cf" bottomColor="#fceecf" />
-    <About />
-    <WavyDivider id="precios" topColor="#fceecf" bottomColor="#78c7e7" />
-    <div class="bg-secondary">
-      <AvailableSlots slots={9} />
-      <PricingPlans />
-    </div>
-    <WavyDivider id="faq" topColor="#78c7e7" bottomColor="#a8e6cf" />
-    <FAQSection />
-    <ContactModal />
-    <WavyDivider topColor="#a8e6cf" bottomColor="#000000" />
-    <Footer />
-  </body>
-</html>
+  </Fragment>
+
+  <BrutalHeader title="Frappé" />
+  <Hero />
+  <WavyDivider id="sobre-nosotros" topColor="#a8e6cf" bottomColor="#fceecf" />
+  <About />
+  <WavyDivider id="precios" topColor="#fceecf" bottomColor="#78c7e7" />
+  <div class="bg-secondary">
+    <AvailableSlots slots={9} />
+    <PricingPlans />
+  </div>
+  <WavyDivider id="faq" topColor="#78c7e7" bottomColor="#a8e6cf" />
+  <FAQSection />
+  <ContactModal />
+  <WavyDivider topColor="#a8e6cf" bottomColor="#000000" />
+  <Footer />
+</Layout>
