@@ -1,4 +1,6 @@
 ---
+import { trackFormSubmit, trackButtonClick } from '../utils/analytics';
+
 interface Props {
   plan?: string;
 }
@@ -221,11 +223,13 @@ const { plan = "Básico" } = Astro.props;
         form.reset();
         modal?.classList.add('hidden');
         document.getElementById('successModal')?.classList.remove('hidden');
+        trackFormSubmit('contact_form', 'success');
       } else {
         throw new Error('Error al enviar el formulario');
       }
     } catch (error) {
       document.getElementById('errorModal')?.classList.remove('hidden');
+      trackFormSubmit('contact_form', 'error');
     } finally {
       submitButton.disabled = false;
       submitButton.textContent = 'Enviar';
@@ -238,6 +242,14 @@ const { plan = "Básico" } = Astro.props;
       if (e.target === modal) {
         modal.classList.add('hidden');
       }
+    });
+  });
+
+  // Tracking de botones
+  document.querySelectorAll('.open-modal').forEach(button => {
+    button.addEventListener('click', () => {
+      const plan = button.dataset.plan;
+      trackButtonClick('open_contact', `plan_${plan?.toLowerCase()}`);
     });
   });
 </script> 

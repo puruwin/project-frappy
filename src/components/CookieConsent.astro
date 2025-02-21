@@ -1,0 +1,65 @@
+<div 
+  id="cookieConsent" 
+  class="fixed bottom-0 left-0 right-0 bg-black text-white p-4 z-50" 
+  style="display: none;"
+>
+  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="text-sm font-['Montserrat_Variable']">
+      <p class="mb-2">
+        Utilizamos cookies para mejorar tu experiencia y analizar el tráfico del sitio. 
+        Puedes aceptar todas las cookies o gestionar tus preferencias.
+      </p>
+    </div>
+    <div class="flex gap-3">
+      <button 
+        id="acceptCookies"
+        class="bg-[var(--color-primary)] text-black px-4 py-2 text-sm font-['JetBrains_Mono_Variable']"
+        style="border: var(--border-brutal);"
+      >
+        Aceptar
+      </button>
+      <button 
+        id="rejectCookies"
+        class="bg-white text-black px-4 py-2 text-sm font-['JetBrains_Mono_Variable']"
+        style="border: var(--border-brutal);"
+      >
+        Rechazar
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  const cookieConsent = document.getElementById('cookieConsent');
+  const acceptButton = document.getElementById('acceptCookies');
+  const rejectButton = document.getElementById('rejectCookies');
+
+  const hasConsent = localStorage.getItem('cookieConsent');
+  
+  if (!hasConsent && cookieConsent) {
+    cookieConsent.style.display = 'block';
+  }
+
+  function handleConsent(accepted) {
+    localStorage.setItem('cookieConsent', accepted ? 'accepted' : 'rejected');
+    
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'cookie_consent_update',
+      cookie_consent: accepted ? 'accepted' : 'rejected'
+    });
+
+    if (cookieConsent) {
+      cookieConsent.style.display = 'none';
+    }
+  }
+
+  acceptButton?.addEventListener('click', () => handleConsent(true));
+  rejectButton?.addEventListener('click', () => handleConsent(false));
+</script>
+
+<style>
+  #cookieConsent {
+    box-shadow: 0 -4px 0 0 black;
+  }
+</style> 

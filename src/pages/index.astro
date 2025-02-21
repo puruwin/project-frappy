@@ -15,6 +15,7 @@ import AvailableSlots from "../components/AvailableSlots.astro";
 import ContactModal from "../components/ContactModal.astro";
 import About from "../components/About.astro";
 import Footer from "../components/Footer.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 
 const { generator, site } = Astro;
 const image = new URL("creative-launch.jpg", site);
@@ -94,4 +95,5 @@ const keywords =
   <ContactModal />
   <WavyDivider topColor="#a8e6cf" bottomColor="#000000" />
   <Footer />
+  <CookieConsent />
 </Layout>

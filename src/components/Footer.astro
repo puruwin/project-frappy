@@ -52,4 +52,14 @@ const currentYear = new Date().getFullYear();
       </div>
     </div>
   </div>
-</footer> 
+</footer>
+
+<script>
+  import { trackButtonClick } from '../utils/analytics';
+
+  document.querySelectorAll('footer a').forEach(link => {
+    link.addEventListener('click', () => {
+      trackButtonClick('footer_link', link.getAttribute('href') || '');
+    });
+  });
+</script> 
