@@ -33,11 +33,9 @@ const { plan = "Básico" } = Astro.props;
             id="name" 
             name="name" 
             required
-            minlength="2"
-            class="w-full p-2 bg-white font-['Montserrat_Variable'] text-sm invalid:border-red-500"
+            class="w-full p-2 bg-white font-['Montserrat_Variable'] text-sm"
             style="border: var(--border-brutal);"
           />
-          <span class="text-red-500 text-xs mt-1 hidden error-message">Por favor, introduce un nombre válido</span>
         </div>
 
         <div>
@@ -47,14 +45,16 @@ const { plan = "Básico" } = Astro.props;
           <input 
             type="email" 
             id="email" 
-            name="email" 
+            name="_replyto"
             required
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-            class="w-full p-2 bg-white font-['Montserrat_Variable'] text-sm invalid:border-red-500"
+            class="w-full p-2 bg-white font-['Montserrat_Variable'] text-sm"
             style="border: var(--border-brutal);"
           />
-          <span class="text-red-500 text-xs mt-1 hidden error-message">Por favor, introduce un email válido</span>
         </div>
+
+        <input type="hidden" name="email" value="_replyto" />
+
+        <input type="text" name="_gotcha" style="display:none" />
 
         <div>
           <label class="block mb-1 font-['JetBrains_Mono_Variable'] text-sm" for="phone">
@@ -65,11 +65,9 @@ const { plan = "Básico" } = Astro.props;
             id="phone" 
             name="phone" 
             required
-            pattern="[0-9]{9}"
-            class="w-full p-2 bg-white font-['Montserrat_Variable'] text-sm invalid:border-red-500"
+            class="w-full p-2 bg-white font-['Montserrat_Variable'] text-sm"
             style="border: var(--border-brutal);"
           />
-          <span class="text-red-500 text-xs mt-1 hidden error-message">Por favor, introduce un teléfono válido (9 dígitos)</span>
         </div>
 
         <div class="sm:col-span-2">
@@ -81,11 +79,9 @@ const { plan = "Básico" } = Astro.props;
             name="message" 
             rows="2"
             required
-            minlength="10"
-            class="w-full p-2 bg-white font-['Montserrat_Variable'] text-sm resize-none invalid:border-red-500"
+            class="w-full p-2 bg-white font-['Montserrat_Variable'] text-sm resize-none"
             style="border: var(--border-brutal);"
           ></textarea>
-          <span class="text-red-500 text-xs mt-1 hidden error-message">Por favor, describe brevemente tu proyecto (mínimo 10 caracteres)</span>
         </div>
 
         <div class="sm:col-span-2 flex flex-col sm:flex-row gap-3">
@@ -157,33 +153,26 @@ const { plan = "Básico" } = Astro.props;
   const closeBtn = document.getElementById('closeModal');
   const form = document.getElementById('contactForm') as HTMLFormElement;
   const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
-  const inputs = form?.querySelectorAll('input, textarea');
+  // Seleccionar solo los campos visibles requeridos
+  const requiredInputs = form?.querySelectorAll('input[required], textarea[required]');
 
-  // Función para validar el formulario
-  function validateForm() {
-    let isValid = true;
-    inputs?.forEach(input => {
-      const errorMessage = input.nextElementSibling;
-      if (!(input as HTMLInputElement).checkValidity()) {
-        isValid = false;
-        errorMessage?.classList.remove('hidden');
-      } else {
-        errorMessage?.classList.add('hidden');
-      }
-    });
-    return isValid;
+  // Deshabilitar el botón inicialmente
+  if (submitButton) {
+    submitButton.disabled = true;
+  }
+
+  // Función simple para verificar que todos los campos requeridos estén completos
+  function checkFormValidity() {
+    if (!requiredInputs) return false;
+    return Array.from(requiredInputs).every(input => (input as HTMLInputElement).value.trim() !== '');
   }
 
   // Validar en tiempo real
-  inputs?.forEach(input => {
+  requiredInputs?.forEach(input => {
     input.addEventListener('input', () => {
-      const errorMessage = input.nextElementSibling;
-      if (!(input as HTMLInputElement).checkValidity()) {
-        errorMessage?.classList.remove('hidden');
-      } else {
-        errorMessage?.classList.add('hidden');
+      if (submitButton) {
+        submitButton.disabled = !checkFormValidity();
       }
-      submitButton.disabled = !validateForm();
     });
   });
 
@@ -203,33 +192,49 @@ const { plan = "Básico" } = Astro.props;
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    if (!validateForm()) {
-      return;
-    }
-
     submitButton.disabled = true;
     submitButton.textContent = 'Enviando...';
 
     try {
+      const formData = new FormData(form);
       const response = await fetch(form.action, {
         method: 'POST',
-        body: new FormData(form),
+        body: formData,
         headers: {
           'Accept': 'application/json'
         }
+      });
+
+      const data = await response.json();
+      console.log('Formspree response:', {
+        status: response.status,
+        statusText: response.statusText,
+        data: data
       });
 
       if (response.ok) {
         form.reset();
         modal?.classList.add('hidden');
         document.getElementById('successModal')?.classList.remove('hidden');
-        trackFormSubmit('contact_form', 'success');
+        // @ts-ignore
+        window.dataLayer?.push({
+          event: 'form_submit',
+          form_name: 'contact_form',
+          form_status: 'success'
+        });
       } else {
-        throw new Error('Error al enviar el formulario');
+        console.error('Formspree error:', data);
+        throw new Error(`Error al enviar el formulario: ${data.error || response.statusText}`);
       }
     } catch (error) {
+      console.error('Error completo:', error);
       document.getElementById('errorModal')?.classList.remove('hidden');
-      trackFormSubmit('contact_form', 'error');
+      // @ts-ignore
+      window.dataLayer?.push({
+        event: 'form_submit',
+        form_name: 'contact_form',
+        form_status: 'error'
+      });
     } finally {
       submitButton.disabled = false;
       submitButton.textContent = 'Enviar';
@@ -242,14 +247,6 @@ const { plan = "Básico" } = Astro.props;
       if (e.target === modal) {
         modal.classList.add('hidden');
       }
-    });
-  });
-
-  // Tracking de botones
-  document.querySelectorAll('.open-modal').forEach(button => {
-    button.addEventListener('click', () => {
-      const plan = button.dataset.plan;
-      trackButtonClick('open_contact', `plan_${plan?.toLowerCase()}`);
     });
   });
 </script> 
