@@ -4,34 +4,34 @@ interface Props {
 }
 
 const { 
-  title = "Neobrutalist Design"
+  title = "Frappé"
 } = Astro.props;
 ---
 
-<header class="bg-black text-white fixed w-full top-0 z-50 h-[60px] sm:h-[76px]">
+<header class="bg-white/80 backdrop-blur-md border-b border-[var(--color-border)] fixed w-full top-0 z-50 h-[60px] sm:h-[76px]">
   <div class="w-full h-full flex flex-row justify-between items-center px-4 sm:px-8">
-    <a href="/">
-      <h1 class="font-['JetBrains_Mono_Variable'] text-xl sm:text-2xl">
+    <a href="/" class="hover:opacity-80 transition-opacity">
+      <p class="font-['JetBrains_Mono_Variable'] text-xl sm:text-2xl text-[var(--color-secondary)]">
         {title}
-      </h1>
+      </p>
     </a>
     <nav class="h-full flex items-center">
-      <button class="sm:hidden text-2xl p-2">☰</button>
-      <ul class="hidden sm:flex text-sm gap-8 font-bold font-['Montserrat_Variable'] h-full items-center">
+      <button class="sm:hidden text-2xl p-2 text-[var(--color-secondary)]">☰</button>
+      <ul class="hidden sm:flex text-sm gap-8 font-medium font-['Montserrat_Variable'] h-full items-center">
         <li>
-          <a href="/#sobre-nosotros" class="hover:text-primary transition-colors whitespace-nowrap" style="
-            border-bottom: var(--border-brutal);
-          ">Sobre nosotros</a>
+          <a href="/#sobre-nosotros" class="text-[var(--color-text)] hover:text-[var(--color-text-offset)] transition-colors whitespace-nowrap">
+            Sobre nosotros
+          </a>
         </li>
         <li>
-          <a href="/#precios" class="hover:text-primary transition-colors whitespace-nowrap" style="
-            border-bottom: var(--border-brutal);
-          ">Precios</a>
+          <a href="/#precios" class="text-[var(--color-text)] hover:text-[var(--color-text-offset)] transition-colors whitespace-nowrap">
+            Precios
+          </a>
         </li>
         <li>
-          <a href="/#faq" class="hover:text-primary transition-colors whitespace-nowrap" style="
-            border-bottom: var(--border-brutal);
-          ">Preguntas frecuentes</a>
+          <a href="/#faq" class="text-[var(--color-text)] hover:text-[var(--color-text-offset)] transition-colors whitespace-nowrap">
+            Preguntas frecuentes
+          </a>
         </li>
       </ul>
     </nav>
