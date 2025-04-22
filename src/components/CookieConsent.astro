@@ -29,33 +29,38 @@
   </div>
 </div>
 
-<script is:inline>
-  const cookieConsentBanner = document.getElementById('cookieConsent');
-  const acceptButton = document.getElementById('acceptCookies');
-  const rejectButton = document.getElementById('rejectCookies');
-
-  const cookieConsentStatus = localStorage.getItem('cookieConsent');
-  
-  if (!cookieConsentStatus && cookieConsentBanner) {
-    cookieConsentBanner.style.display = 'block';
-  }
-
-  function handleConsent(accepted) {
-    localStorage.setItem('cookieConsent', accepted ? 'accepted' : 'rejected');
+<script>
+  // Verificar si el script ya se ha ejecutado
+  if (!window.cookieConsentInitialized) {
+    window.cookieConsentInitialized = true;
     
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'cookie_consent_update',
-      cookie_consent: accepted ? 'accepted' : 'rejected'
-    });
+    const cookieConsentBanner = document.getElementById('cookieConsent');
+    const acceptButton = document.getElementById('acceptCookies');
+    const rejectButton = document.getElementById('rejectCookies');
 
-    if (cookieConsentBanner) {
-      cookieConsentBanner.style.display = 'none';
+    const cookieConsentStatus = localStorage.getItem('cookieConsent');
+    
+    if (!cookieConsentStatus && cookieConsentBanner) {
+      cookieConsentBanner.style.display = 'block';
     }
-  }
 
-  acceptButton?.addEventListener('click', () => handleConsent(true));
-  rejectButton?.addEventListener('click', () => handleConsent(false));
+    function handleConsent(accepted) {
+      localStorage.setItem('cookieConsent', accepted ? 'accepted' : 'rejected');
+      
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'cookie_consent_update',
+        cookie_consent: accepted ? 'accepted' : 'rejected'
+      });
+
+      if (cookieConsentBanner) {
+        cookieConsentBanner.style.display = 'none';
+      }
+    }
+
+    acceptButton?.addEventListener('click', () => handleConsent(true));
+    rejectButton?.addEventListener('click', () => handleConsent(false));
+  }
 </script>
 
 <style>

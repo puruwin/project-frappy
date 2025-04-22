@@ -20,10 +20,10 @@ import CookieConsent from "../components/CookieConsent.astro";
 const { generator, site } = Astro;
 const image = new URL("creative-launch.jpg", site);
 const title = "Frappé | Agencia de Desarrollo Web";
-const description = 
+const description =
   "Creamos sitios web de alto rendimiento que impulsan el crecimiento de tu negocio. Expertos en desarrollo web con tecnologías modernas y diseños adaptados a tu marca.";
-const keywords = 
-  "desarrollo web, diseño web, agencia digital, sitios web rápidos, desarrollo frontend, landing pages, SEO, diseño personalizado";
+const keywords =
+  "desarrollo web, diseño web, agencia digital, sitios web rápidos, desarrollo frontend, landing pages, SEO, diseño personalizado, desarrollo web para autónomos, desarrollo web para pequeñas empresas, desarrollo web para startups";
 ---
 
 <Layout title={title}>
@@ -34,7 +34,7 @@ const keywords =
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <link rel="canonical" href={site} />
-    
+
     <!-- Control de robots -->
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -59,7 +59,7 @@ const keywords =
     <meta name="author" content="Frappé" />
     <meta name="theme-color" content="#000000" />
     <meta name="format-detection" content="telephone=no" />
-    
+
     <!-- Structured Data / JSON-LD -->
     <script type="application/ld+json">
       {
@@ -79,21 +79,61 @@ const keywords =
         ]
       }
     </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Cuánto tiempo se tarda en crear una web?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El tiempo que se tarda en tener lista una web depende del proyecto. Una landing sencilla puede estar lista en 1 semana, mientras que una web personalizada más compleja puede tardar de 2 a 4 semanas."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué significa hosting y dominio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El hosting es el alojamiento de tu sitio web en servidores seguros y de alta velocidad. Es lo que hace que tu página web esté en Internet. El dominio es tu dirección web personalizada (www.tuempresa.com). Nosotros nos encargamos de toda la gestión y renovación de ambos servicios mientras mantengas tu plan activo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué incluye el mantenimiento mensual con una agencia de desarrollo web?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El mantenimiento incluye actualizaciones de seguridad, pequeñas modificaciones en textos o imágenes, copia de seguridad mensual, y monitorización para que tu web funcione siempre correctamente. Es ideal para mantener tu sitio web actualizado y funcionando sin preocuparte por los detalles técnicos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué es el SEO local y cómo puede ayudar a mi negocio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El SEO local mejora tu visibilidad en búsquedas relacionadas con tu ubicación (como “electricista en Benidorm”). Implica optimizar tu web con palabras clave geográficas, crear un perfil de Google Business y conseguir reseñas locales."
+            }
+          }            
+        ]
+      }
+    </script>
   </Fragment>
 
   <BrutalHeader title="Frappé" />
   <Hero />
-  <WavyDivider id="sobre-nosotros" topColor="#a8e6cf" bottomColor="#fceecf" />
+  <WavyDivider id="sobre-nosotros" topColor="#56A5DD" bottomColor="#ffffff" />
   <About />
-  <WavyDivider id="precios" topColor="#fceecf" bottomColor="#78c7e7" />
+  <WavyDivider id="precios" topColor="#ffffff" bottomColor="#162326" />
   <div class="bg-secondary">
     <AvailableSlots slots={9} />
     <PricingPlans />
   </div>
-  <WavyDivider id="faq" topColor="#78c7e7" bottomColor="#a8e6cf" />
+  <WavyDivider id="faq" topColor="#162326" bottomColor="#56A5DD" />
   <FAQSection />
   <ContactModal />
-  <WavyDivider topColor="#a8e6cf" bottomColor="#000000" />
+  <WavyDivider topColor="#56A5DD" bottomColor="#000000" />
   <Footer />
   <CookieConsent />
 </Layout>

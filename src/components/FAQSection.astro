@@ -3,45 +3,65 @@ import FAQ from "./FAQ.astro";
 
 const faqs = [
   {
-    question: "¿Qué incluye exactamente el hosting y dominio?",
-    answer: "El hosting incluye el alojamiento de tu sitio web en servidores seguros y de alta velocidad. El dominio es tu dirección web personalizada (www.tuempresa.com). Nos encargamos de toda la gestión y renovación de ambos servicios mientras mantengas tu plan activo."
+    question:
+      "¿Cuánto tiempo se tarda en crear una web?",
+    answer:
+      "El tiempo que se tarda en tener lista una web depende del proyecto. Una landing sencilla puede estar lista en 1 semana, mientras que una web personalizada más compleja puede tardar de 2 a 4 semanas.",
   },
   {
-    question: "¿Qué se considera un 'cambio menor'?",
-    answer: "Los cambios menores incluyen actualizaciones de texto, imágenes, enlaces y pequeños ajustes de diseño. No incluyen cambios estructurales o la creación de nuevas páginas o funcionalidades."
+    question: "¿Qué significa hosting y dominio?",
+    answer:
+      "El hosting es el alojamiento de tu sitio web en servidores seguros y de alta velocidad. Es lo que hace que tu página web esté en Internet. El dominio es tu dirección web personalizada (www.tuempresa.com). Nosotros nos encargamos de toda la gestión y renovación de ambos servicios mientras mantengas tu plan activo.",
+  },
+  {
+    question:
+      "¿Qué incluye el mantenimiento mensual con una agencia de desarrollo web?",
+    answer:
+      "El mantenimiento incluye actualizaciones de seguridad, pequeñas modificaciones en textos o imágenes, copia de seguridad mensual, y monitorización para que tu web funcione siempre correctamente. Es ideal para mantener tu sitio web actualizado y funcionando sin preocuparte por los detalles técnicos.",
   },
   {
     question: "¿Puedo cambiar de plan en cualquier momento?",
-    answer: "Sí, puedes actualizar o cambiar tu plan en cualquier momento. Los cambios se aplicarán en el siguiente ciclo de facturación y ajustaremos los servicios según el nuevo plan seleccionado."
+    answer:
+      "Sí, puedes subir de plan en cualquier momento si tu negocio crece o necesitas más funcionalidades. Muchos de nuestros clientes comienzan con el plan Starter y más adelante pasan al Pro o Growth.",
   },
   {
-    question: "¿Qué significa 'SEO básico'?",
-    answer: "El SEO básico incluye la optimización de títulos, descripciones, palabras clave, metadatos y estructura básica del sitio para buscadores. También incluye la configuración de Google Search Console y sitemap."
+    question: "¿Está incluida la creación del logo o branding?",
+    answer:
+      "Los planes no incluyen diseño del logo ni branding completo, pero podemos ayudarte con un servicio adicional si lo necesitas. Aunque no es obligatorio, tener una imagen profesional mejora la percepción de tu negocio.",
   },
   {
-    question: "¿Cómo funciona el soporte técnico?",
-    answer: "El soporte técnico está disponible por email y chat en horario laboral. Los tiempos de respuesta varían según el plan: Básico (24h), Standard (12h), Premium (4h). Las copias de seguridad se realizan según la frecuencia especificada en cada plan."
+    question: "¿Me ayudáis con el posicionamiento en Google?",
+    answer:
+      "Sí. Todos los planes incluyen una optimización básica SEO. El plan Pro y el plan Growth ofrecen una optimización más avanzada, incluyendo configuración de Google Analytics, Tag Manager, y asesoramiento sobre palabras clave. El plan Growth además incluye asesoría mensual y soporte para campañas en Google Ads.",
   },
   {
-    question: "¿Qué pasa si necesito más páginas de las incluidas en mi plan?",
-    answer: "Puedes solicitar páginas adicionales con un costo extra por página, o considerar actualizar a un plan superior que incluya más páginas. Consulta con nosotros para obtener un presupuesto personalizado."
-  }
+    question: "¿Qué es el SEO local y cómo puede ayudar a mi negocio?",
+    answer:
+      "El SEO local mejora tu visibilidad en búsquedas relacionadas con tu ubicación (como “electricista en Benidorm”). Implica optimizar tu web con palabras clave geográficas, crear un perfil de Google Business y conseguir reseñas locales.",
+  },
+  {
+    question: "¿Qué formas de pago aceptáis?",
+    answer:
+      "Trabajamos con pagos por transferencia bancaria o Bizum. Los pagos se hacen de forma segura y recibirás factura por cada operación.",
+  },
+  {
+    question: "¿Hay permanencia?",
+    answer:
+      "No hay permanencia. Puedes cancelar el servicio mensual en cualquier momento con un mes de antelación. Sin ataduras, pero la web dejará de estar disponible si no se mantiene el pago del plan.",
+  },
 ];
 ---
 
-<section class="py-16 px-4 sm:px-8 bg-[var(--color-background-offset)]">
-  <div class="max-w-7xl mx-auto">
-    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 sm:mb-16 text-center font-['JetBrains_Mono_Variable']">
+<section class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8">
+  <div class="mx-auto max-w-7xl">
+    <h2
+      class="mb-8 text-center font-['JetBrains_Mono_Variable'] font-bold text-3xl sm:mb-16 sm:text-4xl lg:text-5xl"
+    >
       Preguntas Frecuentes
     </h2>
-    
-    <div class="max-w-3xl mx-auto">
-      {faqs.map(faq => (
-        <FAQ 
-          question={faq.question}
-          answer={faq.answer}
-        />
-      ))}
+
+    <div class="mx-auto max-w-3xl">
+      {faqs.map((faq) => <FAQ question={faq.question} answer={faq.answer} />)}
     </div>
   </div>
-</section> 
+</section>

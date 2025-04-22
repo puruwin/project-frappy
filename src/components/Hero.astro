@@ -7,34 +7,189 @@ interface Props {
 
 const { 
   title = "Frappé",
-  subtitle = "Desarrollo web con un toque diferente",
-  description = "Creamos experiencias digitales únicas combinando diseño atractivo con tecnología de vanguardia. Simple, directo y memorable."
+  subtitle = "Agencia de desarrollo web",
+  description = "Creamos páginas web personalizadas para profesionales, autónomos y pequeñas empresas. Desarrollamos sitios web de alto rendimiento que impulsan el crecimiento de tu negocio."
 } = Astro.props;
+
+const FORM_ENDPOINT = "https://formspree.io/f/mjkglyjd";
 ---
 
-<div id="hero" class="bg-[var(--color-background-offset)] mt-[60px] sm:mt-[76px] min-h-[calc(100vh-120px)] sm:min-h-[calc(100vh-140px)] flex items-center">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4 sm:px-8">
-    <div class="text-center lg:text-left pt-12 sm:pt-16 lg:pt-0">
-      <h1 class="text-4xl sm:text-7xl lg:text-9xl font-bold mb-6 text-primary font-['JetBrains_Mono_Variable'] title-3d">
+<div id="hero" class="bg-gradient-to-b from-[var(--color-background)] to-[var(--color-background-offset)] mt-[60px] sm:mt-[76px] min-h-[calc(100vh-60px)] sm:min-h-[calc(100vh-76px)] py-6 sm:py-16 flex items-center">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center px-4 sm:px-8">
+    <div class="text-center lg:text-left">
+      <p class="text-3xl sm:text-7xl lg:text-7xl font-bold mb-3 sm:mb-6 text-[var(--color-secondary)] font-['JetBrains_Mono_Variable'] leading-tight">
         {title}
-      </h1>
-      <h2 class="text-xl sm:text-2xl font-medium mb-4 text-[#4a4a4a] font-['Montserrat_Variable']">
-        {subtitle}
-      </h2>
-      <p class="text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 text-[#666666] leading-relaxed font-['Montserrat_Variable']">
-        {description}
       </p>
+      <h1 class="text-lg sm:text-2xl font-medium mb-3 sm:mb-6 text-[var(--color-text-offset)] font-['Montserrat_Variable']">
+        {subtitle}
+      </h1>
+      <h2 class="text-sm sm:text-lg max-w-2xl mx-auto lg:mx-0 text-[var(--color-text)] leading-relaxed font-['Montserrat_Variable'] opacity-80">
+        {description}
+      </h2>
     </div>
     
-    <div class="relative mt-8 lg:mt-0" style="
-      border: var(--border-brutal);
-      box-shadow: var(--shadow-brutal);
-    ">
-      <img 
-        src="splash.png" 
-        alt="Código en una pantalla" 
-        class="w-full h-[250px] sm:h-[300px] lg:h-[400px] object-cover"
-      />
+    <div class="bg-[var(--color-secondary)] rounded-lg p-4 sm:p-6">
+      <h3 class="text-base sm:text-lg font-bold mb-4 sm:mb-5 text-white font-['Montserrat_Variable']">
+        ¿Hablamos de tu proyecto?
+      </h3>
+      
+      <form action={FORM_ENDPOINT} method="POST" id="heroForm" class="grid grid-cols-1 gap-3 sm:gap-4">
+        <div>
+          <label class="block mb-1 sm:mb-1.5 font-['Montserrat_Variable'] text-xs sm:text-sm text-white/90" for="hero-name">
+            Nombre
+          </label>
+          <input 
+            type="text" 
+            id="hero-name" 
+            name="name" 
+            required
+            class="w-full p-2 sm:p-2.5 bg-white border-b-2 border-[var(--color-primary)] rounded-t-md font-['Montserrat_Variable'] text-sm text-[var(--color-secondary)] placeholder:text-[var(--color-text-offset)]/60 focus:outline-none focus:border-[var(--color-secondary)] transition-colors"
+            placeholder="Tu nombre"
+          />
+        </div>
+
+        <div>
+          <label class="block mb-1 sm:mb-1.5 font-['Montserrat_Variable'] text-xs sm:text-sm text-white/90" for="hero-email">
+            Correo Electrónico
+          </label>
+          <input 
+            type="email" 
+            id="hero-email" 
+            name="email"
+            required
+            class="w-full p-2 sm:p-2.5 bg-white border-b-2 border-[var(--color-primary)] rounded-t-md font-['Montserrat_Variable'] text-sm text-[var(--color-secondary)] placeholder:text-[var(--color-text-offset)]/60 focus:outline-none focus:border-[var(--color-secondary)] transition-colors"
+            placeholder="tu@email.com"
+          />
+        </div>
+
+        <input type="text" name="_gotcha" style="display:none" />
+
+        <div>
+          <label class="block mb-1 sm:mb-1.5 font-['Montserrat_Variable'] text-xs sm:text-sm text-white/90" for="hero-phone">
+            Teléfono
+          </label>
+          <input 
+            type="tel" 
+            id="hero-phone" 
+            name="phone" 
+            required
+            class="w-full p-2 sm:p-2.5 bg-white border-b-2 border-[var(--color-primary)] rounded-t-md font-['Montserrat_Variable'] text-sm text-[var(--color-secondary)] placeholder:text-[var(--color-text-offset)]/60 focus:outline-none focus:border-[var(--color-secondary)] transition-colors"
+            placeholder="+34 600 000 000"
+          />
+        </div>
+
+        <div>
+          <label class="block mb-1 sm:mb-1.5 font-['Montserrat_Variable'] text-xs sm:text-sm text-white/90" for="hero-message">
+            Cuéntanos sobre tu proyecto
+          </label>
+          <textarea 
+            id="hero-message" 
+            name="message" 
+            rows="2"
+            required
+            class="w-full p-2 sm:p-2.5 bg-white border-b-2 border-[var(--color-primary)] rounded-t-md font-['Montserrat_Variable'] text-sm text-[var(--color-secondary)] placeholder:text-[var(--color-text-offset)]/60 focus:outline-none focus:border-[var(--color-secondary)] transition-colors resize-none"
+            placeholder="Describe brevemente tu proyecto..."
+          ></textarea>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-1 sm:mt-2">
+          <button 
+            id="heroSubmitButton"
+            class="flex-1 bg-white text-[var(--color-secondary)] py-2 sm:py-2.5 px-6 rounded-md font-['Montserrat_Variable'] text-sm hover:bg-white/90 transition-colors disabled:bg-white/20 disabled:text-white/60 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[var(--color-secondary)]"
+            disabled
+          >
+            Enviar
+          </button>
+          
+          <a 
+            href="https://wa.me/+34608962213" 
+            target="_blank"
+            class="flex-1 bg-[#25D366] text-white py-2 sm:py-2.5 px-6 rounded-md font-['Montserrat_Variable'] text-sm hover:bg-[#25D366]/90 transition-colors text-center focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-[var(--color-secondary)]"
+          >
+            Escríbenos por WhatsApp
+          </a>
+        </div>
+      </form>
     </div>
   </div>
-</div> 
+</div>
+
+<script>
+  const heroForm = document.getElementById('heroForm') as HTMLFormElement;
+  const heroSubmitButton = document.getElementById('heroSubmitButton') as HTMLButtonElement;
+  const heroRequiredInputs = heroForm?.querySelectorAll('input[required], textarea[required]');
+
+  // Deshabilitar el botón inicialmente
+  if (heroSubmitButton) {
+    heroSubmitButton.disabled = true;
+  }
+
+  // Función para verificar que todos los campos requeridos estén completos
+  function checkHeroFormValidity() {
+    if (!heroRequiredInputs) return false;
+    return Array.from(heroRequiredInputs).every(input => (input as HTMLInputElement).value.trim() !== '');
+  }
+
+  // Validar en tiempo real
+  heroRequiredInputs?.forEach(input => {
+    input.addEventListener('input', () => {
+      if (heroSubmitButton) {
+        heroSubmitButton.disabled = !checkHeroFormValidity();
+      }
+    });
+  });
+
+  // Manejar envío del formulario
+  heroForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    heroSubmitButton.disabled = true;
+    heroSubmitButton.textContent = 'Enviando...';
+
+    try {
+      const formData = new FormData(heroForm);
+      const response = await fetch(heroForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(`Error al enviar el formulario: ${data.error || response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      if (data.ok) {
+        heroForm.reset();
+        document.getElementById('successModal')?.classList.remove('hidden');
+        // Mantener el botón deshabilitado después de un envío exitoso
+        heroSubmitButton.disabled = true;
+        // @ts-ignore
+        window.dataLayer?.push({
+          event: 'form_submit',
+          form_name: 'hero_form',
+          form_status: 'success'
+        });
+      } else {
+        throw new Error('Error al enviar el formulario');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      document.getElementById('errorModal')?.classList.remove('hidden');
+      // En caso de error, habilitar el botón para reintentar
+      heroSubmitButton.disabled = false;
+      // @ts-ignore
+      window.dataLayer?.push({
+        event: 'form_submit',
+        form_name: 'hero_form',
+        form_status: 'error'
+      });
+    } finally {
+      heroSubmitButton.textContent = 'Enviar';
+    }
+  });
+</script> 

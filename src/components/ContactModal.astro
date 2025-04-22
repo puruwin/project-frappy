@@ -9,101 +9,95 @@ const FORM_ENDPOINT = "https://formspree.io/f/mjkglyjd";
 const { plan = "Básico" } = Astro.props;
 ---
 
-<div id="contactModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-[100] flex items-center justify-center p-4">
-  <div class="bg-[var(--color-background)] w-full max-w-2xl relative" style="
-    border: var(--border-brutal);
-    box-shadow: var(--shadow-brutal);
-  ">
-    <button id="closeModal" class="absolute -top-4 -right-4 bg-black text-white w-8 h-8 flex items-center justify-center font-bold z-10" style="
-      border: var(--border-brutal);
-    ">×</button>
+<div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+  <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+    <div class="modal__container bg-white rounded-lg shadow-lg mx-4 sm:mx-auto w-full max-w-[500px]" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+      <header class="modal__header border-b border-[var(--color-border)] p-5 sm:p-6">
+        <h2 class="text-xl font-bold text-[var(--color-secondary)] font-['Montserrat_Variable']" id="modal-1-title">
+          Contacta con nosotros
+        </h2>
+        <button class="modal__close text-[var(--color-text)] hover:text-[var(--color-text-offset)] transition-colors" aria-label="Close modal" data-micromodal-close></button>
+      </header>
+      <main class="modal__content p-5 sm:p-6" id="modal-1-content">
+        <p class="text-[var(--color-text)] opacity-80 mb-5 sm:mb-6 font-['Montserrat_Variable'] text-sm">
+          Cuéntanos sobre tu proyecto y nos pondremos en contacto contigo lo antes posible.
+        </p>
+        
+        <form action={FORM_ENDPOINT} method="POST" id="contactForm" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="sm:col-span-2">
+            <label class="block mb-1 font-['Montserrat_Variable'] text-sm text-[var(--color-text)]" for="name">
+              Nombre
+            </label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              required
+              class="w-full p-2 bg-white border border-[var(--color-border)] rounded-md font-['Montserrat_Variable'] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-text-offset)] transition-shadow"
+            />
+          </div>
 
-    <div class="p-4 sm:p-6">
-      <h3 class="text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4 font-['JetBrains_Mono_Variable']">
-        Plan {plan}
-      </h3>
+          <div>
+            <label class="block mb-1 font-['Montserrat_Variable'] text-sm text-[var(--color-text)]" for="email">
+              Correo Electrónico
+            </label>
+            <input 
+              type="email" 
+              id="email" 
+              name="_replyto"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              required
+              class="w-full p-2 bg-white border border-[var(--color-border)] rounded-md font-['Montserrat_Variable'] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-text-offset)] transition-shadow"
+            />
+          </div>
 
-      <form action={FORM_ENDPOINT} method="POST" id="contactForm" class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-        <div class="sm:col-span-2">
-          <label class="block mb-1 font-['JetBrains_Mono_Variable'] text-sm" for="name">
-            Nombre
-          </label>
-          <input 
-            type="text" 
-            id="name" 
-            name="name" 
-            required
-            class="w-full p-2 bg-white font-['Montserrat_Variable'] text-sm"
-            style="border: var(--border-brutal);"
-          />
-        </div>
+          <input type="text" name="_gotcha" style="display:none" />
 
-        <div>
-          <label class="block mb-1 font-['JetBrains_Mono_Variable'] text-sm" for="email">
-            Correo Electrónico
-          </label>
-          <input 
-            type="email" 
-            id="email" 
-            name="_replyto"
-            required
-            class="w-full p-2 bg-white font-['Montserrat_Variable'] text-sm"
-            style="border: var(--border-brutal);"
-          />
-        </div>
+          <div>
+            <label class="block mb-1 font-['Montserrat_Variable'] text-sm text-[var(--color-text)]" for="phone">
+              Teléfono
+            </label>
+            <input 
+              type="tel" 
+              id="phone" 
+              name="phone" 
+              required
+              class="w-full p-2 bg-white border border-[var(--color-border)] rounded-md font-['Montserrat_Variable'] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-text-offset)] transition-shadow"
+            />
+          </div>
 
-        <input type="hidden" name="email" value="_replyto" />
+          <div class="sm:col-span-2">
+            <label class="block mb-1 font-['Montserrat_Variable'] text-sm text-[var(--color-text)]" for="message">
+              Cuéntanos sobre tu proyecto
+            </label>
+            <textarea 
+              id="message" 
+              name="message" 
+              rows="3"
+              required
+              class="w-full p-2 bg-white border border-[var(--color-border)] rounded-md font-['Montserrat_Variable'] text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[var(--color-text-offset)] transition-shadow"
+            ></textarea>
+          </div>
 
-        <input type="text" name="_gotcha" style="display:none" />
-
-        <div>
-          <label class="block mb-1 font-['JetBrains_Mono_Variable'] text-sm" for="phone">
-            Teléfono
-          </label>
-          <input 
-            type="tel" 
-            id="phone" 
-            name="phone" 
-            required
-            class="w-full p-2 bg-white font-['Montserrat_Variable'] text-sm"
-            style="border: var(--border-brutal);"
-          />
-        </div>
-
-        <div class="sm:col-span-2">
-          <label class="block mb-1 font-['JetBrains_Mono_Variable'] text-sm" for="message">
-            Cuéntanos sobre tu proyecto
-          </label>
-          <textarea 
-            id="message" 
-            name="message" 
-            rows="2"
-            required
-            class="w-full p-2 bg-white font-['Montserrat_Variable'] text-sm resize-none"
-            style="border: var(--border-brutal);"
-          ></textarea>
-        </div>
-
-        <div class="sm:col-span-2 flex flex-col sm:flex-row gap-3">
-          <button 
-            type="submit"
-            id="submitButton"
-            class="flex-1 bg-black text-white py-2 px-4 font-['JetBrains_Mono_Variable'] hover:bg-gray-800 transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-            style="border: var(--border-brutal);"
-          >
-            Enviar
-          </button>
-          
-          <a 
-            href="https://wa.me/+34608962213" 
-            target="_blank"
-            class="flex-1 bg-[#25D366] text-white py-2 px-4 font-['JetBrains_Mono_Variable'] hover:bg-[#128C7E] transition-colors text-center text-sm"
-            style="border: var(--border-brutal);"
-          >
-            WhatsApp
-          </a>
-        </div>
-      </form>
+          <div class="sm:col-span-2 flex flex-col sm:flex-row gap-3">
+            <button 
+              type="submit"
+              id="submitButton"
+              class="flex-1 bg-[var(--color-secondary)] text-white py-2 px-4 rounded-md font-['Montserrat_Variable'] text-sm hover:bg-[var(--color-secondary)]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-[var(--color-text-offset)] focus:ring-offset-2"
+            >
+              Enviar
+            </button>
+            
+            <a 
+              href="https://wa.me/+34608962213" 
+              target="_blank"
+              class="flex-1 bg-[#25D366] text-white py-2 px-4 rounded-md font-['Montserrat_Variable'] text-sm hover:bg-[#25D366]/90 transition-colors text-center focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2"
+            >
+              WhatsApp
+            </a>
+          </div>
+        </form>
+      </main>
     </div>
   </div>
 </div>
@@ -136,35 +130,62 @@ const { plan = "Básico" } = Astro.props;
     <div class="text-center">
       <div class="mb-4 text-4xl">😕</div>
       <h3 class="text-xl font-bold mb-2 font-['JetBrains_Mono_Variable']">¡Ups!</h3>
-      <p class="font-['Montserrat_Variable'] mb-6">Ha ocurrido un error. Por favor, inténtalo de nuevo más tarde.</p>
-      <button 
-        class="bg-black text-white px-6 py-2 font-['JetBrains_Mono_Variable'] hover:bg-gray-800 transition-colors text-sm"
-        style="border: var(--border-brutal);"
-        onclick="document.getElementById('errorModal').classList.add('hidden')"
-      >
-        Cerrar
-      </button>
+      <p class="font-['Montserrat_Variable'] mb-6">
+        Ha ocurrido un error al enviar el formulario. 
+        ¿Te gustaría contactarnos directamente por WhatsApp?
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a 
+          href="https://wa.me/+34608962213" 
+          target="_blank"
+          class="bg-[#25D366] text-white px-6 py-2 font-['JetBrains_Mono_Variable'] hover:bg-[#25D366]/90 transition-colors text-sm flex items-center justify-center gap-2"
+          style="border: var(--border-brutal);"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+          </svg>
+          Contactar por WhatsApp
+        </a>
+        <button 
+          class="bg-black text-white px-6 py-2 font-['JetBrains_Mono_Variable'] hover:bg-gray-800 transition-colors text-sm"
+          style="border: var(--border-brutal);"
+          onclick="document.getElementById('errorModal').classList.add('hidden')"
+        >
+          Cerrar
+        </button>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-  const modal = document.getElementById('contactModal');
-  const closeBtn = document.getElementById('closeModal');
+  declare const MicroModal: {
+    show: (modalId: string) => void;
+    close: (modalId: string) => void;
+  };
+
   const form = document.getElementById('contactForm') as HTMLFormElement;
   const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
-  // Seleccionar solo los campos visibles requeridos
   const requiredInputs = form?.querySelectorAll('input[required], textarea[required]');
+  const emailInput = document.getElementById('email') as HTMLInputElement;
 
   // Deshabilitar el botón inicialmente
   if (submitButton) {
     submitButton.disabled = true;
   }
 
+  // Función para validar email
+  function isValidEmail(email: string) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  }
+
   // Función simple para verificar que todos los campos requeridos estén completos
   function checkFormValidity() {
     if (!requiredInputs) return false;
-    return Array.from(requiredInputs).every(input => (input as HTMLInputElement).value.trim() !== '');
+    const allFieldsFilled = Array.from(requiredInputs).every(input => (input as HTMLInputElement).value.trim() !== '');
+    const emailValid = isValidEmail(emailInput.value);
+    return allFieldsFilled && emailValid;
   }
 
   // Validar en tiempo real
@@ -176,21 +197,15 @@ const { plan = "Básico" } = Astro.props;
     });
   });
 
-  // Cerrar modal
-  closeBtn?.addEventListener('click', () => {
-    modal?.classList.add('hidden');
-  });
-
-  // Cerrar al hacer click fuera
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.classList.add('hidden');
-    }
-  });
-
   // Manejar envío del formulario
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    
+    if (!isValidEmail(emailInput.value)) {
+      emailInput.setCustomValidity('Por favor, introduce un email válido');
+      emailInput.reportValidity();
+      return;
+    }
     
     submitButton.disabled = true;
     submitButton.textContent = 'Enviando...';
@@ -206,18 +221,14 @@ const { plan = "Básico" } = Astro.props;
       });
 
       const data = await response.json();
-      console.log('Formspree response:', {
-        status: response.status,
-        statusText: response.statusText,
-        data: data
-      });
 
       if (response.ok) {
         form.reset();
-        modal?.classList.add('hidden');
+        // Cerrar el modal principal
+        MicroModal.close('modal-1');
+        // Mostrar el modal de éxito
         document.getElementById('successModal')?.classList.remove('hidden');
-        // @ts-ignore
-        window.dataLayer?.push({
+        window.dataLayer.push({
           event: 'form_submit',
           form_name: 'contact_form',
           form_status: 'success'
@@ -229,8 +240,7 @@ const { plan = "Básico" } = Astro.props;
     } catch (error) {
       console.error('Error completo:', error);
       document.getElementById('errorModal')?.classList.remove('hidden');
-      // @ts-ignore
-      window.dataLayer?.push({
+      window.dataLayer.push({
         event: 'form_submit',
         form_name: 'contact_form',
         form_status: 'error'
@@ -249,4 +259,106 @@ const { plan = "Básico" } = Astro.props;
       }
     });
   });
-</script> 
+</script>
+
+<style>
+  .modal {
+    display: none;
+  }
+  .modal.is-open {
+    display: block;
+  }
+  .modal__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+  }
+  .modal__container {
+    background-color: #fff;
+    padding: 0;
+    max-width: 500px;
+    max-height: 100vh;
+    border-radius: 0.5rem;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+  .modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal__close {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    padding: 0.5rem;
+  }
+  .modal__close::before {
+    content: "×";
+    font-size: 1.5rem;
+  }
+  .micromodal-slide {
+    display: none;
+  }
+  .micromodal-slide.is-open {
+    display: block;
+  }
+  .micromodal-slide[aria-hidden="false"] .modal__overlay {
+    animation: mmfadeIn 0.3s cubic-bezier(0, 0, 0.2, 1);
+  }
+  .micromodal-slide[aria-hidden="false"] .modal__container {
+    animation: mmslideIn 0.3s cubic-bezier(0, 0, 0.2, 1);
+  }
+  .micromodal-slide[aria-hidden="true"] .modal__overlay {
+    animation: mmfadeOut 0.3s cubic-bezier(0, 0, 0.2, 1);
+  }
+  .micromodal-slide[aria-hidden="true"] .modal__container {
+    animation: mmslideOut 0.3s cubic-bezier(0, 0, 0.2, 1);
+  }
+  .micromodal-slide .modal__container,
+  .micromodal-slide .modal__overlay {
+    will-change: transform;
+  }
+  @keyframes mmfadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes mmfadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes mmslideIn {
+    from {
+      transform: translateY(15%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @keyframes mmslideOut {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(10%);
+    }
+  }
+</style> 
