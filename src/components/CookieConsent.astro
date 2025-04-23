@@ -30,8 +30,9 @@
 </div>
 
 <script>
-  // Verificar si el script ya se ha ejecutado
+  // @ts-ignore
   if (!window.cookieConsentInitialized) {
+    // @ts-ignore
     window.cookieConsentInitialized = true;
     
     const cookieConsentBanner = document.getElementById('cookieConsent');
@@ -44,6 +45,7 @@
       cookieConsentBanner.style.display = 'block';
     }
 
+    // @ts-ignore
     function handleConsent(accepted) {
       localStorage.setItem('cookieConsent', accepted ? 'accepted' : 'rejected');
       

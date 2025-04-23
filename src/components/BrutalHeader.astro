@@ -38,7 +38,7 @@ const {
   </div>
 
   <!-- Menú móvil -->
-  <div class="mobile-menu hidden fixed top-[60px] left-0 w-full bg-black sm:hidden">
+  <div class="mobile-menu hidden fixed top-[60px] left-0 w-full bg-white sm:hidden z-50">
     <ul class="flex flex-col text-sm font-bold font-['Montserrat_Variable'] p-4">
       <li class="py-2">
         <a href="/#sobre-nosotros" class="hover:text-primary transition-colors" style="
@@ -63,7 +63,23 @@ const {
   const menuButton = document.querySelector('button');
   const mobileMenu = document.querySelector('.mobile-menu');
 
-  menuButton?.addEventListener('click', () => {
+  menuButton?.addEventListener('click', (e) => {
+    e.stopPropagation();
     mobileMenu?.classList.toggle('hidden');
+  });
+
+  // Cerrar menú al hacer click en un enlace
+  const menuLinks = mobileMenu?.querySelectorAll('a');
+  menuLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+
+  // Cerrar menú al hacer click fuera
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu?.contains(e.target as Node) && !menuButton?.contains(e.target as Node)) {
+      mobileMenu?.classList.add('hidden');
+    }
   });
 </script> 

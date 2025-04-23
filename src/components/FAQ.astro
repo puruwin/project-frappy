@@ -9,46 +9,76 @@ const { question, answer } = Astro.props;
 
 <div class="faq-item mb-6">
   <button
-    class="font-['Montserrat_Variable'] flex w-full items-center justify-between bg-white p-4 sm:p-5 text-left text-sm sm:text-base transition-all duration-300 rounded-lg hover:bg-gray-50"
+    class="font-['Montserrat_Variable'] flex w-full items-center justify-between bg-white p-4 sm:p-5 text-left text-sm sm:text-base transition-all duration-300 hover:bg-gray-50"
   >
     <span class="pr-4 font-medium text-[var(--color-text)]">{question}</span>
     <span class="transform transition-transform duration-300 text-xl sm:text-2xl flex-shrink-0 text-[var(--color-text-offset)] h-8 w-8 flex items-center justify-center rounded-full">+</span>
   </button>
   <div
-    class="answer hidden bg-white p-4 sm:p-6 font-['Montserrat_Variable'] leading-relaxed text-sm sm:text-base text-[var(--color-text)] opacity-80 mt-2 rounded-lg"
+    class="answer overflow-hidden max-h-0 transition-all duration-300 ease-in-out"
   >
-    {answer}
+    <div class="p-4 sm:p-6 font-['Montserrat_Variable'] leading-relaxed text-sm sm:text-base text-[var(--color-text)] opacity-80">
+      {answer}
+    </div>
   </div>
 </div>
 
 <script>
-  document.querySelectorAll(".faq-item button").forEach((button) => {
-    button.addEventListener("click", () => {
-      const faqItem = button.closest('.faq-item');
-      const answer = button.nextElementSibling;
-      const plusSign = button.querySelector("span:last-child") as HTMLElement;
+  document.querySelectorAll(".faq-item").forEach((faqItem) => {
+    const button = faqItem.querySelector('button') as HTMLElement;
+    const answer = faqItem.querySelector('.answer') as HTMLElement;
+    const plusSign = button?.querySelector("span:last-child") as HTMLElement;
+    const answerContent = answer?.querySelector('div') as HTMLElement;
+
+    const closeFaq = () => {
+      if (answer && plusSign) {
+        answer.style.maxHeight = '0';
+        plusSign.style.transform = "rotate(0deg)";
+        plusSign.innerHTML = "+";
+        button.style.transform = "";
+      }
+    };
+
+    button?.addEventListener("click", (e) => {
+      e.stopPropagation();
       
       // Cerrar todas las otras preguntas
       document.querySelectorAll('.faq-item').forEach((item) => {
         if (item !== faqItem) {
-          const otherAnswer = item.querySelector('.answer');
+          const otherAnswer = item.querySelector('.answer') as HTMLElement;
           const otherPlusSign = item.querySelector("button span:last-child") as HTMLElement;
-          otherAnswer?.classList.add('hidden');
+          if (otherAnswer) {
+            otherAnswer.style.maxHeight = '0';
+          }
           if (otherPlusSign) {
-            otherPlusSign.style.transform = 'rotate(0)';
+            otherPlusSign.style.transform = 'rotate(0deg)';
             otherPlusSign.innerHTML = '+';
           }
         }
       });
 
-      if (answer && plusSign) {
-        answer.classList.toggle("hidden");
-        const isHidden = answer.classList.contains("hidden");
-        plusSign.style.transform = isHidden ? "rotate(0)" : "rotate(45deg)";
-        plusSign.innerHTML = isHidden ? "+" : "×";
-        (button as HTMLElement).style.transform = isHidden ? "" : "translateY(-2px)";
+      if (answer && plusSign && answerContent) {
+        const isExpanded = answer.style.maxHeight !== '0px' && answer.style.maxHeight !== '';
+        answer.style.maxHeight = isExpanded ? '0' : `${answerContent.scrollHeight}px`;
+        plusSign.style.transform = isExpanded ? "rotate(0deg)" : "rotate(135deg)";
+        plusSign.innerHTML = isExpanded ? "+" : "+";
+        button.style.transform = isExpanded ? "" : "translateY(-2px)";
       }
     });
+
+    // Cerrar al perder el foco
+    faqItem.addEventListener('focusout', (e) => {
+      const focusEvent = e as FocusEvent;
+      // Verificar si el nuevo elemento enfocado está dentro del mismo faqItem
+      if (!faqItem.contains(focusEvent.relatedTarget as Node)) {
+        closeFaq();
+      }
+    });
+  });
+
+  // Inicializar alturas
+  document.querySelectorAll('.answer').forEach(answer => {
+    (answer as HTMLElement).style.maxHeight = '0';
   });
 </script>
 
@@ -56,7 +86,9 @@ const { question, answer } = Astro.props;
   .faq-item {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
+    background-color: white;
     transition: all 0.3s ease;
+    overflow: hidden;
   }
 
   .faq-item:hover {

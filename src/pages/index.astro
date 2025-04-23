@@ -123,14 +123,14 @@ const keywords =
 
   <BrutalHeader title="Frappé" />
   <Hero />
-  <WavyDivider id="sobre-nosotros" topColor="#56A5DD" bottomColor="#ffffff" />
-  <About />
-  <WavyDivider id="precios" topColor="#ffffff" bottomColor="#162326" />
-  <div class="bg-secondary">
+  <WavyDivider topColor="#56A5DD" bottomColor="#ffffff" />
+  <About id="sobre-nosotros" />
+  <WavyDivider topColor="#ffffff" bottomColor="#162326" />
+  <div id="precios" class="bg-secondary">
     <AvailableSlots slots={9} />
     <PricingPlans />
   </div>
-  <WavyDivider id="faq" topColor="#162326" bottomColor="#56A5DD" />
+  <WavyDivider topColor="#162326" bottomColor="#56A5DD" />
   <FAQSection />
   <ContactModal />
   <WavyDivider topColor="#56A5DD" bottomColor="#000000" />
