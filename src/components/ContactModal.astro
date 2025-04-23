@@ -164,6 +164,12 @@ const { plan = "Básico" } = Astro.props;
     close: (modalId: string) => void;
   };
 
+  declare global {
+    interface Window {
+      dataLayer: any[];
+    }
+  }
+
   const form = document.getElementById('contactForm') as HTMLFormElement;
   const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
   const requiredInputs = form?.querySelectorAll('input[required], textarea[required]');
