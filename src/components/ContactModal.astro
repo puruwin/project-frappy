@@ -11,8 +11,8 @@ const { plan = "Básico" } = Astro.props;
 
 <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
   <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-    <div class="modal__container bg-white rounded-lg shadow-lg mx-4 sm:mx-auto w-full max-w-[500px]" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-      <header class="modal__header border-b border-[var(--color-border)] p-5 sm:p-6">
+    <div class="modal__container bg-white rounded-lg shadow-lg mx-2 sm:mx-auto w-full max-w-xs sm:max-w-[500px] max-h-[70vh] overflow-y-auto my-2 p-2 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+      <header class="modal__header border-b border-[var(--color-border)] p-3 sm:p-6">
         <h2 class="text-xl font-bold text-[var(--color-secondary)] font-['Montserrat_Variable']" id="modal-1-title">
           Contacta con nosotros
         </h2>
@@ -23,7 +23,7 @@ const { plan = "Básico" } = Astro.props;
           Cuéntanos sobre tu proyecto y nos pondremos en contacto contigo lo antes posible.
         </p>
         
-        <form action={FORM_ENDPOINT} method="POST" id="contactForm" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <form action={FORM_ENDPOINT} method="POST" id="contactForm" class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
           <div class="sm:col-span-2">
             <label class="block mb-1 font-['Montserrat_Variable'] text-sm text-[var(--color-text)]" for="name">
               Nombre
@@ -33,7 +33,7 @@ const { plan = "Básico" } = Astro.props;
               id="name" 
               name="name" 
               required
-              class="w-full p-2 bg-white border border-[var(--color-border)] rounded-md font-['Montserrat_Variable'] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-text-offset)] transition-shadow"
+              class="w-full p-1.5 sm:p-2 bg-white border border-[var(--color-border)] rounded-md font-['Montserrat_Variable'] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-text-offset)] transition-shadow"
             />
           </div>
 
@@ -47,9 +47,11 @@ const { plan = "Básico" } = Astro.props;
               name="_replyto"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
               required
-              class="w-full p-2 bg-white border border-[var(--color-border)] rounded-md font-['Montserrat_Variable'] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-text-offset)] transition-shadow"
+              class="w-full p-1.5 sm:p-2 bg-white border border-[var(--color-border)] rounded-md font-['Montserrat_Variable'] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-text-offset)] transition-shadow"
             />
           </div>
+
+          <input type="hidden" name="plan" value={plan} />
 
           <input type="text" name="_gotcha" style="display:none" />
 
@@ -62,7 +64,7 @@ const { plan = "Básico" } = Astro.props;
               id="phone" 
               name="phone" 
               required
-              class="w-full p-2 bg-white border border-[var(--color-border)] rounded-md font-['Montserrat_Variable'] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-text-offset)] transition-shadow"
+              class="w-full p-1.5 sm:p-2 bg-white border border-[var(--color-border)] rounded-md font-['Montserrat_Variable'] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-text-offset)] transition-shadow"
             />
           </div>
 
@@ -75,7 +77,7 @@ const { plan = "Básico" } = Astro.props;
               name="message" 
               rows="3"
               required
-              class="w-full p-2 bg-white border border-[var(--color-border)] rounded-md font-['Montserrat_Variable'] text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[var(--color-text-offset)] transition-shadow"
+              class="w-full p-1.5 sm:p-2 bg-white border border-[var(--color-border)] rounded-md font-['Montserrat_Variable'] text-xs sm:text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[var(--color-text-offset)] transition-shadow"
             ></textarea>
           </div>
 
@@ -83,7 +85,7 @@ const { plan = "Básico" } = Astro.props;
             <button 
               type="submit"
               id="submitButton"
-              class="flex-1 bg-[var(--color-secondary)] text-white py-2 px-4 rounded-md font-['Montserrat_Variable'] text-sm hover:bg-[var(--color-secondary)]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-[var(--color-text-offset)] focus:ring-offset-2"
+              class="flex-1 bg-[var(--color-secondary)] text-white py-2 sm:py-2 px-2 sm:px-4 rounded-md font-['Montserrat_Variable'] text-xs sm:text-sm hover:bg-[var(--color-secondary)]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-[var(--color-text-offset)] focus:ring-offset-2"
             >
               Enviar
             </button>
@@ -91,7 +93,7 @@ const { plan = "Básico" } = Astro.props;
             <a 
               href="https://wa.me/+34608962213" 
               target="_blank"
-              class="flex-1 bg-[#25D366] text-white py-2 px-4 rounded-md font-['Montserrat_Variable'] text-sm hover:bg-[#25D366]/90 transition-colors text-center focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2"
+              class="flex-1 bg-[#25D366] text-white py-2 sm:py-2 px-2 sm:px-4 rounded-md font-['Montserrat_Variable'] text-xs sm:text-sm hover:bg-[#25D366]/90 transition-colors text-center focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2"
             >
               WhatsApp
             </a>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 135.46666 135.46667"
+   version="1.1"
+   id="svg1"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <linearGradient
+       xlink:href="#linearGradient146"
+       id="linearGradient148"
+       x1="736.58905"
+       y1="66.642357"
+       x2="768.29254"
+       y2="79.650887"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.5104711,0,0,1.5104711,-1068.8063,-43.590185)" />
+    <linearGradient
+       id="linearGradient146">
+      <stop
+         style="stop-color:#f5478f;stop-opacity:1;"
+         offset="0"
+         id="stop147" />
+      <stop
+         style="stop-color:#29c1f1;stop-opacity:1;"
+         offset="0.5"
+         id="stop149" />
+      <stop
+         style="stop-color:#f9d034;stop-opacity:1;"
+         offset="1"
+         id="stop148" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient149"
+       id="linearGradient151"
+       x1="736.58905"
+       y1="66.642357"
+       x2="768.29254"
+       y2="79.650887"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.7940288,0,0,1.7940288,-1282.1673,-64.148077)" />
+    <linearGradient
+       id="linearGradient149">
+      <stop
+         style="stop-color:#f5478f;stop-opacity:1;"
+         offset="0"
+         id="stop150" />
+      <stop
+         style="stop-color:#29c1f1;stop-opacity:1;"
+         offset="0.5"
+         id="stop152" />
+      <stop
+         style="stop-color:#f9d034;stop-opacity:1;"
+         offset="0.75"
+         id="stop153" />
+    </linearGradient>
+  </defs>
+  <g
+     id="layer1">
+    <rect
+       style="display:none;fill:#ffffff;fill-opacity:1;stroke-width:0.529167;stroke-linejoin:round;stroke-miterlimit:5"
+       id="rect1"
+       width="65.015503"
+       height="100.70527"
+       x="36.085384"
+       y="16.825583" />
+    <path
+       id="path100"
+       style="fill:#101a32;fill-opacity:1;stroke:url(#linearGradient148);stroke-width:3.02094;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:5;stroke-dasharray:none;stroke-opacity:1"
+       d="M 67.734813,7.7894573 A 59.943504,59.943504 0 0 0 7.7909343,67.733335 59.943504,59.943504 0 0 0 67.734813,127.67721 59.943504,59.943504 0 0 0 127.67573,67.733335 59.943504,59.943504 0 0 0 67.734813,7.7894573 Z M 88.002261,22.478156 c 0.163295,-0.0055 0.327753,0.02341 0.489868,0.08253 l 3.433981,1.31872 c 0.648826,0.248738 0.968504,0.973705 0.719822,1.622531 l -6.121524,15.969142 a 29.830784,29.830784 0 0 1 10.405144,17.314375 h 0.12694 a 2.3603222,2.3603222 0 0 1 2.36306,2.357156 v 10.720776 a 2.3603222,2.3603222 0 0 1 -2.36306,2.360141 h -4.286541 l -4.330844,37.605403 c -0.268649,2.3327 -1.885383,4.24231 -4.233471,4.24231 H 51.317591 c -2.348025,0 -3.959086,-1.91108 -4.23937,-4.24231 L 42.561553,74.223527 h -4.15082 a 2.3603222,2.3603222 0 0 1 -2.36014,-2.360144 V 61.142607 a 2.3603222,2.3603222 0 0 1 2.36014,-2.357156 h 0.129926 a 29.830784,29.830784 0 0 1 29.194619,-24.028892 29.830784,29.830784 0 0 1 13.47913,3.289369 L 86.87282,23.289339 c 0.186703,-0.486356 0.641333,-0.795143 1.129912,-0.811296 z" />
+    <path
+       d="m 72.376737,58.421127 13.631637,8.422906 v 2.451919 l -9.74414,6.072621 -1.397478,-2.007269 8.702408,-5.284962 -12.500957,-7.559019 z m -13.085356,2.350278 1.308524,2.05809 -8.689702,5.246847 11.980094,7.279531 -1.397457,2.045376 -13.034549,-8.105297 v -2.439219 z m 3.544475,19.285031 -2.261351,-1.029041 11.433809,-23.617172 2.235951,1.054449 z"
+       id="text149"
+       style="font-weight:500;font-size:14.1628px;line-height:1;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:url(#linearGradient151);stroke-width:6.3521;stroke-linejoin:round;stroke-miterlimit:5"
+       aria-label="&lt;/&gt;" />
+  </g>
+</svg>

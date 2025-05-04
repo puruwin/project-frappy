@@ -6,15 +6,15 @@ interface Props {
 const { slots = 0 } = Astro.props;
 ---
 
-<section class="bg-[var(--color-secondary)] px-4 py-16 sm:px-8">
+<section class="px-4 py-16 sm:px-8">
   <div
     class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2"
   >
     <div>
       <h2
-        class="mb-6 font-['JetBrains_Mono_Variable'] font-bold text-4xl sm:text-5xl lg:text-6xl"
+        class="mb-6 font-mono font-bold text-4xl sm:text-5xl lg:text-6xl"
       >
-        <span class="title-3d text-[var(--color-primary)]">¡Despega!</span>
+        <span class="text-[var(--color-primary)]">¡Despega!</span>
       </h2>
 
       <p class="mb-8 max-w-2xl font-['Montserrat_Variable'] text-white text-lg sm:text-xl">
@@ -25,7 +25,7 @@ const { slots = 0 } = Astro.props;
 
       <div class="mb-12">
         <h3
-          class="mb-4 font-['JetBrains_Mono_Variable'] font-bold text-white text-2xl sm:text-3xl"
+          class="mb-4 font-mono font-bold text-white text-2xl sm:text-3xl"
         >
           Asegura tu plaza
         </h3>
@@ -44,11 +44,11 @@ const { slots = 0 } = Astro.props;
         box-shadow: var(--shadow-brutal);
       "
       >
-        <span class="font-['JetBrains_Mono_Variable'] font-bold text-4xl"
+        <span class="font-mono font-bold text-4xl"
           >{slots}</span
         >
         <span
-          class="ml-2 bg-black font-['JetBrains_Mono_Variable'] text-white text-xl"
+          class="ml-2 bg-black font-mono text-white text-xl"
           >PLAZAS DISPONIBLES</span
         >
       </div>

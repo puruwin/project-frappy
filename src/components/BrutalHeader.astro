@@ -1,44 +1,42 @@
 ---
-interface Props {
-  title?: string;
-}
-
-const { 
-  title = "Frappé"
-} = Astro.props;
 ---
 
-<header class="bg-white/80 backdrop-blur-md border-b border-[var(--color-border)] fixed w-full top-0 z-50 h-[60px] sm:h-[76px]">
-  <div class="w-full h-full flex flex-row justify-between items-center px-4 sm:px-8">
-    <a href="/" class="hover:opacity-80 transition-opacity">
-      <p class="font-['JetBrains_Mono_Variable'] text-xl sm:text-2xl text-[var(--color-secondary)]">
-        {title}
-      </p>
-    </a>
-    <nav class="h-full flex items-center">
-      <button class="sm:hidden text-2xl p-2 text-[var(--color-secondary)]">☰</button>
-      <ul class="hidden sm:flex text-sm gap-8 font-medium font-['Montserrat_Variable'] h-full items-center">
-        <li>
-          <a href="/#sobre-nosotros" class="text-[var(--color-text)] hover:text-[var(--color-text-offset)] transition-colors whitespace-nowrap">
-            Sobre nosotros
-          </a>
-        </li>
-        <li>
-          <a href="/#precios" class="text-[var(--color-text)] hover:text-[var(--color-text-offset)] transition-colors whitespace-nowrap">
-            Precios
-          </a>
-        </li>
-        <li>
-          <a href="/#faq" class="text-[var(--color-text)] hover:text-[var(--color-text-offset)] transition-colors whitespace-nowrap">
-            Preguntas frecuentes
-          </a>
-        </li>
-      </ul>
-    </nav>
+<header class="bg-white/80 backdrop-blur-md border-b border-default fixed w-full top-0 z-50 h-[60px] sm:h-[76px]">
+  <div class="max-w-7xl mx-auto h-full grid grid-cols-3 items-center px-4 sm:px-8">
+    <!-- Logo: centrado en móvil, izquierda en desktop -->
+    <div class="col-start-2 sm:col-start-1 flex justify-center sm:justify-start">
+      <a href="/" class="hover:opacity-80 transition-opacity flex items-center gap-3">
+        <img src="/frappe_icon.svg" alt="Icono de Frappé" class="h-8 sm:h-10 object-contain" />
+        <img src="/frappe_text.svg" alt="Frappé" class="hidden sm:block h-8 sm:h-10 object-contain" />
+      </a>
+    </div>
+    <!-- Menú: derecha siempre -->
+    <div class="col-start-3 flex justify-end">
+      <nav class="h-full flex items-center">
+        <button class="sm:hidden text-2xl p-2 text-default">☰</button>
+        <ul class="hidden sm:flex text-sm gap-8 font-medium font-['Montserrat_Variable'] h-full items-center">
+          <li>
+            <a href="/#sobre-nosotros" class="text-default hover:text-secondary transition-colors whitespace-nowrap">
+              Sobre nosotros
+            </a>
+          </li>
+          <li>
+            <a href="/#precios" class="text-default hover:text-secondary transition-colors whitespace-nowrap">
+              Precios
+            </a>
+          </li>
+          <li>
+            <a href="/#faq" class="text-default hover:text-secondary transition-colors whitespace-nowrap">
+              Preguntas frecuentes
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 
   <!-- Menú móvil -->
-  <div class="mobile-menu hidden fixed top-[60px] left-0 w-full bg-white sm:hidden z-50">
+  <div class="mobile-menu hidden fixed top-[60px] min-h-[calc(33vh-60px)] left-0 w-full bg-white sm:hidden z-50">
     <ul class="flex flex-col text-sm font-bold font-['Montserrat_Variable'] p-4">
       <li class="py-2">
         <a href="/#sobre-nosotros" class="hover:text-primary transition-colors" style="

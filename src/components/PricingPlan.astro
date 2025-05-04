@@ -26,7 +26,7 @@ const styles = {
     button: 'bg-[var(--color-secondary)] text-white',
   },
   secondary: {
-    background: 'bg-[var(--color-background-offset)]',
+    background: 'bg-[var(--color-secondary)]',
     text: 'text-[var(--color-text)]',
     button: 'bg-white text-[var(--color-secondary)]',
   },
@@ -45,7 +45,7 @@ const [originalPrice, discountedPrice] = setupFee.split('→').map(price => pric
 
 <div class={`pricing-plan flex flex-col justify-between ${currentStyle.background} p-6 sm:p-8 relative w-full rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ${isPopular ? 'lg:-translate-y-4' : ''}`}>
   {isPopular && (
-    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[var(--color-primary)] text-[var(--color-secondary)] px-4 py-2 rounded-full shadow-sm">
+    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-default px-4 py-2 rounded-full shadow-sm">
       <span class="font-['Montserrat_Variable'] text-xs sm:text-sm font-medium">Más Popular</span>
     </div>
   )}
@@ -57,7 +57,7 @@ const [originalPrice, discountedPrice] = setupFee.split('→').map(price => pric
       <div class="mb-3 relative">
         <div class="flex items-center gap-3 mb-1">
           <span class="text-base sm:text-lg font-['Montserrat_Variable'] text-red-500 line-through opacity-75">{originalPrice}</span>
-          <div class="bg-[var(--color-primary)] text-[var(--color-secondary)] text-xs px-2 py-0.5 rounded-full">
+          <div class="bg-accent text-default text-xs px-2 py-0.5 rounded-full">
             {setupDiscount}
           </div>
         </div>
@@ -80,11 +80,8 @@ const [originalPrice, discountedPrice] = setupFee.split('→').map(price => pric
     </ul>
   </div>
   
-  <button 
-    class={`w-full py-3 ${currentStyle.button} font-['Montserrat_Variable'] text-sm sm:text-base rounded-md transition-all duration-300 hover:opacity-90 open-modal`}
-    data-plan={title}
-  >
-    {isPopular ? '¡Despega!' : 'Comenzar'}
+  <button class={`${title === "Pro" ? 'bg-primary' : 'bg-accent'} px-4 py-2 rounded-lg font-['Montserrat_Variable'] text-sm sm:text-base hover:opacity-90 transition-opacity open-modal`} data-plan={title}>
+    {title === "Pro" ? "¡Despega!" : "Comenzar"}
   </button>
 </div>
 

@@ -6,10 +6,13 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
+        mono: ["Fira Code", ...defaultTheme.fontFamily.mono],
       },
       colors: {
         primary: "var(--color-primary)",
         secondary: "var(--color-secondary)",
+        accent: "var(--color-accent)",
+        card: "var(--color-card)",
       },
       textColor: {
         default: "var(--color-text)",
@@ -18,6 +21,7 @@ module.exports = {
       backgroundColor: {
         default: "var(--color-background)",
         offset: "var(--color-background-offset)",
+        card: "var(--color-card)",
       },
       borderColor: {
         default: "var(--color-border)",
