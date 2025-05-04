@@ -5,7 +5,6 @@ import "@fontsource-variable/inter";
 import "@fontsource-variable/jetbrains-mono";
 import "@fontsource-variable/montserrat";
 import "~/styles/index.css";
-import "~/styles/title.css";
 import WavyDivider from "../components/WavyDivider.astro";
 import BrutalHeader from "../components/BrutalHeader.astro";
 import PricingPlans from "../components/PricingPlans.astro";
@@ -28,7 +27,7 @@ const keywords =
 
 <Layout title={title}>
   <Fragment slot="head">
-    <link rel="icon" href="/frappe_icon.png" type="image/png" />
+    <link rel="icon" href="/frappe_icon.svg" type="image/svg+xml" />
     <meta name="generator" content={generator} />
     <!-- SEO básico -->
     <meta name="description" content={description} />
@@ -67,7 +66,7 @@ const keywords =
         "@type": "Organization",
         "name": "Frappé",
         "url": "${site}",
-        "logo": "${site}/favicon.svg",
+        "logo": "${site}/frappe_icon.svg",
         "description": "${description}",
         "address": {
           "@type": "PostalAddress",
@@ -75,7 +74,7 @@ const keywords =
         },
         "sameAs": [
           "https://twitter.com/frappe",
-          "https://linkedin.com/company/frappe"
+          "https://www.linkedin.com/company/creative-frapp%C3%A9"
         ]
       }
     </script>
@@ -113,27 +112,45 @@ const keywords =
             "name": "¿Qué es el SEO local y cómo puede ayudar a mi negocio?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "El SEO local mejora tu visibilidad en búsquedas relacionadas con tu ubicación (como “electricista en Benidorm”). Implica optimizar tu web con palabras clave geográficas, crear un perfil de Google Business y conseguir reseñas locales."
+              "text": "El SEO local mejora tu visibilidad en búsquedas relacionadas con tu ubicación (como \"electricista en Benidorm\"). Implica optimizar tu web con palabras clave geográficas, crear un perfil de Google Business y conseguir reseñas locales."
             }
-          }            
+          }
         ]
       }
     </script>
   </Fragment>
 
   <BrutalHeader title="Frappé" />
+  <div id="vanta-bg">
   <Hero />
-  <WavyDivider topColor="#56A5DD" bottomColor="#ffffff" />
   <About id="sobre-nosotros" />
-  <WavyDivider topColor="#ffffff" bottomColor="#162326" />
-  <div id="precios" class="bg-secondary">
+  <WavyDivider topColor="transparent" bottomColor="#101a32" />
+  </div>
+  <div id="precios" class="bg-[var(--color-background-offset)]">
     <AvailableSlots slots={9} />
     <PricingPlans />
   </div>
-  <WavyDivider topColor="#162326" bottomColor="#56A5DD" />
+  <WavyDivider topColor="#101a32" bottomColor="#A9E7FA" />
   <FAQSection />
   <ContactModal />
-  <WavyDivider topColor="#56A5DD" bottomColor="#000000" />
+  <WavyDivider topColor="#A9E7FA" bottomColor="#000000" />
   <Footer />
   <CookieConsent />
 </Layout>
+
+<script is:inline src="/js/three.min.js"></script>
+<script is:inline src="/js/vanta.net.min.js"></script>
+<script is:inline>
+  VANTA.NET({
+    el: "#vanta-bg",
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.0,
+    minWidth: 200.0,
+    scale: 1.0,
+    scaleMobile: 1.0,
+    color: 0xFAA3C7,
+    backgroundColor: 0xA9E7FA,
+  });
+</script>

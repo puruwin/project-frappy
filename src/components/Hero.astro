@@ -14,21 +14,21 @@ const {
 const FORM_ENDPOINT = "https://formspree.io/f/mjkglyjd";
 ---
 
-<div id="hero" class="bg-gradient-to-b from-[var(--color-background)] to-[var(--color-background-offset)] mt-[60px] sm:mt-[76px] min-h-[calc(100vh-60px)] sm:min-h-[calc(100vh-76px)] py-6 sm:py-16 flex items-center">
+<div id="hero" class="mt-[60px] sm:mt-[76px] min-h-[calc(100vh-60px)] sm:min-h-[calc(100vh-76px)] py-6 sm:py-16 flex items-center">
   <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center px-4 sm:px-8">
     <div class="text-center lg:text-left">
-      <p class="text-3xl sm:text-7xl lg:text-7xl font-bold mb-3 sm:mb-6 text-[var(--color-secondary)] font-['JetBrains_Mono_Variable'] leading-tight">
-        {title}
-      </p>
-      <h1 class="text-lg sm:text-2xl font-medium mb-3 sm:mb-6 text-[var(--color-text-offset)] font-['Montserrat_Variable']">
+      <div class="flex justify-center lg:justify-start">
+        <img src="/frappe_text.svg" alt="Frappé" class="h-10 sm:h-24 mb-2 sm:mb-4" />
+      </div>
+      <h1 class="text-lg sm:text-2xl font-medium mb-3 sm:mb-6 text-[var(--color-text)] font-mono">
         {subtitle}
       </h1>
-      <h2 class="text-sm sm:text-lg max-w-2xl mx-auto lg:mx-0 text-[var(--color-text)] leading-relaxed font-['Montserrat_Variable'] opacity-80">
+      <h2 class="text-sm sm:text-lg max-w-2xl mx-auto lg:mx-0 text-[var(--color-text)] leading-relaxed font-['Montserrat_Variable']">
         {description}
       </h2>
     </div>
     
-    <div class="bg-[var(--color-secondary)] rounded-lg p-4 sm:p-6">
+    <div class="bg-[var(--color-background-offset)] rounded-lg p-4 sm:p-6">
       <h3 class="text-base sm:text-lg font-bold mb-4 sm:mb-5 text-white font-['Montserrat_Variable']">
         ¿Hablamos de tu proyecto?
       </h3>
@@ -95,7 +95,7 @@ const FORM_ENDPOINT = "https://formspree.io/f/mjkglyjd";
         <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-1 sm:mt-2">
           <button 
             id="heroSubmitButton"
-            class="flex-1 bg-white text-[var(--color-secondary)] py-2 sm:py-2.5 px-6 rounded-md font-['Montserrat_Variable'] text-sm hover:bg-white/90 transition-colors disabled:bg-white/20 disabled:text-white/60 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[var(--color-secondary)]"
+            class="flex-1 bg-[var(--color-secondary)] text-[var(--color-text)] py-2 sm:py-2.5 px-6 rounded-md font-['Montserrat_Variable'] text-sm hover:bg-white/90 transition-colors disabled:bg-white/20 disabled:text-white/60 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[var(--color-secondary)]"
             disabled
           >
             Enviar
@@ -104,7 +104,7 @@ const FORM_ENDPOINT = "https://formspree.io/f/mjkglyjd";
           <a 
             href="https://wa.me/+34608962213" 
             target="_blank"
-            class="flex-1 bg-[#25D366] text-white py-2 sm:py-2.5 px-6 rounded-md font-['Montserrat_Variable'] text-sm hover:bg-[#25D366]/90 transition-colors text-center focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-[var(--color-secondary)]"
+            class="flex-1 bg-[#25D366] text-white hover:text-white py-2 sm:py-2.5 px-6 rounded-md font-['Montserrat_Variable'] text-sm hover:bg-[#25D366]/90 transition-colors text-center focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-[var(--color-secondary)]"
           >
             Escríbenos por WhatsApp
           </a>
