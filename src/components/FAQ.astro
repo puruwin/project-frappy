@@ -7,78 +7,46 @@ interface Props {
 const { question, answer } = Astro.props;
 ---
 
-<div class="faq-item mb-6">
-  <button
-    class="font-['Montserrat_Variable'] flex w-full items-center justify-between bg-white p-4 sm:p-5 text-left text-sm sm:text-base transition-all duration-300 hover:bg-gray-50"
-  >
+<details class="faq-item mb-6">
+  <summary class="font-sans flex w-full items-center justify-between bg-white p-4 sm:p-5 text-left text-sm sm:text-base hover:bg-gray-50 cursor-pointer">
     <span class="pr-4 font-medium text-[var(--color-text)]">{question}</span>
-    <span class="transform transition-transform duration-300 text-xl sm:text-2xl flex-shrink-0 text-[var(--color-text-offset)] h-8 w-8 flex items-center justify-center rounded-full">+</span>
-  </button>
-  <div
-    class="answer overflow-hidden max-h-0 transition-all duration-300 ease-in-out"
-  >
-    <div class="p-4 sm:p-6 font-['Montserrat_Variable'] leading-relaxed text-sm sm:text-base text-[var(--color-text)] opacity-80">
+    <span class="plus-sign text-xl sm:text-2xl flex-shrink-0 text-[var(--color-text-offset)] h-8 w-8 flex items-center justify-center rounded-full">+</span>
+  </summary>
+  <div class="answer bg-white">
+    <p class="p-4 sm:p-6 font-sans leading-relaxed text-sm sm:text-base text-[var(--color-text)] opacity-80">
       {answer}
-    </div>
+    </p>
   </div>
-</div>
+</details>
 
 <script>
   document.querySelectorAll(".faq-item").forEach((faqItem) => {
-    const button = faqItem.querySelector('button') as HTMLElement;
-    const answer = faqItem.querySelector('.answer') as HTMLElement;
-    const plusSign = button?.querySelector("span:last-child") as HTMLElement;
-    const answerContent = answer?.querySelector('div') as HTMLElement;
+    const summary = faqItem.querySelector('summary') as HTMLElement;
+    const plusSign = summary?.querySelector(".plus-sign") as HTMLElement;
 
-    const closeFaq = () => {
-      if (answer && plusSign) {
-        answer.style.maxHeight = '0';
-        plusSign.style.transform = "rotate(0deg)";
-        plusSign.innerHTML = "+";
-        button.style.transform = "";
-      }
-    };
-
-    button?.addEventListener("click", (e) => {
-      e.stopPropagation();
-      
+    summary?.addEventListener("click", (e) => {
       // Cerrar todas las otras preguntas
       document.querySelectorAll('.faq-item').forEach((item) => {
         if (item !== faqItem) {
-          const otherAnswer = item.querySelector('.answer') as HTMLElement;
-          const otherPlusSign = item.querySelector("button span:last-child") as HTMLElement;
-          if (otherAnswer) {
-            otherAnswer.style.maxHeight = '0';
-          }
-          if (otherPlusSign) {
-            otherPlusSign.style.transform = 'rotate(0deg)';
-            otherPlusSign.innerHTML = '+';
-          }
+          item.removeAttribute('open');
         }
       });
 
-      if (answer && plusSign && answerContent) {
-        const isExpanded = answer.style.maxHeight !== '0px' && answer.style.maxHeight !== '';
-        answer.style.maxHeight = isExpanded ? '0' : `${answerContent.scrollHeight}px`;
-        plusSign.style.transform = isExpanded ? "rotate(0deg)" : "rotate(135deg)";
-        plusSign.innerHTML = isExpanded ? "+" : "+";
-        button.style.transform = isExpanded ? "" : "translateY(-2px)";
+      // Si está abierto, prevenir el cierre inmediato y añadir la clase closing
+      if (faqItem.hasAttribute("open")) {
+        e.preventDefault();
+        faqItem.classList.add("closing");
       }
     });
 
-    // Cerrar al perder el foco
-    faqItem.addEventListener('focusout', (e) => {
-      const focusEvent = e as FocusEvent;
-      // Verificar si el nuevo elemento enfocado está dentro del mismo faqItem
-      if (!faqItem.contains(focusEvent.relatedTarget as Node)) {
-        closeFaq();
+    // Cuando la animación de cierre termina
+    faqItem.addEventListener("animationend", (e) => {
+      const animationEvent = e as AnimationEvent;
+      if (animationEvent.animationName === "close") {
+        faqItem.removeAttribute("open");
+        faqItem.classList.remove("closing");
       }
     });
-  });
-
-  // Inicializar alturas
-  document.querySelectorAll('.answer').forEach(answer => {
-    (answer as HTMLElement).style.maxHeight = '0';
   });
 </script>
 
@@ -87,17 +55,77 @@ const { question, answer } = Astro.props;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     background-color: white;
-    transition: all 0.3s ease;
-    overflow: hidden;
   }
 
   .faq-item:hover {
     box-shadow: var(--shadow-sm);
   }
 
-  .faq-item button:focus {
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary:focus {
     outline: 2px solid var(--color-text-offset);
     outline-offset: 2px;
   }
+
+  .plus-sign {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .faq-item[open] .plus-sign {
+    transform: rotate(45deg);
+  }
+
+  .answer p {
+    margin: 0;
+  }
+
+  .answer {
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+  }
+
+  @keyframes open {
+    0% { 
+      opacity: 0;
+      transform: translateY(-10px);
+      visibility: visible;
+    }
+    100% { 
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+  }
+
+  @keyframes close {
+    0% { 
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+    100% { 
+      opacity: 0;
+      transform: translateY(-10px);
+      visibility: hidden;
+    }
+  }
+
+  .faq-item[open] .answer {
+    animation: open 0.3s ease-in-out forwards;
+  }
+
+  .faq-item.closing .answer {
+    animation: close 0.3s ease-in-out forwards;
+  }
 </style>
+
 

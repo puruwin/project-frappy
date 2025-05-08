@@ -1,67 +1,14 @@
 ---
 import FAQ from "./FAQ.astro";
 
-const faqs = [
-  {
-    question:
-      "¿Cuánto tiempo se tarda en crear una web?",
-    answer:
-      "El tiempo que se tarda en tener lista una web depende del proyecto. Una landing sencilla puede estar lista en 1 semana, mientras que una web personalizada más compleja puede tardar de 2 a 4 semanas.",
-  },
-  {
-    question: "¿Qué significa hosting y dominio?",
-    answer:
-      "El hosting es el alojamiento de tu sitio web en servidores seguros y de alta velocidad. Es lo que hace que tu página web esté en Internet. El dominio es tu dirección web personalizada (www.tuempresa.com). Nosotros nos encargamos de toda la gestión y renovación de ambos servicios mientras mantengas tu plan activo.",
-  },
-  {
-    question:
-      "¿Qué incluye el mantenimiento mensual con una agencia de desarrollo web?",
-    answer:
-      "El mantenimiento incluye actualizaciones de seguridad, pequeñas modificaciones en textos o imágenes, copia de seguridad mensual, y monitorización para que tu web funcione siempre correctamente. Es ideal para mantener tu sitio web actualizado y funcionando sin preocuparte por los detalles técnicos.",
-  },
-  {
-    question: "¿Puedo cambiar de plan en cualquier momento?",
-    answer:
-      "Sí, puedes subir de plan en cualquier momento si tu negocio crece o necesitas más funcionalidades. Muchos de nuestros clientes comienzan con el plan Starter y más adelante pasan al Pro o Growth.",
-  },
-  {
-    question: "¿Está incluida la creación del logo o branding?",
-    answer:
-      "Los planes no incluyen diseño del logo ni branding completo, pero podemos ayudarte con un servicio adicional si lo necesitas. Aunque no es obligatorio, tener una imagen profesional mejora la percepción de tu negocio.",
-  },
-  {
-    question: "¿Me ayudáis con el posicionamiento en Google?",
-    answer:
-      "Sí. Todos los planes incluyen una optimización básica SEO. El plan Pro y el plan Growth ofrecen una optimización más avanzada, incluyendo configuración de Google Analytics, Tag Manager, y asesoramiento sobre palabras clave. El plan Growth además incluye asesoría mensual y soporte para campañas en Google Ads.",
-  },
-  {
-    question: "¿Qué es el SEO local y cómo puede ayudar a mi negocio?",
-    answer:
-      "El SEO local mejora tu visibilidad en búsquedas relacionadas con tu ubicación (como “electricista en Benidorm”). Implica optimizar tu web con palabras clave geográficas, crear un perfil de Google Business y conseguir reseñas locales.",
-  },
-  {
-    question: "¿Qué formas de pago aceptáis?",
-    answer:
-      "Trabajamos con pagos por transferencia bancaria o Bizum. Los pagos se hacen de forma segura y recibirás factura por cada operación.",
-  },
-  {
-    question: "¿Hay permanencia?",
-    answer:
-      "No hay permanencia. Puedes cancelar el servicio mensual en cualquier momento con un mes de antelación. Sin ataduras, pero la web dejará de estar disponible si no se mantiene el pago del plan.",
-  },
-];
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+const { faqs } = Astro.props;
 ---
 
-<section id="faq" class="bg-[var(--color-bg-secondary)] px-4 py-16 sm:px-8">
-  <div class="mx-auto max-w-7xl">
-    <h2
-      class="mb-8 text-center font-['JetBrains_Mono_Variable'] font-bold text-3xl sm:mb-16 sm:text-4xl lg:text-5xl"
-    >
-      Preguntas Frecuentes
-    </h2>
-
-    <div class="mx-auto max-w-3xl">
-      {faqs.map((faq) => <FAQ question={faq.question} answer={faq.answer} />)}
-    </div>
-  </div>
-</section>
+<div class="mx-auto max-w-3xl">
+  {faqs.map((faq: FAQ) => <FAQ question={faq.question} answer={faq.answer} />)}
+</div>

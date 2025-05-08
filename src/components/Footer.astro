@@ -1,55 +1,71 @@
 ---
-const currentYear = new Date().getFullYear();
+interface Props {
+  navItems?: Array<{
+    text: string;
+    url: string;
+  }>;
+}
+
+const { navItems = [
+  { text: "Sobre nosotros", url: "/#sobre-nosotros" },
+  { text: "Precios", url: "/#precios" },
+  { text: "Preguntas frecuentes", url: "/#faq" }
+] } = Astro.props;
 ---
 
-<footer class="bg-black text-white py-16 px-4">
-  <div class="max-w-7xl mx-auto">
-    <!-- Sección superior -->
-    <div class="text-center mb-12">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4 font-['JetBrains_Mono_Variable']">
-        ¿Tienes preguntas? Hablemos.
-      </h2>
-      <p class="text-lg mb-8 max-w-2xl mx-auto font-['Montserrat_Variable']">
-        Descubre cómo Frappé puede impulsar tu presencia digital y llevar tu negocio al siguiente nivel.
-      </p>
-      <a 
-        href="https://wa.me/+34608962213"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-block bg-[var(--color-primary)] text-black px-8 py-3 font-bold transition-transform hover:-translate-y-1 font-['JetBrains_Mono_Variable']"
-        style="border: var(--border-brutal);"
-      >
-        Iniciar chat
-      </a>
-    </div>
-
-    <!-- Navegación y Copyright -->
-    <div class="max-w-4xl mx-auto">
-      <nav class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-12">
-        <div class="flex flex-row items-center justify-center gap-2">
-          <a href="/">
-            <img src="/icon_inv_code.svg" alt="Frappé logo" class="h-12 sm:h-28 object-contain" />
-          </a>
-        </div>
-        <div class="text-center sm:text-left">
-          <ul class="space-y-2 font-['Montserrat_Variable']">
-            <li><a href="/#sobre-nosotros" class="hover:text-[var(--color-primary)]">Sobre nosotros</a></li>
-            <li><a href="/#precios" class="hover:text-[var(--color-primary)]">Precios</a></li>
-            <li><a href="/#faq" class="hover:text-[var(--color-primary)]">Preguntas frecuentes</a></li>
-          </ul>
-        </div>
-        <div class="text-center sm:text-left">
-          <ul class="space-y-2 font-['Montserrat_Variable']">
-            <li><a href="/privacidad" class="hover:text-[var(--color-primary)]">Política de privacidad</a></li>
-          </ul>
-        </div>
-      </nav>
-
-      <div class="border-t border-gray-800 pt-8 text-center sm:text-left">
-        <p class="text-sm text-gray-400 font-['Montserrat_Variable']">
-          © {currentYear} Frappé. Todos los derechos reservados.
+<footer class="bg-black text-white py-12">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Logo y descripción -->
+      <div class="text-center md:text-left">
+        <img src="/frappe_icon.svg" alt="Frappy Logo" class="h-12 mx-auto md:mx-0 mb-4" />
+        <p class="text-sm text-white/80">
+          Desarrollo web profesional en Benidorm. Creamos sitios web rápidos, seguros y optimizados para SEO.
         </p>
       </div>
+
+      <!-- Enlaces de navegación -->
+      {navItems.length > 0 && (
+        <div class="md:text-left text-center">
+          <h3 class="font-bold mb-4">Navegación</h3>
+          <ul class="space-y-2">
+          {navItems.map((item) => (
+            <li>
+              <a href={item.url} class="text-white/80 hover:text-[var(--color-primary)] transition-colors">
+                {item.text}
+              </a>
+            </li>
+          ))}
+          </ul>
+        </div>
+      )}
+
+      <!-- Contacto -->
+      <div class="text-center md:text-left">
+        <h3 class="font-bold mb-4">Contacto</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="tel:+34608962213" class="text-white/80 hover:text-[var(--color-secondary)] transition-colors">
+              +34 608 962 213
+            </a>
+          </li>
+          <li>
+            <a href="mailto:frappecreativity@gmail.com" class="text-white/80 hover:text-[var(--color-secondary)] transition-colors">
+              frappecreativity@gmail.com
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/+34608962213" target="_blank" class="text-white/80 hover:text-[var(--color-secondary)] transition-colors">
+              WhatsApp
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="mt-8 pt-8 border-t border-white/10 text-center text-sm text-white/60">
+      <p>&copy; {new Date().getFullYear()} Frappé. Todos los derechos reservados.</p>
     </div>
   </div>
 </footer>

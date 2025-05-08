@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   /* Paleta de colores principal */
   --color-primary: #f5478f; /* Botón principal */
@@ -49,4 +53,19 @@ body {
   .pricing-plan {
     width: 100%;
   }
+}
+
+/* Ajuste de scroll para anchors */
+[id] {
+  scroll-margin-top: 60px; /* Ajusta este valor según la altura de tu header */
+}
+
+/* Ajuste específico para secciones principales */
+section[id] {
+  scroll-margin-top: 80px; /* Un poco más de espacio para las secciones principales */
+}
+
+/* Ajuste para el hero que tiene un margen superior diferente */
+#hero {
+  scroll-margin-top: 0;
 }

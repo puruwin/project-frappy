@@ -1,4 +1,16 @@
 ---
+interface Props {
+  navItems?: Array<{
+    text: string;
+    url: string;
+  }>;
+}
+
+const { navItems = [
+  { text: "Sobre nosotros", url: "/#sobre-nosotros" },
+  { text: "Precios", url: "/#precios" },
+  { text: "Preguntas frecuentes", url: "/#faq" }
+] } = Astro.props;
 ---
 
 <header class="bg-white/80 backdrop-blur-md border-b border-default fixed w-full top-0 z-50 h-[60px] sm:h-[76px]">
@@ -14,22 +26,14 @@
     <div class="col-start-3 flex justify-end">
       <nav class="h-full flex items-center">
         <button class="sm:hidden text-2xl p-2 text-default">☰</button>
-        <ul class="hidden sm:flex text-sm gap-8 font-medium font-['Montserrat_Variable'] h-full items-center">
-          <li>
-            <a href="/#sobre-nosotros" class="text-default hover:text-secondary transition-colors whitespace-nowrap">
-              Sobre nosotros
-            </a>
-          </li>
-          <li>
-            <a href="/#precios" class="text-default hover:text-secondary transition-colors whitespace-nowrap">
-              Precios
-            </a>
-          </li>
-          <li>
-            <a href="/#faq" class="text-default hover:text-secondary transition-colors whitespace-nowrap">
-              Preguntas frecuentes
-            </a>
-          </li>
+        <ul class="hidden sm:flex text-sm gap-8 font-medium font-sans h-full items-center">
+          {navItems.map((item) => (
+            <li>
+              <a href={item.url} class="text-default hover:text-secondary transition-colors whitespace-nowrap">
+                {item.text}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
     </div>
@@ -37,22 +41,14 @@
 
   <!-- Menú móvil -->
   <div class="mobile-menu hidden fixed top-[60px] min-h-[calc(33vh-60px)] left-0 w-full bg-white sm:hidden z-50">
-    <ul class="flex flex-col text-sm font-bold font-['Montserrat_Variable'] p-4">
-      <li class="py-2">
-        <a href="/#sobre-nosotros" class="hover:text-primary transition-colors" style="
-          border-bottom: var(--border-brutal);
-        ">Sobre nosotros</a>
-      </li>
-      <li class="py-2">
-        <a href="/#precios" class="hover:text-primary transition-colors" style="
-          border-bottom: var(--border-brutal);
-        ">Precios</a>
-      </li>
-      <li class="py-2">
-        <a href="/#faq" class="hover:text-primary transition-colors" style="
-          border-bottom: var(--border-brutal);
-        ">Preguntas frecuentes</a>
-      </li>
+    <ul class="flex flex-col text-sm font-bold font-sans p-4">
+      {navItems.map((item) => (
+        <li class="py-2">
+          <a href={item.url} class="hover:text-primary transition-colors" style="
+            border-bottom: var(--border-brutal);
+          ">{item.text}</a>
+        </li>
+      ))}
     </ul>
   </div>
 </header>

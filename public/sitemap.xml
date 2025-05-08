@@ -4,15 +4,23 @@
   <url>
     <loc>https://creativefrappe.com/</loc>
     <lastmod>2025-04-22</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>yearly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- Página de desarrollo web en Benidorm -->
+  <url>
+    <loc>https://creativefrappe.com/desarrollo-web-benidorm</loc>
+    <lastmod>2025-05-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- Páginas legales -->
   <url>
     <loc>https://creativefrappe.com/privacidad</loc>
     <lastmod>2025-04-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset> 
