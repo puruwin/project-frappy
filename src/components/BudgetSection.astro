@@ -1,0 +1,54 @@
+---
+import ContactForm from "./ContactForm.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  benefits?: string[];
+}
+
+const {
+  title = "Solicita tu presupuesto",
+  description = "¿Listo para dar el siguiente paso? Cuéntanos sobre tu proyecto y te enviaremos un presupuesto personalizado sin compromiso.",
+  benefits = [
+    "Presupuesto detallado y transparente",
+    "Sin costes ocultos ni sorpresas",
+    "Respuesta en menos de 24 horas",
+    "Garantía de satisfacción"
+  ]
+} = Astro.props;
+---
+
+<section id="presupuesto" class="bg-[var(--color-background)] px-4 py-16 sm:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+      <!-- Texto y beneficios -->
+      <div class="text-center lg:text-left">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-[var(--color-text)] font-sans">
+          {title}
+        </h2>
+        <p class="text-base sm:text-lg mb-6 sm:mb-8 text-[var(--color-text)] leading-relaxed font-sans">
+          {description}
+        </p>
+        
+        <ul class="space-y-3 sm:space-y-4">
+          {benefits.map((benefit: string) => (
+            <li class="flex items-center gap-2 sm:gap-3 text-[var(--color-text)] font-sans">
+              <svg class="w-5 h-5 text-[var(--color-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              {benefit}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Formulario -->
+      <ContactForm 
+        formId="budgetForm"
+        title="Cuéntanos sobre tu proyecto"
+        description="Rellena el formulario y nos pondremos en contacto contigo lo antes posible para enviarte un presupuesto personalizado."
+      />
+    </div>
+  </div>
+</section> 

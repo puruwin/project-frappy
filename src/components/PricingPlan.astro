@@ -6,96 +6,138 @@ interface Props {
   setupDiscount: string;
   features: string[];
   isPopular?: boolean;
-  color?: 'primary' | 'secondary' | 'background';
+  color?: "primary" | "secondary" | "background";
+  originalTotal?: string;
+  discountedTotal?: string;
+  savingsInfo?: string;
 }
 
-const { 
-  title, 
-  price, 
+const {
+  title,
+  price,
   setupFee,
   setupDiscount,
-  features, 
+  features,
   isPopular = false,
-  color = 'background'
+  color = "background",
+  originalTotal,
+  discountedTotal,
+  savingsInfo,
 } = Astro.props;
 
 const styles = {
   primary: {
-    background: 'bg-[var(--color-primary)]',
-    text: 'text-[var(--color-secondary)]',
-    button: 'bg-[var(--color-secondary)] text-white',
+    background: "bg-[var(--color-primary)]",
+    text: "text-[var(--color-secondary)]",
+    button: "bg-[var(--color-secondary)] text-white",
   },
   secondary: {
-    background: 'bg-[var(--color-secondary)]',
-    text: 'text-[var(--color-text)]',
-    button: 'bg-white text-[var(--color-secondary)]',
+    background: "bg-[var(--color-secondary)]",
+    text: "text-[var(--color-text)]",
+    button: "bg-white text-[var(--color-secondary)]",
   },
   background: {
-    background: 'bg-white',
-    text: 'text-[var(--color-text)]',
-    button: 'bg-[var(--color-primary)] text-[var(--color-secondary)]',
-  }
+    background: "bg-white",
+    text: "text-[var(--color-text)]",
+    button: "bg-[var(--color-primary)] text-[var(--color-secondary)]",
+  },
 };
 
 const currentStyle = styles[color];
 
 // Extraer los precios del string "180€ → 126€ pago inicial"
-const [originalPrice, discountedPrice] = setupFee.split('→').map(price => price.trim().split(' ')[0]);
+const [originalPrice, discountedPrice] = setupFee
+  .split("→")
+  .map((price) => price.trim().split(" ")[0]);
 ---
 
-<div class={`pricing-plan flex flex-col justify-between ${currentStyle.background} p-6 sm:p-8 relative w-full rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ${isPopular ? 'lg:-translate-y-4' : ''}`}>
-  {isPopular && (
-    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-default px-4 py-2 rounded-full shadow-sm">
-      <span class="font-['Montserrat_Variable'] text-xs sm:text-sm font-medium">Más Popular</span>
-    </div>
-  )}
-  
+<div
+  class={`pricing-plan flex flex-col justify-between ${currentStyle.background} p-6 sm:p-8 relative w-full rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ${isPopular ? "lg:-translate-y-4" : ""}`}
+>
+  {
+    isPopular && (
+      <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-accent px-4 py-2 text-default shadow-sm">
+        <span class="font-sans font-medium text-xs sm:text-sm">
+          Más Popular
+        </span>
+      </div>
+    )
+  }
+
   <div>
-    <h3 class={`text-xl sm:text-2xl font-bold mb-2 font-['Montserrat_Variable'] ${currentStyle.text}`}>{title}</h3>
-    
+    <h3
+      class={`text-xl sm:text-2xl font-bold mb-2 font-sans ${currentStyle.text}`}
+    >
+      {title}
+    </h3>
+
     <div class="mb-6">
-      <div class="mb-3 relative">
-        <div class="flex items-center gap-3 mb-1">
-          <span class="text-base sm:text-lg font-['Montserrat_Variable'] text-red-500 line-through opacity-75">{originalPrice}</span>
-          <div class="bg-accent text-default text-xs px-2 py-0.5 rounded-full">
+      <div class="relative mb-3">
+        <div class="mb-1 flex items-center gap-3">
+          <span
+            class={`font-sans text-red-500 line-through opacity-75 text-base sm:text-lg ${currentStyle.text}`}
+            >{originalPrice}</span
+          >
+          <div class="rounded-full bg-accent px-2 py-0.5 text-default text-xs">
             {setupDiscount}
           </div>
         </div>
-        <div class={`text-2xl sm:text-3xl font-bold font-['Montserrat_Variable'] ${currentStyle.text}`}>
-          {discountedPrice} <span class="text-base font-normal opacity-80">pago inicial</span>
+        <div
+          class={`text-2xl sm:text-3xl font-bold font-sans ${currentStyle.text}`}
+        >
+          {discountedPrice}
+          <span class="font-normal opacity-80 text-base">pago inicial</span>
         </div>
       </div>
-      <div class={`text-base sm:text-lg font-['Montserrat_Variable'] ${currentStyle.text}`}>
+      <div
+        class={`text-base sm:text-lg font-sans ${currentStyle.text}`}
+      >
         + <span class="font-bold">{price}</span>
-        <span class="text-xs sm:text-sm opacity-80">/mes</span>
+        <span class="opacity-80 text-xs sm:text-sm">/mes</span>
       </div>
+      {
+        savingsInfo && (
+          <div class="mt-2 font-medium text-primary text-sm">
+            Ahorra {savingsInfo} en 6 meses
+            <br />({originalTotal} → {discountedTotal})
+          </div>
+        )
+      }
     </div>
-    
-    <ul class="space-y-3 mb-8">
-      {features.map(feature => (
-        <li class={`flex items-start gap-2 font-['Montserrat_Variable'] text-xs sm:text-sm ${currentStyle.text} ${feature.startsWith('X') ? 'opacity-50' : ''}`}>
-          {feature}
-        </li>
-      ))}
+
+    <ul class="mb-8 space-y-3">
+      {
+        features.map((feature) => (
+          <li
+            class={`flex items-start gap-2 font-sans text-xs sm:text-sm ${currentStyle.text} ${feature.startsWith("X") ? "opacity-50" : ""}`}
+          >
+            {feature}
+          </li>
+        ))
+      }
     </ul>
   </div>
-  
-  <button class={`${title === "Pro" ? 'bg-primary' : 'bg-accent'} px-4 py-2 rounded-lg font-['Montserrat_Variable'] text-sm sm:text-base hover:opacity-90 transition-opacity open-modal`} data-plan={title}>
+
+  <button
+    class={`${title === "Pro" ? "bg-primary" : "bg-accent"} px-4 py-2 rounded-lg font-sans text-sm sm:text-base hover:opacity-90 transition-opacity open-modal`}
+    data-plan={title}
+  >
     {title === "Pro" ? "¡Despega!" : "Comenzar"}
   </button>
 </div>
 
 <script>
-  document.querySelectorAll('.open-modal').forEach(button => {
-    button.addEventListener('click', () => {
-      const modal = document.getElementById('modal-1');
+  document.querySelectorAll(".open-modal").forEach((button) => {
+    button.addEventListener("click", () => {
+      const modal = document.getElementById("modal-1");
       const plan = (button as HTMLElement).dataset.plan;
-      const modalTitle = modal?.querySelector('#modal-1-title');
+      const modalTitle = modal?.querySelector("#modal-1-title");
       if (modalTitle) {
         modalTitle.textContent = `Plan ${plan}`;
       }
       // @ts-ignore
-      MicroModal.show('modal-1');
+      MicroModal.show("modal-1");
     });
   });
-</script> 
+</script>
+

@@ -33,13 +33,35 @@ const calculateDiscountedPrice = (originalPrice: number) => {
   const discountedPrice = Math.round(originalPrice * (1 - discount));
   return {
     original: `${originalPrice}€`,
-    discounted: `${discountedPrice}€`
+    discounted: `${discountedPrice}€`,
+    originalValue: originalPrice,
+    discountedValue: discountedPrice
   };
 };
 
-const starterSetupFee = calculateDiscountedPrice(180);
-const proSetupFee = calculateDiscountedPrice(350);
-const growthSetupFee = calculateDiscountedPrice(490);
+const starterSetupFee = calculateDiscountedPrice(249);
+const proSetupFee = calculateDiscountedPrice(399);
+const growthSetupFee = calculateDiscountedPrice(529);
+
+const starterMonthly = calculateDiscountedPrice(89);
+const proMonthly = calculateDiscountedPrice(199);
+const growthMonthly = calculateDiscountedPrice(249);
+
+// Calcular ahorro total en 6 meses
+const calculateTotalSavings = (setupFee: any, monthlyFee: any) => {
+  const originalTotal = setupFee.originalValue + (monthlyFee.originalValue * 5);
+  const discountedTotal = setupFee.discountedValue + (monthlyFee.discountedValue * 5);
+  const savings = originalTotal - discountedTotal;
+  return {
+    originalTotal: `${originalTotal}€`,
+    discountedTotal: `${discountedTotal}€`,
+    savings: `${savings}€`
+  };
+};
+
+const starterSavings = calculateTotalSavings(starterSetupFee, starterMonthly);
+const proSavings = calculateTotalSavings(proSetupFee, proMonthly);
+const growthSavings = calculateTotalSavings(growthSetupFee, growthMonthly);
 ---
 
 <section class="py-16 px-4 sm:px-8">
@@ -47,31 +69,43 @@ const growthSetupFee = calculateDiscountedPrice(490);
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <PricingPlan
         title="Starter"
-        price="59€"
+        price={`${starterMonthly.original} → ${starterMonthly.discounted}`}
         setupFee={`${starterSetupFee.original} → ${starterSetupFee.discounted} pago inicial`}
         setupDiscount="30% OFF"
         features={starterFeatures}
         color="background"
+        originalTotal={`${starterSavings.originalTotal}`}
+        discountedTotal={`${starterSavings.discountedTotal}`}
+        savingsInfo={`${starterSavings.savings}`}
       />
       
       <PricingPlan
         title="Pro"
-        price="149€"
+        price={`${proMonthly.original} → ${proMonthly.discounted}`}
         setupFee={`${proSetupFee.original} → ${proSetupFee.discounted} pago inicial`}
         setupDiscount="30% OFF"
         features={proFeatures}
         isPopular={true}
         color="secondary"
+        originalTotal={`${proSavings.originalTotal}`}
+        discountedTotal={`${proSavings.discountedTotal}`}
+        savingsInfo={`${proSavings.savings}`}
       />
       
       <PricingPlan
         title="Growth"
-        price="199€"
+        price={`${growthMonthly.original} → ${growthMonthly.discounted}`}
         setupFee={`${growthSetupFee.original} → ${growthSetupFee.discounted} pago inicial`}
         setupDiscount="30% OFF"
         features={growthFeatures}
         color="background"
+        originalTotal={`${growthSavings.originalTotal}`}
+        discountedTotal={`${growthSavings.discountedTotal}`}
+        savingsInfo={`${growthSavings.savings}`}
       />
     </div>
+    <p class="mt-8 text-center text-sm text-gray-500">
+      * Todos los precios mostrados son sin IVA (21%)
+    </p>
   </div>
 </section> 
