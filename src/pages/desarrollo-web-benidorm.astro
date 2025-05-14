@@ -8,6 +8,7 @@ import FAQSection from "../components/FAQSection.astro";
 import ContactModal from "../components/ContactModal.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 import ContactForm from "../components/ContactForm.astro";
+import Layout from "../layouts/Layout.astro";
 import "@fontsource-variable/montserrat";
 import "~/styles/theme.css";
 
@@ -59,19 +60,52 @@ const faqData = [
       "Sí. Puedes comenzar con un diseño simple y escalar a funcionalidades más avanzadas cuando tu negocio lo necesite. Nuestros planes son flexibles.",
   },
 ];
+const { generator, site } = Astro;
+const image = new URL("splash.png", site);
+const title = "Empresa de desarrollo web en Benidorm";
+const description =
+  "Somos expertos en desarrollo web en Benidorm, ofreciendo soluciones digitales personalizadas para empresas que buscan destacar en internet. Nuestros sitios web son rápidos, seguros y optimizados para SEO.";
+const keywords =
+  "desarrollo web Benidorm, diseño web Benidorm, agencia digital Benidorm, programador web Benidorm, sitios web Benidorm, SEO local Benidorm, páginas web profesionales Benidorm";
 ---
 
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Empresa de Desarrollo Web en Benidorm | Soluciones Web Profesionales
-    </title>
-    <meta
-      name="description"
-      content="Somos la empresa líder en desarrollo web en Benidorm. Creamos sitios web profesionales, rápidos y optimizados para SEO. ¡Solicita tu presupuesto gratis!"
-    />
+<Layout title={title}>
+  <Fragment slot="head">
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={`${site}/desarrollo-web-benidorm`} />
+
+    <!-- Control de robots -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${site}/desarrollo-web-benidorm`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Frappé" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={`${site}/desarrollo-web-benidorm`} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Metadatos adicionales -->
+    <meta name="author" content="Frappé" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Geolocalización -->
+    <meta name="geo.region" content="ES-V" />
+    <meta name="geo.placename" content="Benidorm" />
+    <meta name="geo.position" content="38.5366;-0.1312" />
+    <meta name="ICBM" content="38.5366, -0.1312" />
+
     <link rel="icon" type="image/svg+xml" href="/frappe_icon.svg" />
     <script type="application/ld+json">
       {
@@ -91,265 +125,262 @@ const faqData = [
       }
     </script>
     <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
-  </head>
-  <body class="bg-[var(--color-bg-secondary)]">
-    <BrutalHeader navItems={navItems} />
-    <main>
-      <div class="relative">
-        <div class="absolute inset-0 z-0">
-          <img
-            src="/skyline-benidorm.webp"
-            alt="Skyline de Benidorm"
-            class="h-full w-full object-cover opacity-40"
-          />
-          <div
-            class="absolute inset-0 bg-[var(--color-bg-secondary)] mix-blend-multiply"
-          >
-          </div>
-        </div>
-        <div class="relative z-10">
-          <Hero {...heroData} />
+  </Fragment>
+  <BrutalHeader navItems={navItems} />
+  <main>
+    <div class="relative">
+      <div class="absolute inset-0 z-0">
+        <img
+          src="/skyline-benidorm.webp"
+          alt="Skyline de Benidorm"
+          class="h-full w-full object-cover opacity-40"
+        />
+        <div
+          class="absolute inset-0 bg-[var(--color-bg-secondary)] mix-blend-multiply"
+        >
         </div>
       </div>
+      <div class="relative z-10">
+        <Hero {...heroData} />
+      </div>
+    </div>
 
-      <section
-        id="beneficios"
-        class="bg-[var(--color-background)] px-4 py-16 sm:px-8"
-      >
-        <div class="mx-auto max-w-7xl">
-          <h2 class="mb-12 text-center font-bold text-4xl">
-            ¿Por qué elegir nuestro servicio de desarrollo web en Benidorm?
-          </h2>
-          <p class="mb-12 text-center text-lg">
-            A diferencia de la mayoría de agencias que trabajan con
-            constructores visuales y plugins sobrecargados, nosotros utilizamos
-            un
-            <b>sistema propio de desarrollo</b> que nos permite:
-          </p>
-          <ul class="mx-auto mb-12 max-w-2xl space-y-4">
-            <li class="flex items-start gap-3 text-lg">
-              <span class="text-[var(--color-primary)] text-2xl">✅</span>
-              <span>Entregar páginas personalizadas y únicas</span>
-            </li>
-            <li class="flex items-start gap-3 text-lg">
-              <span class="text-[var(--color-primary)] text-2xl">✅</span>
-              <span>Evitar errores y lentitud asociados a WordPress</span>
-            </li>
-            <li class="flex items-start gap-3 text-lg">
-              <span class="text-[var(--color-primary)] text-2xl">✅</span>
-              <span>Asegurar velocidad de carga inferior a 1 segundo</span>
-            </li>
-            <li class="flex items-start gap-3 text-lg">
-              <span class="text-[var(--color-primary)] text-2xl">✅</span>
-              <span>Ofrecer una base de SEO técnico desde el día uno</span>
-            </li>
-            <li class="flex items-start gap-3 text-lg">
-              <span class="text-[var(--color-primary)] text-2xl">✅</span>
-              <span>Diseñar con el foco en conversión y usabilidad</span>
-            </li>
-          </ul>
-          <p class="text-center text-lg">
-            Gracias a este enfoque, muchos de nuestros clientes destacan no solo
-            la calidad visual de su web, sino también la facilidad con la que
-            consiguen <b>visibilidad en Google</b> y más contactos.
-          </p>
-          <p class="text-center text-lg">
-            Y lo mejor: trabajas directamente con nosotros, sin comerciales ni
-            intermediarios. Trato directo, comunicación clara, entregas rápidas.
-          </p>
-        </div>
-      </section>
+    <section
+      id="beneficios"
+      class="bg-[var(--color-background)] px-4 py-16 sm:px-8"
+    >
+      <div class="mx-auto max-w-7xl">
+        <h2 class="mb-12 text-center font-bold text-4xl">
+          ¿Por qué elegir nuestro servicio de desarrollo web en Benidorm?
+        </h2>
+        <p class="mb-12 text-center text-lg">
+          A diferencia de la mayoría de agencias que trabajan con constructores
+          visuales y plugins sobrecargados, nosotros utilizamos un
+          <b>sistema propio de desarrollo</b> que nos permite:
+        </p>
+        <ul class="mx-auto mb-12 max-w-2xl space-y-4">
+          <li class="flex items-start gap-3 text-lg">
+            <span class="text-[var(--color-primary)] text-2xl">✅</span>
+            <span>Entregar páginas personalizadas y únicas</span>
+          </li>
+          <li class="flex items-start gap-3 text-lg">
+            <span class="text-[var(--color-primary)] text-2xl">✅</span>
+            <span>Evitar errores y lentitud asociados a WordPress</span>
+          </li>
+          <li class="flex items-start gap-3 text-lg">
+            <span class="text-[var(--color-primary)] text-2xl">✅</span>
+            <span>Asegurar velocidad de carga inferior a 1 segundo</span>
+          </li>
+          <li class="flex items-start gap-3 text-lg">
+            <span class="text-[var(--color-primary)] text-2xl">✅</span>
+            <span>Ofrecer una base de SEO técnico desde el día uno</span>
+          </li>
+          <li class="flex items-start gap-3 text-lg">
+            <span class="text-[var(--color-primary)] text-2xl">✅</span>
+            <span>Diseñar con el foco en conversión y usabilidad</span>
+          </li>
+        </ul>
+        <p class="text-center text-lg">
+          Gracias a este enfoque, muchos de nuestros clientes destacan no solo
+          la calidad visual de su web, sino también la facilidad con la que
+          consiguen <b>visibilidad en Google</b> y más contactos.
+        </p>
+        <p class="text-center text-lg">
+          Y lo mejor: trabajas directamente con nosotros, sin comerciales ni
+          intermediarios. Trato directo, comunicación clara, entregas rápidas.
+        </p>
+      </div>
+    </section>
 
-      <WavyDivider topColor="#E6F9FD" bottomColor="#101a32" />
+    <WavyDivider topColor="#E6F9FD" bottomColor="#101a32" />
 
-      <section
-        id="planes"
-        class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8"
-      >
-        <div class="mx-auto max-w-7xl">
-          <h2 class="mb-12 text-center font-bold text-white text-4xl">
-            Planes flexibles para empresas y autónomos
-          </h2>
-          <p class="mb-12 text-center text-white text-lg">
-            Hemos diseñado tres paquetes de servicios adaptados a distintas
-            etapas y presupuestos. Cada uno incluye un desarrollo profesional,
-            diseño responsive y enfoque en posicionamiento en Google.
-          </p>
-          <p class="mb-12 text-center text-white text-lg">
-            Además tenemos una oferta especial hasta agotar el número de plazas.
-            ¡No pierdas la oportunidad y contacta con nosotros!
-          </p>
-          <PricingPlans />
-          <p class="text-center text-white text-lg">
-            Cada plan tiene un <span class="font-bold">coste inicial</span> por desarrollo
-            y, si lo deseas, una <span class="font-bold">cuota mensual</span> para
-            soporte técnico, mantenimiento y marketing digital.
-          </p>
-        </div>
-      </section>
-      <WavyDivider topColor="#101a32" bottomColor="#a9e7fa" />
+    <section
+      id="planes"
+      class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8"
+    >
+      <div class="mx-auto max-w-7xl">
+        <h2 class="mb-12 text-center font-bold text-white text-4xl">
+          Planes flexibles para empresas y autónomos
+        </h2>
+        <p class="mb-12 text-center text-white text-lg">
+          Hemos diseñado tres paquetes de servicios adaptados a distintas etapas
+          y presupuestos. Cada uno incluye un desarrollo profesional, diseño
+          responsive y enfoque en posicionamiento en Google.
+        </p>
+        <p class="mb-12 text-center text-white text-lg">
+          Además tenemos una oferta especial hasta agotar el número de plazas.
+          ¡No pierdas la oportunidad y contacta con nosotros!
+        </p>
+        <PricingPlans />
+        <p class="text-center text-white text-lg">
+          Cada plan tiene un <span class="font-bold">coste inicial</span> por desarrollo
+          y, si lo deseas, una <span class="font-bold">cuota mensual</span> para
+          soporte técnico, mantenimiento y marketing digital.
+        </p>
+      </div>
+    </section>
+    <WavyDivider topColor="#101a32" bottomColor="#a9e7fa" />
 
-      <section
-        id="proceso"
-        class="bg-[var(--color-bg-secondary)] px-4 py-16 text-[var(--color-text)] sm:px-8"
-      >
-        <div class="mx-auto max-w-7xl">
-          <h2 class="mb-12 text-center font-bold text-4xl">
-            Así es nuestro proceso de trabajo (rápido y sin complicaciones)
-          </h2>
-          <ol class="mx-auto max-w-3xl space-y-8">
-            <li class="flex items-start gap-6">
-              <span
-                class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
-                >1</span
-              >
-              <div>
-                <h3 class="mb-2 font-bold text-xl">Reunión inicial</h3>
-                <p>
-                  Hablamos por videollamada o presencialmente para conocer tu
-                  proyecto y definir tus objetivos.
-                </p>
-              </div>
-            </li>
-            <li class="flex items-start gap-6">
-              <span
-                class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
-                >2</span
-              >
-              <div>
-                <h3 class="mb-2 font-bold text-xl">Propuesta personalizada</h3>
-                <p>Te entregamos una propuesta clara, sin letra pequeña.</p>
-              </div>
-            </li>
-            <li class="flex items-start gap-6">
-              <span
-                class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
-                >3</span
-              >
-              <div>
-                <h3 class="mb-2 font-bold text-xl">Desarrollo técnico</h3>
-                <p>Diseñamos, desarrollamos y testeamos la web.</p>
-              </div>
-            </li>
-            <li class="flex items-start gap-6">
-              <span
-                class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
-                >4</span
-              >
-              <div>
-                <h3 class="mb-2 font-bold text-xl">Entrega y revisión</h3>
-                <p>Revisamos juntos el resultado final.</p>
-              </div>
-            </li>
-            <li class="flex items-start gap-6">
-              <span
-                class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
-                >5</span
-              >
-              <div>
-                <h3 class="mb-2 font-bold text-xl">
-                  Activación de SEO - Google Ads - Mantenimiento
-                </h3>
-                <p>
-                  Si está incluido en tu plan, arrancamos con el SEO, Google Ads
-                  y mantenimiento.
-                </p>
-              </div>
-            </li>
-          </ol>
-          <p class="mt-12 text-center text-lg">
-            En tan solo 10 días puedes tener tu nueva web online, funcionando y
-            preparada para atraer visitantes.
-          </p>
-        </div>
-      </section>
-
-      <WavyDivider topColor="#a9e7fa" bottomColor="#101a32" />
-
-      <section
-        id="faq"
-        class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8"
-      >
-        <div class="mx-auto max-w-7xl">
-          <h2
-            class="mb-8 text-center font-['Montserrat'] font-bold text-white text-3xl sm:mb-16 sm:text-4xl"
-          >
-            Preguntas Frecuentes - Lo que necesitas saber
-          </h2>
-          <FAQSection faqs={faqData} />
-        </div>
-      </section>
-
-      <WavyDivider topColor="#101a32" bottomColor="#e6f9fd" />
-
-      <section
-        id="presupuesto"
-        class="bg-[var(--color-background)] px-4 py-16 sm:px-8"
-      >
-        <div class="mx-auto max-w-7xl">
-          <div
-            class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16"
-          >
-            <!-- Texto y beneficios -->
-            <div class="text-center lg:text-left">
-              <h2
-                class="mb-4 font-sans font-bold text-[var(--color-text)] text-2xl sm:mb-6 sm:text-3xl"
-              >
-                ¿Listo para dar el siguiente paso?
-              </h2>
-              <p
-                class="mb-6 font-sans leading-relaxed text-[var(--color-text)] text-base sm:mb-8 sm:text-lg"
-              >
-                Cuéntanos sobre tu proyecto y te enviaremos un presupuesto
-                personalizado sin compromiso. Trabajamos con empresas y
-                autónomos de Benidorm y alrededores.
+    <section
+      id="proceso"
+      class="bg-[var(--color-bg-secondary)] px-4 py-16 text-[var(--color-text)] sm:px-8"
+    >
+      <div class="mx-auto max-w-7xl">
+        <h2 class="mb-12 text-center font-bold text-4xl">
+          Así es nuestro proceso de trabajo (rápido y sin complicaciones)
+        </h2>
+        <ol class="mx-auto max-w-3xl space-y-8">
+          <li class="flex items-start gap-6">
+            <span
+              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
+              >1</span
+            >
+            <div>
+              <h3 class="mb-2 font-bold text-xl">Reunión inicial</h3>
+              <p>
+                Hablamos por videollamada o presencialmente para conocer tu
+                proyecto y definir tus objetivos.
               </p>
-
-              <ul class="space-y-3 sm:space-y-4">
-                {
-                  [
-                    "Presupuesto detallado y transparente",
-                    "Sin costes ocultos ni sorpresas",
-                    "Respuesta en menos de 24 horas",
-                    "Garantía de satisfacción",
-                    "Atención personalizada en Benidorm",
-                  ].map((benefit) => (
-                    <li class="flex items-center gap-2 font-sans text-[var(--color-text)] sm:gap-3">
-                      <svg
-                        class="h-5 w-5 text-[var(--color-secondary)]"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      {benefit}
-                    </li>
-                  ))
-                }
-              </ul>
             </div>
+          </li>
+          <li class="flex items-start gap-6">
+            <span
+              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
+              >2</span
+            >
+            <div>
+              <h3 class="mb-2 font-bold text-xl">Propuesta personalizada</h3>
+              <p>Te entregamos una propuesta clara, sin letra pequeña.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-6">
+            <span
+              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
+              >3</span
+            >
+            <div>
+              <h3 class="mb-2 font-bold text-xl">Desarrollo técnico</h3>
+              <p>Diseñamos, desarrollamos y testeamos la web.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-6">
+            <span
+              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
+              >4</span
+            >
+            <div>
+              <h3 class="mb-2 font-bold text-xl">Entrega y revisión</h3>
+              <p>Revisamos juntos el resultado final.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-6">
+            <span
+              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
+              >5</span
+            >
+            <div>
+              <h3 class="mb-2 font-bold text-xl">
+                Activación de SEO - Google Ads - Mantenimiento
+              </h3>
+              <p>
+                Si está incluido en tu plan, arrancamos con el SEO, Google Ads y
+                mantenimiento.
+              </p>
+            </div>
+          </li>
+        </ol>
+        <p class="mt-12 text-center text-lg">
+          En tan solo 10 días puedes tener tu nueva web online, funcionando y
+          preparada para atraer visitantes.
+        </p>
+      </div>
+    </section>
 
-            <!-- Formulario -->
-            <ContactForm
-              formId="budgetForm"
-              title="Cuéntanos sobre tu proyecto"
-              description="Rellena el formulario y nos pondremos en contacto contigo lo antes posible para enviarte un presupuesto personalizado."
-            />
+    <WavyDivider topColor="#a9e7fa" bottomColor="#101a32" />
+
+    <section
+      id="faq"
+      class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8"
+    >
+      <div class="mx-auto max-w-7xl">
+        <h2
+          class="mb-8 text-center font-['Montserrat'] font-bold text-white text-3xl sm:mb-16 sm:text-4xl"
+        >
+          Preguntas Frecuentes - Lo que necesitas saber
+        </h2>
+        <FAQSection faqs={faqData} />
+      </div>
+    </section>
+
+    <WavyDivider topColor="#101a32" bottomColor="#e6f9fd" />
+
+    <section
+      id="presupuesto"
+      class="bg-[var(--color-background)] px-4 py-16 sm:px-8"
+    >
+      <div class="mx-auto max-w-7xl">
+        <div
+          class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16"
+        >
+          <!-- Texto y beneficios -->
+          <div class="text-center lg:text-left">
+            <h2
+              class="mb-4 font-sans font-bold text-[var(--color-text)] text-2xl sm:mb-6 sm:text-3xl"
+            >
+              ¿Listo para dar el siguiente paso?
+            </h2>
+            <p
+              class="mb-6 font-sans leading-relaxed text-[var(--color-text)] text-base sm:mb-8 sm:text-lg"
+            >
+              Cuéntanos sobre tu proyecto y te enviaremos un presupuesto
+              personalizado sin compromiso. Trabajamos con empresas y autónomos
+              de Benidorm y alrededores.
+            </p>
+
+            <ul class="space-y-3 sm:space-y-4">
+              {
+                [
+                  "Presupuesto detallado y transparente",
+                  "Sin costes ocultos ni sorpresas",
+                  "Respuesta en menos de 24 horas",
+                  "Garantía de satisfacción",
+                  "Atención personalizada en Benidorm",
+                ].map((benefit) => (
+                  <li class="flex items-center gap-2 font-sans text-[var(--color-text)] sm:gap-3">
+                    <svg
+                      class="h-5 w-5 text-[var(--color-secondary)]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    {benefit}
+                  </li>
+                ))
+              }
+            </ul>
           </div>
+
+          <!-- Formulario -->
+          <ContactForm
+            formId="budgetForm"
+            title="Cuéntanos sobre tu proyecto"
+            description="Rellena el formulario y nos pondremos en contacto contigo lo antes posible para enviarte un presupuesto personalizado."
+          />
         </div>
-      </section>
+      </div>
+    </section>
 
-      <WavyDivider topColor="#E6F9FD" bottomColor="black" />
+    <WavyDivider topColor="#E6F9FD" bottomColor="black" />
 
-      <Footer navItems={navItems} />
-      <ContactModal />
-      <CookieConsent />
-    </main>
-  </body>
-</html>
+    <Footer navItems={navItems} />
+    <ContactModal />
+    <CookieConsent />
+  </main>
+</Layout>

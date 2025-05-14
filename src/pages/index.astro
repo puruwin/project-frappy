@@ -17,7 +17,7 @@ import Footer from "../components/Footer.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 
 const { generator, site } = Astro;
-const image = new URL("creative-launch.jpg", site);
+const image = new URL("splash.png", site);
 const title = "Frappé | Agencia de Desarrollo Web";
 const description =
   "Creamos sitios web de alto rendimiento que impulsan el crecimiento de tu negocio. Expertos en desarrollo web con tecnologías modernas y diseños adaptados a tu marca.";
@@ -114,9 +114,9 @@ const faqsData = [
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Frappé",
-        "url": "${site}",
-        "logo": "${site}/frappe_icon.svg",
-        "description": "${description}",
+        "url": "https://creativefrappe.com",
+        "logo": "https://creativefrappe.com/frappe_icon.svg",
+        "description": "Creamos sitios web de alto rendimiento que impulsan el crecimiento de tu negocio. Expertos en desarrollo web con tecnologías modernas y diseños adaptados a tu marca.",
         "address": {
           "@type": "PostalAddress",
           "addressCountry": "ES"
@@ -169,7 +169,7 @@ const faqsData = [
     </script>
   </Fragment>
 
-  <BrutalHeader title="Frappé" />
+  <BrutalHeader />
   <div id="vanta-bg">
     <Hero />
     <About id="sobre-nosotros" />
