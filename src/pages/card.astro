@@ -4,6 +4,10 @@ const { site } = Astro;
 ---
 
 <Layout title="Redirigiendo...">
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="refresh" content="0; url=/desarrollo-web-benidorm" />
+  </Fragment>
   <div class="min-h-screen flex items-center justify-center bg-[var(--color-background)]">
     <div class="text-center">
       <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[var(--color-primary)] mx-auto mb-4"></div>
