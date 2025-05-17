@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+const { site } = Astro;
+---
+
+<Layout title="Redirigiendo...">
+  <div class="min-h-screen flex items-center justify-center bg-[var(--color-background)]">
+    <div class="text-center">
+      <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[var(--color-primary)] mx-auto mb-4"></div>
+      <h1 class="text-2xl font-bold text-[var(--color-text)] mb-2">Redirigiendo...</h1>
+      <p class="text-[var(--color-text)]">Serás redirigido automáticamente a nuestra página de desarrollo web.</p>
+    </div>
+  </div>
+</Layout>
+
+<script define:vars={{ site }}>
+  window.location.replace(`/desarrollo-web-benidorm`);
+</script>
