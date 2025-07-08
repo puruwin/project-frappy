@@ -10,6 +10,7 @@ interface Props {
   originalTotal?: string;
   discountedTotal?: string;
   savingsInfo?: string;
+  hasDiscount?: boolean;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   originalTotal,
   discountedTotal,
   savingsInfo,
+  hasDiscount,
 } = Astro.props;
 
 const styles = {
@@ -46,7 +48,7 @@ const styles = {
 const currentStyle = styles[color];
 
 // Extraer los precios del string "180€ → 126€ pago inicial"
-const [originalPrice, discountedPrice] = setupFee
+const [originalPrice, totalPrice] = setupFee
   .split("→")
   .map((price) => price.trim().split(" ")[0]);
 ---
@@ -74,29 +76,32 @@ const [originalPrice, discountedPrice] = setupFee
     <div class="mb-6">
       <div class="relative mb-3">
         <div class="mb-1 flex items-center gap-3">
-          <span
-            class={`font-sans text-red-500 line-through opacity-75 text-base sm:text-lg ${currentStyle.text}`}
-            >{originalPrice}</span
-          >
-          <div class="rounded-full bg-accent px-2 py-0.5 text-default text-xs">
-            {setupDiscount}
-          </div>
+          {
+            hasDiscount && (
+              <span
+                class={`font-sans text-red-500 line-through opacity-75 text-base sm:text-lg ${currentStyle.text}`}
+              >
+                {originalPrice}
+              </span>
+              <div class="rounded-full bg-accent px-2 py-0.5 text-default text-xs">
+                {setupDiscount}
+              </div>
+            )
+          }
         </div>
         <div
           class={`text-2xl sm:text-3xl font-bold font-sans ${currentStyle.text}`}
         >
-          {discountedPrice}
+          {totalPrice}
           <span class="font-normal opacity-80 text-base">pago inicial</span>
         </div>
       </div>
-      <div
-        class={`text-base sm:text-lg font-sans ${currentStyle.text}`}
-      >
-        + <span class="font-bold">{price}</span>
+      <div class={`text-base sm:text-lg font-sans ${currentStyle.text}`}>
+        + <span class="font-bold">{hasDiscount ? price : price.split("→")[1].trim()}</span>
         <span class="opacity-80 text-xs sm:text-sm">/mes</span>
       </div>
       {
-        savingsInfo && (
+        savingsInfo && hasDiscount && (
           <div class="mt-2 font-medium text-primary text-sm">
             Ahorra {savingsInfo} en 6 meses
             <br />({originalTotal} → {discountedTotal})
@@ -140,4 +145,3 @@ const [originalPrice, discountedPrice] = setupFee
     });
   });
 </script>
-
