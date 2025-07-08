@@ -2,40 +2,42 @@
 import PricingPlan from "./PricingPlan.astro";
 
 const starterFeatures = [
-    "✔ - Landing page profesional",
-    "✔ - Responsive (PC y móvil)",
-    "✔ - Formulario de contacto",
-    "✔ - Optimización básica SEO",
-    "✔ - Hosting y dominio incluidos",
-    "✔ - Mantenimiento técnico mensual",
+  "✔ - Landing page profesional",
+  "✔ - Responsive (PC y móvil)",
+  "✔ - Formulario de contacto",
+  "✔ - Optimización básica SEO",
+  "✔ - Hosting y dominio incluidos",
+  "✔ - Mantenimiento técnico mensual",
 ];
 
 const proFeatures = [
-    "✔ - Hasta 3 secciones personalizadas",
-    "✔ - Diseño a medida",
-    "✔ - SEO optimizado por página",
-    "✔ - Google Analytics + Tag Manager",
-    "✔ - Mantenimiento + cambios menores mensuales",
+  "✔ - Hasta 3 secciones personalizadas",
+  "✔ - Diseño a medida",
+  "✔ - SEO optimizado por página",
+  "✔ - Google Analytics + Tag Manager",
+  "✔ - Mantenimiento + cambios menores mensuales",
 ];
 
 const growthFeatures = [
-    "✔ - Todo lo del plan Pro",
-    "✔ - Integración con campañas de Google Ads",
-    "✔ - Optimización mensual de rendimiento",
-    "✔ - Informes mensuales de tráfico y resultados",
-    "✔ - Asesoría personalizada",
-    "✔ - Prioridad en cambios y soporte",
+  "✔ - Todo lo del plan Pro",
+  "✔ - Integración con campañas de Google Ads",
+  "✔ - Optimización mensual de rendimiento",
+  "✔ - Informes mensuales de tráfico y resultados",
+  "✔ - Asesoría personalizada",
+  "✔ - Prioridad en cambios y soporte",
 ];
+
+const SHOW_DISCOUNTS = false;
 
 // Calcular precios con descuento
 const calculateDiscountedPrice = (originalPrice: number) => {
-  const discount = 0.3; // 30% de descuento
+  const discount = SHOW_DISCOUNTS ? 0.3 : 0; // 0% de descuento (oferta desactivada)
   const discountedPrice = Math.round(originalPrice * (1 - discount));
   return {
     original: `${originalPrice}€`,
     discounted: `${discountedPrice}€`,
     originalValue: originalPrice,
-    discountedValue: discountedPrice
+    discountedValue: discountedPrice,
   };
 };
 
@@ -49,13 +51,14 @@ const growthMonthly = calculateDiscountedPrice(249);
 
 // Calcular ahorro total en 6 meses
 const calculateTotalSavings = (setupFee: any, monthlyFee: any) => {
-  const originalTotal = setupFee.originalValue + (monthlyFee.originalValue * 5);
-  const discountedTotal = setupFee.discountedValue + (monthlyFee.discountedValue * 5);
+  const originalTotal = setupFee.originalValue + monthlyFee.originalValue * 5;
+  const discountedTotal =
+    setupFee.discountedValue + monthlyFee.discountedValue * 5;
   const savings = originalTotal - discountedTotal;
   return {
     originalTotal: `${originalTotal}€`,
     discountedTotal: `${discountedTotal}€`,
-    savings: `${savings}€`
+    savings: `${savings}€`,
   };
 };
 
@@ -64,9 +67,9 @@ const proSavings = calculateTotalSavings(proSetupFee, proMonthly);
 const growthSavings = calculateTotalSavings(growthSetupFee, growthMonthly);
 ---
 
-<section class="py-16 px-4 sm:px-8">
-  <div class="max-w-7xl mx-auto">    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<section class="px-4 py-16 sm:px-8">
+  <div class="mx-auto max-w-7xl">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       <PricingPlan
         title="Starter"
         price={`${starterMonthly.original} → ${starterMonthly.discounted}`}
@@ -77,8 +80,9 @@ const growthSavings = calculateTotalSavings(growthSetupFee, growthMonthly);
         originalTotal={`${starterSavings.originalTotal}`}
         discountedTotal={`${starterSavings.discountedTotal}`}
         savingsInfo={`${starterSavings.savings}`}
+        hasDiscount={SHOW_DISCOUNTS}
       />
-      
+
       <PricingPlan
         title="Pro"
         price={`${proMonthly.original} → ${proMonthly.discounted}`}
@@ -90,8 +94,9 @@ const growthSavings = calculateTotalSavings(growthSetupFee, growthMonthly);
         originalTotal={`${proSavings.originalTotal}`}
         discountedTotal={`${proSavings.discountedTotal}`}
         savingsInfo={`${proSavings.savings}`}
+        hasDiscount={SHOW_DISCOUNTS}
       />
-      
+
       <PricingPlan
         title="Growth"
         price={`${growthMonthly.original} → ${growthMonthly.discounted}`}
@@ -102,10 +107,11 @@ const growthSavings = calculateTotalSavings(growthSetupFee, growthMonthly);
         originalTotal={`${growthSavings.originalTotal}`}
         discountedTotal={`${growthSavings.discountedTotal}`}
         savingsInfo={`${growthSavings.savings}`}
+        hasDiscount={SHOW_DISCOUNTS}
       />
     </div>
-    <p class="mt-8 text-center text-sm text-gray-500">
+    <p class="mt-8 text-center text-gray-500 text-sm">
       * Todos los precios mostrados son sin IVA (21%)
     </p>
   </div>
-</section> 
+</section>
