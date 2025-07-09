@@ -1,0 +1,48 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  size?: "icon" | "small" | "medium" | "text";
+  float?: "left" | "right" | "none";
+  rounded?: boolean;
+  shadow?: boolean;
+  className?: string;
+}
+
+const {
+  src,
+  alt,
+  size = "small",
+  float = "none",
+  rounded = false,
+  shadow = false,
+  className = "",
+} = Astro.props;
+
+// Construir las clases CSS
+const sizeClasses = {
+  icon: "inline-icon",
+  small: "inline-small",
+  medium: "inline-medium",
+  text: "inline-text",
+};
+
+const floatClasses = {
+  left: "float-left",
+  right: "float-right",
+  none: "",
+};
+
+const classes = [
+  sizeClasses[size],
+  floatClasses[float],
+  rounded ? "rounded-inline" : "",
+  shadow ? "shadow-inline" : "",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<img src={src} alt={alt} class={classes} />
+

@@ -4,17 +4,18 @@ interface Props {
     text: string;
     url: string;
   }>;
+  isPost?: boolean;
 }
 
 const { navItems = [
   { text: "Sobre nosotros", url: "/#sobre-nosotros" },
   { text: "Precios", url: "/#precios" },
   { text: "Preguntas frecuentes", url: "/#faq" }
-] } = Astro.props;
+], isPost = false } = Astro.props;
 ---
 
 <header class="bg-white/80 backdrop-blur-md border-b border-default fixed w-full top-0 z-50 h-[60px] sm:h-[76px]">
-  <div class="max-w-7xl mx-auto h-full grid grid-cols-3 items-center px-4 sm:px-8">
+  <div class={`mx-auto h-full grid grid-cols-3 items-center px-4 sm:px-8 ${isPost ? 'max-w-5xl' : 'max-w-7xl'}`}>
     <!-- Logo: centrado en móvil, izquierda en desktop -->
     <div class="col-start-2 sm:col-start-1 flex justify-center sm:justify-start">
       <a href="/" class="hover:opacity-80 transition-opacity flex items-center gap-3">
