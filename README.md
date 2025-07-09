@@ -1,44 +1,98 @@
-# Astro Landing Page <picture><source media="(prefers-color-scheme: dark)" srcset="https://astro.build/assets/press/astro-icon-light.png"><source media="(prefers-color-scheme: light)" srcset="https://astro.build/assets/press/astro-icon-dark.png"><img align="right" valign="center" height="79" width="63" src="https://astro.build/assets/press/astro-icon-dark.png" alt="Astro logo" /></picture>
+# Frappé Website
 
-> An Astro + Tailwind CSS example/template for landing pages.
+This is the official website for [Frappé](https://creativefrappe.com/card), my digital agency, built with modern web technologies for optimal performance and developer experience.
 
-<div align="center">
+## 🚀 Tech Stack
 
-[![Built with Astro](https://astro.badg.es/v2/built-with-astro/small.svg)](https://astro.build)
+- **Astro** - Static site generator for fast, content-focused websites
+- **Tailwind CSS** - Utility-first CSS framework for rapid UI development
+- **TypeScript** - Type-safe JavaScript for better development experience
 
+## 📁 Project Structure
+
+```
+frappe-website/
+├── src/
+│   ├── components/     # Reusable UI components
+│   ├── layouts/        # Page layouts and templates
+│   ├── pages/          # Astro pages (routes)
+│   ├── styles/         # Global styles and Tailwind config
+│   └── content/        # Content collections (if using)
+├── public/             # Static assets (images, fonts, etc.)
+├── astro.config.mjs    # Astro configuration
+├── tailwind.config.js  # Tailwind CSS configuration
+└── package.json        # Dependencies and scripts
+```
+
+## 🎨 Astro Framework
+
+This project uses **Astro** as the static site generator. Astro provides:
+
+- **Zero JavaScript by default** - Pages render to static HTML
+- **Component Islands** - Interactive components only where needed
+- **Multiple framework support** - Use React, Vue, Svelte, or vanilla JS
+- **Built-in optimizations** - Automatic image optimization, CSS bundling, and more
+
+### Key Astro Features We Use
+
+- **File-based routing** - Create pages by adding `.astro` files to `src/pages/`
+- **Layouts** - Reusable page templates in `src/layouts/`
+- **Components** - Modular UI components in `src/components/`
+- **Content Collections** - Type-safe content management for the blog
+
+### Example Astro Page
+
+```astro
+---
+// Frontmatter - runs at build time
+import Layout from '../layouts/Layout.astro';
+const title = "Welcome to Frappé";
+---
+
+<Layout title={title}>
+  <main class="container mx-auto px-4">
+    <h1 class="text-4xl font-bold text-gray-900">
+      Welcome to Frappé
+    </h1>
+    <p class="mt-4 text-gray-600">
+      Your trusted partner in [industry/solution].
+    </p>
+  </main>
+</Layout>
+```
+
+## 🎨 Tailwind CSS
+
+We use **Tailwind CSS** for styling, which provides:
+
+- **Utility-first approach** - Apply styles directly in HTML
+- **Responsive design** - Built-in responsive utilities
+- **Customizable** - Easy to extend with custom design tokens
+- **PurgeCSS integration** - Automatically removes unused styles
+
+### Tailwind Configuration
+
+Our `tailwind.config.js` includes:
+- Custom color palette matching Frappé brand
+- Typography scale
+- Custom spacing and breakpoints
+- Component-specific utilities
+
+### Example Tailwind Usage
+
+```html
+<!-- Responsive card component -->
+<div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+  <h3 class="text-xl font-semibold text-gray-900 mb-2">
+    Service Title
+  </h3>
+  <p class="text-gray-600 leading-relaxed">
+    Service description goes here.
+  </p>
+  <button class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+    Learn More
+  </button>
 </div>
+```
 
-![Screenshots of Astro Landing Page](screenshots.jpg)
-
-## Features
-
-- 💨 Tailwind CSS for styling
-- 🎨 Themeable
-  - CSS variables are defined in `src/styles/theme.css` and mapped to Tailwind classes (`tailwind.config.cjs`)
-- 🌙 Dark mode
-- 📱 Responsive (layout, images, typography)
-- ♿ Accessible (as measured by https://web.dev/measure/)
-- 🔎 SEO-enabled (as measured by https://web.dev/measure/)
-- 🔗 Open Graph tags for social media sharing
-- 💅 [Prettier](https://prettier.io/) setup for both [Astro](https://github.com/withastro/prettier-plugin-astro) and [Tailwind](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
-
-## Commands
-
-| Command                | Action                                            |
-| :--------------------- | :------------------------------------------------ |
-| `npm install`          | Install dependencies                              |
-| `npm run dev`          | Start local dev server at `localhost:4321`        |
-| `npm run build`        | Build your production site to `./dist/`           |
-| `npm run preview`      | Preview your build locally, before deploying      |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check`  |
-| `npm run astro --help` | Get help using the Astro CLI                      |
-| `npm run format`       | Format code with [Prettier](https://prettier.io/) |
-| `npm run clean`        | Remove `node_modules` and build output            |
-
-## Credits
-
-- astronaut image
-  - source: https://github.com/withastro/astro-og-image; note: this repo is not available anymore
-- moon image
-  - source: https://unsplash.com/@nasa
-- other than that, a lot of material (showcase data, copy) was taken from official Astro sources, in particular https://astro.build/blog/introducing-astro/ and https://github.com/withastro/astro.build
+For questions about this website or Frappé services, contact us at [frappecreativity@gmail.com](mailto:frappecreativity@gmail.com)
