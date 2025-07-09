@@ -8,11 +8,42 @@ console.log(content);
 ---
 
 <Layout title="Detrás de Frappé">
-  <BrutalHeader navItems={[]} isPost={true} />
+  <BrutalHeader navItems={[]} />
   <main
-    class="container mx-auto mt-[60px] min-h-[calc(100vh-60px)] max-w-5xl px-4 pt-16 sm:mt-[76px] sm:min-h-[calc(100vh-76px)] sm:px-8"
+    class="container mx-auto mt-[60px] flex min-h-[calc(100vh-60px)] max-w-7xl flex-col lg:flex-row gap-8 px-4 pt-16 sm:mt-[76px] sm:min-h-[calc(100vh-76px)] sm:px-8"
   >
-    <div class="prose max-w-none lg:prose-xl">
+    <div class="flex max-w-full lg:max-w-3xl flex-col gap-6">
+      <div id="info-header" class="flex flex-row gap-6 lg:flex-col">
+        <div class="border-gradient w-16 h-16 lg:w-full lg:h-full">
+          <img src="/me.jpg" alt="David Pérez" class="w-full h-full object-cover" />
+        </div>
+        <div class="flex flex-col gap-1">
+          <h2 class="font-bold text-xl">David Pérez</h2>
+          <p>Desarrollador web</p>
+        </div>
+      </div>
+      <div class="flex flex-col gap-1">
+        <p class="italic text-gray-600 text-sm">
+          Tecnología que se adapta a ti.
+        </p>
+        <a 
+          href="https://wa.me/+34608962213" 
+          target="_blank"
+          class="my-2 flex-1 bg-[#25D366] text-black hover:text-white py-2 sm:py-2.5 px-6 rounded-md font-sans text-sm hover:bg-[#25D366]/90 transition-colors text-center focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-[var(--color-secondary)]"
+        >WhatsApp</a>
+        <a
+          href="https://www.linkedin.com/in/davidperez8619/"
+          target="_blank"
+          class="text-primary text-sm">LinkedIn</a
+        >
+        <a
+          href="https://github.com/puruwin"
+          target="_blank"
+          class="text-primary text-sm">GitHub</a
+        >
+      </div>
+    </div>
+    <div class="prose border-gray-500 border rounded-xl p-4 max-w-4xl">
       <content.Content />
     </div>
   </main>

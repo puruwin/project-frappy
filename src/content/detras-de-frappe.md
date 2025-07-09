@@ -10,8 +10,6 @@ image: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV7
 
 Cuando creé Frappé, lo hice con una intención clara: ofrecer soluciones digitales que reflejaran calidad, eficiencia y, sobre todo, un enfoque humano. En las páginas principales puede parecer que hay un equipo entero detrás de este proyecto… pero la realidad es mucho más personal. Frappé soy yo, David.
 
-![David Pérez](https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU)
-
 No, no hay una oficina con varias personas resolviendo tareas en paralelo. Lo que sí hay es una trayectoria, una visión y una obsesión por el detalle que se refleja en cada línea de código, cada diseño y cada decisión técnica. Quiero ser transparente contigo: aunque el nombre comercial suene a agencia, lo que estás contratando es a una persona con cinco años de experiencia, pasión por el desarrollo web, y un compromiso total con cada cliente.
 
 Frappé no es un disfraz, es mi forma de trabajar. Un enfoque profesional, con mentalidad de producto, que me permite proyectar grandeza sin perder la esencia artesanal de lo que hago. Y si estás aquí, es porque quieres saber más.
@@ -24,7 +22,7 @@ He trabajado para clientes como Santander, BBVA, SegurCaixa Adeslas y AirEuropa.
 
 Mi transición al mundo freelance y del emprendimiento no fue impulsiva. Lo hice porque quería libertad: libertad técnica para elegir el stack adecuado y libertad personal para trabajar con clientes que realmente valoraran la calidad por encima del volumen.
 
-## Tecnologías que marco como diferencial
+## Tecnologías que marco como diferencia
 
 La base técnica sobre la que construyo Frappé es sólida, probada y estratégicamente seleccionada. **Mi stack gira en torno a TypeScript**, una elección que ha marcado una gran diferencia en mis proyectos. La tipificación estática no solo mejora la calidad del código: reduce errores en producción y permite colaborar eficientemente con otros equipos o integraciones externas.
 
@@ -67,7 +65,7 @@ Lanzar Frappé fue una decisión estratégica. Después de años trabajando en g
 
 El emprendimiento me dio eso y mucho más. Me enseñó a escuchar mejor, a vender sin parecer un vendedor, y a resolver problemas no solo técnicos, sino también humanos.
 
-Hoy, elijo los proyectos en los que me involucro. Valoro la transparencia, el respeto por el trabajo bien hecho, y las colaboraciones a largo plazo. Si alguien busca "una web rápida y barata", probablemente Frappé no sea para ellos. Pero si valoras calidad, estrategia y alguien que piensa en tu negocio como si fuera suyo, aquí estoy.
+Hoy, elijo los proyectos en los que me involucro. Valoro la transparencia, el respeto por el trabajo bien hecho, y las colaboraciones a largo plazo. Si alguien busca “una web rápida y barata”, probablemente Frappé no sea para ellos. Pero si valoras calidad, estrategia y alguien que piensa en tu negocio como si fuera suyo, aquí estoy.
 
 ## ¿Solo me ves a mí, o ves a un equipo?
 
@@ -81,7 +79,7 @@ Esa es la esencia de Frappé. Ni más, ni menos.
 
 Cada proyecto comienza con una conversación. Entiendo tu necesidad, tus objetivos y tus restricciones. A partir de ahí, diseño una propuesta clara, con tiempos, entregables y métricas de éxito.
 
-Trabajo en ciclos iterativos. Cada entrega parcial es revisable, y cada decisión se toma de forma transparente. Mis clientes no reciben solo un "producto final": reciben contexto, explicaciones y herramientas para mantener o escalar su solución si lo desean.
+Trabajo en ciclos iterativos. Cada entrega parcial es revisable, y cada decisión se toma de forma transparente. Mis clientes no reciben solo un “producto final”: reciben contexto, explicaciones y herramientas para mantener o escalar su solución si lo desean.
 
 Algunos puntos clave de mi método:
 
@@ -98,24 +96,3 @@ Si después de leer esto crees que podríamos encajar, no lo dudes: escríbeme. 
 En Frappé no vendo sitios web. Construyo experiencias digitales que representan a tu marca, te ayudan a vender, a informar o a conectar.
 
 Soy David Pérez, y este es mi proyecto personal. ¿Hablamos?
-
-<!-- Ejemplos de imágenes en línea -->
-
-## Ejemplos de uso de imágenes en línea
-
-Aquí tienes varios ejemplos de cómo puedes incluir imágenes directamente en el texto sin romper el flujo del párrafo:
-
-### Iconos pequeños en línea
-<p>Mi stack principal incluye <img src="/images/typescript-icon.svg" alt="TypeScript" class="inline-icon" /> TypeScript, <img src="/images/astro-icon.svg" alt="Astro" class="inline-icon" /> Astro, y <img src="/images/tailwind-icon.svg" alt="Tailwind CSS" class="inline-icon" /> Tailwind CSS.</p>
-
-### Logos de clientes
-<p>He trabajado con empresas como <img src="/images/santander-logo.svg" alt="Santander" class="client-logo" /> Santander, <img src="/images/bbva-logo.svg" alt="BBVA" class="client-logo" /> BBVA, y <img src="/images/aireuropa-logo.svg" alt="AirEuropa" class="client-logo" /> AirEuropa.</p>
-
-### Imágenes con texto
-<p>Mi enfoque se centra en crear experiencias digitales <img src="/images/quality-icon.svg" alt="Calidad" class="inline-text" /> de alta calidad que <img src="/images/performance-icon.svg" alt="Rendimiento" class="inline-text" /> funcionen de manera óptima.</p>
-
-### Imágenes flotantes
-<p><img src="/images/workspace.jpg" alt="Mi espacio de trabajo" class="float-right rounded-inline shadow-inline w-32 h-24 object-cover" /> Mi espacio de trabajo refleja mi filosofía: orden, eficiencia y herramientas de calidad. Cada elemento está pensado para maximizar la productividad y la creatividad.</p>
-
-### Tecnologías con hover effects
-<p class="tech-stack">Tecnologías que domino: <img src="/images/angular-icon.svg" alt="Angular" /> Angular, <img src="/images/lit-icon.svg" alt="Lit Element" /> Lit Element, <img src="/images/sanity-icon.svg" alt="Sanity.io" /> Sanity.io, y <img src="/images/astro-icon.svg" alt="Astro" /> Astro.</p>
