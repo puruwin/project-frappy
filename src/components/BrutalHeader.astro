@@ -7,74 +7,115 @@ interface Props {
   isPost?: boolean;
 }
 
-const { navItems = [
-  { text: "Sobre nosotros", url: "/#sobre-nosotros" },
-  { text: "Precios", url: "/#precios" },
-  { text: "Preguntas frecuentes", url: "/#faq" }
-], isPost = false } = Astro.props;
+const {
+  navItems = [
+    { text: "Sobre nosotros", url: "/#sobre-nosotros" },
+    { text: "Contacto", url: "/#contacto" },
+    { text: "Preguntas frecuentes", url: "/#faq" },
+  ],
+  isPost = false,
+} = Astro.props;
 ---
 
-<header class="bg-white/80 backdrop-blur-md border-b border-default fixed w-full top-0 z-50 h-[60px] sm:h-[76px]">
-  <div class={`mx-auto h-full grid grid-cols-3 items-center px-4 sm:px-8 ${isPost ? 'max-w-5xl' : 'max-w-7xl'}`}>
+<header
+  class="fixed top-0 z-50 h-[60px] w-full border-b border-default bg-white/80 backdrop-blur-md sm:h-[76px]"
+>
+  <div
+    class={`mx-auto h-full grid grid-cols-3 items-center px-4 sm:px-8 ${isPost ? "max-w-5xl" : "max-w-7xl"}`}
+  >
     <!-- Logo: centrado en móvil, izquierda en desktop -->
-    <div class="col-start-2 sm:col-start-1 flex justify-center sm:justify-start">
-      <a href="/" class="hover:opacity-80 transition-opacity flex items-center gap-3">
-        <img src="/frappe_icon.svg" alt="Icono de Frappé" class="h-8 sm:h-10 object-contain" />
-        <img src="/frappe_text.svg" alt="Frappé" class="hidden sm:block h-8 sm:h-10 object-contain" />
+    <div
+      class="col-start-2 flex justify-center sm:col-start-1 sm:justify-start"
+    >
+      <a
+        href="/"
+        class="flex items-center gap-3 transition-opacity hover:opacity-80"
+      >
+        <img
+          src="/frappe_icon.svg"
+          alt="Icono de Frappé"
+          class="h-8 object-contain sm:h-10"
+        />
+        <img
+          src="/frappe_text.svg"
+          alt="Frappé"
+          class="hidden h-8 object-contain sm:block sm:h-10"
+        />
       </a>
     </div>
     <!-- Menú: derecha siempre -->
     <div class="col-start-3 flex justify-end">
-      <nav class="h-full flex items-center">
-        <button class="sm:hidden text-2xl p-2 text-default">☰</button>
-        <ul class="hidden sm:flex text-sm gap-8 font-medium font-sans h-full items-center">
-          {navItems.map((item) => (
-            <li>
-              <a href={item.url} class="text-default hover:text-secondary transition-colors whitespace-nowrap">
-                {item.text}
-              </a>
-            </li>
-          ))}
+      <nav class="flex h-full items-center">
+        <button class="p-2 text-default text-2xl sm:hidden">☰</button>
+        <ul
+          class="hidden h-full items-center gap-8 font-sans font-medium text-sm sm:flex"
+        >
+          {
+            navItems.map((item) => (
+              <li>
+                <a
+                  href={item.url}
+                  class="whitespace-nowrap text-default transition-colors hover:text-secondary"
+                >
+                  {item.text}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </nav>
     </div>
   </div>
 
   <!-- Menú móvil -->
-  <div class="mobile-menu hidden fixed top-[60px] min-h-[calc(33vh-60px)] left-0 w-full bg-white sm:hidden z-50">
-    <ul class="flex flex-col text-sm font-bold font-sans p-4">
-      {navItems.map((item) => (
-        <li class="py-2">
-          <a href={item.url} class="hover:text-primary transition-colors" style="
+  <div
+    class="mobile-menu fixed left-0 top-[60px] z-50 hidden min-h-[calc(33vh-60px)] w-full bg-white sm:hidden"
+  >
+    <ul class="flex flex-col p-4 font-sans font-bold text-sm">
+      {
+        navItems.map((item) => (
+          <li class="py-2">
+            <a
+              href={item.url}
+              class="transition-colors hover:text-primary"
+              style="
             border-bottom: var(--border-brutal);
-          ">{item.text}</a>
-        </li>
-      ))}
+          "
+            >
+              {item.text}
+            </a>
+          </li>
+        ))
+      }
     </ul>
   </div>
 </header>
 
 <script>
-  const menuButton = document.querySelector('button');
-  const mobileMenu = document.querySelector('.mobile-menu');
+  const menuButton = document.querySelector("button");
+  const mobileMenu = document.querySelector(".mobile-menu");
 
-  menuButton?.addEventListener('click', (e) => {
+  menuButton?.addEventListener("click", (e) => {
     e.stopPropagation();
-    mobileMenu?.classList.toggle('hidden');
+    mobileMenu?.classList.toggle("hidden");
   });
 
   // Cerrar menú al hacer click en un enlace
-  const menuLinks = mobileMenu?.querySelectorAll('a');
-  menuLinks?.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu?.classList.add('hidden');
+  const menuLinks = mobileMenu?.querySelectorAll("a");
+  menuLinks?.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.add("hidden");
     });
   });
 
   // Cerrar menú al hacer click fuera
-  document.addEventListener('click', (e) => {
-    if (!mobileMenu?.contains(e.target as Node) && !menuButton?.contains(e.target as Node)) {
-      mobileMenu?.classList.add('hidden');
+  document.addEventListener("click", (e) => {
+    if (
+      !mobileMenu?.contains(e.target as Node) &&
+      !menuButton?.contains(e.target as Node)
+    ) {
+      mobileMenu?.classList.add("hidden");
     }
   });
-</script> 
+</script>
+

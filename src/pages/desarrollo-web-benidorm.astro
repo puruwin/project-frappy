@@ -1,7 +1,6 @@
 ---
 import BrutalHeader from "../components/BrutalHeader.astro";
 import Footer from "../components/Footer.astro";
-import PricingPlans from "../components/PricingPlans.astro";
 import Hero from "../components/Hero.astro";
 import WavyDivider from "../components/WavyDivider.astro";
 import FAQSection from "../components/FAQSection.astro";
@@ -22,17 +21,16 @@ const heroData = {
 
 const navItems = [
   { text: "¿Por qué elegirnos?", url: "#beneficios" },
-  { text: "Planes web", url: "#planes" },
   { text: "Cómo trabajamos", url: "#proceso" },
   { text: "Preguntas frecuentes", url: "#faq" },
-  { text: "Solicita presupuesto", url: "#presupuesto" },
+  { text: "Contacto", url: "#presupuesto" },
 ];
 
 const faqData = [
   {
-    question: "¿Cuánto cuesta una página web profesional en Benidorm?",
+    question: "¿Cómo funciona la tarificación de una página web profesional?",
     answer:
-      "Depende del plan que elijas. El Plan Básico es ideal para empezar, mientras que el Plan Premium incluye SEO, Ads y mantenimiento. Todos los precios son transparentes, sin permanencias.",
+      "Cada proyecto es único y se adapta a tus necesidades específicas. Ofrecemos desde soluciones básicas hasta webs completas con SEO, marketing digital y mantenimiento. Te enviamos una propuesta personalizada sin compromiso.",
   },
   {
     question: "¿Ofrecéis mantenimiento web una vez entregado el proyecto?",
@@ -47,17 +45,17 @@ const faqData = [
   {
     question: "¿Vuestro servicio incluye SEO?",
     answer:
-      "Sí. Todos los planes incluyen SEO técnico: estructura optimizada, etiquetas correctas, velocidad de carga, y arquitectura preparada para posicionar en Google.",
+      "Sí. Todos nuestros proyectos incluyen SEO técnico: estructura optimizada, etiquetas correctas, velocidad de carga, y arquitectura preparada para posicionar en Google.",
   },
   {
     question: "¿Cuánto tiempo tardáis en entregar una web?",
     answer:
-      "En promedio, entre 4 y 6 semanas, dependiendo del plan elegido. El proceso es ágil y eficiente gracias a nuestro sistema de desarrollo propio.",
+      "En promedio, entre 4 y 6 semanas, dependiendo del alcance del proyecto. El proceso es ágil y eficiente gracias a nuestro sistema de desarrollo propio.",
   },
   {
     question: "¿Puedo contratar solo diseño web sin SEO o Ads?",
     answer:
-      "Sí. Puedes comenzar con un diseño simple y escalar a funcionalidades más avanzadas cuando tu negocio lo necesite. Nuestros planes son flexibles.",
+      "Sí. Puedes comenzar con un diseño simple y escalar a funcionalidades más avanzadas cuando tu negocio lo necesite. Nuestros servicios son completamente flexibles.",
   },
 ];
 const { generator, site } = Astro;
@@ -192,34 +190,7 @@ const keywords =
       </div>
     </section>
 
-    <WavyDivider topColor="#E6F9FD" bottomColor="#101a32" />
-
-    <section
-      id="planes"
-      class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8"
-    >
-      <div class="mx-auto max-w-7xl">
-        <h2 class="mb-12 text-center font-bold text-white text-4xl">
-          Planes flexibles para empresas y autónomos
-        </h2>
-        <p class="mb-12 text-center text-white text-lg">
-          Hemos diseñado tres paquetes de servicios adaptados a distintas etapas
-          y presupuestos. Cada uno incluye un desarrollo profesional, diseño
-          responsive y enfoque en posicionamiento en Google.
-        </p>
-        <p class="mb-12 text-center text-white text-lg">
-          Además tenemos una oferta especial hasta agotar el número de plazas.
-          ¡No pierdas la oportunidad y contacta con nosotros!
-        </p>
-        <PricingPlans />
-        <p class="text-center text-white text-lg">
-          Cada plan tiene un <span class="font-bold">coste inicial</span> por desarrollo
-          y, si lo deseas, una <span class="font-bold">cuota mensual</span> para
-          soporte técnico, mantenimiento y marketing digital.
-        </p>
-      </div>
-    </section>
-    <WavyDivider topColor="#101a32" bottomColor="#a9e7fa" />
+    <WavyDivider topColor="#E6F9FD" bottomColor="#a9e7fa" />
 
     <section
       id="proceso"
@@ -283,8 +254,8 @@ const keywords =
                 Activación de SEO - Google Ads - Mantenimiento
               </h3>
               <p>
-                Si está incluido en tu plan, arrancamos con el SEO, Google Ads y
-                mantenimiento.
+                Si está incluido en tu proyecto, arrancamos con el SEO, Google
+                Ads y mantenimiento según tus necesidades.
               </p>
             </div>
           </li>
@@ -340,7 +311,7 @@ const keywords =
             <ul class="space-y-3 sm:space-y-4">
               {
                 [
-                  "Presupuesto detallado y transparente",
+                  "Propuesta detallada y transparente",
                   "Sin costes ocultos ni sorpresas",
                   "Respuesta en menos de 24 horas",
                   "Garantía de satisfacción",

@@ -7,7 +7,6 @@ import "@fontsource-variable/montserrat";
 import "~/styles/index.css";
 import WavyDivider from "../components/WavyDivider.astro";
 import BrutalHeader from "../components/BrutalHeader.astro";
-import PricingPlans from "../components/PricingPlans.astro";
 import FAQSection from "../components/FAQSection.astro";
 import Hero from "../components/Hero.astro";
 import AvailableSlots from "../components/AvailableSlots.astro";
@@ -33,7 +32,7 @@ const faqsData = [
   {
     question: "¿Qué significa hosting y dominio?",
     answer:
-      "El hosting es el alojamiento de tu sitio web en servidores seguros y de alta velocidad. Es lo que hace que tu página web esté en Internet. El dominio es tu dirección web personalizada (www.tuempresa.com). Nosotros nos encargamos de toda la gestión y renovación de ambos servicios mientras mantengas tu plan activo.",
+      "El hosting es el alojamiento de tu sitio web en servidores seguros y de alta velocidad. Es lo que hace que tu página web esté en Internet. El dominio es tu dirección web personalizada (www.tuempresa.com). Nosotros nos encargamos de toda la gestión y renovación de ambos servicios.",
   },
   {
     question:
@@ -42,19 +41,19 @@ const faqsData = [
       "El mantenimiento incluye actualizaciones de seguridad, pequeñas modificaciones en textos o imágenes, copia de seguridad mensual, y monitorización para que tu web funcione siempre correctamente. Es ideal para mantener tu sitio web actualizado y funcionando sin preocuparte por los detalles técnicos.",
   },
   {
-    question: "¿Puedo cambiar de plan en cualquier momento?",
+    question: "¿Puedo ampliar mi web con más funcionalidades?",
     answer:
-      "Sí, puedes subir de plan en cualquier momento si tu negocio crece o necesitas más funcionalidades. Muchos de nuestros clientes comienzan con el plan Starter y más adelante pasan al Pro o Growth.",
+      "Sí, puedes ampliar tu web en cualquier momento si tu negocio crece o necesitas más funcionalidades. Muchos de nuestros clientes comienzan con una web básica y más adelante añaden e-commerce, SEO avanzado o integraciones.",
   },
   {
     question: "¿Está incluida la creación del logo o branding?",
     answer:
-      "Los planes no incluyen diseño del logo ni branding completo, pero podemos ayudarte con un servicio adicional si lo necesitas. Aunque no es obligatorio, tener una imagen profesional mejora la percepción de tu negocio.",
+      "Nuestros servicios base no incluyen diseño del logo ni branding completo, pero podemos ayudarte con un servicio adicional si lo necesitas. Aunque no es obligatorio, tener una imagen profesional mejora la percepción de tu negocio.",
   },
   {
     question: "¿Me ayudáis con el posicionamiento en Google?",
     answer:
-      "Sí. Todos los planes incluyen una optimización básica SEO. El plan Pro y el plan Growth ofrecen una optimización más avanzada, incluyendo configuración de Google Analytics, Tag Manager, y asesoramiento sobre palabras clave. El plan Growth además incluye asesoría mensual y soporte para campañas en Google Ads.",
+      "Sí. Todos nuestros proyectos incluyen una optimización básica SEO. Para proyectos más avanzados ofrecemos SEO completo incluyendo configuración de Google Analytics, Tag Manager, y asesoramiento sobre palabras clave. También ofrecemos asesoría mensual y soporte para campañas en Google Ads.",
   },
   {
     question: "¿Qué es el SEO local y cómo puede ayudar a mi negocio?",
@@ -69,7 +68,7 @@ const faqsData = [
   {
     question: "¿Hay permanencia?",
     answer:
-      "No hay permanencia. Puedes cancelar el servicio mensual en cualquier momento con un mes de antelación. Sin ataduras, pero la web dejará de estar disponible si no se mantiene el pago del plan.",
+      "No hay permanencia. Puedes cancelar el servicio mensual en cualquier momento con un mes de antelación. Sin ataduras, pero la web dejará de estar disponible si no se mantiene el pago del servicio de hosting y mantenimiento.",
   },
 ];
 ---
@@ -144,7 +143,7 @@ const faqsData = [
             "name": "¿Qué significa hosting y dominio?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "El hosting es el alojamiento de tu sitio web en servidores seguros y de alta velocidad. Es lo que hace que tu página web esté en Internet. El dominio es tu dirección web personalizada (www.tuempresa.com). Nosotros nos encargamos de toda la gestión y renovación de ambos servicios mientras mantengas tu plan activo."
+              "text": "El hosting es el alojamiento de tu sitio web en servidores seguros y de alta velocidad. Es lo que hace que tu página web esté en Internet. El dominio es tu dirección web personalizada (www.tuempresa.com). Nosotros nos encargamos de toda la gestión y renovación de ambos servicios."
             }
           },
           {
@@ -174,9 +173,26 @@ const faqsData = [
     <About id="sobre-nosotros" />
     <WavyDivider topColor="transparent" bottomColor="#101a32" />
   </div>
-  <div id="precios" class="bg-[var(--color-background-offset)]">
+  <div
+    id="contacto"
+    class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8"
+  >
     <AvailableSlots slots={8} />
-    <PricingPlans />
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="mb-8 font-bold text-white text-4xl">
+        ¿Listo para empezar tu proyecto?
+      </h2>
+      <p class="mb-12 text-white text-lg">
+        Contáctanos para recibir una propuesta personalizada y adaptada a tus
+        necesidades.
+      </p>
+      <button
+        class="inline-flex items-center rounded-lg bg-[var(--color-primary)] px-8 py-4 font-semibold text-white transition-colors text-lg hover:bg-opacity-90"
+        onclick="MicroModal.show('modal-1')"
+      >
+        Solicita tu presupuesto gratuito
+      </button>
+    </div>
   </div>
   <WavyDivider topColor="#101a32" bottomColor="#A9E7FA" />
   <section id="faq" class="bg-[var(--color-bg-secondary)] px-4 py-16 sm:px-8">
@@ -210,4 +226,18 @@ const faqsData = [
     color: 0xfaa3c7,
     backgroundColor: 0xa9e7fa,
   });
+
+  // Inicializar MicroModal cuando se cargue la página
+  if (typeof MicroModal !== "undefined") {
+    MicroModal.init({
+      openTrigger: "data-micromodal-trigger",
+      closeTrigger: "data-micromodal-close",
+      openClass: "is-open",
+      disableScroll: true,
+      disableFocus: false,
+      awaitOpenAnimation: false,
+      awaitCloseAnimation: false,
+      debugMode: false,
+    });
+  }
 </script>

@@ -1,0 +1,1046 @@
+---
+import BrutalHeader from "../components/BrutalHeader.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import WavyDivider from "../components/WavyDivider.astro";
+import FAQSection from "../components/FAQSection.astro";
+import ContactModal from "../components/ContactModal.astro";
+import CookieConsent from "../components/CookieConsent.astro";
+import ContactForm from "../components/ContactForm.astro";
+import Layout from "../layouts/Layout.astro";
+import "@fontsource-variable/montserrat";
+import "~/styles/theme.css";
+
+const heroData = {
+  title: "Servicios web digitales para particulares y pymes",
+  description:
+    "Transformamos tu presencia digital con servicios web profesionales: creación de páginas web, SEO, Google Ads, soporte técnico y consultoría en IA. Soluciones personalizadas para hacer crecer tu negocio online.",
+  ctaText: "Solicita tu consulta gratuita",
+  image: "/images/digital-services.jpg",
+};
+
+const navItems = [
+  { text: "Nuestros servicios", url: "#servicios" },
+  { text: "Portfolio", url: "#portfolio" },
+  { text: "¿Por qué elegirnos?", url: "#beneficios" },
+  { text: "Proceso de trabajo", url: "#proceso" },
+  { text: "Preguntas frecuentes", url: "#faq" },
+  { text: "Contacto", url: "#contacto" },
+];
+
+const faqData = [
+  {
+    question: "¿Qué incluye el servicio de creación de páginas web?",
+    answer:
+      "Incluye diseño responsive, desarrollo con código limpio, optimización SEO técnico, formularios de contacto, integración con redes sociales, certificado SSL y hosting durante el primer año. Todo personalizado según tus necesidades.",
+  },
+  {
+    question: "¿Podéis recuperar y mejorar mi web abandonada?",
+    answer:
+      "Sí, especializamos en reactivar webs abandonadas. Analizamos el estado actual, recuperamos el contenido útil, actualizamos la tecnología, mejoramos el diseño y optimizamos para dispositivos móviles y buscadores.",
+  },
+  {
+    question: "¿En qué consiste el servicio de consultoría en IA?",
+    answer:
+      "Analizamos tus procesos de negocio e identificamos oportunidades para implementar IA: automatización de tareas, chatbots para atención al cliente, análisis de datos, optimización de inventario y más. Te acompañamos en toda la implementación.",
+  },
+  {
+    question: "¿Ofrecéis soporte técnico para problemas informáticos?",
+    answer:
+      "Sí, ofrecemos soporte técnico presencial y remoto: configuración de equipos, resolución de problemas de software/hardware, instalación de sistemas, backup de datos, ciberseguridad y formación básica en herramientas digitales.",
+  },
+  {
+    question: "¿Cuánto tiempo tardáis en entregar un proyecto web?",
+    answer:
+      "Depende del alcance: una web básica entre 1-2 semanas, una web completa con SEO entre 3-4 semanas, y proyectos complejos con IA entre 4-8 semanas. Siempre establecemos cronogramas claros desde el inicio.",
+  },
+  {
+    question: "¿Trabajáis con pequeñas empresas y autónomos?",
+    answer:
+      "Absolutamente. Ofrecemos soluciones escalables que se adaptan a cualquier necesidad. Puedes empezar con servicios básicos y ampliar según crezca tu negocio. Trabajamos con empresas de todos los tamaños.",
+  },
+  {
+    question: "¿Qué diferencia vuestro servicio de otras agencias?",
+    answer:
+      "Trabajamos con tecnología moderna sin plantillas genéricas, ofrecemos trato directo sin intermediarios, combinamos servicios web con consultoría en IA, y brindamos soporte técnico integral. Todo en un solo lugar.",
+  },
+  {
+    question: "¿Incluís formación para gestionar mi web?",
+    answer:
+      "Sí, incluimos sesiones de formación para que aprendas a gestionar contenidos básicos, hacer copias de seguridad, y utilizar las herramientas que implementemos. También ofrecemos manuales personalizados.",
+  },
+];
+
+const portfolioData = [
+  {
+    title: "Tienda Online Premium",
+    description:
+      "Plataforma de e-commerce completa con catálogo de productos, carrito de compras, pasarela de pago integrada y panel de administración.",
+    image: "/portfolio/portfolio-1.webp",
+    tags: ["E-COMMERCE", "SEO", "RESPONSIVE", "ANALYTICS"],
+  },
+  {
+    title: "Web Inmobiliaria",
+    description:
+      "Sitio web para inmobiliaria moderno con formularios de búsqueda, integración con CRM, blog y optimización SEO para posicionamiento local.",
+    image: "/portfolio/portfolio-2.webp",
+    tags: ["INMOBILIARIA", "CRM", "BLOG", "SEO LOCAL"],
+  },
+  {
+    title: "Tecnología Moderna",
+    description:
+      "Aplicación web innovadora con chatbot inteligente, automatización de procesos y dashboard analytics para optimizar la experiencia del usuario.",
+    image: "/portfolio/portfolio-3.webp",
+    tags: ["IA", "CHATBOT", "AUTOMATIZACIÓN", "DASHBOARD"],
+  },
+];
+
+const { generator, site } = Astro;
+const image = new URL("splash.png", site);
+const title = "Servicios Web Digitales para Particulares y Pymes | Frappé";
+const description =
+  "Servicios web profesionales para particulares y pymes: creación de páginas web, SEO, Google Ads, soporte técnico informático y consultoría en IA. Soluciones digitales personalizadas para hacer crecer tu negocio.";
+const keywords =
+  "servicios web digitales, creación páginas web pymes, SEO local, Google Ads, soporte técnico informático, consultoría IA empresas, reactivación webs abandonadas, mantenimiento web, diseño web profesional, automatización procesos IA";
+---
+
+<Layout title={title}>
+  <Fragment slot="head">
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={`${site}/servicios-web-digitales`} />
+
+    <!-- Control de robots -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${site}/servicios-web-digitales`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Frappé" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={`${site}/servicios-web-digitales`} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Metadatos adicionales -->
+    <meta name="author" content="Frappé" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" type="image/svg+xml" href="/frappe_icon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Frappé - Servicios Web Digitales",
+        "image": "https://creativefrappe.com/icon_inv_code.svg",
+        "url": "https://creativefrappe.com/servicios-web-digitales",
+        "telephone": "+34608962213",
+        "description": "Servicios web profesionales para particulares y pymes: creación de páginas web, SEO, Google Ads, soporte técnico y consultoría en IA.",
+        "serviceArea": "España",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Servicios Web Digitales",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Creación de Páginas Web",
+                "description": "Diseño y desarrollo de sitios web profesionales y responsivos"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "SEO y Posicionamiento Web",
+                "description": "Optimización para motores de búsqueda y mejora de visibilidad online"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Google Ads",
+                "description": "Gestión de campañas publicitarias en Google"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Soporte Técnico Informático",
+                "description": "Asistencia técnica presencial y remota para equipos y sistemas"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Consultoría en IA",
+                "description": "Asesoramiento e implementación de soluciones de inteligencia artificial"
+              }
+            }
+          ]
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+  </Fragment>
+  <BrutalHeader navItems={navItems} />
+  <main>
+    <div class="relative">
+      <div class="absolute inset-0 z-0">
+        <img
+          src="/skyline-benidorm-2.webp"
+          alt="Transformación digital para empresas"
+          class="h-full w-full object-cover opacity-40"
+        />
+        <div
+          class="absolute inset-0 bg-[var(--color-bg-secondary)] mix-blend-multiply"
+        >
+        </div>
+      </div>
+      <div class="relative z-10">
+        <Hero {...heroData} />
+      </div>
+    </div>
+
+    <section
+      id="servicios"
+      class="bg-[var(--color-background)] px-4 py-16 sm:px-8"
+    >
+      <div class="mx-auto max-w-7xl">
+        <h2 class="mb-12 text-center font-bold text-4xl">
+          Servicios digitales completos para hacer crecer tu negocio
+        </h2>
+        <p class="mb-16 text-center text-lg">
+          Desde la creación de tu primera página web hasta la implementación de
+          <b>inteligencia artificial</b> en tus procesos. Todo lo que necesitas para
+          destacar en el mundo digital.
+        </p>
+
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <!-- Creación de Páginas Web -->
+          <div
+            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
+          >
+            <div
+              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
+            >
+              <svg
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Creación de Páginas Web</h3>
+            <p class="mb-4 text-gray-600">
+              Diseñamos webs modernas, rápidas y optimizadas que convierten
+              visitantes en clientes. Sin plantillas genéricas, cada proyecto es
+              único.
+            </p>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Diseño responsive para móviles
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Optimización para velocidad
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                SEO técnico incluido
+              </li>
+            </ul>
+          </div>
+
+          <!-- Reactivación de Webs -->
+          <div
+            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
+          >
+            <div
+              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
+            >
+              <svg
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">
+              Reactivación de Webs Abandonadas
+            </h3>
+            <p class="mb-4 text-gray-600">
+              ¿Tu web está obsoleta o no funciona? La recuperamos, actualizamos
+              y modernizamos para que vuelva a ser rentable.
+            </p>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Recuperación de contenido
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Actualización tecnológica
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Nuevo diseño moderno
+              </li>
+            </ul>
+          </div>
+
+          <!-- SEO y Posicionamiento -->
+          <div
+            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
+          >
+            <div
+              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
+            >
+              <svg
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+              </svg>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">SEO y Posicionamiento Web</h3>
+            <p class="mb-4 text-gray-600">
+              Conseguimos que tu web aparezca en las primeras posiciones de
+              Google para que tus clientes te encuentren fácilmente.
+            </p>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Análisis de palabras clave
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Optimización técnica
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Estrategia de contenidos
+              </li>
+            </ul>
+          </div>
+
+          <!-- Google Ads -->
+          <div
+            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
+          >
+            <div
+              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
+            >
+              <svg
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Google Ads</h3>
+            <p class="mb-4 text-gray-600">
+              Campañas publicitarias optimizadas para generar leads y ventas con
+              el mejor retorno de inversión posible.
+            </p>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Configuración de campañas
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Optimización continua
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Informes detallados
+              </li>
+            </ul>
+          </div>
+
+          <!-- Soporte Técnico -->
+          <div
+            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
+          >
+            <div
+              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
+            >
+              <svg
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Soporte Técnico Informático</h3>
+            <p class="mb-4 text-gray-600">
+              Asistencia técnica presencial y remota para resolver cualquier
+              problema informático y mantener tu negocio funcionando.
+            </p>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Reparación de equipos
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Configuración de sistemas
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Backup y seguridad
+              </li>
+            </ul>
+          </div>
+
+          <!-- Consultoría IA -->
+          <div
+            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
+          >
+            <div
+              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
+            >
+              <svg
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">
+              Consultoría e Implementación de IA
+            </h3>
+            <p class="mb-4 text-gray-600">
+              Automatizamos tus procesos con inteligencia artificial para
+              ahorrar tiempo, reducir costes y mejorar la experiencia del
+              cliente.
+            </p>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Chatbots inteligentes
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Automatización de tareas
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Análisis predictivo
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <WavyDivider topColor="#E6F9FD" bottomColor="#101a32" />
+
+    <section
+      id="portfolio"
+      class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8"
+    >
+      <div class="mx-auto max-w-7xl">
+        <h2 class="mb-12 text-center font-bold text-white text-4xl">
+          Proyectos que nos enorgullecen
+        </h2>
+        <p class="mb-16 text-center text-white text-lg">
+          Descubre algunos de los sitios web que hemos creado para nuestros
+          clientes. Cada proyecto refleja nuestro compromiso con la calidad,
+          funcionalidad y diseño.
+        </p>
+
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <!-- Proyecto 1 -->
+          <div
+            class="group rounded-xl bg-white p-6 shadow-xl transition-transform hover:scale-105"
+          >
+            <div class="mb-4 overflow-hidden rounded-lg">
+              <img
+                src={portfolioData[0].image}
+                alt="Captura de una web para pyme"
+                class="h-48 w-full object-cover transition-transform group-hover:scale-110"
+              />
+            </div>
+            <div class="mb-4 flex items-center justify-between">
+              <span
+                class="inline-block rounded-full bg-[var(--color-primary)] px-3 py-1 font-semibold text-white text-xs"
+              >
+                PYMES
+              </span>
+              <span class="text-gray-500 text-sm">09/2025</span>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Web para PYMES</h3>
+            <p class="mb-4 leading-relaxed text-gray-600 text-sm">
+              Página web para pyme de trabajos en altura con cuerda en Alicante.
+              Sitio web formulario de contacto, SEO, responsive y gestión de
+              campañas de publicidad con Google Ads.
+            </p>
+            <div class="mb-4 flex flex-wrap gap-2">
+              <span
+                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
+                >PYMES</span
+              >
+              <span
+                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
+                >SEO</span
+              >
+              <span
+                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
+                >Responsive</span
+              >
+              <span
+                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
+                >Google Ads</span
+              >
+            </div>
+            <div class="flex gap-3">
+              <a
+                href="https://bravotrabajosverticales.es/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2 font-medium text-white transition-colors text-sm hover:bg-opacity-90"
+              >
+                <svg
+                  class="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  ></path>
+                </svg>
+                Ver sitio
+              </a>
+              <button
+                class="rounded-lg border border-gray-300 px-4 py-2 font-medium text-gray-700 transition-colors text-sm hover:bg-gray-50"
+                onclick="MicroModal.show('modal-1')"
+              >
+                Proyecto similar
+              </button>
+            </div>
+          </div>
+
+          <!-- Proyecto 2 -->
+          <div
+            class="group rounded-xl bg-white p-6 shadow-xl transition-transform hover:scale-105"
+          >
+            <div class="mb-4 overflow-hidden rounded-lg">
+              <img
+                src={portfolioData[1].image}
+                alt="Captura de una web inmobiliaria"
+                class="h-48 w-full object-cover transition-transform group-hover:scale-110"
+              />
+            </div>
+            <div class="mb-4 flex items-center justify-between">
+              <span
+                class="inline-block rounded-full bg-[var(--color-secondary)] px-3 py-1 font-semibold text-white text-xs"
+              >
+                INMOBILIARIA
+              </span>
+              <span class="text-gray-500 text-sm">12/2024</span>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Web Inmobiliaria</h3>
+            <p class="mb-4 leading-relaxed text-gray-600 text-sm">
+              Sitio web para inmobiliaria moderno con formularios de búsqueda,
+              integración con CRM, blog y optimización SEO para posicionamiento
+              local.
+            </p>
+            <div class="mb-4 flex flex-wrap gap-2">
+              <span
+                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
+                >Inmobiliaria</span
+              >
+              <span
+                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
+                >CRM</span
+              >
+              <span
+                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
+                >Blog</span
+              >
+              <span
+                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
+                >SEO Local</span
+              >
+            </div>
+            <div class="flex gap-3">
+              <a
+                href="https://habilex.es/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 rounded-lg bg-[var(--color-secondary)] px-4 py-2 font-medium text-white transition-colors text-sm hover:bg-opacity-90"
+              >
+                <svg
+                  class="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  ></path>
+                </svg>
+                Ver sitio
+              </a>
+              <button
+                class="rounded-lg border border-gray-300 px-4 py-2 font-medium text-gray-700 transition-colors text-sm hover:bg-gray-50"
+                onclick="MicroModal.show('modal-1')"
+              >
+                Proyecto similar
+              </button>
+            </div>
+          </div>
+
+          <!-- Proyecto 3 -->
+          <div
+            class="group rounded-xl bg-white p-6 shadow-xl transition-transform hover:scale-105"
+          >
+            <div class="mb-4 overflow-hidden rounded-lg">
+              <img
+                src={portfolioData[2].image}
+                alt="Captura de una web moderna"
+                class="h-48 w-full object-cover transition-transform group-hover:scale-110"
+              />
+            </div>
+            <div class="mb-4 flex items-center justify-between">
+              <span
+                class="inline-block rounded-full bg-[var(--color-accent)] px-3 py-1 font-semibold text-white text-xs"
+              >
+                INNOVACIÓN
+              </span>
+              <span class="text-gray-500 text-sm">07/2025</span>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Web multilenguaje</h3>
+            <p class="mb-4 leading-relaxed text-gray-600 text-sm">
+              Página web moderna para una empresa de eventos culturales en
+              Calpe. Es un cliente extranjero que nos pidió que diseñáramos una
+              web en español, en inglés y en neerlandés.
+            </p>
+            <div class="mb-4 flex flex-wrap gap-2">
+              <span
+                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
+                >Traducciones</span
+              >
+              <span
+                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
+                >SEO</span
+              >
+              <span
+                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
+                >Responsive</span
+              >
+              <span
+                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
+                >Moderno</span
+              >
+            </div>
+            <div class="flex gap-3">
+              <a
+                href="https://lapalomablanca.es/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 rounded-lg bg-[var(--color-accent)] px-4 py-2 font-medium text-white transition-colors text-sm hover:bg-opacity-90"
+              >
+                <svg
+                  class="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  ></path>
+                </svg>
+                Ver sitio
+              </a>
+              <button
+                class="rounded-lg border border-gray-300 px-4 py-2 font-medium text-gray-700 transition-colors text-sm hover:bg-gray-50"
+                onclick="MicroModal.show('modal-1')"
+              >
+                Proyecto similar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-16 text-center">
+          <p class="mb-8 text-white text-lg">
+            ¿Te gusta lo que ves? <strong
+              >Podemos crear algo similar para tu negocio</strong
+            >
+          </p>
+          <button
+            class="inline-flex items-center rounded-lg bg-[var(--color-primary)] px-8 py-4 font-semibold text-white transition-colors text-lg hover:bg-opacity-90"
+            onclick="MicroModal.show('modal-1')"
+          >
+            <svg
+              class="mr-2 h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.955 8.955 0 01-4.126-.98L3 21l1.98-5.874A8.955 8.955 0 013 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"
+              ></path>
+            </svg>
+            Hablemos de tu proyecto
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="beneficios"
+      class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8"
+    >
+      <div class="mx-auto max-w-7xl">
+        <h2 class="mb-12 text-center font-bold text-white text-4xl">
+          ¿Por qué elegir nuestros servicios digitales?
+        </h2>
+        <p class="mb-12 text-center text-white text-lg">
+          No somos una agencia más. Combinamos <b>desarrollo web moderno</b>,
+          <b>marketing digital efectivo</b> y <b>tecnología de vanguardia</b>
+          para ofrecerte soluciones integrales que realmente funcionen.
+        </p>
+
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div class="text-center text-white">
+            <div
+              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
+            >
+              <span class="font-bold text-2xl">🚀</span>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Tecnología Moderna</h3>
+            <p>
+              Utilizamos las últimas tecnologías y mejores prácticas. Nada de
+              WordPress lento o plantillas obsoletas.
+            </p>
+          </div>
+
+          <div class="text-center text-white">
+            <div
+              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
+            >
+              <span class="font-bold text-2xl">🎯</span>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Enfoque en Resultados</h3>
+            <p>
+              Cada proyecto tiene objetivos claros: más visitas, más clientes,
+              más ventas. Medimos y optimizamos constantemente.
+            </p>
+          </div>
+
+          <div class="text-center text-white">
+            <div
+              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
+            >
+              <span class="font-bold text-2xl">🤖</span>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Especialistas en IA</h3>
+            <p>
+              Somos pioneros en implementar IA en pequeñas y medianas empresas.
+              Automatiza procesos y mejora la eficiencia.
+            </p>
+          </div>
+
+          <div class="text-center text-white">
+            <div
+              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
+            >
+              <span class="font-bold text-2xl">💬</span>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Trato Directo</h3>
+            <p>
+              Trabajas directamente con nosotros, sin comerciales ni
+              intermediarios. Comunicación clara y respuestas rápidas.
+            </p>
+          </div>
+
+          <div class="text-center text-white">
+            <div
+              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
+            >
+              <span class="font-bold text-2xl">🛠️</span>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Soporte Integral</h3>
+            <p>
+              Desde el diseño web hasta la reparación de tu ordenador. Un único
+              proveedor para todas tus necesidades digitales.
+            </p>
+          </div>
+
+          <div class="text-center text-white">
+            <div
+              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
+            >
+              <span class="font-bold text-2xl">💰</span>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Transparencia Total</h3>
+            <p>
+              Sin costes ocultos ni sorpresas. Presupuestos claros y
+              comunicación transparente en todo el proceso.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <WavyDivider topColor="#101a32" bottomColor="#E6F9FD" />
+
+    <section
+      id="proceso"
+      class="bg-[var(--color-background)] px-4 py-16 text-[var(--color-text)] sm:px-8"
+    >
+      <div class="mx-auto max-w-7xl">
+        <h2 class="mb-12 text-center font-bold text-4xl">
+          Nuestro proceso de trabajo (simple y efectivo)
+        </h2>
+        <ol class="mx-auto max-w-3xl space-y-8">
+          <li class="flex items-start gap-6">
+            <span
+              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
+              >1</span
+            >
+            <div>
+              <h3 class="mb-2 font-bold text-xl">Consulta inicial gratuita</h3>
+              <p>
+                Analizamos tu situación actual, objetivos y presupuesto.
+                Identificamos oportunidades de mejora y crecimiento.
+              </p>
+            </div>
+          </li>
+          <li class="flex items-start gap-6">
+            <span
+              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
+              >2</span
+            >
+            <div>
+              <h3 class="mb-2 font-bold text-xl">Propuesta personalizada</h3>
+              <p>
+                Te entregamos una propuesta detallada con servicios
+                recomendados, cronograma y costes transparentes.
+              </p>
+            </div>
+          </li>
+          <li class="flex items-start gap-6">
+            <span
+              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
+              >3</span
+            >
+            <div>
+              <h3 class="mb-2 font-bold text-xl">
+                Desarrollo e implementación
+              </h3>
+              <p>
+                Ejecutamos el proyecto manteniendo comunicación constante y
+                mostrando avances periódicos.
+              </p>
+            </div>
+          </li>
+          <li class="flex items-start gap-6">
+            <span
+              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
+              >4</span
+            >
+            <div>
+              <h3 class="mb-2 font-bold text-xl">Entrega y formación</h3>
+              <p>
+                Te entregamos el proyecto completo y te formamos para que puedas
+                gestionarlo de forma autónoma.
+              </p>
+            </div>
+          </li>
+          <li class="flex items-start gap-6">
+            <span
+              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
+              >5</span
+            >
+            <div>
+              <h3 class="mb-2 font-bold text-xl">Soporte continuo</h3>
+              <p>
+                Ofrecemos mantenimiento, actualizaciones y nuevas
+                funcionalidades según vaya creciendo tu negocio.
+              </p>
+            </div>
+          </li>
+        </ol>
+        <p class="mt-12 text-center text-lg">
+          La mayoría de proyectos web están listos en <b>2-4 semanas</b>. Los
+          servicios de IA y soporte técnico se adaptan a tus necesidades y
+          urgencia.
+        </p>
+      </div>
+    </section>
+
+    <!-- Ambas secciones tienen el mismo fondo, no necesitamos divisor -->
+
+    <section id="faq" class="bg-[var(--color-background)] px-4 py-16 sm:px-8">
+      <div class="mx-auto max-w-7xl">
+        <h2
+          class="mb-8 text-center font-sans font-bold text-3xl sm:mb-16 sm:text-4xl"
+        >
+          Preguntas Frecuentes
+        </h2>
+        <FAQSection faqs={faqData} />
+      </div>
+    </section>
+
+    <WavyDivider topColor="#E6F9FD" bottomColor="#101a32" />
+
+    <section
+      id="contacto"
+      class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8"
+    >
+      <div class="mx-auto max-w-7xl">
+        <div
+          class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16"
+        >
+          <!-- Texto y beneficios -->
+          <div class="text-center lg:text-left">
+            <h2
+              class="mb-4 font-sans font-bold text-white text-2xl sm:mb-6 sm:text-3xl"
+            >
+              ¿Listo para transformar tu presencia digital?
+            </h2>
+            <p
+              class="mb-6 font-sans leading-relaxed text-white text-base sm:mb-8 sm:text-lg"
+            >
+              Cuéntanos sobre tu proyecto o problema tecnológico y te enviaremos
+              una propuesta personalizada. Trabajamos con particulares,
+              autónomos y empresas de toda España.
+            </p>
+
+            <ul class="space-y-3 sm:space-y-4">
+              {
+                [
+                  "Consulta inicial gratuita y sin compromiso",
+                  "Propuesta detallada en menos de 24 horas",
+                  "Opciones de pago flexibles y transparentes",
+                  "Soporte técnico incluido en todos los proyectos",
+                  "Garantía de satisfacción al 100%",
+                ].map((benefit) => (
+                  <li class="flex items-center gap-2 font-sans text-white sm:gap-3">
+                    <svg
+                      class="h-5 w-5 text-[var(--color-secondary)]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    {benefit}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <!-- Formulario -->
+          <ContactForm
+            formId="servicesForm"
+            title="Cuéntanos qué necesitas"
+            description="Describe tu proyecto o problema tecnológico y nos pondremos en contacto contigo para ofrecerte la mejor solución."
+          />
+        </div>
+      </div>
+    </section>
+
+    <WavyDivider topColor="#101a32" bottomColor="black" />
+
+    <Footer navItems={navItems} />
+    <ContactModal />
+    <CookieConsent />
+  </main>
+</Layout>
+
+<script is:inline>
+  // Inicializar MicroModal cuando se cargue la página
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof MicroModal !== "undefined") {
+      MicroModal.init({
+        openTrigger: "data-micromodal-trigger",
+        closeTrigger: "data-micromodal-close",
+        openClass: "is-open",
+        disableScroll: true,
+        disableFocus: false,
+        awaitOpenAnimation: false,
+        awaitCloseAnimation: false,
+        debugMode: false,
+      });
+    }
+  });
+</script>
