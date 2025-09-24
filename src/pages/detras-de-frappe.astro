@@ -1,8 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
 import "../styles/index.css";
 import BrutalHeader from "../components/BrutalHeader.astro";
 import * as content from "../content/detras-de-frappe.md";
+import ContactForm from "../components/ContactForm.astro";
 
 console.log(content);
 ---
@@ -10,7 +12,7 @@ console.log(content);
 <Layout title="Detrás de Frappé">
   <BrutalHeader navItems={[]} />
   <main
-    class="container mx-auto mt-[60px] flex min-h-[calc(100vh-60px)] max-w-7xl flex-col lg:flex-row gap-8 px-4 pt-16 sm:mt-[76px] sm:min-h-[calc(100vh-76px)] sm:px-8"
+    class="container mx-auto my-[60px] flex min-h-[calc(100vh-60px)] max-w-7xl flex-col lg:flex-row gap-8 px-4 pt-16 sm:mt-[76px] sm:min-h-[calc(100vh-76px)] sm:px-8"
   >
     <div class="flex max-w-full lg:max-w-3xl flex-col gap-6">
       <div id="info-header" class="flex flex-row gap-6 lg:flex-col">
@@ -43,8 +45,12 @@ console.log(content);
         >
       </div>
     </div>
-    <div class="prose border-gray-500 border rounded-xl p-4 max-w-4xl">
+    <div class="prose border-gray-500 border rounded-xl p-4 max-w-4xl flex flex-col">
       <content.Content />
+      <div class="not-prose w-full lg:w-2/3 my-8 mx-auto">
+        <ContactForm formId="aboutMeForm"  />
+      </div>
     </div>
   </main>
+  <Footer />
 </Layout>

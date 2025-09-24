@@ -71,7 +71,7 @@ Hoy, elijo los proyectos en los que me involucro. Valoro la transparencia, el re
 
 Puede que al navegar por la web de Frappé te hayas imaginado a un pequeño equipo detrás. Y no es del todo erróneo pensar así. Aunque en lo operativo soy yo quien está detrás de cada línea de código, la estructura, la documentación, la entrega y la atención al cliente siguen estándares de una agencia profesional.
 
-No intento aparentar algo que no soy. Lo que sí hago es adoptar lo mejor de ambos mundos: la agilidad de un freelance con la solidez de una empresa. ¿El resultado? Recibes un servicio estructurado, profesional, pero con la flexibilidad de alguien que está 100% implicado en tu proyecto.
+No intento aparentar algo que no soy. Lo que sí hago es adoptar lo mejor de ambos mundos: la agilidad de un freelance con la solidez de una empresa. ¿El resultado? Recibes un servicio estructurado, profesional, pero con la flexibilidad de alguien que está 100% implicado en tu proyecto. Además, colaboro con diseñadores, expertos en SEO y otros profesionales para ofrecerte el mejor servicio posible.
 
 Esa es la esencia de Frappé. Ni más, ni menos.
 
