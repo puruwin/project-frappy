@@ -1,6 +1,7 @@
 User-agent: *
 Disallow: /card
 Disallow: /privacidad
+Disallow: /linktree
 
 # Sitemap
 Sitemap: https://creativefrappe.com/sitemap.xml

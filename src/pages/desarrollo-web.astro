@@ -1,0 +1,243 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "@fontsource/public-sans/700.css";
+import "@fontsource-variable/inter";
+import "@fontsource-variable/jetbrains-mono";
+import "@fontsource-variable/montserrat";
+import "~/styles/index.css";
+import WavyDivider from "../components/WavyDivider.astro";
+import BrutalHeader from "../components/BrutalHeader.astro";
+import FAQSection from "../components/FAQSection.astro";
+import Hero from "../components/Hero.astro";
+import AvailableSlots from "../components/AvailableSlots.astro";
+import ContactModal from "../components/ContactModal.astro";
+import About from "../components/About.astro";
+import Footer from "../components/Footer.astro";
+import CookieConsent from "../components/CookieConsent.astro";
+
+const { generator, site } = Astro;
+const image = new URL("splash.png", site);
+const title = "Frappé | Agencia de Desarrollo Web";
+const description =
+  "Creamos sitios web de alto rendimiento que impulsan el crecimiento de tu negocio. Expertos en desarrollo web con tecnologías modernas y diseños adaptados a tu marca.";
+const keywords =
+  "desarrollo web, diseño web, agencia digital, sitios web rápidos, desarrollo frontend, landing pages, SEO, diseño personalizado, desarrollo web para autónomos, desarrollo web para pequeñas empresas, desarrollo web para startups";
+
+const faqsData = [
+  {
+    question: "¿Cuánto tiempo se tarda en crear una web?",
+    answer:
+      "El tiempo que se tarda en tener lista una web depende del proyecto. Una landing sencilla puede estar lista en 1 semana, mientras que una web personalizada más compleja puede tardar de 2 a 4 semanas.",
+  },
+  {
+    question: "¿Qué significa hosting y dominio?",
+    answer:
+      "El hosting es el alojamiento de tu sitio web en servidores seguros y de alta velocidad. Es lo que hace que tu página web esté en Internet. El dominio es tu dirección web personalizada (www.tuempresa.com). Nosotros nos encargamos de toda la gestión y renovación de ambos servicios.",
+  },
+  {
+    question:
+      "¿Qué incluye el mantenimiento mensual con una agencia de desarrollo web?",
+    answer:
+      "El mantenimiento incluye actualizaciones de seguridad, pequeñas modificaciones en textos o imágenes, copia de seguridad mensual, y monitorización para que tu web funcione siempre correctamente. Es ideal para mantener tu sitio web actualizado y funcionando sin preocuparte por los detalles técnicos.",
+  },
+  {
+    question: "¿Puedo ampliar mi web con más funcionalidades?",
+    answer:
+      "Sí, puedes ampliar tu web en cualquier momento si tu negocio crece o necesitas más funcionalidades. Muchos de nuestros clientes comienzan con una web básica y más adelante añaden e-commerce, SEO avanzado o integraciones.",
+  },
+  {
+    question: "¿Está incluida la creación del logo o branding?",
+    answer:
+      "Nuestros servicios base no incluyen diseño del logo ni branding completo, pero podemos ayudarte con un servicio adicional si lo necesitas. Aunque no es obligatorio, tener una imagen profesional mejora la percepción de tu negocio.",
+  },
+  {
+    question: "¿Me ayudáis con el posicionamiento en Google?",
+    answer:
+      "Sí. Todos nuestros proyectos incluyen una optimización básica SEO. Para proyectos más avanzados ofrecemos SEO completo incluyendo configuración de Google Analytics, Tag Manager, y asesoramiento sobre palabras clave. También ofrecemos asesoría mensual y soporte para campañas en Google Ads.",
+  },
+  {
+    question: "¿Qué es el SEO local y cómo puede ayudar a mi negocio?",
+    answer:
+      "El SEO local mejora tu visibilidad en búsquedas relacionadas con tu ubicación (como “electricista en Benidorm”). Implica optimizar tu web con palabras clave geográficas, crear un perfil de Google Business y conseguir reseñas locales.",
+  },
+  {
+    question: "¿Qué formas de pago aceptáis?",
+    answer:
+      "Trabajamos con pagos por transferencia bancaria o Bizum. Los pagos se hacen de forma segura y recibirás factura por cada operación.",
+  },
+  {
+    question: "¿Hay permanencia?",
+    answer:
+      "No hay permanencia. Puedes cancelar el servicio mensual en cualquier momento con un mes de antelación. Sin ataduras, pero la web dejará de estar disponible si no se mantiene el pago del servicio de hosting y mantenimiento.",
+  },
+];
+---
+
+<Layout title={title}>
+  <Fragment slot="head">
+    <meta name="generator" content={generator} />
+    <!-- SEO básico -->
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={site} />
+
+    <!-- Control de robots -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={site} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Frappé" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={site} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Metadatos adicionales -->
+    <meta name="author" content="Frappé" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Frappé",
+        "url": "https://creativefrappe.com",
+        "logo": "https://creativefrappe.com/frappe_icon.svg",
+        "description": "Creamos sitios web de alto rendimiento que impulsan el crecimiento de tu negocio. Expertos en desarrollo web con tecnologías modernas y diseños adaptados a tu marca.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ES"
+        },
+        "sameAs": [
+          "https://twitter.com/frappe",
+          "https://www.linkedin.com/company/creative-frapp%C3%A9"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Cuánto tiempo se tarda en crear una web?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El tiempo que se tarda en tener lista una web depende del proyecto. Una landing sencilla puede estar lista en 1 semana, mientras que una web personalizada más compleja puede tardar de 2 a 4 semanas."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué significa hosting y dominio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El hosting es el alojamiento de tu sitio web en servidores seguros y de alta velocidad. Es lo que hace que tu página web esté en Internet. El dominio es tu dirección web personalizada (www.tuempresa.com). Nosotros nos encargamos de toda la gestión y renovación de ambos servicios."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué incluye el mantenimiento mensual con una agencia de desarrollo web?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El mantenimiento incluye actualizaciones de seguridad, pequeñas modificaciones en textos o imágenes, copia de seguridad mensual, y monitorización para que tu web funcione siempre correctamente. Es ideal para mantener tu sitio web actualizado y funcionando sin preocuparte por los detalles técnicos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué es el SEO local y cómo puede ayudar a mi negocio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El SEO local mejora tu visibilidad en búsquedas relacionadas con tu ubicación (como \"electricista en Benidorm\"). Implica optimizar tu web con palabras clave geográficas, crear un perfil de Google Business y conseguir reseñas locales."
+            }
+          }
+        ]
+      }
+    </script>
+  </Fragment>
+
+  <BrutalHeader />
+  <div id="vanta-bg">
+    <Hero />
+    <About id="sobre-nosotros" />
+    <WavyDivider topColor="transparent" bottomColor="#101a32" />
+  </div>
+  <div
+    id="contacto"
+    class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8"
+  >
+    <AvailableSlots slots={8} />
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="mb-8 font-bold text-white text-4xl">
+        ¿Listo para empezar tu proyecto?
+      </h2>
+      <p class="mb-12 text-white text-lg">
+        Contáctanos para recibir una propuesta personalizada y adaptada a tus
+        necesidades.
+      </p>
+      <button
+        class="inline-flex items-center rounded-lg bg-[var(--color-primary)] px-8 py-4 font-semibold text-white transition-colors text-lg hover:bg-opacity-90"
+        onclick="MicroModal.show('modal-1')"
+      >
+        Solicita tu presupuesto gratuito
+      </button>
+    </div>
+  </div>
+  <WavyDivider topColor="#101a32" bottomColor="#A9E7FA" />
+  <section id="faq" class="bg-[var(--color-bg-secondary)] px-4 py-16 sm:px-8">
+    <div class="mx-auto max-w-7xl">
+      <h2
+        class="mb-8 text-center font-['Montserrat'] font-bold text-3xl sm:mb-16 sm:text-4xl"
+      >
+        Preguntas Frecuentes - Lo que necesitas saber
+      </h2>
+      <FAQSection faqs={faqsData} />
+    </div>
+  </section>
+  <ContactModal />
+  <WavyDivider topColor="#A9E7FA" bottomColor="#000000" />
+  <Footer />
+  <CookieConsent />
+</Layout>
+
+<script is:inline src="/js/three.min.js"></script>
+<script is:inline src="/js/vanta.net.min.js"></script>
+<script is:inline>
+  VANTA.NET({
+    el: "#vanta-bg",
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.0,
+    minWidth: 200.0,
+    scale: 1.0,
+    scaleMobile: 1.0,
+    color: 0xfaa3c7,
+    backgroundColor: 0xa9e7fa,
+  });
+
+  // Inicializar MicroModal cuando se cargue la página
+  if (typeof MicroModal !== "undefined") {
+    MicroModal.init({
+      openTrigger: "data-micromodal-trigger",
+      closeTrigger: "data-micromodal-close",
+      openClass: "is-open",
+      disableScroll: true,
+      disableFocus: false,
+      awaitOpenAnimation: false,
+      awaitCloseAnimation: false,
+      debugMode: false,
+    });
+  }
+</script>
