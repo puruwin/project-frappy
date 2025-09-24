@@ -1,0 +1,84 @@
+---
+export interface SocialLink {
+  name: string;
+  url: string;
+  icon: string;
+  color?: string;
+}
+
+export interface Props {
+  links: SocialLink[];
+}
+
+const { links } = Astro.props;
+
+const getIconPath = (icon: string): string => {
+  const icons: Record<string, string> = {
+    twitter:
+      "M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z",
+    linkedin:
+      "M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z M4 6a2 2 0 100-4 2 2 0 000 4z",
+    github:
+      "M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22",
+    instagram:
+      "M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 01-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 017.8 2m-.2 2A3.6 3.6 0 004 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 003.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 111.25 1.25A1.25 1.25 0 0117.25 5.5M12 7a5 5 0 115 5 5 5 0 01-5-5m0 2a3 3 0 103 3 3 3 0 00-3-3z",
+    youtube:
+      "M21.8 8s-.195-1.377-.795-1.984c-.76-.797-1.613-.8-2.004-.847-2.799-.203-6.996-.203-6.996-.203h-.01s-4.197 0-6.996.202c-.39.046-1.242.05-2.003.846C2.395 6.623 2.2 8 2.2 8S2 9.62 2 11.24v1.517c0 1.618.2 3.237.2 3.237s.195 1.378.795 1.985c.76.797 1.76.77 2.205.855 1.6.153 6.8.2 6.8.2s4.203-.006 7.001-.209c.391-.047 1.243-.05 2.004-.847.6-.607.795-1.985.795-1.985s.2-1.618.2-3.237v-1.517C22 9.62 21.8 8 21.8 8zM9.935 14.595v-5.62l5.403 2.82-5.403 2.8z",
+    email:
+      "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M22 6l-10 7L2 6",
+    website:
+      "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z",
+  };
+  return icons[icon] || icons.website;
+};
+
+const getColorClass = (color?: string): string => {
+  const colors: Record<string, string> = {
+    primary: "hover:bg-primary hover:text-white",
+    secondary: "hover:bg-secondary hover:text-white",
+    accent: "hover:bg-accent hover:text-gray-900",
+    pink: "hover:bg-primary hover:text-white",
+    blue: "hover:bg-secondary hover:text-white",
+    purple: "hover:bg-purple-500 hover:text-white",
+    green: "hover:bg-green-500 hover:text-white",
+    red: "hover:bg-red-500 hover:text-white",
+    orange: "hover:bg-orange-500 hover:text-white",
+  };
+  return colors[color || "primary"] || colors.primary;
+};
+---
+
+{
+  links && links.length > 0 && (
+    <div class="flex justify-center space-x-4">
+      {links.map((link) => (
+        <a
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class:list={[
+            "focus:ring-primary/50 flex h-12 w-12 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-all duration-300 hover:scale-110 hover:shadow-lg focus:outline-none focus:ring-2 dark:border-gray-600 dark:text-gray-400",
+            getColorClass(link.color),
+          ]}
+          aria-label={`Ir a ${link.name}`}
+          tabindex="0"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d={getIconPath(link.icon)}
+            />
+          </svg>
+        </a>
+      ))}
+    </div>
+  )
+}
