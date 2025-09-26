@@ -369,10 +369,6 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
               localStorage.removeItem("theme");
               const systemTheme = getSystemTheme();
               setTheme(systemTheme, false);
-              console.log(
-                "Tema reseteado a preferencias del sistema:",
-                systemTheme,
-              );
             }
             clickCount = 0;
           }, 300);

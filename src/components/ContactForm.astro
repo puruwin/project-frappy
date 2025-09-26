@@ -176,21 +176,15 @@ const FORM_ENDPOINT = "https://formspree.io/f/mjkglyjd";
     );
     const privacyValid = privacyCheckbox ? privacyCheckbox.checked : false;
     const isValid = fieldsValid && privacyValid;
-    console.log("Validación del formulario:", isValid);
     return isValid;
   }
 
   // Validar en tiempo real
   requiredInputs?.forEach((input) => {
     input.addEventListener("input", () => {
-      console.log("Campo modificado:", input.id);
       if (submitButton) {
         const isValid = checkFormValidity();
         submitButton.disabled = !isValid;
-        console.log(
-          "Estado del botón:",
-          !isValid ? "habilitado" : "deshabilitado",
-        );
       }
     });
   });
@@ -198,14 +192,9 @@ const FORM_ENDPOINT = "https://formspree.io/f/mjkglyjd";
   // Validar checkbox de privacidad en tiempo real
   const privacyCheckbox = document.getElementById(`${formId}-privacy`);
   privacyCheckbox?.addEventListener("change", () => {
-    console.log("Checkbox de privacidad modificado:", privacyCheckbox.checked);
     if (submitButton) {
       const isValid = checkFormValidity();
       submitButton.disabled = !isValid;
-      console.log(
-        "Estado del botón:",
-        !isValid ? "habilitado" : "deshabilitado",
-      );
     }
   });
 
