@@ -1,5 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import SEOHead from "../components/SEOHead.astro";
+import {
+  generateOrganizationSchema,
+  generatePersonSchema,
+} from "../config/seo.ts";
 import "@fontsource/public-sans/700.css";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/jetbrains-mono";
@@ -22,6 +27,35 @@ const description =
   "Creamos sitios web de alto rendimiento que impulsan el crecimiento de tu negocio. Expertos en desarrollo web con tecnologías modernas y diseños adaptados a tu marca.";
 const keywords =
   "desarrollo web, diseño web, agencia digital, sitios web rápidos, desarrollo frontend, landing pages, SEO, diseño personalizado, desarrollo web para autónomos, desarrollo web para pequeñas empresas, desarrollo web para startups";
+
+// Schema markup
+const organizationSchema = generateOrganizationSchema({
+  name: "Frappé",
+  url: "https://creativefrappe.com",
+  logo: "https://creativefrappe.com/frappe_icon.svg",
+  description:
+    "Creamos sitios web de alto rendimiento que impulsan el crecimiento de tu negocio. Expertos en desarrollo web con tecnologías modernas y diseños adaptados a tu marca.",
+  address: {
+    country: "ES",
+  },
+  sameAs: [
+    "https://twitter.com/frappe",
+    "https://www.linkedin.com/company/creative-frapp%C3%A9",
+  ],
+});
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqsData.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
 
 const faqsData = [
   {
@@ -75,96 +109,15 @@ const faqsData = [
 
 <Layout title={title}>
   <Fragment slot="head">
-    <meta name="generator" content={generator} />
-    <!-- SEO básico -->
-    <meta name="description" content={description} />
-    <meta name="keywords" content={keywords} />
-    <link rel="canonical" href={site} />
-
-    <!-- Control de robots -->
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={site} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
-    <meta property="og:locale" content="es_ES" />
-    <meta property="og:site_name" content="Frappé" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content={site} />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
-
-    <!-- Metadatos adicionales -->
-    <meta name="author" content="Frappé" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="format-detection" content="telephone=no" />
-
-    <!-- Structured Data / JSON-LD -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Frappé",
-        "url": "https://creativefrappe.com",
-        "logo": "https://creativefrappe.com/frappe_icon.svg",
-        "description": "Creamos sitios web de alto rendimiento que impulsan el crecimiento de tu negocio. Expertos en desarrollo web con tecnologías modernas y diseños adaptados a tu marca.",
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "ES"
-        },
-        "sameAs": [
-          "https://twitter.com/frappe",
-          "https://www.linkedin.com/company/creative-frapp%C3%A9"
-        ]
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "¿Cuánto tiempo se tarda en crear una web?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "El tiempo que se tarda en tener lista una web depende del proyecto. Una landing sencilla puede estar lista en 1 semana, mientras que una web personalizada más compleja puede tardar de 2 a 4 semanas."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Qué significa hosting y dominio?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "El hosting es el alojamiento de tu sitio web en servidores seguros y de alta velocidad. Es lo que hace que tu página web esté en Internet. El dominio es tu dirección web personalizada (www.tuempresa.com). Nosotros nos encargamos de toda la gestión y renovación de ambos servicios."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Qué incluye el mantenimiento mensual con una agencia de desarrollo web?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "El mantenimiento incluye actualizaciones de seguridad, pequeñas modificaciones en textos o imágenes, copia de seguridad mensual, y monitorización para que tu web funcione siempre correctamente. Es ideal para mantener tu sitio web actualizado y funcionando sin preocuparte por los detalles técnicos."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Qué es el SEO local y cómo puede ayudar a mi negocio?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "El SEO local mejora tu visibilidad en búsquedas relacionadas con tu ubicación (como \"electricista en Benidorm\"). Implica optimizar tu web con palabras clave geográficas, crear un perfil de Google Business y conseguir reseñas locales."
-            }
-          }
-        ]
-      }
-    </script>
+    <SEOHead
+      title={title}
+      description={description}
+      keywords={keywords}
+      canonical={site}
+      image={image}
+      schema={organizationSchema}
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
   <BrutalHeader />

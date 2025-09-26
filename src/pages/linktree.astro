@@ -100,6 +100,15 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="David Pérez, desarrollador web, diseñador web, Benidorm, servicios digitales, contacto profesional"
+    />
+    <link rel="canonical" href="https://creativefrappe.com/linktree" />
+
+    <!-- Control de robots -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -117,6 +126,42 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content="/og-image.jpg" />
+
+    <!-- Metadatos adicionales -->
+    <meta name="author" content="David Pérez" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "David Pérez",
+        "jobTitle": "Desarrollador Frontend & Diseñador Web",
+        "description": "Experto en programación web y diseño moderno. Creando experiencias digitales excepcionales.",
+        "url": "https://creativefrappe.com/linktree",
+        "image": "https://creativefrappe.com/me.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Benidorm",
+          "addressCountry": "ES"
+        },
+        "telephone": "+34608962213",
+        "email": "frappecreativity@gmail.com",
+        "sameAs": [
+          "https://linkedin.com/in/davidperez8619",
+          "https://github.com/puruwin"
+        ],
+        "knowsAbout": [
+          "Desarrollo Web",
+          "Diseño Web",
+          "Frontend Development",
+          "SEO",
+          "Google Ads"
+        ]
+      }
+    </script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/frappe_icon.svg" />
