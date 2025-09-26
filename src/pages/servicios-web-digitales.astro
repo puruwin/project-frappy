@@ -7,6 +7,7 @@ import FAQSection from "../components/FAQSection.astro";
 import ContactModal from "../components/ContactModal.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 import ContactForm from "../components/ContactForm.astro";
+import AboutFrappeSection from "../components/AboutFrappeSection.astro";
 import Layout from "../layouts/Layout.astro";
 import "@fontsource-variable/montserrat";
 import "~/styles/theme.css";
@@ -1019,7 +1020,14 @@ const keywords =
       </div>
     </section>
 
-    <WavyDivider topColor="#101a32" bottomColor="black" />
+    <WavyDivider topColor="#101a32" bottomColor="#a9e7fa" />
+
+    <AboutFrappeSection
+      title="El equipo humano detrás de Frappé"
+      description="David Pérez, desarrollador web y consultor digital. Especializado en transformar ideas en soluciones tecnológicas reales que impulsan el crecimiento de tu negocio. Desde páginas web hasta inteligencia artificial."
+    />
+
+    <WavyDivider topColor="#a9e7fa" bottomColor="black" />
 
     <Footer navItems={navItems} />
     <ContactModal />
