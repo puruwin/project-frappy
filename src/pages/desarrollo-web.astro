@@ -29,34 +29,6 @@ const keywords =
   "desarrollo web, diseño web, agencia digital, sitios web rápidos, desarrollo frontend, landing pages, SEO, diseño personalizado, desarrollo web para autónomos, desarrollo web para pequeñas empresas, desarrollo web para startups";
 
 // Schema markup
-const organizationSchema = generateOrganizationSchema({
-  name: "Frappé",
-  url: "https://creativefrappe.com",
-  logo: "https://creativefrappe.com/frappe_icon.svg",
-  description:
-    "Creamos sitios web de alto rendimiento que impulsan el crecimiento de tu negocio. Expertos en desarrollo web con tecnologías modernas y diseños adaptados a tu marca.",
-  address: {
-    country: "ES",
-  },
-  sameAs: [
-    "https://twitter.com/frappe",
-    "https://www.linkedin.com/company/creative-frapp%C3%A9",
-  ],
-});
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqsData.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.answer,
-    },
-  })),
-};
-
 const faqsData = [
   {
     question: "¿Cuánto tiempo se tarda en crear una web?",
@@ -109,15 +81,54 @@ const faqsData = [
 
 <Layout title={title}>
   <Fragment slot="head">
-    <SEOHead
-      title={title}
-      description={description}
-      keywords={keywords}
-      canonical={site}
-      image={image}
-      schema={organizationSchema}
-    />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    {
+      (() => {
+        const organizationSchema = generateOrganizationSchema({
+          name: "Frappé",
+          url: "https://creativefrappe.com",
+          logo: "https://creativefrappe.com/frappe_icon.svg",
+          description:
+            "Creamos sitios web de alto rendimiento que impulsan el crecimiento de tu negocio. Expertos en desarrollo web con tecnologías modernas y diseños adaptados a tu marca.",
+          address: {
+            country: "ES",
+          },
+          sameAs: [
+            "https://twitter.com/frappe",
+            "https://www.linkedin.com/company/creative-frapp%C3%A9",
+          ],
+        });
+
+        const faqSchema = {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqsData.map((faq) => ({
+            "@type": "Question",
+            name: faq.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: faq.answer,
+            },
+          })),
+        };
+
+        return (
+          <>
+            <SEOHead
+              title={title}
+              description={description}
+              keywords={keywords}
+              canonical={site?.toString()}
+              image={image?.toString()}
+              schema={organizationSchema}
+            />
+            <script
+              type="application/ld+json"
+              set:html={JSON.stringify(faqSchema)}
+            />
+          </>
+        );
+      })()
+    }
   </Fragment>
 
   <BrutalHeader />
