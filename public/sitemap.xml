@@ -5,14 +5,14 @@
   <!-- Landing pages principales - Máxima prioridad -->
   <url>
     <loc>https://creativefrappe.com/diseno-web-benidorm</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://creativefrappe.com/servicios-web-digitales</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -20,7 +20,7 @@
   <!-- Página principal (redirección) -->
   <url>
     <loc>https://creativefrappe.com/</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -28,14 +28,14 @@
   <!-- Páginas de servicios secundarias -->
   <url>
     <loc>https://creativefrappe.com/desarrollo-web-benidorm</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://creativefrappe.com/desarrollo-web</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -43,7 +43,7 @@
   <!-- Páginas institucionales -->
   <url>
     <loc>https://creativefrappe.com/detras-de-frappe</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -66,7 +66,7 @@
   <!-- Páginas legales -->
   <url>
     <loc>https://creativefrappe.com/privacidad</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
