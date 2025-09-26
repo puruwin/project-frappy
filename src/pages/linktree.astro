@@ -100,6 +100,15 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="David Pérez, desarrollador web, diseñador web, Benidorm, servicios digitales, contacto profesional"
+    />
+    <link rel="canonical" href="https://creativefrappe.com/linktree" />
+
+    <!-- Control de robots -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -117,6 +126,42 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content="/og-image.jpg" />
+
+    <!-- Metadatos adicionales -->
+    <meta name="author" content="David Pérez" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "David Pérez",
+        "jobTitle": "Desarrollador Frontend & Diseñador Web",
+        "description": "Experto en programación web y diseño moderno. Creando experiencias digitales excepcionales.",
+        "url": "https://creativefrappe.com/linktree",
+        "image": "https://creativefrappe.com/me.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Benidorm",
+          "addressCountry": "ES"
+        },
+        "telephone": "+34608962213",
+        "email": "frappecreativity@gmail.com",
+        "sameAs": [
+          "https://linkedin.com/in/davidperez8619",
+          "https://github.com/puruwin"
+        ],
+        "knowsAbout": [
+          "Desarrollo Web",
+          "Diseño Web",
+          "Frontend Development",
+          "SEO",
+          "Google Ads"
+        ]
+      }
+    </script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/frappe_icon.svg" />
@@ -213,7 +258,7 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
 
     <!-- Main Container -->
     <div
-      class="relative min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 dark:bg-gray-900"
+      class="relative min-h-screen bg-gray-50 px-4 dark:bg-gray-900 sm:px-6 lg:px-8"
     >
       <div class="mx-auto mt-10 max-w-md space-y-8">
         <!-- Profile Section -->
@@ -251,9 +296,17 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
 
         <!-- Footer -->
         <footer class="pt-8 text-center">
+          <div class="mb-4">
+            <a
+              href="/privacidad"
+              class="text-gray-500 underline transition-colors text-sm hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            >
+              Política de Privacidad
+            </a>
+          </div>
           <p class="text-gray-500 text-sm dark:text-gray-400">
             © {new Date().getFullYear()}
-            {profile.name}. Hecho con ❤️ en Astro.
+            {profile.name}. Hecho con 💙.
           </p>
         </footer>
       </div>
@@ -361,10 +414,6 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
               localStorage.removeItem("theme");
               const systemTheme = getSystemTheme();
               setTheme(systemTheme, false);
-              console.log(
-                "Tema reseteado a preferencias del sistema:",
-                systemTheme,
-              );
             }
             clickCount = 0;
           }, 300);

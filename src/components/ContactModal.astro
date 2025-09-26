@@ -114,6 +114,31 @@ const { plan = "Básico" } = Astro.props;
             ></textarea>
           </div>
 
+          <div class="mb-4 sm:col-span-2">
+            <label
+              class="flex cursor-pointer items-start gap-2 font-sans text-[var(--color-text)] text-xs sm:text-sm"
+            >
+              <input
+                type="checkbox"
+                id="privacy-modal"
+                name="privacy"
+                required
+                class="mt-1 h-4 w-4 rounded border-2 border-[var(--color-border)] bg-white text-[var(--color-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)]"
+              />
+              <span class="leading-tight">
+                He leído y acepto la
+                <a
+                  href="/privacidad"
+                  target="_blank"
+                  class="rounded text-[var(--color-primary)] underline hover:text-[var(--color-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 focus:ring-offset-white"
+                >
+                  Política de Privacidad
+                </a>
+                *
+              </span>
+            </label>
+          </div>
+
           <div class="flex flex-col gap-3 sm:col-span-2 sm:flex-row">
             <button
               type="submit"
@@ -230,9 +255,12 @@ const { plan = "Básico" } = Astro.props;
     "submitButton",
   ) as HTMLButtonElement;
   const requiredInputs = form?.querySelectorAll(
-    "input[required], textarea[required]",
+    "input[required]:not([type='checkbox']), textarea[required]",
   );
   const emailInput = document.getElementById("email") as HTMLInputElement;
+  const privacyCheckbox = document.getElementById(
+    "privacy-modal",
+  ) as HTMLInputElement;
 
   // Deshabilitar el botón inicialmente
   if (submitButton) {
@@ -252,7 +280,8 @@ const { plan = "Básico" } = Astro.props;
       (input) => (input as HTMLInputElement).value.trim() !== "",
     );
     const emailValid = isValidEmail(emailInput.value);
-    return allFieldsFilled && emailValid;
+    const privacyValid = privacyCheckbox ? privacyCheckbox.checked : false;
+    return allFieldsFilled && emailValid && privacyValid;
   }
 
   // Validar en tiempo real
@@ -262,6 +291,13 @@ const { plan = "Básico" } = Astro.props;
         submitButton.disabled = !checkFormValidity();
       }
     });
+  });
+
+  // Validar checkbox de privacidad en tiempo real
+  privacyCheckbox?.addEventListener("change", () => {
+    if (submitButton) {
+      submitButton.disabled = !checkFormValidity();
+    }
   });
 
   // Manejar envío del formulario
@@ -440,4 +476,3 @@ const { plan = "Básico" } = Astro.props;
     }
   }
 </style>
-

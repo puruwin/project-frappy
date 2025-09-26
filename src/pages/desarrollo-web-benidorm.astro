@@ -7,6 +7,7 @@ import FAQSection from "../components/FAQSection.astro";
 import ContactModal from "../components/ContactModal.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 import ContactForm from "../components/ContactForm.astro";
+import AboutFrappeSection from "../components/AboutFrappeSection.astro";
 import Layout from "../layouts/Layout.astro";
 import "@fontsource-variable/montserrat";
 import "~/styles/theme.css";
@@ -348,7 +349,14 @@ const keywords =
       </div>
     </section>
 
-    <WavyDivider topColor="#E6F9FD" bottomColor="black" />
+    <WavyDivider topColor="#E6F9FD" bottomColor="#a9e7fa" />
+
+    <AboutFrappeSection
+      title="¿Quién está detrás de Frappé?"
+      description="David Pérez, desarrollador web especializado en crear sitios web rápidos y seguros para empresas en Benidorm. Con experiencia en tecnología moderna y un enfoque centrado en resultados."
+    />
+
+    <WavyDivider topColor="#a9e7fa" bottomColor="black" />
 
     <Footer navItems={navItems} />
     <ContactModal />

@@ -1,0 +1,76 @@
+---
+import { seoConfig, generateMetaTags } from "../config/seo.ts";
+
+interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  canonical?: string;
+  image?: string;
+  noindex?: boolean;
+  ogType?: string;
+  twitterCard?: string;
+  schema?: any;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  canonical,
+  image,
+  noindex = false,
+  ogType = "website",
+  twitterCard = "summary_large_image",
+  schema,
+} = Astro.props;
+
+const meta = generateMetaTags({
+  title,
+  description,
+  keywords,
+  canonical,
+  image,
+  noindex,
+});
+
+const ogImage = image || seoConfig.images.default;
+const ogUrl = canonical || seoConfig.site.url;
+---
+
+<!-- SEO básico -->
+<meta name="description" content={meta.description} />
+<meta name="keywords" content={meta.keywords} />
+<link rel="canonical" href={meta.canonical} />
+
+<!-- Control de robots -->
+<meta name="robots" content={meta.robots} />
+<meta name="googlebot" content={meta.googlebot} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={ogUrl} />
+<meta property="og:title" content={meta.title} />
+<meta property="og:description" content={meta.description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content={seoConfig.defaultOG.locale} />
+<meta property="og:site_name" content={seoConfig.defaultOG.siteName} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content={twitterCard} />
+<meta name="twitter:url" content={ogUrl} />
+<meta name="twitter:title" content={meta.title} />
+<meta name="twitter:description" content={meta.description} />
+<meta name="twitter:image" content={ogImage} />
+
+<!-- Metadatos adicionales -->
+<meta name="author" content={seoConfig.defaultMeta.author} />
+<meta name="theme-color" content={seoConfig.defaultMeta.themeColor} />
+<meta name="format-detection" content={seoConfig.defaultMeta.formatDetection} />
+
+<!-- Schema Markup -->
+{
+  schema && (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  )
+}

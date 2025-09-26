@@ -12,46 +12,59 @@ const {
   className = "",
   title = "¿Hablamos de tu proyecto?",
   description = "Cuéntanos sobre tu proyecto y nos pondremos en contacto contigo lo antes posible.",
-  showWhatsApp = true
+  showWhatsApp = true,
 } = Astro.props;
 
 const FORM_ENDPOINT = "https://formspree.io/f/mjkglyjd";
 ---
 
-<div class={`bg-[var(--color-background-offset)] rounded-lg p-4 sm:p-6 ${className}`}>
-  <h3 class="text-base sm:text-lg font-bold mb-4 sm:mb-5 text-white font-sans">
+<div
+  class={`bg-[var(--color-background-offset)] rounded-lg p-4 sm:p-6 ${className}`}
+>
+  <h3 class="mb-4 font-sans font-bold text-white text-base sm:mb-5 sm:text-lg">
     {title}
   </h3>
-  
-  <p class="text-white/90 text-sm mb-4 sm:mb-5 font-sans">
+
+  <p class="mb-4 font-sans text-white/90 text-sm sm:mb-5">
     {description}
   </p>
-  
-  <form action={FORM_ENDPOINT} method="POST" id={formId} class="grid grid-cols-1 gap-3 sm:gap-4">
+
+  <form
+    action={FORM_ENDPOINT}
+    method="POST"
+    id={formId}
+    class="grid grid-cols-1 gap-3 sm:gap-4"
+  >
     <div>
-      <label class="block mb-1 sm:mb-1.5 font-sans text-xs sm:text-sm text-white/90" for={`${formId}-name`}>
+      <label
+        class="mb-1 block font-sans text-white/90 text-xs sm:mb-1.5 sm:text-sm"
+        for={`${formId}-name`}
+      >
         Nombre
       </label>
-      <input 
-        type="text" 
-        id={`${formId}-name`} 
-        name="name" 
+      <input
+        type="text"
+        id={`${formId}-name`}
+        name="name"
         required
-        class="w-full p-2 sm:p-2.5 bg-white border-b-2 border-[var(--color-primary)] rounded-t-md font-sans text-sm placeholder:text-[var(--color-text-offset)]/60 focus:outline-none focus:border-[var(--color-secondary)] transition-colors"
+        class="placeholder:text-[var(--color-text-offset)]/60 w-full rounded-t-md border-b-2 border-[var(--color-primary)] bg-white p-2 font-sans transition-colors text-sm focus:border-[var(--color-secondary)] focus:outline-none sm:p-2.5"
         placeholder="Tu nombre"
       />
     </div>
 
     <div>
-      <label class="block mb-1 sm:mb-1.5 font-sans text-xs sm:text-sm text-white/90" for={`${formId}-email`}>
+      <label
+        class="mb-1 block font-sans text-white/90 text-xs sm:mb-1.5 sm:text-sm"
+        for={`${formId}-email`}
+      >
         Correo Electrónico
       </label>
-      <input 
-        type="email" 
-        id={`${formId}-email`} 
+      <input
+        type="email"
+        id={`${formId}-email`}
         name="email"
         required
-        class="w-full p-2 sm:p-2.5 bg-white border-b-2 border-[var(--color-primary)] rounded-t-md font-sans text-sm placeholder:text-[var(--color-text-offset)]/60 focus:outline-none focus:border-[var(--color-secondary)] transition-colors"
+        class="placeholder:text-[var(--color-text-offset)]/60 w-full rounded-t-md border-b-2 border-[var(--color-primary)] bg-white p-2 font-sans transition-colors text-sm focus:border-[var(--color-secondary)] focus:outline-none sm:p-2.5"
         placeholder="tu@email.com"
       />
     </div>
@@ -59,61 +72,95 @@ const FORM_ENDPOINT = "https://formspree.io/f/mjkglyjd";
     <input type="text" name="_gotcha" style="display:none" />
 
     <div>
-      <label class="block mb-1 sm:mb-1.5 font-sans text-xs sm:text-sm text-white/90" for={`${formId}-phone`}>
+      <label
+        class="mb-1 block font-sans text-white/90 text-xs sm:mb-1.5 sm:text-sm"
+        for={`${formId}-phone`}
+      >
         Teléfono
       </label>
-      <input 
-        type="tel" 
-        id={`${formId}-phone`} 
-        name="phone" 
+      <input
+        type="tel"
+        id={`${formId}-phone`}
+        name="phone"
         required
-        class="w-full p-2 sm:p-2.5 bg-white border-b-2 border-[var(--color-primary)] rounded-t-md font-sans text-sm placeholder:text-[var(--color-text-offset)]/60 focus:outline-none focus:border-[var(--color-secondary)] transition-colors"
+        class="placeholder:text-[var(--color-text-offset)]/60 w-full rounded-t-md border-b-2 border-[var(--color-primary)] bg-white p-2 font-sans transition-colors text-sm focus:border-[var(--color-secondary)] focus:outline-none sm:p-2.5"
         placeholder="600000000"
       />
     </div>
 
     <div>
-      <label class="block mb-1 sm:mb-1.5 font-sans text-xs sm:text-sm text-white/90" for={`${formId}-message`}>
+      <label
+        class="mb-1 block font-sans text-white/90 text-xs sm:mb-1.5 sm:text-sm"
+        for={`${formId}-message`}
+      >
         Cuéntanos sobre tu proyecto
       </label>
-      <textarea 
-        id={`${formId}-message`} 
-        name="message" 
+      <textarea
+        id={`${formId}-message`}
+        name="message"
         rows="2"
         required
-        class="w-full p-2 sm:p-2.5 bg-white border-b-2 border-[var(--color-primary)] rounded-t-md font-sans text-sm placeholder:text-[var(--color-text-offset)]/60 focus:outline-none focus:border-[var(--color-secondary)] transition-colors resize-none"
-        placeholder="Describe brevemente tu proyecto..."
-      ></textarea>
+        class="placeholder:text-[var(--color-text-offset)]/60 w-full resize-none rounded-t-md border-b-2 border-[var(--color-primary)] bg-white p-2 font-sans transition-colors text-sm focus:border-[var(--color-secondary)] focus:outline-none sm:p-2.5"
+        placeholder="Describe brevemente tu proyecto..."></textarea>
     </div>
 
-    <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-1 sm:mt-2">
-      <button 
+    <div class="mb-3 sm:mb-4">
+      <label
+        class="flex cursor-pointer items-start gap-2 font-sans text-white/90 text-xs sm:text-sm"
+      >
+        <input
+          type="checkbox"
+          id={`${formId}-privacy`}
+          name="privacy"
+          required
+          class="mt-1 h-4 w-4 rounded border-2 border-[var(--color-primary)] bg-white text-[var(--color-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)]"
+        />
+        <span class="leading-tight">
+          He leído y acepto la
+          <a
+            href="/privacidad"
+            target="_blank"
+            class="rounded text-[var(--color-secondary)] underline hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[var(--color-background-offset)]"
+          >
+            Política de Privacidad
+          </a>
+          *
+        </span>
+      </label>
+    </div>
+
+    <div class="mt-1 flex flex-col gap-2 sm:mt-2 sm:flex-row sm:gap-3">
+      <button
         id={`${formId}SubmitButton`}
-        class="flex-1 bg-[var(--color-secondary)] text-[var(--color-text)] py-2 sm:py-2.5 px-6 rounded-md font-sans text-sm hover:bg-white/90 transition-colors disabled:bg-white/20 disabled:text-white/60 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[var(--color-secondary)]"
+        class="flex-1 rounded-md bg-[var(--color-secondary)] px-6 py-2 font-sans text-[var(--color-text)] transition-colors text-sm hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[var(--color-secondary)] disabled:cursor-not-allowed disabled:bg-white/20 disabled:text-white/60 sm:py-2.5"
         disabled
       >
         Enviar
       </button>
-      
-      {showWhatsApp && (
-        <a 
-          href="https://wa.me/+34608962213" 
-          target="_blank"
-          class="flex-1 bg-[#25D366] text-white hover:text-white py-2 sm:py-2.5 px-6 rounded-md font-sans text-sm hover:bg-[#25D366]/90 transition-colors text-center focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-[var(--color-secondary)]"
-        >
-          Escríbenos por WhatsApp
-        </a>
-      )}
+
+      {
+        showWhatsApp && (
+          <a
+            href="https://wa.me/+34608962213"
+            target="_blank"
+            class="flex-1 rounded-md bg-[#25D366] px-6 py-2 text-center font-sans text-white transition-colors text-sm hover:bg-[#25D366]/90 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-[var(--color-secondary)] sm:py-2.5"
+          >
+            Escríbenos por WhatsApp
+          </a>
+        )
+      }
     </div>
   </form>
 </div>
 
-<script define:vars={{ formId }}>  
+<script define:vars={{ formId }}>
   const form = document.getElementById(formId);
-  
+
   const submitButton = document.getElementById(`${formId}SubmitButton`);
-  
-  const requiredInputs = form?.querySelectorAll(`#${formId} input[required], #${formId} textarea[required]`);
+
+  const requiredInputs = form?.querySelectorAll(
+    `#${formId} input[required], #${formId} textarea[required]`,
+  );
 
   // Deshabilitar el botón inicialmente
   if (submitButton) {
@@ -123,74 +170,88 @@ const FORM_ENDPOINT = "https://formspree.io/f/mjkglyjd";
   // Función para verificar que todos los campos requeridos estén completos
   function checkFormValidity() {
     if (!requiredInputs) return false;
-    const isValid = Array.from(requiredInputs).every(input => input.value.trim() !== '');
-    console.log('Validación del formulario:', isValid);
+    const privacyCheckbox = document.getElementById(`${formId}-privacy`);
+    const fieldsValid = Array.from(requiredInputs).every(
+      (input) => input.value.trim() !== "",
+    );
+    const privacyValid = privacyCheckbox ? privacyCheckbox.checked : false;
+    const isValid = fieldsValid && privacyValid;
     return isValid;
   }
 
   // Validar en tiempo real
-  requiredInputs?.forEach(input => {
-    input.addEventListener('input', () => {
-      console.log('Campo modificado:', input.id);
+  requiredInputs?.forEach((input) => {
+    input.addEventListener("input", () => {
       if (submitButton) {
         const isValid = checkFormValidity();
         submitButton.disabled = !isValid;
-        console.log('Estado del botón:', !isValid ? 'habilitado' : 'deshabilitado');
       }
     });
   });
 
+  // Validar checkbox de privacidad en tiempo real
+  const privacyCheckbox = document.getElementById(`${formId}-privacy`);
+  privacyCheckbox?.addEventListener("change", () => {
+    if (submitButton) {
+      const isValid = checkFormValidity();
+      submitButton.disabled = !isValid;
+    }
+  });
+
   // Manejar envío del formulario
-  form?.addEventListener('submit', async (e) => {
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    
+
     submitButton.disabled = true;
-    submitButton.textContent = 'Enviando...';
+    submitButton.textContent = "Enviando...";
 
     try {
       const formData = new FormData(form);
       const response = await fetch(form.action, {
-        method: 'POST',
+        method: "POST",
         body: formData,
         headers: {
-          'Accept': 'application/json'
-        }
+          Accept: "application/json",
+        },
       });
 
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(`Error al enviar el formulario: ${data.error || response.statusText}`);
+        throw new Error(
+          `Error al enviar el formulario: ${data.error || response.statusText}`,
+        );
       }
 
       const data = await response.json();
 
       if (data.ok) {
         form.reset();
-        document.getElementById('successModal')?.classList.remove('hidden');
+        document.getElementById("successModal")?.classList.remove("hidden");
         // Mantener el botón deshabilitado después de un envío exitoso
         submitButton.disabled = true;
         // @ts-ignore
         window.dataLayer?.push({
-          event: 'form_submit',
+          event: "form_submit",
           form_name: formId,
-          form_status: 'success'
+          form_status: "success",
         });
       } else {
-        throw new Error('Error al enviar el formulario');
+        throw new Error("Error al enviar el formulario");
       }
     } catch (error) {
-      console.error('Error:', error);
-      document.getElementById('errorModal')?.classList.remove('hidden');
+      console.error("Error:", error);
+      document.getElementById("errorModal")?.classList.remove("hidden");
       // En caso de error, habilitar el botón para reintentar
       submitButton.disabled = false;
       // @ts-ignore
       window.dataLayer?.push({
-        event: 'form_submit',
+        event: "form_submit",
         form_name: formId,
-        form_status: 'error'
+        form_status: "error",
       });
     } finally {
-      submitButton.textContent = 'Enviar';
+      submitButton.textContent = "Enviar";
     }
   });
-</script> 
+</script>
+

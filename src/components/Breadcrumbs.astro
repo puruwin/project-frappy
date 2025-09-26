@@ -1,0 +1,48 @@
+---
+interface Props {
+  items: Array<{
+    name: string;
+    url: string;
+  }>;
+}
+
+const { items } = Astro.props;
+
+// Schema markup para breadcrumbs
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    item: item.url,
+  })),
+};
+---
+
+<!-- Breadcrumbs Schema -->
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(breadcrumbSchema)}
+/>
+
+<!-- Breadcrumbs visuales (opcional) -->
+<nav aria-label="Breadcrumb" class="mb-4">
+  <ol class="flex items-center space-x-2 text-gray-600 text-sm">
+    {
+      items.map((item, index) => (
+        <li class="flex items-center">
+          {index > 0 && <span class="mx-2">/</span>}
+          {index === items.length - 1 ? (
+            <span class="font-medium text-gray-900">{item.name}</span>
+          ) : (
+            <a href={item.url} class="text-blue-600 hover:text-blue-800">
+              {item.name}
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

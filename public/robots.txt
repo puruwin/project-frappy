@@ -1,11 +1,19 @@
 User-agent: *
+# Bloquear páginas de redirección y utilidades
 Disallow: /card
-Disallow: /privacidad
 Disallow: /linktree
+Disallow: /privacidad
+Disallow: /blog
+Disallow: /portfolio
 
-# Sitemap
-Sitemap: https://creativefrappe.com/sitemap.xml
 # Permitir acceso a recursos estáticos
 Allow: /*.css$
 Allow: /*.js$
-Allow: /*.json$ 
+Allow: /*.json$
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.svg$
+
+# Sitemap
+Sitemap: https://creativefrappe.com/sitemap.xml 

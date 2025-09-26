@@ -31,7 +31,20 @@ const { title, description } = Astro.props;
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content="Astro" />
     <title>{title}</title>
+
+    <!-- Meta tags básicos por defecto -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="author" content="Frappé" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Preconnect para optimización -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
     <link rel="icon" href="/frappe_icon.svg" type="image/svg+xml" />
     <slot name="head" />
@@ -42,7 +55,7 @@ const { title, description } = Astro.props;
       src="https://www.googletagmanager.com/ns.html?id=GTM-WV5P6GRH"
       height="0"
       width="0"
-      style="display:none;visibility:hidden" />
+      style="display:none;visibility:hidden"></iframe>
     <!-- End Google Tag Manager (noscript) -->
 
     <slot />

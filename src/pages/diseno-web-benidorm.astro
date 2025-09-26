@@ -1,0 +1,953 @@
+---
+import BrutalHeader from "../components/BrutalHeader.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import WavyDivider from "../components/WavyDivider.astro";
+import FAQSection from "../components/FAQSection.astro";
+import ContactModal from "../components/ContactModal.astro";
+import CookieConsent from "../components/CookieConsent.astro";
+import ContactForm from "../components/ContactForm.astro";
+import AboutFrappeSection from "../components/AboutFrappeSection.astro";
+import Layout from "../layouts/Layout.astro";
+import "@fontsource-variable/montserrat";
+import "~/styles/theme.css";
+
+const heroData = {
+  title:
+    "Diseño Web en Benidorm: páginas rápidas, seguras y pensadas para convertir",
+  description:
+    "Encontrar una empresa de diseño web en Benidorm puede parecer sencillo, pero no todas las agencias ofrecen lo mismo. Algunas trabajan con plantillas genéricas, otras dependen de plataformas cargadas de plugins que terminan ralentizando tu web. Ofrecemos webs rápidas, personalizadas y diseñadas para generar resultados reales: más clientes, más visibilidad y más confianza.",
+  ctaText: "Solicita tu presupuesto gratis",
+  image: "/images/benidorm-web-design.jpg",
+};
+
+const navItems = [
+  { text: "¿Por qué elegir local?", url: "#ventajas-local" },
+  { text: "Servicios", url: "#servicios" },
+  { text: "Casos de éxito", url: "#casos-exito" },
+  { text: "Proceso de trabajo", url: "#proceso" },
+  { text: "Preguntas frecuentes", url: "#faq" },
+  { text: "Contacto", url: "#contacto" },
+];
+
+const faqData = [
+  {
+    question: "¿Cuánto cuesta una página web en Benidorm?",
+    answer:
+      "Depende del tipo de proyecto. Trabajamos con presupuesto a medida y opciones escalables según tus objetivos y necesidades específicas. Cada proyecto es único y se adapta a tu presupuesto y alcance.",
+  },
+  {
+    question: "¿Qué incluye un servicio de diseño web en Benidorm?",
+    answer:
+      "Diseño responsive, desarrollo a medida con Astro y TypeScript, SEO técnico, formularios de contacto, integración con analítica, certificado SSL, hosting el primer año y, si lo necesitas, Google Ads y mantenimiento continuo. Incluye SEO desde el inicio, optimizamos desde la estructura para que Google pueda indexar tu web desde el primer día.",
+  },
+  {
+    question: "¿Qué diferencia hay entre usar plantillas y un diseño a medida?",
+    answer:
+      "Con plantillas obtienes lo mismo que cientos de webs más. Con un diseño a medida, tu negocio tiene identidad propia, mayor velocidad y mejor posicionamiento. El diseño a medida ofrece más velocidad (menos de 1 segundo de carga), SEO técnico superior, mayor seguridad y flexibilidad total.",
+  },
+  {
+    question: "¿Cómo posicionar una web en Google en Benidorm?",
+    answer:
+      "Combinamos SEO técnico desde el código, contenidos locales optimizados, configuración completa de Google Business, estrategia de reseñas y rendimiento web superior. La constancia y la calidad del contenido son claves para el posicionamiento local.",
+  },
+  {
+    question: "¿Cuánto tarda una página web profesional?",
+    answer:
+      "De 1–2 semanas para una web básica hasta 3–6 semanas para un sitio completo con SEO, según alcance y funcionalidades. Nuestro proceso ágil con tecnología moderna nos permite ser más rápidos que la competencia. Una web básica puede estar lista en apenas 10 días.",
+  },
+  {
+    question: "¿Ofrecéis soporte después de la entrega?",
+    answer:
+      "Sí, todos los proyectos incluyen soporte técnico. Además, puedes contratar mantenimiento mensual si quieres olvidarte de lo técnico. Ofrecemos mantenimiento web continuo, actualizaciones de seguridad, copias de seguridad, soporte técnico y, cuando lo necesitas, soporte presencial en Benidorm. Sin permanencia obligatoria.",
+  },
+  {
+    question: "¿Se puede integrar Google Ads junto al diseño web?",
+    answer:
+      "Sí. Diseñamos landing pages ultra rápidas optimizadas para calidad y conversión, configuramos tracking completo y medimos todo para optimizar la inversión publicitaria y maximizar el ROI.",
+  },
+  {
+    question: "¿Qué diferencia a una empresa local de una agencia online?",
+    answer:
+      "Conocimiento profundo del mercado turístico de Benidorm, proximidad física, soporte presencial cuando sea necesario, comprensión del público local e internacional, y mayor alineación con tus objetivos comerciales específicos.",
+  },
+];
+
+const casosExito = [
+  {
+    title: "Web Inmobiliaria Costa Blanca",
+    description:
+      "Sitio web para inmobiliaria con buscador avanzado, integración CRM, blog optimizado para SEO local y captación de leads internacionales.",
+    image: "/portfolio/portfolio-2.webp",
+    tags: ["INMOBILIARIA", "CRM", "SEO LOCAL", "MULTIDIOMA"],
+    sector: "Inmobiliaria",
+    resultado: "300% más consultas online",
+  },
+  {
+    title: "PYME Servicios Verticales",
+    description:
+      "Página web para empresa de trabajos en altura en Alicante con formularios de contacto, SEO local y campañas de Google Ads optimizadas.",
+    image: "/portfolio/portfolio-1.webp",
+    tags: ["PYMES", "SEO", "GOOGLE ADS", "RESPONSIVE"],
+    sector: "Servicios",
+    resultado: "+150% conversiones",
+  },
+  {
+    title: "Web Multiidioma Eventos",
+    description:
+      "Sitio moderno para empresa de eventos culturales en Calpe con versiones en español, inglés y neerlandés, optimizado para turismo internacional.",
+    image: "/portfolio/portfolio-3.webp",
+    tags: ["MULTIDIOMA", "TURISMO", "SEO", "EVENTOS"],
+    sector: "Turismo/Cultura",
+    resultado: "Presencia internacional",
+  },
+];
+
+const { generator, site } = Astro;
+const image = new URL("splash.png", site);
+const title =
+  "Diseño Web en Benidorm: páginas rápidas, seguras y pensadas para convertir | Frappé";
+const description =
+  "Empresa de diseño y desarrollo web en Benidorm. Páginas rápidas con Astro y TypeScript, SEO local, tiendas online, Google Ads y mantenimiento. Especialistas en pymes locales, inmobiliarias, hoteles y restaurantes de la Costa Blanca.";
+const keywords =
+  "diseño web Benidorm, desarrollo web Benidorm, creación de páginas web Benidorm, diseño de sitios web Benidorm, agencia diseño web Benidorm, diseño tiendas online Benidorm, SEO local Benidorm, empresa diseño web Benidorm, programador web Benidorm, sitios web Benidorm";
+---
+
+<Layout title={title}>
+  <Fragment slot="head">
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={`${site}/diseno-web-benidorm`} />
+
+    <!-- Control de robots -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${site}/diseno-web-benidorm`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Frappé" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={`${site}/diseno-web-benidorm`} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Metadatos adicionales -->
+    <meta name="author" content="Frappé" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Geolocalización -->
+    <meta name="geo.region" content="ES-V" />
+    <meta name="geo.placename" content="Benidorm" />
+    <meta name="geo.position" content="38.5366;-0.1312" />
+    <meta name="ICBM" content="38.5366, -0.1312" />
+
+    <link rel="icon" type="image/svg+xml" href="/frappe_icon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Frappé - Diseño Web Benidorm",
+        "image": "https://creativefrappe.com/icon_inv_code.svg",
+        "url": "https://creativefrappe.com/diseno-web-benidorm",
+        "telephone": "+34608962213",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Benidorm",
+          "addressRegion": "Comunidad Valenciana",
+          "addressCountry": "ES"
+        },
+        "description": "Empresa de diseño web en Benidorm especializada en páginas rápidas, seguras y optimizadas con tecnología moderna. SEO local, tiendas online y Google Ads.",
+        "areaServed": ["Benidorm", "Costa Blanca", "Marina Baixa", "Alicante"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Servicios de Diseño Web Benidorm",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Diseño Web Corporativo Benidorm",
+                "description": "Páginas web corporativas a medida con Astro y TypeScript para empresas en Benidorm"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Tiendas Online Benidorm",
+                "description": "E-commerce optimizado para conversión y SEO local en Benidorm"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "SEO Local Benidorm",
+                "description": "Posicionamiento web local para empresas turísticas y pymes en Benidorm"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Google Ads Benidorm",
+                "description": "Publicidad digital local optimizada para empresas en Benidorm"
+              }
+            }
+          ]
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+  </Fragment>
+  <BrutalHeader navItems={navItems} />
+  <main>
+    <div class="relative">
+      <div class="absolute inset-0 z-0">
+        <img
+          src="/skyline-benidorm.webp"
+          alt="Skyline de Benidorm - Diseño web local"
+          class="h-full w-full object-cover opacity-40"
+        />
+        <div
+          class="absolute inset-0 bg-[var(--color-bg-secondary)] mix-blend-multiply"
+        >
+        </div>
+      </div>
+      <div class="relative z-10">
+        <Hero {...heroData} />
+      </div>
+    </div>
+
+    <section
+      id="ventajas-local"
+      class="bg-[var(--color-background)] px-4 py-16 sm:px-8"
+    >
+      <div class="mx-auto max-w-7xl">
+        <h2 class="mb-12 text-center font-bold text-4xl">
+          ¿Por qué elegir una empresa local de diseño web en Benidorm?
+        </h2>
+        <p class="mb-12 text-center text-lg">
+          Conocer el mercado es clave. Benidorm no es solo un destino turístico;
+          es una ciudad llena de pequeñas empresas, inmobiliarias, restaurantes
+          y profesionales que necesitan destacar frente a la competencia. Elegir
+          una empresa de la zona te da ventajas como <b
+            >trato cercano y directo</b
+          >, <b>conocimiento del mercado local</b> y <b
+            >soporte rápido y presencial</b
+          > cuando lo necesites.
+        </p>
+
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div class="text-center">
+            <div
+              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
+            >
+              <span class="font-bold text-2xl">🏖️</span>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">
+              Conocimiento del Mercado Local
+            </h3>
+            <p class="text-gray-600">
+              Con estrategias específicas para captar turismo y clientes de la
+              Costa Blanca. Cuando trabajé con negocios locales, vi que muchos
+              sufrían con webs lentas y mal optimizadas. Una solución
+              profesional les permitió pasar de "no aparecer en Google" a
+              recibir clientes directamente desde buscadores.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
+            >
+              <span class="font-bold text-2xl">📍</span>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">SEO Local Especializado</h3>
+            <p class="text-gray-600">
+              Optimización para búsquedas geolocalizadas, Google Business,
+              reseñas locales y contenidos preparados para multidioma.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
+            >
+              <span class="font-bold text-2xl">🤝</span>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Soporte Cercano</h3>
+            <p class="text-gray-600">
+              Trato directo sin intermediarios, soporte presencial cuando lo
+              necesitas y comunicación clara en tu idioma.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
+            >
+              <span class="font-bold text-2xl">🌍</span>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Público Internacional</h3>
+            <p class="text-gray-600">
+              Contenidos y arquitectura preparados para audiencia multidioma y
+              turismo nacional e internacional.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
+            >
+              <span class="font-bold text-2xl">⚖️</span>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Cumplimiento RGPD</h3>
+            <p class="text-gray-600">
+              Cumplimiento completo de normativas europeas, rendimiento web y
+              accesibilidad desde el primer día.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
+            >
+              <span class="font-bold text-2xl">⚡</span>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Tecnología Moderna</h3>
+            <p class="text-gray-600">
+              Sin WordPress ni plugins pesados. Usamos Astro y TypeScript para
+              velocidad inferior a 1 segundo y máxima seguridad.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <WavyDivider topColor="#E6F9FD" bottomColor="#101a32" />
+
+    <section
+      id="servicios"
+      class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8"
+    >
+      <div class="mx-auto max-w-7xl">
+        <h2 class="mb-12 text-center font-bold text-white text-4xl">
+          Servicios de diseño web en Benidorm
+        </h2>
+        <p class="mb-16 text-center text-white text-lg">
+          En Frappé ofrecemos un servicio integral, pensado para que no tengas
+          que preocuparte de nada técnico. Tú pones la idea, y nosotros la
+          convertimos en una web que funciona desde el primer día.
+        </p>
+
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <!-- Creación de páginas web corporativas -->
+          <div
+            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
+          >
+            <div
+              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
+            >
+              <svg
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">
+              Creación de Páginas Web Corporativas
+            </h3>
+            <p class="mb-4 text-gray-600">
+              Diseños únicos, adaptados a la imagen de tu negocio. Nada de
+              plantillas repetidas. Cada página se construye para reflejar lo
+              que te hace diferente.
+            </p>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Arquitectura limpia y escalable (sin WordPress)
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Diseño responsive y mobile-first
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Formularios de contacto y captación de leads
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Contenidos autogestionables con CMS headless
+              </li>
+            </ul>
+          </div>
+
+          <!-- Diseño de tiendas online -->
+          <div
+            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
+          >
+            <div
+              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
+            >
+              <svg
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+              </svg>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">
+              Diseño de Tiendas Online y E-commerce
+            </h3>
+            <p class="mb-4 text-gray-600">
+              Perfectas para inmobiliarias, comercios locales o negocios
+              turísticos. Con pasarelas de pago seguras y sistemas de reservas
+              online fáciles de usar.
+            </p>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Catálogo, variantes y cupones
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Pasarelas de pago, impuestos y envíos
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                SEO para e-commerce y datos estructurados
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Core Web Vitals optimizados
+              </li>
+            </ul>
+          </div>
+
+          <!-- SEO local -->
+          <div
+            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
+          >
+            <div
+              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
+            >
+              <svg
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+              </svg>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">
+              SEO Local y Posicionamiento en Google
+            </h3>
+            <p class="mb-4 text-gray-600">
+              De nada sirve tener una web bonita si nadie la encuentra. Por eso
+              optimizamos cada detalle para que tu negocio aparezca en búsquedas
+              como "restaurante en Benidorm" o "inmobiliaria en Benidorm".
+            </p>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Optimización on-page y arquitectura
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Google Business: NAP, categorías, reseñas
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Estrategia de contenidos locales y multidioma
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Google Analytics y Tag Manager
+              </li>
+            </ul>
+          </div>
+
+          <!-- Google Ads -->
+          <div
+            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
+          >
+            <div
+              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
+            >
+              <svg
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">
+              Publicidad Digital con Google Ads
+            </h3>
+            <p class="mb-4 text-gray-600">
+              Si quieres resultados inmediatos, gestionamos campañas de Google
+              Ads adaptadas a tu presupuesto. Lo mejor es combinarlas con SEO
+              para obtener clientes a corto y largo plazo.
+            </p>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Búsqueda local, Display y Remarketing
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Tracking de conversiones y eventos
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Optimización de Quality Score
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                ROI optimizado y reportes transparentes
+              </li>
+            </ul>
+          </div>
+
+          <!-- Mantenimiento -->
+          <div
+            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
+          >
+            <div
+              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
+            >
+              <svg
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">Mantenimiento y Soporte Web</h3>
+            <p class="mb-4 text-gray-600">
+              No tendrás que preocuparte por actualizaciones, copias de
+              seguridad o caídas inesperadas. El soporte es parte del servicio,
+              con la tranquilidad de hablar siempre con la misma persona.
+            </p>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Actualizaciones y parches de seguridad
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Monitorización de uptime y rendimiento
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Cambios en contenidos e integración continua
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-500">✓</span>
+                Auditorías de SEO técnico y Core Web Vitals
+              </li>
+            </ul>
+          </div>
+
+          <!-- Beneficios destacados -->
+          <div
+            class="rounded-lg border-2 border-[var(--color-secondary)] bg-gradient-to-br from-[var(--color-secondary)] to-[var(--color-primary)] p-6 text-white shadow-lg"
+          >
+            <div
+              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-white/20"
+            >
+              <span class="font-bold text-2xl">⚡</span>
+            </div>
+            <h3 class="mb-3 font-bold text-xl">
+              Beneficios de un Diseño Web Profesional
+            </h3>
+            <p class="mb-4">
+              Muchos negocios en Benidorm empiezan con una plantilla barata. El
+              problema es que a medio plazo la web se vuelve lenta, insegura y
+              difícil de mantener. Un diseño web profesional ofrece velocidad de
+              carga inferior a 1 segundo, diseño adaptado a tu negocio, mayor
+              seguridad y mejor posicionamiento en buscadores.
+            </p>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center gap-2">
+                <span class="text-yellow-300">⚡</span>
+                Velocidad de carga sub-segundo
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-yellow-300">🔒</span>
+                Seguridad y estabilidad superior
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-yellow-300">📈</span>
+                SEO técnico desde el código
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-yellow-300">💰</span>
+                Coste total menor a medio plazo
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <WavyDivider topColor="#101a32" bottomColor="#E6F9FD" />
+
+    <section
+      id="casos-exito"
+      class="bg-[var(--color-background)] px-4 py-16 sm:px-8"
+    >
+      <div class="mx-auto max-w-7xl">
+        <h2 class="mb-12 text-center font-bold text-4xl">
+          Casos de éxito en Benidorm y la Costa Blanca
+        </h2>
+        <p class="mb-16 text-center text-lg">
+          Hemos trabajado con sectores muy diversos: inmobiliarias, con webs que
+          incluyen buscadores de propiedades y blogs optimizados para captar
+          tráfico; e-commerce turísticos, diseñados para vender a visitantes
+          nacionales e internacionales; empresas locales, como negocios de
+          servicios o autónomos que necesitaban visibilidad online; y startups,
+          que buscaban un socio tecnológico que les ayudara a crecer desde el
+          inicio. En cada caso, el objetivo fue el mismo: <b
+            >crear una web que funcione como un motor de clientes</b
+          >.
+        </p>
+
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {
+            casosExito.map((caso) => (
+              <div class="group rounded-xl bg-white p-6 shadow-xl transition-transform hover:scale-105">
+                <div class="mb-4 overflow-hidden rounded-lg">
+                  <img
+                    src={caso.image}
+                    alt={`Captura de ${caso.title}`}
+                    class="h-48 w-full object-cover transition-transform group-hover:scale-110"
+                  />
+                </div>
+                <div class="mb-4 flex items-center justify-between">
+                  <span class="inline-block rounded-full bg-[var(--color-primary)] px-3 py-1 font-semibold text-white text-xs">
+                    {caso.sector}
+                  </span>
+                  <span class="rounded-md bg-green-100 px-2 py-1 font-medium text-green-800 text-xs">
+                    {caso.resultado}
+                  </span>
+                </div>
+                <h3 class="mb-3 font-bold text-xl">{caso.title}</h3>
+                <p class="mb-4 leading-relaxed text-gray-600 text-sm">
+                  {caso.description}
+                </p>
+                <div class="mb-4 flex flex-wrap gap-2">
+                  {caso.tags.map((tag) => (
+                    <span class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="mt-16 text-center">
+          <p class="mb-8 text-lg">
+            ¿Te gusta lo que ves? <strong
+              >Podemos crear algo similar para tu negocio en Benidorm</strong
+            >
+          </p>
+          <button
+            class="inline-flex items-center rounded-lg bg-[var(--color-primary)] px-8 py-4 font-semibold text-white transition-colors text-lg hover:bg-opacity-90"
+            onclick="MicroModal.show('modal-1')"
+          >
+            <svg
+              class="mr-2 h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.955 8.955 0 01-4.126-.98L3 21l1.98-5.874A8.955 8.955 0 013 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"
+              ></path>
+            </svg>
+            Ver mi presupuesto gratis
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <WavyDivider topColor="#E6F9FD" bottomColor="#a9e7fa" />
+
+    <section
+      id="proceso"
+      class="bg-[var(--color-bg-secondary)] px-4 py-16 text-[var(--color-text)] sm:px-8"
+    >
+      <div class="mx-auto max-w-7xl">
+        <h2 class="mb-12 text-center font-bold text-4xl">
+          Proceso de trabajo: cómo llevamos tu web de la idea al lanzamiento
+        </h2>
+        <ol class="mx-auto max-w-3xl space-y-8">
+          <li class="flex items-start gap-6">
+            <span
+              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
+              >1</span
+            >
+            <div>
+              <h3 class="mb-2 font-bold text-xl">Reunión inicial</h3>
+              <p>
+                Escuchamos tus objetivos. Hablamos por videollamada o
+                presencialmente en Benidorm para conocer tu proyecto y definir
+                tus objetivos.
+              </p>
+            </div>
+          </li>
+          <li class="flex items-start gap-6">
+            <span
+              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
+              >2</span
+            >
+            <div>
+              <h3 class="mb-2 font-bold text-xl">Propuesta personalizada</h3>
+              <p>En menos de 24 horas, clara y sin letra pequeña.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-6">
+            <span
+              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
+              >3</span
+            >
+            <div>
+              <h3 class="mb-2 font-bold text-xl">Desarrollo y pruebas</h3>
+              <p>Diseño, programación y revisión conjunta.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-6">
+            <span
+              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
+              >4</span
+            >
+            <div>
+              <h3 class="mb-2 font-bold text-xl">Entrega final</h3>
+              <p>Tu web lista para funcionar.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-6">
+            <span
+              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
+              >5</span
+            >
+            <div>
+              <h3 class="mb-2 font-bold text-xl">Activación</h3>
+              <p>SEO, campañas y mantenimiento opcional.</p>
+            </div>
+          </li>
+        </ol>
+        <p class="mt-12 text-center text-lg">
+          <b>Plazos orientativos:</b> una web básica puede estar lista en 1–2 semanas;
+          proyectos completos suelen tardar entre 3–6 semanas según alcance. Así
+          logramos que un proyecto completo esté listo en pocas semanas, y una web
+          básica en apenas 10 días.
+        </p>
+      </div>
+    </section>
+
+    <WavyDivider topColor="#a9e7fa" bottomColor="#101a32" />
+
+    <section
+      id="faq"
+      class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8"
+    >
+      <div class="mx-auto max-w-7xl">
+        <h2
+          class="mb-8 text-center font-sans font-bold text-white text-3xl sm:mb-16 sm:text-4xl"
+        >
+          Preguntas frecuentes sobre diseño web en Benidorm
+        </h2>
+        <FAQSection faqs={faqData} />
+      </div>
+    </section>
+
+    <WavyDivider topColor="#101a32" bottomColor="#e6f9fd" />
+
+    <section
+      id="contacto"
+      class="bg-[var(--color-background)] px-4 py-16 sm:px-8"
+    >
+      <div class="mx-auto max-w-7xl">
+        <div
+          class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16"
+        >
+          <!-- Texto y beneficios -->
+          <div class="text-center lg:text-left">
+            <h2
+              class="mb-4 font-sans font-bold text-[var(--color-text)] text-2xl sm:mb-6 sm:text-3xl"
+            >
+              ¿Buscas una empresa de diseño web en Benidorm que te ayude a
+              captar más clientes?
+            </h2>
+            <p
+              class="mb-6 font-sans leading-relaxed text-[var(--color-text)] text-base sm:mb-8 sm:text-lg"
+            >
+              Si buscas una empresa de diseño web en Benidorm que combine
+              cercanía, experiencia y resultados, Frappé es tu mejor opción.
+              Ofrecemos webs rápidas, seguras y optimizadas, con un trato
+              directo y sin complicaciones. Tanto si eres una inmobiliaria, un
+              restaurante, un autónomo o una startup, tendrás una web pensada
+              para destacar en Google y convertir visitas en clientes.
+            </p>
+
+            <ul class="space-y-3 sm:space-y-4">
+              {
+                [
+                  "Propuesta detallada y transparente",
+                  "Sin costes ocultos ni sorpresas",
+                  "Respuesta en menos de 24 horas",
+                  "Garantía de satisfacción",
+                  "Atención personalizada en Benidorm",
+                ].map((benefit) => (
+                  <li class="flex items-center gap-2 font-sans text-[var(--color-text)] sm:gap-3">
+                    <svg
+                      class="h-5 w-5 text-[var(--color-secondary)]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    {benefit}
+                  </li>
+                ))
+              }
+            </ul>
+
+            <!-- Datos de contacto destacados -->
+            <div class="mt-8 rounded-lg bg-gray-50 p-6">
+              <h3 class="mb-4 font-bold text-lg">Contacto directo:</h3>
+              <div class="space-y-2">
+                <p class="flex items-center gap-2 text-sm">
+                  <span class="font-medium">📞</span>
+                  <a
+                    href="tel:+34608962213"
+                    class="hover:text-[var(--color-primary)]"
+                  >
+                    +34 608 962 213
+                  </a>
+                </p>
+                <p class="flex items-center gap-2 text-sm">
+                  <span class="font-medium">✉️</span>
+                  <a
+                    href="mailto:frappecreativity@gmail.com"
+                    class="hover:text-[var(--color-primary)]"
+                  >
+                    frappecreativity@gmail.com
+                  </a>
+                </p>
+                <p class="flex items-center gap-2 text-sm">
+                  <span class="font-medium">💬</span>
+                  <a
+                    href="https://wa.me/34608962213"
+                    target="_blank"
+                    class="hover:text-[var(--color-primary)]"
+                  >
+                    WhatsApp directo
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulario -->
+          <ContactForm
+            formId="benidormWebDesignForm"
+            title="Cuéntanos sobre tu proyecto en Benidorm"
+            description="Rellena el formulario y nos pondremos en contacto contigo lo antes posible para enviarte un presupuesto personalizado para tu negocio en Benidorm."
+          />
+        </div>
+      </div>
+    </section>
+
+    <WavyDivider topColor="#E6F9FD" bottomColor="#a9e7fa" />
+
+    <AboutFrappeSection
+      title="Conoce al diseñador web detrás de Frappé"
+      description="David Pérez, especialista en diseño web moderno para empresas en Benidorm. Creo páginas web que no solo se ven bien, sino que convierten visitantes en clientes con tecnología de última generación."
+    />
+
+    <WavyDivider topColor="#a9e7fa" bottomColor="black" />
+
+    <Footer navItems={navItems} />
+    <ContactModal />
+    <CookieConsent />
+  </main>
+</Layout>
+
+<script is:inline>
+  // Inicializar MicroModal cuando se cargue la página
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof MicroModal !== "undefined") {
+      MicroModal.init({
+        openTrigger: "data-micromodal-trigger",
+        closeTrigger: "data-micromodal-close",
+        openClass: "is-open",
+        disableScroll: true,
+        disableFocus: false,
+        awaitOpenAnimation: false,
+        awaitCloseAnimation: false,
+        debugMode: false,
+      });
+    }
+  });
+</script>
