@@ -1,0 +1,101 @@
+---
+// Tipo para proyecto de portfolio
+interface Project {
+  title: string;
+  description: string;
+  url: string;
+  image: string;
+  tags: string[];
+  date: string;
+}
+
+interface Props {
+  projects: Project[];
+  title?: string;
+  description?: string;
+}
+
+const {
+  projects,
+  title = "Proyectos que nos enorgullecen",
+  description = "Descubre algunos de los sitios web que hemos creado. Cada proyecto refleja nuestro compromiso con la calidad, funcionalidad y diseño.",
+} = Astro.props;
+---
+
+<section
+  id="portfolio"
+  class="bg-gradient-to-br from-[#29c1f1]/10 to-[#f5478f]/10 px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+>
+  <div class="mx-auto max-w-7xl">
+    <div class="mb-16 text-center">
+      <h2
+        class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+      >
+        {title}
+      </h2>
+      <p
+        class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+      >
+        {description}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        projects.map((project) => (
+          <div class="group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-800">
+            <div class="relative overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.title}
+                class="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <div class="mb-3 flex items-center justify-between">
+                <h3 class="font-bold text-gray-900 text-xl dark:text-white">
+                  {project.title}
+                </h3>
+                <span class="font-medium text-[#29c1f1] text-sm">
+                  {project.date}
+                </span>
+              </div>
+              <p class="mb-4 leading-relaxed text-gray-600 dark:text-gray-400">
+                {project.description}
+              </p>
+              <div class="mb-6 flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span class="rounded-full bg-gradient-to-r from-[#29c1f1]/10 to-[#f5478f]/10 px-3 py-1 font-medium text-gray-700 text-xs dark:text-gray-300">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#29c1f1] to-[#f5478f] px-6 py-3 font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+              >
+                <svg
+                  class="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+                Ver sitio web
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

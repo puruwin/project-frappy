@@ -1,117 +1,260 @@
 ---
-import BrutalHeader from "../components/BrutalHeader.astro";
-import Footer from "../components/Footer.astro";
-import Hero from "../components/Hero.astro";
-import WavyDivider from "../components/WavyDivider.astro";
-import FAQSection from "../components/FAQSection.astro";
-import ContactModal from "../components/ContactModal.astro";
-import CookieConsent from "../components/CookieConsent.astro";
-import ContactForm from "../components/ContactForm.astro";
-import AboutFrappeSection from "../components/AboutFrappeSection.astro";
-import Layout from "../layouts/Layout.astro";
-import SEOHead from "../components/SEOHead.astro";
-import { generateLocalBusinessSchema } from "../config/seo.ts";
+// Importar componentes y estilos
+import "../styles/theme.css";
 import "@fontsource-variable/montserrat";
-import "~/styles/theme.css";
+import Portfolio from "../components/Portfolio.astro";
+import AboutFrappeSection from "../components/AboutFrappeSection.astro";
 
-const heroData = {
-  title: "Servicios web digitales para particulares y pymes",
-  description:
-    "Transformamos tu presencia digital con servicios web profesionales: creación de páginas web, SEO, Google Ads, soporte técnico y consultoría en IA. Soluciones personalizadas para hacer crecer tu negocio online.",
-  ctaText: "Solicita tu consulta gratuita",
-  image: "/images/digital-services.jpg",
-};
-
+// Navegación
 const navItems = [
-  { text: "Nuestros servicios", url: "#servicios" },
+  { text: "Servicios", url: "#servicios" },
   { text: "Portfolio", url: "#portfolio" },
-  { text: "¿Por qué elegirnos?", url: "#beneficios" },
-  { text: "Proceso de trabajo", url: "#proceso" },
-  { text: "Preguntas frecuentes", url: "#faq" },
+  { text: "Beneficios", url: "#beneficios" },
+  { text: "Proceso", url: "#proceso" },
+  { text: "FAQ", url: "#faq" },
   { text: "Contacto", url: "#contacto" },
 ];
 
-const faqData = [
+// Configuración del perfil/empresa
+const profile = {
+  name: "Frappé",
+  title: "Servicios Web Digitales para Particulares y Pymes",
+  bio: "Transformamos tu presencia digital con servicios profesionales: creación de páginas web, SEO, Google Ads, soporte técnico y consultoría en IA.",
+  avatar: "/frappe_icon.svg",
+  location: "Benidorm, España",
+};
+
+// Servicios principales
+const services = [
   {
-    question: "¿Qué incluye el servicio de creación de páginas web?",
-    answer:
-      "Incluye diseño responsive, desarrollo con código limpio, optimización SEO técnico, formularios de contacto, integración con redes sociales, certificado SSL y hosting durante el primer año. Todo personalizado según tus necesidades.",
+    id: "creacion-web",
+    title: "Creación de Páginas Web",
+    description:
+      "Diseñamos webs modernas, rápidas y optimizadas que convierten visitantes en clientes.",
+    icon: "code",
+    featured: true,
+    features: [
+      "Diseño responsive para móviles",
+      "Optimización para velocidad",
+      "SEO técnico incluido",
+    ],
   },
   {
-    question: "¿Podéis recuperar y mejorar mi web abandonada?",
-    answer:
-      "Sí, especializamos en reactivar webs abandonadas. Analizamos el estado actual, recuperamos el contenido útil, actualizamos la tecnología, mejoramos el diseño y optimizamos para dispositivos móviles y buscadores.",
+    id: "reactivacion",
+    title: "Reactivación de Webs Abandonadas",
+    description:
+      "¿Tu web está obsoleta? La recuperamos, actualizamos y modernizamos.",
+    icon: "refresh",
+    featured: false,
+    features: [
+      "Recuperación de contenido",
+      "Actualización tecnológica",
+      "Nuevo diseño moderno",
+    ],
   },
   {
-    question: "¿En qué consiste el servicio de consultoría en IA?",
-    answer:
-      "Analizamos tus procesos de negocio e identificamos oportunidades para implementar IA: automatización de tareas, chatbots para atención al cliente, análisis de datos, optimización de inventario y más. Te acompañamos en toda la implementación.",
+    id: "seo",
+    title: "SEO y Posicionamiento Web",
+    description:
+      "Conseguimos que tu web aparezca en las primeras posiciones de Google.",
+    icon: "chart",
+    featured: false,
+    features: [
+      "Análisis de palabras clave",
+      "Optimización técnica",
+      "Estrategia de contenidos",
+    ],
   },
   {
-    question: "¿Ofrecéis soporte técnico para problemas informáticos?",
-    answer:
-      "Sí, ofrecemos soporte técnico presencial y remoto: configuración de equipos, resolución de problemas de software/hardware, instalación de sistemas, backup de datos, ciberseguridad y formación básica en herramientas digitales.",
+    id: "google-ads",
+    title: "Google Ads",
+    description:
+      "Campañas publicitarias optimizadas con el mejor retorno de inversión.",
+    icon: "target",
+    featured: false,
+    features: [
+      "Configuración de campañas",
+      "Optimización continua",
+      "Informes detallados",
+    ],
   },
   {
-    question: "¿Cuánto tiempo tardáis en entregar un proyecto web?",
-    answer:
-      "Depende del alcance: una web básica entre 1-2 semanas, una web completa con SEO entre 3-4 semanas, y proyectos complejos con IA entre 4-8 semanas. Siempre establecemos cronogramas claros desde el inicio.",
+    id: "soporte",
+    title: "Soporte Técnico Informático",
+    description:
+      "Asistencia técnica presencial y remota para mantener tu negocio funcionando.",
+    icon: "support",
+    featured: false,
+    features: [
+      "Reparación de equipos",
+      "Configuración de sistemas",
+      "Backup y seguridad",
+    ],
   },
   {
-    question: "¿Trabajáis con pequeñas empresas y autónomos?",
-    answer:
-      "Absolutamente. Ofrecemos soluciones escalables que se adaptan a cualquier necesidad. Puedes empezar con servicios básicos y ampliar según crezca tu negocio. Trabajamos con empresas de todos los tamaños.",
-  },
-  {
-    question: "¿Qué diferencia vuestro servicio de otras agencias?",
-    answer:
-      "Trabajamos con tecnología moderna sin plantillas genéricas, ofrecemos trato directo sin intermediarios, combinamos servicios web con consultoría en IA, y brindamos soporte técnico integral. Todo en un solo lugar.",
-  },
-  {
-    question: "¿Incluís formación para gestionar mi web?",
-    answer:
-      "Sí, incluimos sesiones de formación para que aprendas a gestionar contenidos básicos, hacer copias de seguridad, y utilizar las herramientas que implementemos. También ofrecemos manuales personalizados.",
+    id: "ia",
+    title: "Consultoría e Implementación de IA",
+    description:
+      "Automatizamos tus procesos con inteligencia artificial para ahorrar tiempo y costes.",
+    icon: "ai",
+    featured: true,
+    features: [
+      "Chatbots inteligentes",
+      "Automatización de tareas",
+      "Análisis predictivo",
+    ],
   },
 ];
 
-const portfolioData = [
+// Portfolio
+const portfolio = [
   {
-    title: "Tienda Online Premium",
+    title: "Web para PYMES",
     description:
-      "Plataforma de e-commerce completa con catálogo de productos, carrito de compras, pasarela de pago integrada y panel de administración.",
+      "Página web para pyme de trabajos en altura con cuerda en Alicante.",
+    url: "https://bravotrabajosverticales.es/",
     image: "/portfolio/portfolio-1.webp",
-    tags: ["E-COMMERCE", "SEO", "RESPONSIVE", "ANALYTICS"],
+    tags: ["PYMES", "SEO", "Responsive", "Google Ads"],
+    date: "09/2025",
   },
   {
     title: "Web Inmobiliaria",
     description:
-      "Sitio web para inmobiliaria moderno con formularios de búsqueda, integración con CRM, blog y optimización SEO para posicionamiento local.",
+      "Sitio web moderno con formularios de búsqueda, integración con CRM y SEO local.",
+    url: "https://habilex.es/",
     image: "/portfolio/portfolio-2.webp",
-    tags: ["INMOBILIARIA", "CRM", "BLOG", "SEO LOCAL"],
+    tags: ["Inmobiliaria", "CRM", "Blog", "SEO Local"],
+    date: "12/2024",
   },
   {
-    title: "Tecnología Moderna",
+    title: "Web Multilenguaje",
     description:
-      "Aplicación web innovadora con chatbot inteligente, automatización de procesos y dashboard analytics para optimizar la experiencia del usuario.",
+      "Página web para empresa de eventos culturales en español, inglés y neerlandés.",
+    url: "https://lapalomablanca.es/",
     image: "/portfolio/portfolio-3.webp",
-    tags: ["IA", "CHATBOT", "AUTOMATIZACIÓN", "DASHBOARD"],
+    tags: ["Traducciones", "SEO", "Responsive", "Moderno"],
+    date: "07/2025",
   },
 ];
 
-const { generator, site } = Astro;
-const image = new URL("splash.png", site);
+// Beneficios
+const benefits = [
+  {
+    emoji: "🚀",
+    title: "Tecnología Moderna",
+    description:
+      "Utilizamos las últimas tecnologías y mejores prácticas. Nada de WordPress lento o plantillas obsoletas.",
+  },
+  {
+    emoji: "🎯",
+    title: "Enfoque en Resultados",
+    description:
+      "Cada proyecto tiene objetivos claros: más visitas, más clientes, más ventas.",
+  },
+  {
+    emoji: "🤖",
+    title: "Especialistas en IA",
+    description:
+      "Somos pioneros en implementar IA en pequeñas y medianas empresas.",
+  },
+  {
+    emoji: "💬",
+    title: "Trato Directo",
+    description:
+      "Trabajas directamente con nosotros, sin comerciales ni intermediarios.",
+  },
+  {
+    emoji: "🛠️",
+    title: "Soporte Integral",
+    description:
+      "Desde el diseño web hasta la reparación de tu ordenador. Todo en un solo lugar.",
+  },
+  {
+    emoji: "💰",
+    title: "Transparencia Total",
+    description:
+      "Sin costes ocultos ni sorpresas. Presupuestos claros y comunicación transparente.",
+  },
+];
+
+// Proceso
+const process = [
+  {
+    step: "1",
+    title: "Consulta inicial gratuita",
+    description:
+      "Analizamos tu situación actual, objetivos y presupuesto. Identificamos oportunidades de mejora.",
+  },
+  {
+    step: "2",
+    title: "Propuesta personalizada",
+    description:
+      "Te entregamos una propuesta detallada con servicios recomendados, cronograma y costes transparentes.",
+  },
+  {
+    step: "3",
+    title: "Desarrollo e implementación",
+    description:
+      "Ejecutamos el proyecto manteniendo comunicación constante y mostrando avances periódicos.",
+  },
+  {
+    step: "4",
+    title: "Entrega y formación",
+    description:
+      "Te entregamos el proyecto completo y te formamos para que puedas gestionarlo de forma autónoma.",
+  },
+  {
+    step: "5",
+    title: "Soporte continuo",
+    description:
+      "Ofrecemos mantenimiento, actualizaciones y nuevas funcionalidades según vaya creciendo tu negocio.",
+  },
+];
+
+// FAQs
+const faqs = [
+  {
+    question: "¿Qué incluye el servicio de creación de páginas web?",
+    answer:
+      "Incluye diseño responsive, desarrollo con código limpio, optimización SEO técnico, formularios de contacto, integración con redes sociales, certificado SSL y hosting durante el primer año.",
+  },
+  {
+    question: "¿Podéis recuperar y mejorar mi web abandonada?",
+    answer:
+      "Sí, especializamos en reactivar webs abandonadas. Analizamos el estado actual, recuperamos el contenido útil, actualizamos la tecnología, mejoramos el diseño y optimizamos para dispositivos móviles.",
+  },
+  {
+    question: "¿En qué consiste el servicio de consultoría en IA?",
+    answer:
+      "Analizamos tus procesos e identificamos oportunidades para implementar IA: automatización de tareas, chatbots para atención al cliente, análisis de datos, optimización de inventario y más.",
+  },
+  {
+    question: "¿Cuánto tiempo tardáis en entregar un proyecto web?",
+    answer:
+      "Depende del alcance: una web básica entre 1-2 semanas, una web completa con SEO entre 3-4 semanas, y proyectos complejos con IA entre 4-8 semanas.",
+  },
+];
+
+// Meta tags para SEO
 const title = "Servicios Web Digitales para Particulares y Pymes | Frappé";
 const description =
-  "Servicios web profesionales para particulares y pymes: creación de páginas web, SEO, Google Ads, soporte técnico informático y consultoría en IA. Soluciones digitales personalizadas para hacer crecer tu negocio.";
+  "Servicios web profesionales: creación de páginas web, SEO, Google Ads, soporte técnico informático y consultoría en IA. Soluciones digitales personalizadas para hacer crecer tu negocio.";
 const keywords =
-  "servicios web digitales, creación páginas web pymes, SEO local, Google Ads, soporte técnico informático, consultoría IA empresas, reactivación webs abandonadas, mantenimiento web, diseño web profesional, automatización procesos IA";
+  "servicios web digitales, creación páginas web pymes, SEO local, Google Ads, soporte técnico informático, consultoría IA empresas";
 ---
 
-<Layout title={title}>
-  <Fragment slot="head">
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
-    <link rel="canonical" href={`${site}/servicios-web-digitales`} />
+    <link
+      rel="canonical"
+      href="https://creativefrappe.com/servicios-web-digitales"
+    />
 
     <!-- Control de robots -->
     <meta name="robots" content="index, follow" />
@@ -119,881 +262,625 @@ const keywords =
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={`${site}/servicios-web-digitales`} />
+    <meta
+      property="og:url"
+      content="https://creativefrappe.com/servicios-web-digitales"
+    />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:image" content="https://creativefrappe.com/splash.png" />
     <meta property="og:site_name" content="Frappé" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content={`${site}/servicios-web-digitales`} />
+    <meta
+      name="twitter:url"
+      content="https://creativefrappe.com/servicios-web-digitales"
+    />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
+    <meta
+      name="twitter:image"
+      content="https://creativefrappe.com/splash.png"
+    />
 
     <!-- Metadatos adicionales -->
     <meta name="author" content="Frappé" />
     <meta name="theme-color" content="#000000" />
     <meta name="format-detection" content="telephone=no" />
 
-    <link rel="icon" type="image/svg+xml" href="/frappe_icon.svg" />
+    <!-- Schema Markup -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "Frappé - Servicios Web Digitales",
-        "image": "https://creativefrappe.com/icon_inv_code.svg",
+        "description": "Servicios web profesionales para particulares y pymes",
         "url": "https://creativefrappe.com/servicios-web-digitales",
         "telephone": "+34608962213",
-        "description": "Servicios web profesionales para particulares y pymes: creación de páginas web, SEO, Google Ads, soporte técnico y consultoría en IA.",
-        "serviceArea": "España",
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Servicios Web Digitales",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Creación de Páginas Web",
-                "description": "Diseño y desarrollo de sitios web profesionales y responsivos"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "SEO y Posicionamiento Web",
-                "description": "Optimización para motores de búsqueda y mejora de visibilidad online"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Google Ads",
-                "description": "Gestión de campañas publicitarias en Google"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Soporte Técnico Informático",
-                "description": "Asistencia técnica presencial y remota para equipos y sistemas"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Consultoría en IA",
-                "description": "Asesoramiento e implementación de soluciones de inteligencia artificial"
-              }
-            }
-          ]
+        "email": "frappecreativity@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Benidorm",
+          "addressCountry": "ES"
         }
       }
     </script>
-    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
-  </Fragment>
-  <BrutalHeader navItems={navItems} />
-  <main>
-    <div class="relative">
-      <div class="absolute inset-0 z-0">
-        <img
-          src="/skyline-benidorm-2.webp"
-          alt="Transformación digital para empresas"
-          class="h-full w-full object-cover opacity-40"
-        />
-        <div
-          class="absolute inset-0 bg-[var(--color-bg-secondary)] mix-blend-multiply"
-        >
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/frappe_icon.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body
+    class="bg-gray-50 font-sans antialiased dark:bg-gray-900"
+    style="font-family: var(--font-sans);"
+  >
+    <!-- Hero Section with Gradient and Navigation -->
+    <header class="relative overflow-hidden">
+      <!-- Gradient Background -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-[#f9d034] via-[#29c1f1] to-[#f5478f]"
+      >
+      </div>
+
+      <!-- Navigation -->
+      <nav
+        class="relative z-20 mx-auto flex max-w-7xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8"
+      >
+        <div class="flex items-center gap-2 font-bold text-white text-xl">
+          <img src="/frappe_icon.svg" alt="Frappé" class="h-10 w-10" />
+          <span>Frappé</span>
         </div>
-      </div>
-      <div class="relative z-10">
-        <Hero {...heroData} />
-      </div>
-    </div>
 
-    <section
-      id="servicios"
-      class="bg-[var(--color-background)] px-4 py-16 sm:px-8"
-    >
-      <div class="mx-auto max-w-7xl">
-        <h2 class="mb-12 text-center font-bold text-4xl">
-          Servicios digitales completos para hacer crecer tu negocio
-        </h2>
-        <p class="mb-16 text-center text-lg">
-          Desde la creación de tu primera página web hasta la implementación de
-          <b>inteligencia artificial</b> en tus procesos. Todo lo que necesitas para
-          destacar en el mundo digital.
-        </p>
-
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <!-- Creación de Páginas Web -->
-          <div
-            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
-          >
-            <div
-              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
-            >
-              <svg
-                class="h-6 w-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-              </svg>
-            </div>
-            <h3 class="mb-3 font-bold text-xl">Creación de Páginas Web</h3>
-            <p class="mb-4 text-gray-600">
-              Diseñamos webs modernas, rápidas y optimizadas que convierten
-              visitantes en clientes. Sin plantillas genéricas, cada proyecto es
-              único.
-            </p>
-            <ul class="space-y-2 text-sm">
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Diseño responsive para móviles
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Optimización para velocidad
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                SEO técnico incluido
-              </li>
-            </ul>
-          </div>
-
-          <!-- Reactivación de Webs -->
-          <div
-            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
-          >
-            <div
-              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
-            >
-              <svg
-                class="h-6 w-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="mb-3 font-bold text-xl">
-              Reactivación de Webs Abandonadas
-            </h3>
-            <p class="mb-4 text-gray-600">
-              ¿Tu web está obsoleta o no funciona? La recuperamos, actualizamos
-              y modernizamos para que vuelva a ser rentable.
-            </p>
-            <ul class="space-y-2 text-sm">
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Recuperación de contenido
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Actualización tecnológica
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Nuevo diseño moderno
-              </li>
-            </ul>
-          </div>
-
-          <!-- SEO y Posicionamiento -->
-          <div
-            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
-          >
-            <div
-              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
-            >
-              <svg
-                class="h-6 w-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-              </svg>
-            </div>
-            <h3 class="mb-3 font-bold text-xl">SEO y Posicionamiento Web</h3>
-            <p class="mb-4 text-gray-600">
-              Conseguimos que tu web aparezca en las primeras posiciones de
-              Google para que tus clientes te encuentren fácilmente.
-            </p>
-            <ul class="space-y-2 text-sm">
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Análisis de palabras clave
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Optimización técnica
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Estrategia de contenidos
-              </li>
-            </ul>
-          </div>
-
-          <!-- Google Ads -->
-          <div
-            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
-          >
-            <div
-              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
-            >
-              <svg
-                class="h-6 w-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="mb-3 font-bold text-xl">Google Ads</h3>
-            <p class="mb-4 text-gray-600">
-              Campañas publicitarias optimizadas para generar leads y ventas con
-              el mejor retorno de inversión posible.
-            </p>
-            <ul class="space-y-2 text-sm">
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Configuración de campañas
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Optimización continua
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Informes detallados
-              </li>
-            </ul>
-          </div>
-
-          <!-- Soporte Técnico -->
-          <div
-            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
-          >
-            <div
-              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
-            >
-              <svg
-                class="h-6 w-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="mb-3 font-bold text-xl">Soporte Técnico Informático</h3>
-            <p class="mb-4 text-gray-600">
-              Asistencia técnica presencial y remota para resolver cualquier
-              problema informático y mantener tu negocio funcionando.
-            </p>
-            <ul class="space-y-2 text-sm">
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Reparación de equipos
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Configuración de sistemas
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Backup y seguridad
-              </li>
-            </ul>
-          </div>
-
-          <!-- Consultoría IA -->
-          <div
-            class="rounded-lg border border-[var(--color-primary)] bg-white p-6 shadow-lg"
-          >
-            <div
-              class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]"
-            >
-              <svg
-                class="h-6 w-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="mb-3 font-bold text-xl">
-              Consultoría e Implementación de IA
-            </h3>
-            <p class="mb-4 text-gray-600">
-              Automatizamos tus procesos con inteligencia artificial para
-              ahorrar tiempo, reducir costes y mejorar la experiencia del
-              cliente.
-            </p>
-            <ul class="space-y-2 text-sm">
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Chatbots inteligentes
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Automatización de tareas
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-green-500">✓</span>
-                Análisis predictivo
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <WavyDivider topColor="#E6F9FD" bottomColor="#101a32" />
-
-    <section
-      id="portfolio"
-      class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8"
-    >
-      <div class="mx-auto max-w-7xl">
-        <h2 class="mb-12 text-center font-bold text-white text-4xl">
-          Proyectos que nos enorgullecen
-        </h2>
-        <p class="mb-16 text-center text-white text-lg">
-          Descubre algunos de los sitios web que hemos creado para nuestros
-          clientes. Cada proyecto refleja nuestro compromiso con la calidad,
-          funcionalidad y diseño.
-        </p>
-
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <!-- Proyecto 1 -->
-          <div
-            class="group rounded-xl bg-white p-6 shadow-xl transition-transform hover:scale-105"
-          >
-            <div class="mb-4 overflow-hidden rounded-lg">
-              <img
-                src={portfolioData[0].image}
-                alt="Captura de una web para pyme"
-                class="h-48 w-full object-cover transition-transform group-hover:scale-110"
-              />
-            </div>
-            <div class="mb-4 flex items-center justify-between">
-              <span
-                class="inline-block rounded-full bg-[var(--color-primary)] px-3 py-1 font-semibold text-white text-xs"
-              >
-                PYMES
-              </span>
-              <span class="text-gray-500 text-sm">09/2025</span>
-            </div>
-            <h3 class="mb-3 font-bold text-xl">Web para PYMES</h3>
-            <p class="mb-4 leading-relaxed text-gray-600 text-sm">
-              Página web para pyme de trabajos en altura con cuerda en Alicante.
-              Sitio web formulario de contacto, SEO, responsive y gestión de
-              campañas de publicidad con Google Ads.
-            </p>
-            <div class="mb-4 flex flex-wrap gap-2">
-              <span
-                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
-                >PYMES</span
-              >
-              <span
-                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
-                >SEO</span
-              >
-              <span
-                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
-                >Responsive</span
-              >
-              <span
-                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
-                >Google Ads</span
-              >
-            </div>
-            <div class="flex gap-3">
+        <!-- Desktop Navigation -->
+        <div class="hidden items-center gap-8 md:flex">
+          {
+            navItems.map((item) => (
               <a
-                href="https://bravotrabajosverticales.es/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2 font-medium text-white transition-colors text-sm hover:bg-opacity-90"
+                href={item.url}
+                class="font-medium text-white transition-all hover:scale-110"
               >
-                <svg
-                  class="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  ></path>
-                </svg>
-                Ver sitio
+                {item.text}
               </a>
-              <button
-                class="rounded-lg border border-gray-300 px-4 py-2 font-medium text-gray-700 transition-colors text-sm hover:bg-gray-50"
-                onclick="MicroModal.show('modal-1')"
-              >
-                Proyecto similar
-              </button>
-            </div>
-          </div>
-
-          <!-- Proyecto 2 -->
-          <div
-            class="group rounded-xl bg-white p-6 shadow-xl transition-transform hover:scale-105"
-          >
-            <div class="mb-4 overflow-hidden rounded-lg">
-              <img
-                src={portfolioData[1].image}
-                alt="Captura de una web inmobiliaria"
-                class="h-48 w-full object-cover transition-transform group-hover:scale-110"
-              />
-            </div>
-            <div class="mb-4 flex items-center justify-between">
-              <span
-                class="inline-block rounded-full bg-[var(--color-secondary)] px-3 py-1 font-semibold text-white text-xs"
-              >
-                INMOBILIARIA
-              </span>
-              <span class="text-gray-500 text-sm">12/2024</span>
-            </div>
-            <h3 class="mb-3 font-bold text-xl">Web Inmobiliaria</h3>
-            <p class="mb-4 leading-relaxed text-gray-600 text-sm">
-              Sitio web para inmobiliaria moderno con formularios de búsqueda,
-              integración con CRM, blog y optimización SEO para posicionamiento
-              local.
-            </p>
-            <div class="mb-4 flex flex-wrap gap-2">
-              <span
-                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
-                >Inmobiliaria</span
-              >
-              <span
-                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
-                >CRM</span
-              >
-              <span
-                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
-                >Blog</span
-              >
-              <span
-                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
-                >SEO Local</span
-              >
-            </div>
-            <div class="flex gap-3">
-              <a
-                href="https://habilex.es/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center gap-2 rounded-lg bg-[var(--color-secondary)] px-4 py-2 font-medium text-white transition-colors text-sm hover:bg-opacity-90"
-              >
-                <svg
-                  class="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  ></path>
-                </svg>
-                Ver sitio
-              </a>
-              <button
-                class="rounded-lg border border-gray-300 px-4 py-2 font-medium text-gray-700 transition-colors text-sm hover:bg-gray-50"
-                onclick="MicroModal.show('modal-1')"
-              >
-                Proyecto similar
-              </button>
-            </div>
-          </div>
-
-          <!-- Proyecto 3 -->
-          <div
-            class="group rounded-xl bg-white p-6 shadow-xl transition-transform hover:scale-105"
-          >
-            <div class="mb-4 overflow-hidden rounded-lg">
-              <img
-                src={portfolioData[2].image}
-                alt="Captura de una web moderna"
-                class="h-48 w-full object-cover transition-transform group-hover:scale-110"
-              />
-            </div>
-            <div class="mb-4 flex items-center justify-between">
-              <span
-                class="inline-block rounded-full bg-[var(--color-accent)] px-3 py-1 font-semibold text-white text-xs"
-              >
-                INNOVACIÓN
-              </span>
-              <span class="text-gray-500 text-sm">07/2025</span>
-            </div>
-            <h3 class="mb-3 font-bold text-xl">Web multilenguaje</h3>
-            <p class="mb-4 leading-relaxed text-gray-600 text-sm">
-              Página web moderna para una empresa de eventos culturales en
-              Calpe. Es un cliente extranjero que nos pidió que diseñáramos una
-              web en español, en inglés y en neerlandés.
-            </p>
-            <div class="mb-4 flex flex-wrap gap-2">
-              <span
-                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
-                >Traducciones</span
-              >
-              <span
-                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
-                >SEO</span
-              >
-              <span
-                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
-                >Responsive</span
-              >
-              <span
-                class="rounded-md bg-gray-100 px-2 py-1 text-gray-700 text-xs"
-                >Moderno</span
-              >
-            </div>
-            <div class="flex gap-3">
-              <a
-                href="https://lapalomablanca.es/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center gap-2 rounded-lg bg-[var(--color-accent)] px-4 py-2 font-medium text-white transition-colors text-sm hover:bg-opacity-90"
-              >
-                <svg
-                  class="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  ></path>
-                </svg>
-                Ver sitio
-              </a>
-              <button
-                class="rounded-lg border border-gray-300 px-4 py-2 font-medium text-gray-700 transition-colors text-sm hover:bg-gray-50"
-                onclick="MicroModal.show('modal-1')"
-              >
-                Proyecto similar
-              </button>
-            </div>
-          </div>
+            ))
+          }
         </div>
 
-        <div class="mt-16 text-center">
-          <p class="mb-8 text-white text-lg">
-            ¿Te gusta lo que ves? <strong
-              >Podemos crear algo similar para tu negocio</strong
-            >
-          </p>
-          <button
-            class="inline-flex items-center rounded-lg bg-[var(--color-primary)] px-8 py-4 font-semibold text-white transition-colors text-lg hover:bg-opacity-90"
-            onclick="MicroModal.show('modal-1')"
-          >
-            <svg
-              class="mr-2 h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.955 8.955 0 01-4.126-.98L3 21l1.98-5.874A8.955 8.955 0 013 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"
-              ></path>
-            </svg>
-            Hablemos de tu proyecto
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <section
-      id="beneficios"
-      class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8"
-    >
-      <div class="mx-auto max-w-7xl">
-        <h2 class="mb-12 text-center font-bold text-white text-4xl">
-          ¿Por qué elegir nuestros servicios digitales?
-        </h2>
-        <p class="mb-12 text-center text-white text-lg">
-          No somos una agencia más. Combinamos <b>desarrollo web moderno</b>,
-          <b>marketing digital efectivo</b> y <b>tecnología de vanguardia</b>
-          para ofrecerte soluciones integrales que realmente funcionen.
-        </p>
-
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <div class="text-center text-white">
-            <div
-              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
-            >
-              <span class="font-bold text-2xl">🚀</span>
-            </div>
-            <h3 class="mb-3 font-bold text-xl">Tecnología Moderna</h3>
-            <p>
-              Utilizamos las últimas tecnologías y mejores prácticas. Nada de
-              WordPress lento o plantillas obsoletas.
-            </p>
-          </div>
-
-          <div class="text-center text-white">
-            <div
-              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
-            >
-              <span class="font-bold text-2xl">🎯</span>
-            </div>
-            <h3 class="mb-3 font-bold text-xl">Enfoque en Resultados</h3>
-            <p>
-              Cada proyecto tiene objetivos claros: más visitas, más clientes,
-              más ventas. Medimos y optimizamos constantemente.
-            </p>
-          </div>
-
-          <div class="text-center text-white">
-            <div
-              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
-            >
-              <span class="font-bold text-2xl">🤖</span>
-            </div>
-            <h3 class="mb-3 font-bold text-xl">Especialistas en IA</h3>
-            <p>
-              Somos pioneros en implementar IA en pequeñas y medianas empresas.
-              Automatiza procesos y mejora la eficiencia.
-            </p>
-          </div>
-
-          <div class="text-center text-white">
-            <div
-              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
-            >
-              <span class="font-bold text-2xl">💬</span>
-            </div>
-            <h3 class="mb-3 font-bold text-xl">Trato Directo</h3>
-            <p>
-              Trabajas directamente con nosotros, sin comerciales ni
-              intermediarios. Comunicación clara y respuestas rápidas.
-            </p>
-          </div>
-
-          <div class="text-center text-white">
-            <div
-              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
-            >
-              <span class="font-bold text-2xl">🛠️</span>
-            </div>
-            <h3 class="mb-3 font-bold text-xl">Soporte Integral</h3>
-            <p>
-              Desde el diseño web hasta la reparación de tu ordenador. Un único
-              proveedor para todas tus necesidades digitales.
-            </p>
-          </div>
-
-          <div class="text-center text-white">
-            <div
-              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]"
-            >
-              <span class="font-bold text-2xl">💰</span>
-            </div>
-            <h3 class="mb-3 font-bold text-xl">Transparencia Total</h3>
-            <p>
-              Sin costes ocultos ni sorpresas. Presupuestos claros y
-              comunicación transparente en todo el proceso.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <WavyDivider topColor="#101a32" bottomColor="#E6F9FD" />
-
-    <section
-      id="proceso"
-      class="bg-[var(--color-background)] px-4 py-16 text-[var(--color-text)] sm:px-8"
-    >
-      <div class="mx-auto max-w-7xl">
-        <h2 class="mb-12 text-center font-bold text-4xl">
-          Nuestro proceso de trabajo (simple y efectivo)
-        </h2>
-        <ol class="mx-auto max-w-3xl space-y-8">
-          <li class="flex items-start gap-6">
-            <span
-              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
-              >1</span
-            >
-            <div>
-              <h3 class="mb-2 font-bold text-xl">Consulta inicial gratuita</h3>
-              <p>
-                Analizamos tu situación actual, objetivos y presupuesto.
-                Identificamos oportunidades de mejora y crecimiento.
-              </p>
-            </div>
-          </li>
-          <li class="flex items-start gap-6">
-            <span
-              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
-              >2</span
-            >
-            <div>
-              <h3 class="mb-2 font-bold text-xl">Propuesta personalizada</h3>
-              <p>
-                Te entregamos una propuesta detallada con servicios
-                recomendados, cronograma y costes transparentes.
-              </p>
-            </div>
-          </li>
-          <li class="flex items-start gap-6">
-            <span
-              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
-              >3</span
-            >
-            <div>
-              <h3 class="mb-2 font-bold text-xl">
-                Desarrollo e implementación
-              </h3>
-              <p>
-                Ejecutamos el proyecto manteniendo comunicación constante y
-                mostrando avances periódicos.
-              </p>
-            </div>
-          </li>
-          <li class="flex items-start gap-6">
-            <span
-              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
-              >4</span
-            >
-            <div>
-              <h3 class="mb-2 font-bold text-xl">Entrega y formación</h3>
-              <p>
-                Te entregamos el proyecto completo y te formamos para que puedas
-                gestionarlo de forma autónoma.
-              </p>
-            </div>
-          </li>
-          <li class="flex items-start gap-6">
-            <span
-              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
-              >5</span
-            >
-            <div>
-              <h3 class="mb-2 font-bold text-xl">Soporte continuo</h3>
-              <p>
-                Ofrecemos mantenimiento, actualizaciones y nuevas
-                funcionalidades según vaya creciendo tu negocio.
-              </p>
-            </div>
-          </li>
-        </ol>
-        <p class="mt-12 text-center text-lg">
-          La mayoría de proyectos web están listos en <b>2-4 semanas</b>. Los
-          servicios de IA y soporte técnico se adaptan a tus necesidades y
-          urgencia.
-        </p>
-      </div>
-    </section>
-
-    <!-- Ambas secciones tienen el mismo fondo, no necesitamos divisor -->
-
-    <section id="faq" class="bg-[var(--color-background)] px-4 py-16 sm:px-8">
-      <div class="mx-auto max-w-7xl">
-        <h2
-          class="mb-8 text-center font-sans font-bold text-3xl sm:mb-16 sm:text-4xl"
+        <!-- Theme Toggle -->
+        <button
+          id="theme-toggle"
+          type="button"
+          class="rounded-xl bg-white/20 p-2.5 text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/30 focus:outline-none"
+          aria-label="Cambiar tema"
         >
-          Preguntas Frecuentes
-        </h2>
-        <FAQSection faqs={faqData} />
-      </div>
-    </section>
+          <svg
+            id="theme-toggle-dark-icon"
+            class="h-5 w-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            ></path>
+          </svg>
+          <svg
+            id="theme-toggle-light-icon"
+            class="hidden h-5 w-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </nav>
 
-    <WavyDivider topColor="#E6F9FD" bottomColor="#101a32" />
-
-    <section
-      id="contacto"
-      class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8"
-    >
-      <div class="mx-auto max-w-7xl">
-        <div
-          class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16"
-        >
-          <!-- Texto y beneficios -->
+      <!-- Hero Content -->
+      <div
+        class="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-32"
+      >
+        <div class="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+          <!-- Columna izquierda: Texto -->
           <div class="text-center lg:text-left">
+            <h1
+              class="mb-6 font-bold text-white drop-shadow-lg text-4xl sm:text-5xl lg:text-6xl"
+            >
+              Servicios Web Digitales para Particulares y Pymes
+            </h1>
+            <p
+              class="mb-8 text-white drop-shadow-md text-xl sm:text-2xl lg:text-xl"
+            >
+              Transformamos tu presencia digital con servicios profesionales:
+              creación de páginas web, SEO, Google Ads, soporte técnico y
+              consultoría en IA
+            </p>
+            <div
+              class="flex flex-col justify-center gap-4 sm:flex-row lg:justify-start"
+            >
+              <a
+                href="#servicios"
+                class="inline-flex items-center justify-center gap-2 rounded-2xl border-2 border-white bg-white/10 px-8 py-4 font-bold text-white backdrop-blur-sm transition-all hover:bg-white/20"
+              >
+                Ver servicios
+                <svg
+                  class="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna derecha: Formulario -->
+          <div class="relative">
+            <div
+              class="rounded-3xl bg-white/10 p-6 shadow-2xl backdrop-blur-md sm:p-8"
+            >
+              <h3 class="mb-4 font-bold text-white text-2xl sm:text-3xl">
+                Solicita tu consulta gratuita
+              </h3>
+              <p class="mb-6 text-white/90 text-base">
+                Cuéntanos sobre tu proyecto y te enviaremos una propuesta
+                personalizada en 24 horas.
+              </p>
+
+              <form
+                action="https://formspree.io/f/mjkglyjd"
+                method="POST"
+                id="heroContactForm"
+                class="grid grid-cols-1 gap-4"
+              >
+                <div>
+                  <label
+                    class="mb-2 block font-medium text-white text-sm"
+                    for="hero-name"
+                  >
+                    Nombre
+                  </label>
+                  <input
+                    type="text"
+                    id="hero-name"
+                    name="name"
+                    required
+                    class="w-full rounded-lg border-2 border-white/30 bg-white/90 p-3 font-sans text-gray-900 transition-all text-sm placeholder:text-gray-500 focus:border-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-white/50"
+                    placeholder="Tu nombre"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    class="mb-2 block font-medium text-white text-sm"
+                    for="hero-email"
+                  >
+                    Correo Electrónico
+                  </label>
+                  <input
+                    type="email"
+                    id="hero-email"
+                    name="email"
+                    required
+                    class="w-full rounded-lg border-2 border-white/30 bg-white/90 p-3 font-sans text-gray-900 transition-all text-sm placeholder:text-gray-500 focus:border-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-white/50"
+                    placeholder="tu@email.com"
+                  />
+                </div>
+
+                <input type="text" name="_gotcha" style="display:none" />
+
+                <div>
+                  <label
+                    class="mb-2 block font-medium text-white text-sm"
+                    for="hero-phone"
+                  >
+                    Teléfono
+                  </label>
+                  <input
+                    type="tel"
+                    id="hero-phone"
+                    name="phone"
+                    required
+                    class="w-full rounded-lg border-2 border-white/30 bg-white/90 p-3 font-sans text-gray-900 transition-all text-sm placeholder:text-gray-500 focus:border-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-white/50"
+                    placeholder="600 000 000"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    class="mb-2 block font-medium text-white text-sm"
+                    for="hero-message"
+                  >
+                    Cuéntanos sobre tu proyecto
+                  </label>
+                  <textarea
+                    id="hero-message"
+                    name="message"
+                    rows="3"
+                    required
+                    class="w-full resize-none rounded-lg border-2 border-white/30 bg-white/90 p-3 font-sans text-gray-900 transition-all text-sm placeholder:text-gray-500 focus:border-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-white/50"
+                    placeholder="Describe brevemente tu proyecto..."></textarea>
+                </div>
+
+                <div>
+                  <label
+                    class="flex cursor-pointer items-start gap-2 font-sans text-white text-sm"
+                  >
+                    <input
+                      type="checkbox"
+                      id="hero-privacy"
+                      name="privacy"
+                      required
+                      class="mt-1 h-4 w-4 rounded border-2 border-white bg-white/90 text-[#29c1f1] focus:ring-2 focus:ring-white focus:ring-offset-0"
+                    />
+                    <span class="leading-tight">
+                      He leído y acepto la
+                      <a
+                        href="/privacidad"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="font-bold underline hover:text-white/80"
+                      >
+                        Política de Privacidad
+                      </a>
+                      *
+                    </span>
+                  </label>
+                </div>
+
+                <div class="mt-2 flex flex-col gap-3 sm:flex-row">
+                  <button
+                    id="heroContactFormSubmitButton"
+                    type="submit"
+                    class="flex-1 rounded-xl bg-white px-6 py-3 font-bold text-[#29c1f1] shadow-xl transition-all hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-white/50 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
+                    disabled
+                  >
+                    Enviar consulta
+                  </button>
+
+                  <a
+                    href="https://wa.me/+34608962213"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 py-3 font-bold text-white shadow-xl transition-all hover:scale-105 hover:bg-[#25D366]/90 focus:outline-none focus:ring-4 focus:ring-[#25D366]/50"
+                  >
+                    <svg
+                      class="h-5 w-5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"
+                      ></path>
+                    </svg>
+                    WhatsApp
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wave Divider -->
+      <svg
+        class="absolute bottom-0 left-0 h-16 w-full text-gray-50 dark:text-gray-900"
+        preserveAspectRatio="none"
+        viewBox="0 0 1440 200"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill="currentColor"
+          d="M0,80 Q120,50 240,80 T480,80 Q600,50 720,80 T960,80 Q1080,50 1200,80 T1440,80 L1440,200 L0,200 Z"
+        ></path>
+      </svg>
+    </header>
+
+    <!-- Main Container -->
+    <main class="bg-gray-50 dark:bg-gray-900">
+      <!-- Servicios Section -->
+      <section id="servicios" class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="mx-auto max-w-7xl">
+          <div class="mb-16 text-center">
             <h2
-              class="mb-4 font-sans font-bold text-white text-2xl sm:mb-6 sm:text-3xl"
+              class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              Servicios digitales completos
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              Desde la creación de tu primera página web hasta la implementación
+              de <b>inteligencia artificial</b> en tus procesos. Todo lo que necesitas
+              para destacar en el mundo digital.
+            </p>
+          </div>
+
+          <div
+            class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+          >
+            {
+              services.map((service) => (
+                <div
+                  class={`group relative overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-800 ${
+                    service.featured
+                      ? "ring-4 ring-[#29c1f1] ring-offset-4 dark:ring-offset-gray-900"
+                      : ""
+                  }`}
+                >
+                  {service.featured && (
+                    <div class="absolute right-6 top-6">
+                      <span class="rounded-full bg-gradient-to-r from-[#29c1f1] to-[#f5478f] px-4 py-1.5 font-bold text-white shadow-lg text-xs">
+                        ⭐ Destacado
+                      </span>
+                    </div>
+                  )}
+                  <div class="mb-6">
+                    <h3 class="mb-3 font-bold text-gray-900 text-xl dark:text-white">
+                      {service.title}
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                      {service.description}
+                    </p>
+                  </div>
+                  <ul class="space-y-3">
+                    {service.features.map((feature) => (
+                      <li class="flex items-start gap-3 text-gray-700 text-sm dark:text-gray-300">
+                        <svg
+                          class="mt-0.5 h-5 w-5 flex-shrink-0 text-[#29c1f1]"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2.5"
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio Section -->
+      <Portfolio projects={portfolio} />
+
+      <!-- Benefits Section -->
+      <section id="beneficios" class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="mx-auto max-w-7xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              ¿Por qué elegirnos?
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              No somos una agencia más. Combinamos <b>desarrollo web moderno</b
+              >, <b>marketing digital efectivo</b> y <b
+                >tecnología de vanguardia</b
+              > para ofrecerte soluciones integrales.
+            </p>
+          </div>
+
+          <div
+            class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+          >
+            {
+              benefits.map((benefit) => (
+                <div class="group rounded-3xl bg-white p-8 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-800">
+                  <div class="mb-4 transition-transform duration-300 text-5xl group-hover:scale-110">
+                    {benefit.emoji}
+                  </div>
+                  <h3 class="mb-3 font-bold text-gray-900 text-xl dark:text-white">
+                    {benefit.title}
+                  </h3>
+                  <p class="leading-relaxed text-gray-600 dark:text-gray-400">
+                    {benefit.description}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Process Section -->
+      <section
+        id="proceso"
+        class="bg-gradient-to-br from-[#f9d034]/10 to-[#29c1f1]/10 px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+      >
+        <div class="mx-auto max-w-5xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              Nuestro proceso de trabajo
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              Simple y efectivo. Te acompañamos en cada paso del camino.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            {
+              process.map((step, index) => (
+                <div class="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:bg-gray-800">
+                  <div class="flex items-start gap-6">
+                    <div class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#29c1f1] to-[#f5478f] font-bold text-white shadow-lg text-2xl">
+                      {step.step}
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="mb-3 font-bold text-gray-900 text-xl dark:text-white">
+                        {step.title}
+                      </h3>
+                      <p class="leading-relaxed text-gray-600 dark:text-gray-400">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                  {/* Connector line */}
+                  {index < process.length - 1 && (
+                    <div class="absolute bottom-0 left-[3.5rem] h-6 w-0.5 translate-y-full bg-gradient-to-b from-[#29c1f1] to-transparent" />
+                  )}
+                </div>
+              ))
+            }
+          </div>
+
+          <div
+            class="mt-12 rounded-3xl bg-gradient-to-r from-[#29c1f1] to-[#f5478f] p-8 text-center text-white shadow-xl"
+          >
+            <p class="font-bold text-xl lg:text-2xl">
+              ⚡ La mayoría de proyectos web están listos en <span
+                class="underline decoration-wavy">2-4 semanas</span
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section id="faq" class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="mx-auto max-w-4xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              Preguntas Frecuentes
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              Resolvemos tus dudas más comunes sobre nuestros servicios
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            {
+              faqs.map((faq) => (
+                <details class="group rounded-3xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl dark:bg-gray-800">
+                  <summary class="flex cursor-pointer items-center justify-between p-6 font-bold text-gray-900 transition-colors text-lg dark:text-white lg:p-8">
+                    <span class="pr-4">{faq.question}</span>
+                    <svg
+                      class="h-6 w-6 flex-shrink-0 text-[#29c1f1] transition-transform duration-300 group-open:rotate-180"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2.5"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </summary>
+                  <div class="border-t border-gray-100 px-6 pb-6 pt-4 leading-relaxed text-gray-600 dark:border-gray-700 dark:text-gray-400 lg:px-8">
+                    {faq.answer}
+                  </div>
+                </details>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact CTA Section -->
+      <section
+        id="contacto"
+        class="relative overflow-hidden bg-gradient-to-br from-[#f9d034] via-[#29c1f1] to-[#f5478f] px-4 py-20 sm:px-6 lg:px-8 lg:py-32"
+      >
+        <div class="relative z-10 mx-auto max-w-6xl">
+          <div class="mb-12 text-center">
+            <h2
+              class="mb-6 font-bold text-white drop-shadow-lg text-4xl lg:text-5xl"
             >
               ¿Listo para transformar tu presencia digital?
             </h2>
-            <p
-              class="mb-6 font-sans leading-relaxed text-white text-base sm:mb-8 sm:text-lg"
-            >
-              Cuéntanos sobre tu proyecto o problema tecnológico y te enviaremos
-              una propuesta personalizada. Trabajamos con particulares,
-              autónomos y empresas de toda España.
+            <p class="mb-10 text-white drop-shadow-md text-xl lg:text-2xl">
+              Contáctanos y te enviaremos una propuesta personalizada en menos
+              de <strong>24 horas</strong>
             </p>
+          </div>
 
-            <ul class="space-y-3 sm:space-y-4">
-              {
-                [
-                  "Consulta inicial gratuita y sin compromiso",
-                  "Propuesta detallada en menos de 24 horas",
-                  "Opciones de pago flexibles y transparentes",
-                  "Soporte técnico incluido en todos los proyectos",
-                  "Garantía de satisfacción al 100%",
-                ].map((benefit) => (
-                  <li class="flex items-center gap-2 font-sans text-white sm:gap-3">
+          <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
+            <!-- Columna izquierda: Información y contacto rápido -->
+            <div class="space-y-6">
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                <div class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+                  <p class="mb-2 font-bold text-white text-lg">
+                    ✅ Consulta gratuita
+                  </p>
+                  <p class="text-white text-sm">Sin compromiso</p>
+                </div>
+                <div class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+                  <p class="mb-2 font-bold text-white text-lg">
+                    ⚡ Respuesta rápida
+                  </p>
+                  <p class="text-white text-sm">En menos de 24h</p>
+                </div>
+                <div class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+                  <p class="mb-2 font-bold text-white text-lg">
+                    💰 Precios claros
+                  </p>
+                  <p class="text-white text-sm">Sin sorpresas</p>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <h3 class="font-bold text-white text-xl">
+                  ¿Prefieres contactar directamente?
+                </h3>
+                <div class="flex flex-col gap-3">
+                  <a
+                    href="https://wa.me/+34608962213"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-6 py-4 font-bold text-[#29c1f1] shadow-2xl transition-all hover:scale-105"
+                  >
                     <svg
-                      class="h-5 w-5 text-[var(--color-secondary)]"
+                      class="h-6 w-6 transition-transform group-hover:scale-110"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"
+                      ></path>
+                    </svg>
+                    Consulta por WhatsApp
+                  </a>
+                  <a
+                    href="mailto:frappecreativity@gmail.com"
+                    class="inline-flex items-center justify-center gap-3 rounded-2xl border-4 border-white bg-white/10 px-6 py-4 font-bold text-white backdrop-blur-sm transition-all hover:bg-white hover:text-[#29c1f1]"
+                  >
+                    <svg
+                      class="h-6 w-6"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -1002,55 +889,523 @@ const keywords =
                         stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      />
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      ></path>
                     </svg>
-                    {benefit}
-                  </li>
-                ))
-              }
-            </ul>
+                    Enviar Email
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna derecha: Formulario -->
+            <div
+              class="rounded-3xl bg-white/10 p-6 shadow-2xl backdrop-blur-md sm:p-8"
+            >
+              <h3 class="mb-4 font-bold text-white text-2xl">
+                Completa el formulario
+              </h3>
+              <p class="mb-6 text-white/90 text-base">
+                Te responderemos con una propuesta personalizada en menos de 24
+                horas.
+              </p>
+
+              <form
+                action="https://formspree.io/f/mjkglyjd"
+                method="POST"
+                id="contactForm"
+                class="grid grid-cols-1 gap-4"
+              >
+                <div>
+                  <label
+                    class="mb-2 block font-medium text-white text-sm"
+                    for="contact-name"
+                  >
+                    Nombre
+                  </label>
+                  <input
+                    type="text"
+                    id="contact-name"
+                    name="name"
+                    required
+                    class="w-full rounded-lg border-2 border-white/30 bg-white/90 p-3 font-sans text-gray-900 transition-all text-sm placeholder:text-gray-500 focus:border-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-white/50"
+                    placeholder="Tu nombre"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    class="mb-2 block font-medium text-white text-sm"
+                    for="contact-email"
+                  >
+                    Correo Electrónico
+                  </label>
+                  <input
+                    type="email"
+                    id="contact-email"
+                    name="email"
+                    required
+                    class="w-full rounded-lg border-2 border-white/30 bg-white/90 p-3 font-sans text-gray-900 transition-all text-sm placeholder:text-gray-500 focus:border-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-white/50"
+                    placeholder="tu@email.com"
+                  />
+                </div>
+
+                <input type="text" name="_gotcha" style="display:none" />
+
+                <div>
+                  <label
+                    class="mb-2 block font-medium text-white text-sm"
+                    for="contact-phone"
+                  >
+                    Teléfono
+                  </label>
+                  <input
+                    type="tel"
+                    id="contact-phone"
+                    name="phone"
+                    required
+                    class="w-full rounded-lg border-2 border-white/30 bg-white/90 p-3 font-sans text-gray-900 transition-all text-sm placeholder:text-gray-500 focus:border-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-white/50"
+                    placeholder="600 000 000"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    class="mb-2 block font-medium text-white text-sm"
+                    for="contact-message"
+                  >
+                    Cuéntanos sobre tu proyecto
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows="4"
+                    required
+                    class="w-full resize-none rounded-lg border-2 border-white/30 bg-white/90 p-3 font-sans text-gray-900 transition-all text-sm placeholder:text-gray-500 focus:border-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-white/50"
+                    placeholder="Describe brevemente tu proyecto..."></textarea>
+                </div>
+
+                <div>
+                  <label
+                    class="flex cursor-pointer items-start gap-2 font-sans text-white text-sm"
+                  >
+                    <input
+                      type="checkbox"
+                      id="contact-privacy"
+                      name="privacy"
+                      required
+                      class="mt-1 h-4 w-4 rounded border-2 border-white bg-white/90 text-[#29c1f1] focus:ring-2 focus:ring-white focus:ring-offset-0"
+                    />
+                    <span class="leading-tight">
+                      He leído y acepto la
+                      <a
+                        href="/privacidad"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="font-bold underline hover:text-white/80"
+                      >
+                        Política de Privacidad
+                      </a>
+                      *
+                    </span>
+                  </label>
+                </div>
+
+                <button
+                  id="contactFormSubmitButton"
+                  type="submit"
+                  class="mt-2 w-full rounded-xl bg-white px-6 py-4 font-bold text-[#29c1f1] shadow-xl transition-all hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-white/50 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
+                  disabled
+                >
+                  Enviar consulta
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AboutFrappeSection -->
+      <AboutFrappeSection
+        title="Conoce al equipo detrás de Frappé"
+        description="David Pérez, especialista en servicios web digitales para particulares y pymes. Desde creación de páginas web hasta consultoría en IA, ofrezco soluciones tecnológicas completas que impulsan tu negocio."
+      />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 px-4 py-12 text-white sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div
+          class="flex flex-col items-center justify-between gap-6 md:flex-row"
+        >
+          <div class="flex items-center gap-3">
+            <img src="/frappe_icon.svg" alt="Frappé" class="h-10 w-10" />
+            <span class="font-bold text-xl">Frappé</span>
           </div>
 
-          <!-- Formulario -->
-          <ContactForm
-            formId="servicesForm"
-            title="Cuéntanos qué necesitas"
-            description="Describe tu proyecto o problema tecnológico y nos pondremos en contacto contigo para ofrecerte la mejor solución."
-          />
+          <nav class="flex flex-wrap justify-center gap-6">
+            {
+              navItems.map((item) => (
+                <a
+                  href={item.url}
+                  class="transition-colors hover:text-[#29c1f1]"
+                >
+                  {item.text}
+                </a>
+              ))
+            }
+          </nav>
+
+          <a
+            href="/privacidad"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="transition-colors hover:text-[#29c1f1]"
+          >
+            Política de Privacidad
+          </a>
+        </div>
+
+        <div
+          class="mt-8 border-t border-gray-800 pt-8 text-center text-gray-400"
+        >
+          <p>
+            © {new Date().getFullYear()} Frappé. Hecho con 💙 en {
+              profile.location
+            }.
+          </p>
         </div>
       </div>
-    </section>
+    </footer>
 
-    <WavyDivider topColor="#101a32" bottomColor="#a9e7fa" />
+    <!-- Modales de éxito y error -->
+    <div
+      id="successModal"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      style="display: none;"
+    >
+      <div
+        class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-gray-800"
+      >
+        <div class="mb-4 text-center">
+          <div
+            class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100"
+          >
+            <svg
+              class="h-8 w-8 text-green-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h3 class="mb-2 font-bold text-gray-900 text-2xl dark:text-white">
+            ¡Mensaje enviado!
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Gracias por contactarnos. Te responderemos en menos de 24 horas.
+          </p>
+        </div>
+        <button
+          onclick="document.getElementById('successModal').style.display='none'"
+          class="w-full rounded-xl bg-[#29c1f1] px-6 py-3 font-bold text-white transition-all hover:bg-[#29c1f1]/90"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
 
-    <AboutFrappeSection
-      title="El equipo humano detrás de Frappé"
-      description="David Pérez, desarrollador web y consultor digital. Especializado en transformar ideas en soluciones tecnológicas reales que impulsan el crecimiento de tu negocio. Desde páginas web hasta inteligencia artificial."
-    />
+    <div
+      id="errorModal"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      style="display: none;"
+    >
+      <div
+        class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-gray-800"
+      >
+        <div class="mb-4 text-center">
+          <div
+            class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-100"
+          >
+            <svg
+              class="h-8 w-8 text-red-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </div>
+          <h3 class="mb-2 font-bold text-gray-900 text-2xl dark:text-white">
+            Error al enviar
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Hubo un problema al enviar tu mensaje. Por favor, inténtalo de nuevo
+            o contáctanos por WhatsApp.
+          </p>
+        </div>
+        <button
+          onclick="document.getElementById('errorModal').style.display='none'"
+          class="w-full rounded-xl bg-gray-900 px-6 py-3 font-bold text-white transition-all hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
 
-    <WavyDivider topColor="#a9e7fa" bottomColor="black" />
+    <!-- Scripts de formularios -->
+    <script>
+      // @ts-nocheck
+      const handleFormValidation = (formId) => {
+        const form = document.getElementById(formId);
+        const submitButton = document.getElementById(`${formId}SubmitButton`);
+        const requiredInputs = form?.querySelectorAll(
+          "input[required], textarea[required]",
+        );
 
-    <Footer navItems={navItems} />
-    <ContactModal />
-    <CookieConsent />
-  </main>
-</Layout>
+        if (!form || !submitButton) return;
 
-<script is:inline>
-  // Inicializar MicroModal cuando se cargue la página
-  document.addEventListener("DOMContentLoaded", function () {
-    if (typeof MicroModal !== "undefined") {
-      MicroModal.init({
-        openTrigger: "data-micromodal-trigger",
-        closeTrigger: "data-micromodal-close",
-        openClass: "is-open",
-        disableScroll: true,
-        disableFocus: false,
-        awaitOpenAnimation: false,
-        awaitCloseAnimation: false,
-        debugMode: false,
+        const checkFormValidity = () => {
+          if (!requiredInputs) return false;
+          const privacyId =
+            formId === "heroContactForm" ? "hero-privacy" : "contact-privacy";
+          const privacyCheckbox = document.getElementById(privacyId);
+          const fieldsValid = Array.from(requiredInputs).every(
+            (input) => input.value.trim() !== "",
+          );
+          const privacyValid = privacyCheckbox
+            ? privacyCheckbox.checked
+            : false;
+          return fieldsValid && privacyValid;
+        };
+
+        requiredInputs?.forEach((input) => {
+          input.addEventListener("input", () => {
+            submitButton.disabled = !checkFormValidity();
+          });
+        });
+
+        const privacyId =
+          formId === "heroContactForm" ? "hero-privacy" : "contact-privacy";
+        const privacyCheckbox = document.getElementById(privacyId);
+        privacyCheckbox?.addEventListener("change", () => {
+          submitButton.disabled = !checkFormValidity();
+        });
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          submitButton.disabled = true;
+          submitButton.textContent = "Enviando...";
+
+          try {
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+              method: "POST",
+              body: formData,
+              headers: {
+                Accept: "application/json",
+              },
+            });
+
+            if (!response.ok) {
+              const data = await response.json();
+              throw new Error(
+                `Error al enviar el formulario: ${data.error || response.statusText}`,
+              );
+            }
+
+            const data = await response.json();
+
+            if (data.ok) {
+              form.reset();
+              const successModal = document.getElementById("successModal");
+              if (successModal) successModal.style.display = "flex";
+              submitButton.disabled = true;
+              if (window.dataLayer) {
+                window.dataLayer.push({
+                  event: "form_submit",
+                  form_name: formId,
+                  form_status: "success",
+                });
+              }
+            } else {
+              throw new Error("Error al enviar el formulario");
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            const errorModal = document.getElementById("errorModal");
+            if (errorModal) errorModal.style.display = "flex";
+            submitButton.disabled = false;
+            if (window.dataLayer) {
+              window.dataLayer.push({
+                event: "form_submit",
+                form_name: formId,
+                form_status: "error",
+              });
+            }
+          } finally {
+            submitButton.textContent =
+              formId === "heroContactForm"
+                ? "Enviar consulta"
+                : "Enviar consulta";
+          }
+        });
+      };
+
+      // Inicializar ambos formularios
+      document.addEventListener("DOMContentLoaded", () => {
+        handleFormValidation("heroContactForm");
+        handleFormValidation("contactForm");
       });
-    }
-  });
-</script>
+
+      // Cerrar modales al hacer click fuera
+      ["successModal", "errorModal"].forEach((modalId) => {
+        const modal = document.getElementById(modalId);
+        modal?.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+      });
+    </script>
+
+    <!-- Theme Toggle Script -->
+    <script>
+      // Inicializar tema inmediatamente para evitar flash
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+
+        const theme = stored || (prefersDark ? "dark" : "light");
+
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const themeToggle = document.getElementById("theme-toggle");
+        const darkIcon = document.getElementById("theme-toggle-dark-icon");
+        const lightIcon = document.getElementById("theme-toggle-light-icon");
+
+        const updateIcons = (isDark: boolean) => {
+          if (isDark) {
+            darkIcon?.classList.add("hidden");
+            lightIcon?.classList.remove("hidden");
+          } else {
+            darkIcon?.classList.remove("hidden");
+            lightIcon?.classList.add("hidden");
+          }
+        };
+
+        const setTheme = (theme: string, savePreference: boolean = true) => {
+          const isDark = theme === "dark";
+
+          if (isDark) {
+            document.documentElement.classList.add("dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+          }
+
+          if (savePreference) {
+            localStorage.setItem("theme", theme);
+          }
+
+          updateIcons(isDark);
+        };
+
+        const getCurrentTheme = () => {
+          const stored = localStorage.getItem("theme");
+          if (stored) {
+            return stored;
+          }
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        };
+
+        // Inicializar tema
+        const currentTheme = getCurrentTheme();
+        setTheme(currentTheme, false);
+
+        // Event listener para el toggle manual
+        themeToggle?.addEventListener("click", function () {
+          const current = getCurrentTheme();
+          const newTheme = current === "dark" ? "light" : "dark";
+          setTheme(newTheme, true);
+        });
+
+        // Escuchar cambios en las preferencias del sistema
+        window
+          .matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", function (e) {
+            const hasStoredPreference = localStorage.getItem("theme");
+            if (!hasStoredPreference) {
+              setTheme(e.matches ? "dark" : "light", false);
+            }
+          });
+      });
+    </script>
+
+    <!-- Smooth Animations -->
+    <style>
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      html {
+        transition: background-color 0.3s ease;
+        scroll-behavior: smooth;
+      }
+
+      * {
+        transition:
+          background-color 0.3s ease,
+          border-color 0.3s ease,
+          color 0.3s ease;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          "Roboto",
+          sans-serif;
+      }
+
+      *:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+
+      /* Smooth opening for details */
+      details {
+        transition: all 0.3s ease;
+      }
+
+      details[open] summary ~ * {
+        animation: fadeInUp 0.3s ease-out;
+      }
+    </style>
+  </body>
+</html>
