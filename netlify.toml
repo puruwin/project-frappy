@@ -1,0 +1,6 @@
+trailing_slash = "never"
+
+[build]
+  publish = "dist"
+
+
