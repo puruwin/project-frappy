@@ -41,6 +41,8 @@ const {
                 <li>
                   <a
                     href={item.url}
+                    target={item.url === "/detras-de-frappe" ? "_blank" : undefined}
+                    rel={item.url === "/detras-de-frappe" ? "noopener noreferrer" : undefined}
                     class="text-white/80 transition-colors hover:text-[var(--color-primary)]"
                   >
                     {item.text}
@@ -94,6 +96,8 @@ const {
       >
         <a
           href="/privacidad"
+          target="_blank"
+          rel="noopener noreferrer"
           class="text-white/60 underline transition-colors hover:text-[var(--color-primary)]"
         >
           Política de Privacidad

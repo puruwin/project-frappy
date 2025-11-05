@@ -1,30 +1,89 @@
 ---
-import BrutalHeader from "../components/BrutalHeader.astro";
-import Footer from "../components/Footer.astro";
-import Hero from "../components/Hero.astro";
-import WavyDivider from "../components/WavyDivider.astro";
-import FAQSection from "../components/FAQSection.astro";
-import ContactModal from "../components/ContactModal.astro";
-import CookieConsent from "../components/CookieConsent.astro";
-import ContactForm from "../components/ContactForm.astro";
-import AboutFrappeSection from "../components/AboutFrappeSection.astro";
-import Layout from "../layouts/Layout.astro";
+// Importar estilos
+import "../styles/theme.css";
 import "@fontsource-variable/montserrat";
-import "~/styles/theme.css";
-
-const heroData = {
-  title: "Empresa de desarrollo web en Benidorm",
-  description:
-    "Somos expertos en desarrollo web en Benidorm, ofreciendo soluciones digitales personalizadas para empresas que buscan destacar en internet. Nuestros sitios web son rápidos, seguros y optimizados para SEO.",
-  ctaText: "Solicita tu presupuesto gratis",
-  image: "/images/web-development.jpg",
-};
+import Portfolio from "../components/Portfolio.astro";
+import AboutFrappeSection from "../components/AboutFrappeSection.astro";
+import ContactForm from "../components/ContactForm.astro";
 
 const navItems = [
-  { text: "¿Por qué elegirnos?", url: "#beneficios" },
-  { text: "Cómo trabajamos", url: "#proceso" },
-  { text: "Preguntas frecuentes", url: "#faq" },
-  { text: "Contacto", url: "#presupuesto" },
+  { text: "Beneficios", url: "#beneficios" },
+  { text: "Portfolio", url: "#portfolio" },
+  { text: "Proceso", url: "#proceso" },
+  { text: "FAQ", url: "#faq" },
+  { text: "Contacto", url: "#contacto" },
+];
+
+const benefits = [
+  {
+    emoji: "🎨",
+    title: "Diseño Único y Personalizado",
+    description:
+      "Páginas personalizadas y únicas, sin plantillas genéricas. Cada proyecto es diseñado específicamente para tu marca.",
+  },
+  {
+    emoji: "⚡",
+    title: "Velocidad Ultra Rápida",
+    description:
+      "Velocidad de carga inferior a 1 segundo. Evitamos errores y lentitud asociados a WordPress y plugins sobrecargados.",
+  },
+  {
+    emoji: "🚀",
+    title: "SEO Técnico Incluido",
+    description:
+      "Base de SEO técnico desde el día uno. Estructura optimizada para que tu web destaque en Google.",
+  },
+  {
+    emoji: "💻",
+    title: "Código Limpio y Moderno",
+    description:
+      "Sistema propio de desarrollo con tecnología moderna. Sin constructores visuales que ralenticen tu web.",
+  },
+  {
+    emoji: "📱",
+    title: "100% Responsive",
+    description:
+      "Diseño adaptado a todos los dispositivos: móvil, tablet y desktop. Experiencia perfecta en cualquier pantalla.",
+  },
+  {
+    emoji: "💬",
+    title: "Trato Directo",
+    description:
+      "Trabajas directamente con nosotros, sin comerciales ni intermediarios. Comunicación clara y entregas rápidas.",
+  },
+];
+
+const process = [
+  {
+    step: "1",
+    title: "Reunión inicial",
+    description:
+      "Hablamos por videollamada o presencialmente para conocer tu proyecto y definir tus objetivos.",
+  },
+  {
+    step: "2",
+    title: "Propuesta personalizada",
+    description:
+      "Te entregamos una propuesta clara, sin letra pequeña ni costes ocultos.",
+  },
+  {
+    step: "3",
+    title: "Desarrollo técnico",
+    description:
+      "Diseñamos, desarrollamos y testeamos la web con nuestro sistema propio.",
+  },
+  {
+    step: "4",
+    title: "Entrega y revisión",
+    description:
+      "Revisamos juntos el resultado final y hacemos los ajustes necesarios.",
+  },
+  {
+    step: "5",
+    title: "Activación y seguimiento",
+    description:
+      "Activamos SEO, Google Ads y mantenimiento según tus necesidades. Te acompañamos en el crecimiento.",
+  },
 ];
 
 const faqData = [
@@ -58,18 +117,81 @@ const faqData = [
     answer:
       "Sí. Puedes comenzar con un diseño simple y escalar a funcionalidades más avanzadas cuando tu negocio lo necesite. Nuestros servicios son completamente flexibles.",
   },
+  {
+    question: "¿Cuánto cuesta una página web en Benidorm?",
+    answer:
+      "Depende del alcance (web corporativa, e‑commerce, integraciones, contenido). Trabajamos con presupuestos cerrados y enviamos una estimación en 24 h tras la consulta inicial.",
+  },
+  {
+    question: "¿Realizáis tiendas online (e‑commerce)?",
+    answer:
+      "Sí. Creamos e‑commerce rápidos con catálogo, pasarela de pago, gestión de stock y analítica. Optimizamos SEO para categorías y fichas de producto.",
+  },
+  {
+    question:
+      "¿Dais servicio en Altea, La Nucía, Villajoyosa o L'Alfàs del Pi?",
+    answer:
+      "Sí. Trabajamos en toda la Marina Baixa y alrededores, incluyendo Benidorm, Altea, La Nucía, Villajoyosa y L'Alfàs del Pi.",
+  },
+  {
+    question: "¿Podéis migrar o mejorar una web existente?",
+    answer:
+      "Sí. Migramos y mejoramos rendimiento (Core Web Vitals), accesibilidad, SEO técnico y experiencia de usuario para aumentar conversiones.",
+  },
+  {
+    question: "¿Incluís SEO local (datos estructurados y perfil de empresa)?",
+    answer:
+      "Incluimos SEO técnico on‑page, datos estructurados, configuración de analítica y asesoría para Google Business Profile y señales locales.",
+  },
 ];
-const { generator, site } = Astro;
+
+// Portfolio
+const portfolio = [
+  {
+    title: "Web para PYMES",
+    description:
+      "Página web para pyme de trabajos en altura con cuerda en Alicante.",
+    url: "https://bravotrabajosverticales.es/",
+    image: "/portfolio/portfolio-1.webp",
+    tags: ["PYMES", "SEO", "Responsive", "Google Ads"],
+    date: "09/2025",
+  },
+  {
+    title: "Web Inmobiliaria",
+    description:
+      "Sitio web moderno con formularios de búsqueda, integración con CRM y SEO local.",
+    url: "https://habilex.es/",
+    image: "/portfolio/portfolio-2.webp",
+    tags: ["Inmobiliaria", "CRM", "Blog", "SEO Local"],
+    date: "12/2024",
+  },
+  {
+    title: "Web Multilenguaje",
+    description:
+      "Página web para empresa de eventos culturales en español, inglés y neerlandés.",
+    url: "https://lapalomablanca.es/",
+    image: "/portfolio/portfolio-3.webp",
+    tags: ["Traducciones", "SEO", "Responsive", "Moderno"],
+    date: "07/2025",
+  },
+];
+
+const { site } = Astro;
 const image = new URL("splash.png", site);
-const title = "Empresa de desarrollo web en Benidorm";
+const title =
+  "Diseño y desarrollo web en Benidorm | SEO local y tiendas online";
 const description =
-  "Somos expertos en desarrollo web en Benidorm, ofreciendo soluciones digitales personalizadas para empresas que buscan destacar en internet. Nuestros sitios web son rápidos, seguros y optimizados para SEO.";
+  "Agencia de diseño y desarrollo web en Benidorm. Webs rápidas, SEO local, tiendas online y mantenimiento. Presupuesto de página web en 24 h.";
 const keywords =
-  "desarrollo web Benidorm, diseño web Benidorm, agencia digital Benidorm, programador web Benidorm, sitios web Benidorm, SEO local Benidorm, páginas web profesionales Benidorm";
+  "diseño web Benidorm, desarrollo web Benidorm, agencia diseño web Benidorm, posicionamiento web Benidorm, SEO local Benidorm, tienda online Benidorm, precio página web Benidorm, presupuesto diseño web Benidorm, mantenimiento web Benidorm";
 ---
 
-<Layout title={title}>
-  <Fragment slot="head">
+<!doctype html>
+<html lang="es" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <link rel="canonical" href={`${site}/desarrollo-web-benidorm`} />
@@ -105,7 +227,7 @@ const keywords =
     <meta name="geo.position" content="38.5366;-0.1312" />
     <meta name="ICBM" content="38.5366, -0.1312" />
 
-    <link rel="icon" type="image/svg+xml" href="/frappe_icon.svg" />
+    <!-- Schema Markup -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -120,207 +242,507 @@ const keywords =
           "addressCountry": "ES"
         },
         "description": "Empresa de desarrollo web en Benidorm especializada en webs rápidas, seguras y optimizadas con tecnología moderna.",
-        "areaServed": "Benidorm"
+        "areaServed": "Benidorm, Altea, La Nucía, Villajoyosa, L'Alfàs del Pi, Marina Baixa"
       }
     </script>
-    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
-  </Fragment>
-  <BrutalHeader navItems={navItems} />
-  <main>
-    <div class="relative">
-      <div class="absolute inset-0 z-0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/frappe_icon.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body
+    class="bg-gray-50 font-sans antialiased dark:bg-gray-900"
+    style="font-family: var(--font-sans);"
+  >
+    <!-- Hero Section with Gradient and Navigation -->
+    <header class="relative overflow-hidden">
+      <!-- Background Image with Overlay -->
+      <div class="absolute inset-0">
         <img
           src="/skyline-benidorm.webp"
           alt="Skyline de Benidorm"
-          class="h-full w-full object-cover opacity-40"
+          class="h-full w-full object-cover"
         />
         <div
-          class="absolute inset-0 bg-[var(--color-bg-secondary)] mix-blend-multiply"
+          class="absolute inset-0 bg-gradient-to-br from-[#f9d034]/95 via-[#29c1f1]/95 to-[#f5478f]/95"
         >
         </div>
       </div>
-      <div class="relative z-10">
-        <Hero {...heroData} />
-      </div>
-    </div>
 
-    <section
-      id="beneficios"
-      class="bg-[var(--color-background)] px-4 py-16 sm:px-8"
-    >
-      <div class="mx-auto max-w-7xl">
-        <h2 class="mb-12 text-center font-bold text-4xl">
-          ¿Por qué elegir nuestro servicio de desarrollo web en Benidorm?
-        </h2>
-        <p class="mb-12 text-center text-lg">
-          A diferencia de la mayoría de agencias que trabajan con constructores
-          visuales y plugins sobrecargados, nosotros utilizamos un
-          <b>sistema propio de desarrollo</b> que nos permite:
-        </p>
-        <ul class="mx-auto mb-12 max-w-2xl space-y-4">
-          <li class="flex items-start gap-3 text-lg">
-            <span class="text-[var(--color-primary)] text-2xl">✅</span>
-            <span>Entregar páginas personalizadas y únicas</span>
-          </li>
-          <li class="flex items-start gap-3 text-lg">
-            <span class="text-[var(--color-primary)] text-2xl">✅</span>
-            <span>Evitar errores y lentitud asociados a WordPress</span>
-          </li>
-          <li class="flex items-start gap-3 text-lg">
-            <span class="text-[var(--color-primary)] text-2xl">✅</span>
-            <span>Asegurar velocidad de carga inferior a 1 segundo</span>
-          </li>
-          <li class="flex items-start gap-3 text-lg">
-            <span class="text-[var(--color-primary)] text-2xl">✅</span>
-            <span>Ofrecer una base de SEO técnico desde el día uno</span>
-          </li>
-          <li class="flex items-start gap-3 text-lg">
-            <span class="text-[var(--color-primary)] text-2xl">✅</span>
-            <span>Diseñar con el foco en conversión y usabilidad</span>
-          </li>
-        </ul>
-        <p class="text-center text-lg">
-          Gracias a este enfoque, muchos de nuestros clientes destacan no solo
-          la calidad visual de su web, sino también la facilidad con la que
-          consiguen <b>visibilidad en Google</b> y más contactos.
-        </p>
-        <p class="text-center text-lg">
-          Y lo mejor: trabajas directamente con nosotros, sin comerciales ni
-          intermediarios. Trato directo, comunicación clara, entregas rápidas.
-        </p>
-      </div>
-    </section>
+      <!-- Navigation -->
+      <nav
+        class="relative z-20 mx-auto flex max-w-7xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8"
+      >
+        <div class="flex items-center gap-2 font-bold text-white text-xl">
+          <img src="/frappe_icon.svg" alt="Frappé" class="h-10 w-10" />
+          <span>Frappé</span>
+        </div>
 
-    <WavyDivider topColor="#E6F9FD" bottomColor="#a9e7fa" />
+        <!-- Desktop Navigation -->
+        <div class="hidden items-center gap-8 md:flex">
+          {
+            navItems.map((item) => (
+              <a
+                href={item.url}
+                class="font-medium text-white transition-all hover:scale-110"
+              >
+                {item.text}
+              </a>
+            ))
+          }
+        </div>
+      </nav>
 
-    <section
-      id="proceso"
-      class="bg-[var(--color-bg-secondary)] px-4 py-16 text-[var(--color-text)] sm:px-8"
-    >
-      <div class="mx-auto max-w-7xl">
-        <h2 class="mb-12 text-center font-bold text-4xl">
-          Así es nuestro proceso de trabajo (rápido y sin complicaciones)
-        </h2>
-        <ol class="mx-auto max-w-3xl space-y-8">
-          <li class="flex items-start gap-6">
-            <span
-              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
-              >1</span
-            >
-            <div>
-              <h3 class="mb-2 font-bold text-xl">Reunión inicial</h3>
-              <p>
-                Hablamos por videollamada o presencialmente para conocer tu
-                proyecto y definir tus objetivos.
-              </p>
-            </div>
-          </li>
-          <li class="flex items-start gap-6">
-            <span
-              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
-              >2</span
-            >
-            <div>
-              <h3 class="mb-2 font-bold text-xl">Propuesta personalizada</h3>
-              <p>Te entregamos una propuesta clara, sin letra pequeña.</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-6">
-            <span
-              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
-              >3</span
-            >
-            <div>
-              <h3 class="mb-2 font-bold text-xl">Desarrollo técnico</h3>
-              <p>Diseñamos, desarrollamos y testeamos la web.</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-6">
-            <span
-              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
-              >4</span
-            >
-            <div>
-              <h3 class="mb-2 font-bold text-xl">Entrega y revisión</h3>
-              <p>Revisamos juntos el resultado final.</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-6">
-            <span
-              class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] font-bold text-white"
-              >5</span
-            >
-            <div>
-              <h3 class="mb-2 font-bold text-xl">
-                Activación de SEO - Google Ads - Mantenimiento
-              </h3>
-              <p>
-                Si está incluido en tu proyecto, arrancamos con el SEO, Google
-                Ads y mantenimiento según tus necesidades.
-              </p>
-            </div>
-          </li>
-        </ol>
-        <p class="mt-12 text-center text-lg">
-          En tan solo 10 días puedes tener tu nueva web online, funcionando y
-          preparada para atraer visitantes.
-        </p>
-      </div>
-    </section>
-
-    <WavyDivider topColor="#a9e7fa" bottomColor="#101a32" />
-
-    <section
-      id="faq"
-      class="bg-[var(--color-background-offset)] px-4 py-16 sm:px-8"
-    >
-      <div class="mx-auto max-w-7xl">
-        <h2
-          class="mb-8 text-center font-sans font-bold text-white text-3xl sm:mb-16 sm:text-4xl"
-        >
-          Preguntas Frecuentes - Lo que necesitas saber
-        </h2>
-        <FAQSection faqs={faqData} />
-      </div>
-    </section>
-
-    <WavyDivider topColor="#101a32" bottomColor="#e6f9fd" />
-
-    <section
-      id="presupuesto"
-      class="bg-[var(--color-background)] px-4 py-16 sm:px-8"
-    >
-      <div class="mx-auto max-w-7xl">
+      <!-- Hero Content -->
+      <div
+        class="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-32"
+      >
         <div
-          class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16"
+          class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12"
         >
-          <!-- Texto y beneficios -->
+          <!-- Columna de Contenido -->
           <div class="text-center lg:text-left">
+            <div class="mb-4 inline-block">
+              <span
+                class="rounded-full bg-white/20 px-6 py-2 font-bold text-[#111827] backdrop-blur-sm"
+              >
+                📍 Servicio en Benidorm y alrededores
+              </span>
+            </div>
+            <h1
+              class="mb-6 font-bold text-[#111827] drop-shadow-lg text-4xl sm:text-5xl lg:text-6xl"
+            >
+              Diseño y desarrollo web en Benidorm
+            </h1>
+            <p class="mb-8 text-[#111827] drop-shadow-md text-xl sm:text-2xl">
+              Webs <strong>profesionales, rápidas y seguras</strong> con <strong
+                >SEO local</strong
+              > para aparecer en Google.
+              <strong>Tiendas online (e‑commerce)</strong>, páginas corporativas
+              y soluciones para pymes orientadas a conversión.
+              <strong>Presupuesto de página web en 24&nbsp;h</strong>.
+            </p>
+            <div
+              class="flex flex-col justify-center gap-4 sm:flex-row lg:justify-start"
+            >
+              <a
+                href="#contacto"
+                class="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-8 py-4 font-bold text-[#29c1f1] shadow-xl transition-all hover:scale-105 hover:shadow-2xl"
+              >
+                <svg
+                  class="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.955 8.955 0 01-4.126-.98L3 21l1.98-5.874A8.955 8.955 0 013 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"
+                  ></path>
+                </svg>
+                Solicita tu presupuesto gratis
+              </a>
+              <a
+                href="#beneficios"
+                class="inline-flex items-center justify-center gap-2 rounded-2xl border-2 border-white bg-white/10 px-8 py-4 font-bold text-[#111827] backdrop-blur-sm transition-all hover:bg-white/20"
+              >
+                ¿Por qué elegirnos?
+                <svg
+                  class="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna del Formulario -->
+          <div>
+            <ContactForm
+              formId="heroContactForm"
+              variant="transparent"
+              title="Solicita tu presupuesto gratuito"
+              description="Rellena el formulario y recibe una propuesta personalizada en menos de 24 horas."
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Wave Divider -->
+      <svg
+        class="absolute bottom-0 left-0 h-16 w-full text-gray-50 dark:text-gray-900"
+        preserveAspectRatio="none"
+        viewBox="0 0 1440 200"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill="currentColor"
+          d="M0,80 Q120,50 240,80 T480,80 Q600,50 720,80 T960,80 Q1080,50 1200,80 T1440,80 L1440,200 L0,200 Z"
+        ></path>
+      </svg>
+    </header>
+
+    <!-- Main Container -->
+    <main class="bg-gray-50 dark:bg-gray-900">
+      <!-- Benefits Section -->
+      <section id="beneficios" class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="mx-auto max-w-7xl">
+          <div class="mb-16 text-center">
             <h2
-              class="mb-4 font-sans font-bold text-[var(--color-text)] text-2xl sm:mb-6 sm:text-3xl"
+              class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              ¿Por qué elegir nuestro servicio?
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              A diferencia de la mayoría de agencias que trabajan con
+              constructores visuales y plugins sobrecargados, nosotros
+              utilizamos un <b>sistema propio de desarrollo</b> que nos permite entregar
+              resultados excepcionales.
+            </p>
+            <p
+              class="mx-auto mt-4 max-w-4xl text-gray-600 text-base dark:text-gray-400 lg:text-lg"
+            >
+              Damos servicio en toda la Marina Baixa (Altea, La Nucía, L'Alfàs
+              del Pi, Villajoyosa). También trabajamos proyectos en <a
+                href="/desarrollo-web-callosa-den-sarria"
+                aria-label="Diseño y desarrollo web en Callosa d'en Sarrià"
+                class="font-semibold underline hover:text-[#29c1f1]"
+                >Callosa d'en Sarrià</a
+              >. Consulta el detalle de <a
+                href="/servicios-web-digitales"
+                aria-label="Servicios web y marketing digital"
+                class="font-semibold underline hover:text-[#29c1f1]"
+                >nuestros servicios web</a
+              >.
+            </p>
+          </div>
+
+          <div
+            class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+          >
+            {
+              benefits.map((benefit) => (
+                <div class="group rounded-3xl bg-white p-8 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-800">
+                  <div class="mb-4 transition-transform duration-300 text-5xl group-hover:scale-110">
+                    {benefit.emoji}
+                  </div>
+                  <h3 class="mb-3 font-bold text-gray-900 text-xl dark:text-white">
+                    {benefit.title}
+                  </h3>
+                  <p class="leading-relaxed text-gray-600 dark:text-gray-400">
+                    {benefit.description}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+
+          <div class="mt-16 text-center">
+            <div
+              class="mx-auto max-w-4xl rounded-3xl bg-gradient-to-r from-[#29c1f1]/10 to-[#f5478f]/10 p-8 lg:p-12"
+            >
+              <p class="mb-4 text-gray-900 text-lg dark:text-white lg:text-xl">
+                Gracias a este enfoque, muchos de nuestros clientes destacan no
+                solo la calidad visual de su web, sino también la facilidad con
+                la que consiguen <b>visibilidad en Google</b> y más contactos.
+              </p>
+              <p class="text-gray-900 text-lg dark:text-white lg:text-xl">
+                Y lo mejor: <b>trabajas directamente con nosotros</b>, sin
+                comerciales ni intermediarios. Trato directo, comunicación
+                clara, entregas rápidas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio Section -->
+      <Portfolio projects={portfolio} />
+
+      <!-- Sectors Section -->
+      <section id="sectores" class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="mx-auto max-w-7xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              Sectores en Benidorm
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              Especialistas en <b>diseño y desarrollo web en Benidorm</b> para negocios
+              locales. Optimizamos <b>SEO local</b> y la conversión en sectores clave:
+              turismo, restauración e inmobiliaria.
+            </p>
+          </div>
+
+          <div
+            class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8"
+          >
+            <div
+              class="group rounded-3xl bg-white p-8 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-800"
+            >
+              <div class="mb-4 text-5xl">🏨</div>
+              <h3 class="mb-2 font-bold text-gray-900 text-xl dark:text-white">
+                Hoteles y apartamentos
+              </h3>
+              <ul class="space-y-2 text-gray-600 text-sm dark:text-gray-400">
+                <li>Motor de reservas y consultas</li>
+                <li>SEO para turismo y temporada</li>
+              </ul>
+            </div>
+            <div
+              class="group rounded-3xl bg-white p-8 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-800"
+            >
+              <div class="mb-4 text-5xl">🏠</div>
+              <h3 class="mb-2 font-bold text-gray-900 text-xl dark:text-white">
+                Inmobiliarias
+              </h3>
+              <ul class="space-y-2 text-gray-600 text-sm dark:text-gray-400">
+                <li>Listados, filtros y captación</li>
+                <li>SEO local y schema inmobiliario</li>
+              </ul>
+            </div>
+            <div
+              class="group rounded-3xl bg-white p-8 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-800"
+            >
+              <div class="mb-4 text-5xl">🍽️</div>
+              <h3 class="mb-2 font-bold text-gray-900 text-xl dark:text-white">
+                Restauración
+              </h3>
+              <ul class="space-y-2 text-gray-600 text-sm dark:text-gray-400">
+                <li>Cartas online y reservas</li>
+                <li>SEO para consultas “cerca de mí”</li>
+              </ul>
+            </div>
+            <div
+              class="group rounded-3xl bg-white p-8 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-800"
+            >
+              <div class="mb-4 text-5xl">🎟️</div>
+              <h3 class="mb-2 font-bold text-gray-900 text-xl dark:text-white">
+                Ocio y turismo
+              </h3>
+              <ul class="space-y-2 text-gray-600 text-sm dark:text-gray-400">
+                <li>Ventas de entradas/actividades</li>
+                <li>Optimización de conversión</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-12 text-center">
+            <a
+              href="#contacto"
+              aria-label="Solicitar presupuesto para página web en Benidorm"
+              class="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-8 py-4 font-bold text-[#29c1f1] shadow-xl transition-all hover:scale-105 hover:shadow-2xl"
+            >
+              Solicitar presupuesto
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process Section -->
+      <section
+        id="proceso"
+        class="bg-gradient-to-br from-[#f9d034]/10 to-[#29c1f1]/10 px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+      >
+        <div class="mx-auto max-w-5xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              Nuestro proceso de trabajo
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              Rápido y sin complicaciones. Te acompañamos en cada paso del
+              camino.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            {
+              process.map((step, index) => (
+                <div class="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:bg-gray-800">
+                  <div class="flex items-start gap-6">
+                    <div class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#29c1f1] to-[#f5478f] font-bold text-white shadow-lg text-2xl">
+                      {step.step}
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="mb-3 font-bold text-gray-900 text-xl dark:text-white">
+                        {step.title}
+                      </h3>
+                      <p class="leading-relaxed text-gray-600 dark:text-gray-400">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                  {index < process.length - 1 && (
+                    <div class="absolute bottom-0 left-[3.5rem] h-6 w-0.5 translate-y-full bg-gradient-to-b from-[#29c1f1] to-transparent" />
+                  )}
+                </div>
+              ))
+            }
+          </div>
+
+          <div
+            class="mt-12 rounded-3xl bg-gradient-to-r from-[#29c1f1] to-[#f5478f] p-8 text-center text-white shadow-xl"
+          >
+            <p class="font-bold text-xl lg:text-2xl">
+              ⚡ En tan solo <span class="underline decoration-wavy"
+                >10 días</span
+              > puedes tener tu nueva web online, funcionando y preparada para atraer
+              visitantes
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section id="faq" class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="mx-auto max-w-4xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              Preguntas Frecuentes
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              Lo que necesitas saber sobre nuestro servicio
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            {
+              faqData.map((faq) => (
+                <details class="group rounded-3xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl dark:bg-gray-800">
+                  <summary class="flex cursor-pointer items-center justify-between p-6 font-bold text-gray-900 transition-colors text-lg dark:text-white lg:p-8">
+                    <span class="pr-4">{faq.question}</span>
+                    <svg
+                      class="h-6 w-6 flex-shrink-0 text-[#29c1f1] transition-transform duration-300 group-open:rotate-180"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2.5"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </summary>
+                  <div class="border-t border-gray-100 px-6 pb-6 pt-4 leading-relaxed text-gray-600 dark:border-gray-700 dark:text-gray-400 lg:px-8">
+                    {faq.answer}
+                  </div>
+                </details>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact CTA Section -->
+      <section
+        id="contacto"
+        class="relative overflow-hidden bg-gradient-to-br from-[#f9d034] via-[#29c1f1] to-[#f5478f] px-4 py-20 sm:px-6 lg:px-8 lg:py-32"
+      >
+        <div class="relative z-10 mx-auto max-w-6xl">
+          <div class="mb-12 text-center">
+            <h2
+              class="mb-6 font-bold text-[#111827] drop-shadow-lg text-4xl lg:text-5xl"
             >
               ¿Listo para dar el siguiente paso?
             </h2>
-            <p
-              class="mb-6 font-sans leading-relaxed text-[var(--color-text)] text-base sm:mb-8 sm:text-lg"
-            >
-              Cuéntanos sobre tu proyecto y te enviaremos un presupuesto
-              personalizado sin compromiso. Trabajamos con empresas y autónomos
-              de Benidorm y alrededores.
+            <p class="mb-10 text-[#111827] drop-shadow-md text-xl lg:text-2xl">
+              Cuéntanos sobre tu proyecto y te enviaremos un <strong
+                >presupuesto personalizado</strong
+              > sin compromiso en menos de <strong>24 horas</strong>
             </p>
+          </div>
 
-            <ul class="space-y-3 sm:space-y-4">
-              {
-                [
-                  "Propuesta detallada y transparente",
-                  "Sin costes ocultos ni sorpresas",
-                  "Respuesta en menos de 24 horas",
-                  "Garantía de satisfacción",
-                  "Atención personalizada en Benidorm",
-                ].map((benefit) => (
-                  <li class="flex items-center gap-2 font-sans text-[var(--color-text)] sm:gap-3">
+          <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            <!-- Formulario de Contacto -->
+            <div>
+              <ContactForm
+                formId="contactFormMain"
+                variant="transparent"
+                title="Cuéntanos sobre tu proyecto"
+                description="Completa el formulario y te responderemos en menos de 24 horas con una propuesta personalizada."
+                showWhatsApp={false}
+              />
+            </div>
+
+            <!-- Información y alternativas de contacto -->
+            <div class="flex flex-col justify-center gap-6">
+              <div class="rounded-3xl bg-white/10 p-8 backdrop-blur-sm">
+                <h3 class="mb-6 font-bold text-[#111827] text-2xl">
+                  Otras formas de contacto
+                </h3>
+
+                <div class="space-y-4">
+                  <a
+                    href="https://wa.me/+34608962213"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group flex items-center gap-4 rounded-2xl bg-white p-4 shadow-lg transition-all hover:scale-105"
+                  >
+                    <div
+                      class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#25D366]"
+                    >
+                      <svg
+                        class="h-6 w-6 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="flex-1">
+                      <p class="font-bold text-[#111827]">WhatsApp</p>
+                      <p class="text-[#111827]/70 text-sm">
+                        Respuesta inmediata
+                      </p>
+                    </div>
                     <svg
-                      class="h-5 w-5 text-[var(--color-secondary)]"
+                      class="h-5 w-5 text-[#111827] transition-transform group-hover:translate-x-1"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -329,37 +751,270 @@ const keywords =
                         stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      />
+                        d="M9 5l7 7-7 7"></path>
                     </svg>
-                    {benefit}
-                  </li>
-                ))
-              }
-            </ul>
+                  </a>
+
+                  <a
+                    href="mailto:frappecreativity@gmail.com"
+                    class="group flex items-center gap-4 rounded-2xl bg-white p-4 shadow-lg transition-all hover:scale-105"
+                  >
+                    <div
+                      class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#29c1f1]"
+                    >
+                      <svg
+                        class="h-6 w-6 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="flex-1">
+                      <p class="font-bold text-[#111827]">Email</p>
+                      <p class="text-[#111827]/70 text-sm">
+                        frappecreativity@gmail.com
+                      </p>
+                    </div>
+                    <svg
+                      class="h-5 w-5 text-[#111827] transition-transform group-hover:translate-x-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 gap-4">
+                <div class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+                  <p class="mb-2 font-bold text-[#111827] text-lg">
+                    ✅ Propuesta detallada
+                  </p>
+                  <p class="text-[#111827] text-sm">Sin costes ocultos</p>
+                </div>
+                <div class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+                  <p class="mb-2 font-bold text-[#111827] text-lg">
+                    ⚡ Respuesta rápida
+                  </p>
+                  <p class="text-[#111827] text-sm">En menos de 24h</p>
+                </div>
+                <div class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+                  <p class="mb-2 font-bold text-[#111827] text-lg">
+                    📍 Servicio local
+                  </p>
+                  <p class="text-[#111827] text-sm">Atención en Benidorm</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AboutFrappeSection -->
+      <AboutFrappeSection
+        title="Conoce al desarrollador web detrás de Frappé"
+        description="David Pérez, desarrollador web especializado en crear soluciones digitales para empresas en Benidorm. Páginas web rápidas, seguras y optimizadas que convierten visitantes en clientes."
+      />
+    </main>
+
+    <!-- Success Modal -->
+    <div
+      id="successModal"
+      class="fixed inset-0 z-50 hidden bg-black/50 p-4"
+      style="align-items: center; justify-content: center;"
+      onclick="if(event.target === this) this.classList.add('hidden')"
+    >
+      <div
+        class="max-w-md rounded-2xl bg-white p-8 text-center shadow-2xl dark:bg-gray-800"
+      >
+        <div class="mb-4 text-6xl">✅</div>
+        <h3 class="mb-3 font-bold text-gray-900 text-2xl dark:text-white">
+          ¡Mensaje enviado!
+        </h3>
+        <p class="mb-6 text-gray-600 dark:text-gray-400">
+          Gracias por contactar con nosotros. Te responderemos en menos de 24
+          horas.
+        </p>
+        <button
+          onclick="document.getElementById('successModal').classList.add('hidden')"
+          class="hover:bg-[var(--color-secondary)]/90 rounded-xl bg-[var(--color-secondary)] px-6 py-3 font-bold text-[var(--color-text)] transition-colors"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div
+      id="errorModal"
+      class="fixed inset-0 z-50 hidden bg-black/50 p-4"
+      style="align-items: center; justify-content: center;"
+      onclick="if(event.target === this) this.classList.add('hidden')"
+    >
+      <div
+        class="max-w-md rounded-2xl bg-white p-8 text-center shadow-2xl dark:bg-gray-800"
+      >
+        <div class="mb-4 text-6xl">❌</div>
+        <h3 class="mb-3 font-bold text-gray-900 text-2xl dark:text-white">
+          Error al enviar
+        </h3>
+        <p class="mb-6 text-gray-600 dark:text-gray-400">
+          Ha ocurrido un error al enviar el mensaje. Por favor, inténtalo de
+          nuevo o contáctanos por WhatsApp.
+        </p>
+        <button
+          onclick="document.getElementById('errorModal').classList.add('hidden')"
+          class="hover:bg-[var(--color-secondary)]/90 rounded-xl bg-[var(--color-secondary)] px-6 py-3 font-bold text-[var(--color-text)] transition-colors"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 px-4 py-12 text-white sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div
+          class="flex flex-col items-center justify-between gap-6 md:flex-row"
+        >
+          <div class="flex items-center gap-3">
+            <img src="/frappe_icon.svg" alt="Frappé" class="h-10 w-10" />
+            <div>
+              <span class="block font-bold text-xl">Frappé</span>
+              <span class="text-gray-400 text-sm">Desarrollo Web Benidorm</span>
+            </div>
           </div>
 
-          <!-- Formulario -->
-          <ContactForm
-            formId="budgetForm"
-            title="Cuéntanos sobre tu proyecto"
-            description="Rellena el formulario y nos pondremos en contacto contigo lo antes posible para enviarte un presupuesto personalizado."
-          />
+          <nav class="flex flex-wrap justify-center gap-6">
+            {
+              navItems.map((item) => (
+                <a
+                  href={item.url}
+                  class="transition-colors hover:text-[#29c1f1]"
+                >
+                  {item.text}
+                </a>
+              ))
+            }
+          </nav>
+
+          <a
+            href="/privacidad"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="transition-colors hover:text-[#29c1f1]"
+          >
+            Política de Privacidad
+          </a>
+        </div>
+
+        <div
+          class="mt-8 border-t border-gray-800 pt-8 text-center text-gray-400"
+        >
+          <p>© {new Date().getFullYear()} Frappé. Hecho con 💙 en Benidorm.</p>
         </div>
       </div>
-    </section>
+    </footer>
 
-    <WavyDivider topColor="#E6F9FD" bottomColor="#a9e7fa" />
+    <!-- Force Dark Mode Script -->
+    <script>
+      // Forzar modo oscuro siempre
+      (function () {
+        document.documentElement.classList.add("dark");
+      })();
 
-    <AboutFrappeSection
-      title="¿Quién está detrás de Frappé?"
-      description="David Pérez, desarrollador web especializado en crear sitios web rápidos y seguros para empresas en Benidorm. Con experiencia en tecnología moderna y un enfoque centrado en resultados."
-    />
+      // Modal display management
+      const successModal = document.getElementById("successModal");
+      const errorModal = document.getElementById("errorModal");
 
-    <WavyDivider topColor="#a9e7fa" bottomColor="black" />
+      if (successModal) {
+        // Observer para detectar cuando se remueve la clase 'hidden'
+        const observerSuccess = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (mutation.attributeName === "class" && successModal) {
+              if (!successModal.classList.contains("hidden")) {
+                successModal.style.display = "flex";
+              } else {
+                successModal.style.display = "none";
+              }
+            }
+          });
+        });
+        observerSuccess.observe(successModal, { attributes: true });
+      }
 
-    <Footer navItems={navItems} />
-    <ContactModal />
-    <CookieConsent />
-  </main>
-</Layout>
+      if (errorModal) {
+        const observerError = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (mutation.attributeName === "class" && errorModal) {
+              if (!errorModal.classList.contains("hidden")) {
+                errorModal.style.display = "flex";
+              } else {
+                errorModal.style.display = "none";
+              }
+            }
+          });
+        });
+        observerError.observe(errorModal, { attributes: true });
+      }
+    </script>
+
+    <!-- Smooth Animations -->
+    <style>
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      html {
+        transition: background-color 0.3s ease;
+        scroll-behavior: smooth;
+      }
+
+      * {
+        transition:
+          background-color 0.3s ease,
+          border-color 0.3s ease,
+          color 0.3s ease;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          "Roboto",
+          sans-serif;
+      }
+
+      *:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+
+      details[open] summary ~ * {
+        animation: fadeInUp 0.3s ease-out;
+      }
+    </style>
+  </body>
+</html>

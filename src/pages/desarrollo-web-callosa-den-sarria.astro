@@ -1,0 +1,1008 @@
+---
+// Estilos y fuentes
+import "../styles/theme.css";
+import "@fontsource-variable/montserrat";
+import Portfolio from "../components/Portfolio.astro";
+import AboutFrappeSection from "../components/AboutFrappeSection.astro";
+import ContactForm from "../components/ContactForm.astro";
+
+// Navegación
+const navItems = [
+  { text: "Servicios", url: "#servicios" },
+  { text: "Portfolio", url: "#portfolio" },
+  { text: "Beneficios", url: "#beneficios" },
+  { text: "Proceso", url: "#proceso" },
+  { text: "FAQ", url: "#faq" },
+  { text: "Contacto", url: "#contacto" },
+];
+
+// Servicios (mezcla de conceptos de ambas páginas)
+const services = [
+  {
+    id: "desarrollo-web",
+    title: "Desarrollo Web a Medida",
+    description:
+      "Webs rápidas, seguras y optimizadas para convertir visitas en clientes. Sin plantillas genéricas ni sobrecarga de plugins.",
+    features: [
+      "Diseño responsive y accesible",
+      "Código limpio y moderno",
+      "SEO técnico desde el día uno",
+    ],
+    featured: true,
+  },
+  {
+    id: "seo",
+    title: "SEO Local y Contenidos",
+    description:
+      "Estrategia para posicionar tu negocio en Callosa d'en Sarrià y la Marina Baixa.",
+    features: [
+      "Arquitectura y datos estructurados",
+      "Keyword research local",
+      "Optimización on-page y performance",
+    ],
+    featured: false,
+  },
+  {
+    id: "ads",
+    title: "Google Ads de Alto Rendimiento",
+    description:
+      "Campañas rentables enfocadas en intención de compra para generar contactos cualificados.",
+    features: [
+      "Configuración y tracking",
+      "Optimización continua",
+      "Informes claros",
+    ],
+    featured: false,
+  },
+  {
+    id: "ia",
+    title: "Implementación de IA",
+    description:
+      "Automatizaciones, chatbots y análisis para ahorrar costes y tiempo.",
+    features: [
+      "Chatbots y asistentes",
+      "Automatización de tareas",
+      "Análisis predictivo",
+    ],
+    featured: true,
+  },
+  {
+    id: "soporte",
+    title: "Mantenimiento Web",
+    description:
+      "Actualizaciones, seguridad y monitorización para que tu web esté siempre al 100%.",
+    features: [
+      "Backups y seguridad",
+      "Actualizaciones periódicas",
+      "Mejoras evolutivas",
+    ],
+    featured: false,
+  },
+  {
+    id: "servicio-tecnico-informatica",
+    title: "Servicio Técnico Informático",
+    description:
+      "Soporte informático presencial, mantenimiento preventivo y asistencia técnica rápida para que tu negocio nunca se detenga.",
+    features: [
+      "Reparación de equipos",
+      "Mantenimiento preventivo",
+      "Soporte técnico",
+    ],
+  },
+];
+
+// Portfolio
+const portfolio = [
+  {
+    title: "Web para PYMES",
+    description:
+      "Página web para pyme de trabajos en altura con cuerda en Alicante.",
+    url: "https://bravotrabajosverticales.es/",
+    image: "/portfolio/portfolio-1.webp",
+    tags: ["PYMES", "SEO", "Responsive", "Google Ads"],
+    date: "09/2025",
+  },
+  {
+    title: "Web Inmobiliaria",
+    description:
+      "Sitio web moderno con formularios de búsqueda, integración con CRM y SEO local.",
+    url: "https://habilex.es/",
+    image: "/portfolio/portfolio-2.webp",
+    tags: ["Inmobiliaria", "CRM", "Blog", "SEO Local"],
+    date: "09/2025",
+  },
+  {
+    title: "Web Multilenguaje",
+    description:
+      "Página web para empresa de eventos culturales en español, inglés y neerlandés.",
+    url: "https://lapalomablanca.es/",
+    image: "/portfolio/portfolio-3.webp",
+    tags: ["Traducciones", "SEO", "Responsive", "Moderno"],
+    date: "07/2025",
+  },
+];
+
+// Beneficios
+const benefits = [
+  {
+    emoji: "🚀",
+    title: "Tecnología Moderna",
+    description:
+      "Stack actual y prácticas recomendadas. Rendimiento y seguridad por defecto.",
+  },
+  {
+    emoji: "🎯",
+    title: "Resultados Medibles",
+    description:
+      "Objetivos claros y métricas: más tráfico cualificado y más leads.",
+  },
+  {
+    emoji: "📍",
+    title: "Especialistas en Local",
+    description:
+      "Enfoque en SEO local para Callosa d'en Sarrià y entorno (Fuentes del Algar, Marina Baixa).",
+  },
+  {
+    emoji: "🤝",
+    title: "Trato Directo",
+    description:
+      "Sin intermediarios. Comunicación transparente, entregas rápidas y soporte cercano.",
+  },
+  {
+    emoji: "🛠️",
+    title: "Soporte Integral",
+    description:
+      "Diseño, desarrollo, SEO, Ads y mantenimiento en un mismo equipo.",
+  },
+  {
+    emoji: "💰",
+    title: "Precios Claros",
+    description:
+      "Presupuestos cerrados, sin costes ocultos. Escalable según tus objetivos.",
+  },
+];
+
+// Proceso
+const process = [
+  {
+    step: "1",
+    title: "Consulta inicial gratuita",
+    description:
+      "Definimos objetivos, público y propuesta de valor. Identificamos oportunidades locales.",
+  },
+  {
+    step: "2",
+    title: "Estrategia y propuesta",
+    description:
+      "Arquitectura de la información, SEO técnico y roadmap con plazos y costes.",
+  },
+  {
+    step: "3",
+    title: "Diseño y desarrollo",
+    description:
+      "Implementación con revisiones iterativas. Performance, accesibilidad y medición.",
+  },
+  {
+    step: "4",
+    title: "Despliegue y formación",
+    description:
+      "Publicación, verificación SEO y formación para gestión autónoma.",
+  },
+  {
+    step: "5",
+    title: "Optimización continua",
+    description:
+      "Mejora de rankings, CRO, contenidos y campañas según resultados.",
+  },
+];
+
+// FAQs
+const faqs = [
+  {
+    question: "¿Qué incluye el desarrollo web?",
+    answer:
+      "Diseño responsive, desarrollo con código limpio, SEO técnico, formularios, analítica y hosting opcional.",
+  },
+  {
+    question: "¿Cómo se cobra por hacer una página web?",
+    answer:
+      "Cada proyecto es único y se adapta a tus necesidades específicas. Ofrecemos desde soluciones básicas hasta webs completas con SEO, marketing digital y mantenimiento. Te enviamos una propuesta personalizada sin compromiso.",
+  },
+  {
+    question: "¿Ofrecéis mantenimiento web una vez entregado el proyecto?",
+    answer:
+      "Sí. Puedes contratar un servicio mensual para mantener tu web actualizada, segura, optimizada y funcionando al 100%. También incluimos soporte técnico y cambios menores.",
+  },
+  {
+    question: "¿Cuánto tiempo tardáis en entregar una web?",
+    answer:
+      "En promedio, entre 4 y 6 semanas, dependiendo del alcance del proyecto. El proceso es ágil y eficiente gracias a nuestro sistema de desarrollo propio.",
+  },
+  {
+    question: "¿Trabajáis SEO local en Callosa d'en Sarrià?",
+    answer:
+      "Sí. Optimizamos para búsquedas locales, datos estructurados y páginas de servicio orientadas a intención.",
+  },
+  {
+    question: "¿Vuestro servicio incluye SEO?",
+    answer:
+      "Sí. Todos nuestros proyectos incluyen SEO técnico: estructura optimizada, etiquetas correctas, velocidad de carga, y arquitectura preparada para posicionar en Google.",
+  },
+  {
+    question: "¿Qué diferencia vuestro servicio del de otras agencias?",
+    answer:
+      "No usamos WordPress ni sistemas genéricos. Trabajamos con tecnología moderna y código limpio que garantiza velocidad, seguridad y una estructura pensada para el SEO. Además, trabajamos directamente contigo, sin intermediarios.",
+  },
+  {
+    question: "¿Puedo contratar solo diseño web sin SEO o Ads?",
+    answer:
+      "Sí. Puedes comenzar con un diseño simple y escalar a funcionalidades más avanzadas cuando tu negocio lo necesite. Nuestros servicios son completamente flexibles.",
+  },
+  {
+    question: "¿Cuánto cuesta una página web en Callosa d'en Sarrià?",
+    answer:
+      "Depende del tipo de proyecto (página corporativa, e‑commerce, contenido, integraciones). Trabajamos con presupuestos cerrados y te enviamos una estimación en 24 h tras la consulta inicial.",
+  },
+  {
+    question: "¿Hacéis tiendas online (e‑commerce)?",
+    answer:
+      "Sí. Creamos e‑commerce rápidos y seguros con catálogo, pasarela de pago, gestión de stock y analítica. Optimizamos para SEO y fichas de producto.",
+  },
+  {
+    question:
+      "¿Dais servicio en Benidorm, Altea, La Nucía, Polop o L'Alfàs del Pi?",
+    answer:
+      "Sí. Trabajamos en toda la Marina Baixa y alrededores, con especial foco en Callosa d'en Sarrià, Benidorm, Altea, La Nucía, Polop y L'Alfàs del Pi.",
+  },
+  {
+    question: "¿Podéis migrar o mejorar una web existente?",
+    answer:
+      "Sí. Migramos webs, mejoramos rendimiento Core Web Vitals, accesibilidad, SEO técnico y experiencia de usuario para aumentar la conversión.",
+  },
+  {
+    question: "¿Incluís SEO local (fichas y datos estructurados)?",
+    answer:
+      "Incluimos SEO técnico on‑page, datos estructurados, configuración de analítica y asesoría para Google Business Profile y señales locales.",
+  },
+];
+
+// SEO
+const { site } = Astro;
+const pageUrl = `${site}/desarrollo-web-callosa-den-sarria`;
+const image = new URL("splash.png", site);
+const title =
+  "Diseño y desarrollo web en Callosa d'en Sarrià | SEO local y tiendas online";
+const description =
+  "Agencia de diseño y desarrollo web en Callosa d'en Sarrià. Webs rápidas, SEO local, tiendas online y mantenimiento. Presupuesto de página web en 24 h.";
+const keywords =
+  "diseño web Callosa d'en Sarrià, desarrollo web Callosa, agencia diseño web Callosa, posicionamiento web Callosa, SEO local Callosa, tienda online Callosa, precio página web Callosa, presupuesto diseño web Callosa, mantenimiento web Callosa";
+---
+
+<!doctype html>
+<html lang="es" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={pageUrl} />
+
+    <!-- Control de robots -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Frappé" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={pageUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Metadatos adicionales -->
+    <meta name="author" content="Frappé" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Geolocalización -->
+    <meta name="geo.region" content="ES-A" />
+    <meta name="geo.placename" content="Callosa d'en Sarrià" />
+    <meta name="geo.position" content="38.651389;-0.122778" />
+    <meta name="ICBM" content="38.651389, -0.122778" />
+
+    <!-- Schema Markup: LocalBusiness -->
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Frappé",
+        "image": "https://creativefrappe.com/icon_inv_code.svg",
+        "url": pageUrl,
+        "telephone": "+34608962213",
+        "description": "Desarrollo web profesional en Callosa d'en Sarrià con SEO, Ads y mantenimiento.",
+        "areaServed": "Callosa d'en Sarrià, Benidorm, Altea, La Nucía, Polop, L'Alfàs del Pi, Marina Baixa",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Callosa d'en Sarrià",
+          "addressRegion": "Alicante",
+          "postalCode": "03510",
+          "addressCountry": "ES"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 38.651389,
+          "longitude": -0.122778
+        }
+      })}
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/frappe_icon.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body
+    class="bg-gray-50 font-sans antialiased dark:bg-gray-900"
+    style="font-family: var(--font-sans);"
+  >
+    <!-- Hero con gradiente y navegación -->
+    <header class="relative overflow-hidden">
+      <!-- Fondo gradiente (sin imagen para máxima compatibilidad) -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-[#f9d034] via-[#29c1f1] to-[#f5478f]"
+      >
+      </div>
+
+      <!-- Nav -->
+      <nav
+        class="relative z-20 mx-auto flex max-w-7xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8"
+      >
+        <div class="flex items-center gap-2 font-bold text-gray-900 text-xl">
+          <img src="/frappe_icon.svg" alt="Frappé" class="h-10 w-10" />
+          <span>Frappé</span>
+        </div>
+
+        <div class="hidden items-center gap-8 md:flex">
+          {
+            navItems.map((item) => (
+              <a
+                href={item.url}
+                class="font-medium text-gray-900 transition-all hover:scale-110"
+              >
+                {item.text}
+              </a>
+            ))
+          }
+        </div>
+      </nav>
+
+      <!-- Hero -->
+      <div
+        class="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-32"
+      >
+        <div class="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+          <!-- Columna izquierda: Texto -->
+          <div class="text-center lg:text-left">
+            <div class="mb-4 inline-block">
+              <span
+                class="rounded-full bg-white/20 px-6 py-2 font-bold text-[#111827] backdrop-blur-sm"
+                >📍 Servicio en Callosa d'en Sarrià y alrededores</span
+              >
+            </div>
+            <h1
+              class="mb-6 font-bold text-[#111827] drop-shadow-lg text-4xl sm:text-5xl lg:text-6xl"
+            >
+              Diseño y desarrollo web en Callosa d'en Sarrià
+            </h1>
+            <p
+              class="mb-8 text-[#111827] drop-shadow-md text-xl sm:text-2xl lg:text-xl"
+            >
+              Webs <strong>profesionales, rápidas y seguras</strong> con <strong
+                >SEO local</strong
+              > para aparecer en Google.
+              <strong>Tiendas online (e‑commerce)</strong>, páginas corporativas
+              y sitios para pymes orientados a conversión.
+              <strong>Presupuesto de página web en 24&nbsp;h</strong>.
+            </p>
+            <div
+              class="flex flex-col justify-center gap-4 sm:flex-row lg:justify-start"
+            >
+              <a
+                href="#servicios"
+                class="inline-flex items-center justify-center gap-2 rounded-2xl border-2 border-white bg-white/10 px-8 py-4 font-bold text-[#111827] backdrop-blur-sm transition-all hover:bg-white/20"
+              >
+                Ver servicios
+                <svg
+                  class="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  ><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"></path></svg
+                >
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna derecha: Formulario -->
+          <div class="relative">
+            <ContactForm
+              formId="heroContactForm"
+              variant="transparent"
+              title="Solicita tu propuesta gratis"
+              description="Cuéntanos sobre tu proyecto y te enviaremos una propuesta personalizada en 24 horas."
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Separador onda -->
+      <svg
+        class="absolute bottom-0 left-0 h-16 w-full text-gray-50 dark:text-gray-900"
+        preserveAspectRatio="none"
+        viewBox="0 0 1440 200"
+        xmlns="http://www.w3.org/2000/svg"
+        ><path
+          fill="currentColor"
+          d="M0,80 Q120,50 240,80 T480,80 Q600,50 720,80 T960,80 Q1080,50 1200,80 T1440,80 L1440,200 L0,200 Z"
+        ></path></svg
+      >
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="bg-gray-50 dark:bg-gray-900">
+      <!-- Servicios -->
+      <section id="servicios" class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="mx-auto max-w-7xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              Servicios digitales para negocios locales
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              Desde la <b>creación de tu web</b> hasta <b>SEO local</b>, <b
+                >Google Ads</b
+              > e <b>implementaciones de IA</b>. Todo lo necesario para destacar
+              en Callosa d'en Sarrià.
+            </p>
+            <p
+              class="mx-auto mt-4 max-w-4xl text-gray-600 text-base dark:text-gray-400 lg:text-lg"
+            >
+              Trabajamos con empresas de <a
+                href="/desarrollo-web-benidorm"
+                aria-label="Diseño y desarrollo web en Benidorm"
+                class="font-semibold underline hover:text-[#29c1f1]">Benidorm</a
+              >, Altea, La Nucía, Polop y L'Alfàs del Pi. Desarrollamos <strong
+                >páginas web para restaurantes</strong
+              >,
+              <strong>inmobiliarias</strong> y <strong
+                >negocios turísticos</strong
+              > (Fuentes del Algar), con
+              <strong>posicionamiento web en Google</strong> y arquitectura orientada
+              a conversión. Consulta más detalles en nuestros <a
+                href="/servicios-web-digitales"
+                aria-label="Servicios web y marketing digital"
+                class="font-semibold underline hover:text-[#29c1f1]"
+                >servicios web</a
+              >.
+            </p>
+          </div>
+
+          <div
+            class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+          >
+            {
+              services.map((service) => (
+                <div
+                  class={`group relative overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-800 ${service.featured ? "ring-4 ring-[#29c1f1] ring-offset-4 dark:ring-offset-gray-900" : ""}`}
+                >
+                  {service.featured && (
+                    <div class="absolute bottom-6 right-6">
+                      <span class="rounded-full bg-gradient-to-r from-[#29c1f1] to-[#f5478f] px-2 py-2 font-bold text-white shadow-lg text-xs">
+                        ⭐
+                      </span>
+                    </div>
+                  )}
+                  <div class="mb-6">
+                    <h3 class="mb-3 font-bold text-gray-900 text-xl dark:text-white">
+                      {service.title}
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                      {service.description}
+                    </p>
+                  </div>
+                  <ul class="space-y-3">
+                    {service.features.map((feature) => (
+                      <li class="flex items-start gap-3 text-gray-700 text-sm dark:text-gray-300">
+                        <svg
+                          class="mt-0.5 h-5 w-5 flex-shrink-0 text-[#29c1f1]"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2.5"
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio Section -->
+      <Portfolio projects={portfolio} />
+
+      <!-- Beneficios -->
+      <section id="beneficios" class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="mx-auto max-w-7xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              ¿Por qué elegirnos?
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              Unimos <b>desarrollo moderno</b>, <b>marketing efectivo</b> y <b
+                >estrategia local</b
+              > para conseguir resultados reales en Callosa d'en Sarrià.
+            </p>
+          </div>
+
+          <div
+            class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+          >
+            {
+              benefits.map((benefit) => (
+                <div class="group rounded-3xl bg-white p-8 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-800">
+                  <div class="mb-4 transition-transform duration-300 text-5xl group-hover:scale-110">
+                    {benefit.emoji}
+                  </div>
+                  <h3 class="mb-3 font-bold text-gray-900 text-xl dark:text-white">
+                    {benefit.title}
+                  </h3>
+                  <p class="leading-relaxed text-gray-600 dark:text-gray-400">
+                    {benefit.description}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Proceso -->
+      <section
+        id="proceso"
+        class="bg-gradient-to-br from-[#f9d034]/10 to-[#29c1f1]/10 px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+      >
+        <div class="mx-auto max-w-5xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              Nuestro proceso
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              Proceso ágil con enfoque en rendimiento, accesibilidad y SEO.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            {
+              process.map((step, index) => (
+                <div class="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:bg-gray-800">
+                  <div class="flex items-start gap-6">
+                    <div class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#29c1f1] to-[#f5478f] font-bold text-white shadow-lg text-2xl">
+                      {step.step}
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="mb-3 font-bold text-gray-900 text-xl dark:text-white">
+                        {step.title}
+                      </h3>
+                      <p class="leading-relaxed text-gray-600 dark:text-gray-400">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                  {index < process.length - 1 && (
+                    <div class="absolute bottom-0 left-[3.5rem] h-6 w-0.5 translate-y-full bg-gradient-to-b from-[#29c1f1] to-transparent" />
+                  )}
+                </div>
+              ))
+            }
+          </div>
+
+          <div
+            class="mt-12 rounded-3xl bg-gradient-to-r from-[#29c1f1] to-[#f5478f] p-8 text-center text-white shadow-xl"
+          >
+            <p class="font-bold text-xl lg:text-2xl">
+              ⚡ La mayoría de proyectos quedan listos en <span
+                class="underline decoration-wavy">4–6 semanas</span
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="mx-auto max-w-4xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              Preguntas frecuentes
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              Resolvemos tus dudas sobre desarrollo, SEO y mantenimiento.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            {
+              faqs.map((faq) => (
+                <details class="group rounded-3xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl dark:bg-gray-800">
+                  <summary class="flex cursor-pointer items-center justify-between p-6 font-bold text-gray-900 transition-colors text-lg dark:text-white lg:p-8">
+                    <span class="pr-4">{faq.question}</span>
+                    <svg
+                      class="h-6 w-6 flex-shrink-0 text-[#29c1f1] transition-transform duration-300 group-open:rotate-180"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2.5"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </summary>
+                  <div class="border-t border-gray-100 px-6 pb-6 pt-4 leading-relaxed text-gray-600 dark:border-gray-700 dark:text-gray-400 lg:px-8">
+                    {faq.answer}
+                  </div>
+                </details>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Contacto -->
+      <section
+        id="contacto"
+        class="relative overflow-hidden bg-gradient-to-br from-[#f9d034] via-[#29c1f1] to-[#f5478f] px-4 py-20 sm:px-6 lg:px-8 lg:py-32"
+      >
+        <div class="relative z-10 mx-auto max-w-6xl">
+          <div class="mb-12 text-center">
+            <h2
+              class="mb-6 font-bold text-[#111827] drop-shadow-lg text-4xl lg:text-5xl"
+            >
+              ¿Listo para impulsar tu negocio en Callosa?
+            </h2>
+            <p class="mb-10 text-[#111827] drop-shadow-md text-xl lg:text-2xl">
+              Cuéntanos sobre tu proyecto (web corporativa o <strong
+                >tienda online</strong
+              >) y te enviaremos <strong
+                >presupuesto de página web en 24&nbsp;h</strong
+              >. También damos servicio en <a
+                href="/desarrollo-web-benidorm"
+                aria-label="Diseño y desarrollo web en Benidorm"
+                class="font-semibold underline">Benidorm</a
+              > y la Marina Baixa.
+            </p>
+          </div>
+
+          <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
+            <!-- Columna izquierda: Información y contacto rápido -->
+            <div class="space-y-6">
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                <div class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+                  <p class="mb-2 font-bold text-[#111827] text-lg">
+                    ✅ Propuesta detallada
+                  </p>
+                  <p class="text-[#111827] text-sm">Sin costes ocultos</p>
+                </div>
+                <div class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+                  <p class="mb-2 font-bold text-[#111827] text-lg">
+                    ⚡ Respuesta en 24 h
+                  </p>
+                  <p class="text-[#111827] text-sm">Atención cercana</p>
+                </div>
+                <div class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+                  <p class="mb-2 font-bold text-[#111827] text-lg">
+                    📍 En la Marina Baixa
+                  </p>
+                  <p class="text-[#111827] text-sm">Experiencia local</p>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <h3 class="font-bold text-[#111827] text-xl">
+                  ¿Prefieres contactar directamente?
+                </h3>
+                <div class="flex flex-col gap-3">
+                  <a
+                    href="https://wa.me/+34608962213"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-6 py-4 font-bold text-[#29c1f1] shadow-2xl transition-all hover:scale-105"
+                  >
+                    <svg
+                      class="h-6 w-6 transition-transform group-hover:scale-110"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"
+                      ></path></svg
+                    >
+                    Consulta por WhatsApp
+                  </a>
+                  <a
+                    href="mailto:frappecreativity@gmail.com"
+                    class="inline-flex items-center justify-center gap-3 rounded-2xl border-4 border-white bg-white/10 px-6 py-4 font-bold text-[#111827] backdrop-blur-sm transition-all hover:bg-white hover:text-[#29c1f1]"
+                  >
+                    <svg
+                      class="h-6 w-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      ></path></svg
+                    >
+                    Enviar Email
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna derecha: Formulario -->
+            <ContactForm
+              formId="contactForm"
+              variant="transparent"
+              title="Completa el formulario"
+              description="Te responderemos con una propuesta personalizada en menos de 24 horas."
+              showWhatsApp={false}
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- AboutFrappeSection -->
+      <AboutFrappeSection
+        title="Conoce al desarrollador web detrás de Frappé"
+        description="David Pérez, desarrollador web especializado en soluciones digitales para negocios en Callosa d'en Sarrià y la Marina Baixa. Creo webs rápidas, seguras y optimizadas que ayudan a empresas locales a crecer."
+      />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 px-4 py-12 text-white sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div
+          class="flex flex-col items-center justify-between gap-6 md:flex-row"
+        >
+          <div class="flex items-center gap-3">
+            <img src="/frappe_icon.svg" alt="Frappé" class="h-10 w-10" />
+            <div>
+              <span class="block font-bold text-xl">Frappé</span>
+              <span class="text-gray-400 text-sm"
+                >Desarrollo Web Callosa d'en Sarrià</span
+              >
+            </div>
+          </div>
+          <nav class="flex flex-wrap justify-center gap-6">
+            {
+              navItems.map((item) => (
+                <a
+                  href={item.url}
+                  class="transition-colors hover:text-[#29c1f1]"
+                >
+                  {item.text}
+                </a>
+              ))
+            }
+          </nav>
+          <a
+            href="/privacidad"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="transition-colors hover:text-[#29c1f1]"
+            >Política de Privacidad</a
+          >
+        </div>
+        <div
+          class="mt-8 border-t border-gray-800 pt-8 text-center text-gray-400"
+        >
+          <p>
+            © {new Date().getFullYear()} Frappé. Hecho con 💙 en Callosa d'en Sarrià.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modales de éxito y error -->
+    <div
+      id="successModal"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      style="display: none;"
+    >
+      <div
+        class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-gray-800"
+      >
+        <div class="mb-4 text-center">
+          <div
+            class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100"
+          >
+            <svg
+              class="h-8 w-8 text-green-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h3 class="mb-2 font-bold text-gray-900 text-2xl dark:text-white">
+            ¡Mensaje enviado!
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Gracias por contactarnos. Te responderemos en menos de 24 horas.
+          </p>
+        </div>
+        <button
+          onclick="document.getElementById('successModal').style.display='none'"
+          class="w-full rounded-xl bg-[#29c1f1] px-6 py-3 font-bold text-white transition-all hover:bg-[#29c1f1]/90"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+
+    <div
+      id="errorModal"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      style="display: none;"
+    >
+      <div
+        class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-gray-800"
+      >
+        <div class="mb-4 text-center">
+          <div
+            class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-100"
+          >
+            <svg
+              class="h-8 w-8 text-red-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </div>
+          <h3 class="mb-2 font-bold text-gray-900 text-2xl dark:text-white">
+            Error al enviar
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Hubo un problema al enviar tu mensaje. Por favor, inténtalo de nuevo
+            o contáctanos por WhatsApp.
+          </p>
+        </div>
+        <button
+          onclick="document.getElementById('errorModal').style.display='none'"
+          class="w-full rounded-xl bg-gray-900 px-6 py-3 font-bold text-white transition-all hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+
+    <!-- Script para cerrar modales al hacer click fuera -->
+    <script>
+      ["successModal", "errorModal"].forEach((modalId) => {
+        const modal = document.getElementById(modalId);
+        modal?.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+      });
+    </script>
+
+    <!-- Force Dark Mode Script -->
+    <script>
+      // Forzar modo oscuro siempre
+      (function () {
+        document.documentElement.classList.add("dark");
+      })();
+    </script>
+
+    <!-- Animaciones suaves -->
+    <style>
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      html {
+        transition: background-color 0.3s ease;
+        scroll-behavior: smooth;
+      }
+      * {
+        transition:
+          background-color 0.3s ease,
+          border-color 0.3s ease,
+          color 0.3s ease;
+      }
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          "Roboto",
+          sans-serif;
+      }
+      *:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+      details[open] summary ~ * {
+        animation: fadeInUp 0.3s ease-out;
+      }
+    </style>
+  </body>
+</html>
