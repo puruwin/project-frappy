@@ -1,0 +1,1122 @@
+---
+// Estilos y fuentes
+import "../styles/theme.css";
+import "@fontsource-variable/montserrat";
+import AboutFrappeSection from "../components/AboutFrappeSection.astro";
+import ContactForm from "../components/ContactForm.astro";
+
+// Navegación
+const navItems = [
+  { text: "Servicios", url: "#servicios" },
+  { text: "Beneficios", url: "#beneficios" },
+  { text: "Proceso", url: "#proceso" },
+  { text: "FAQ", url: "#faq" },
+  { text: "Contacto", url: "#contacto" },
+];
+
+// Servicios comunes
+const commonServices = [
+  "Sitio web moderno y rápido orientado a conversión",
+  "Perfil de Google Business (optimización, publicaciones y Q&A)",
+  "Asesoría en IA aplicada al negocio",
+  "Soporte técnico informático preventivo y correctivo",
+];
+
+// Servicios específicos para restaurantes
+const restaurantServices = [
+  {
+    id: "seo-local",
+    title: "SEO local avanzado para restaurantes",
+    description:
+      "Optimización completa de tu presencia digital para captar clientes cercanos y llenar tus reservas.",
+    features: [
+      "Optimización NAP y categorías",
+      "Páginas locales por municipio",
+      "Estrategia de reseñas y medios locales",
+    ],
+    icon: "🎯",
+    featured: true,
+  },
+  {
+    id: "campanas",
+    title: "Campañas de pago orientadas a reservas",
+    description:
+      "Google Ads, Meta Ads y TikTok Ads con seguimiento de conversiones para maximizar reservas y pedidos.",
+    features: [
+      "Creatividades y landings enfocadas",
+      "Optimización por ROAS",
+      "Tracking de conversiones",
+    ],
+    icon: "📱",
+    featured: true,
+  },
+  {
+    id: "tpv",
+    title: "TPV para hostelería",
+    description:
+      "Consultoría, instalación y soporte técnico continuo para tu sistema de punto de venta.",
+    features: [
+      "Instalación y migración de datos",
+      "Formación del equipo",
+      "Integraciones con comandas y KDS",
+    ],
+    icon: "💳",
+    featured: false,
+  },
+  {
+    id: "reservas",
+    title: "Software de reservas y gestión de mesas",
+    description:
+      "Sistema completo para gestionar reservas online, turnos y ocupación en tiempo real.",
+    features: [
+      "Confirmación y recordatorios automáticos",
+      "Gestión de turnos y aforo",
+      "Reducción de no-shows",
+    ],
+    icon: "📅",
+    featured: false,
+  },
+  {
+    id: "menu-digital",
+    title: "Menú digital QR (multiidioma y alérgenos)",
+    description:
+      "Cartas digitales en varios idiomas con información completa de alérgenos y valor nutricional.",
+    features: [
+      "Actualización en tiempo real",
+      "Códigos QR por zona/mesa",
+      "Analytics de visualización",
+    ],
+    icon: "📋",
+    featured: false,
+  },
+  {
+    id: "foto-video",
+    title: "Foto y vídeo profesional",
+    description:
+      "Contenido visual de calidad para redes sociales, anuncios y tu sitio web.",
+    features: [
+      "Fotografía gastronómica",
+      "Piezas para redes y anuncios",
+      "Dirección de arte y edición",
+    ],
+    icon: "📸",
+    featured: false,
+  },
+  {
+    id: "chatbots",
+    title: "Chatbots con IA",
+    description:
+      "Automatización inteligente para atender consultas y pre-reservas 24/7.",
+    features: [
+      "Respuestas automáticas",
+      "Pre-reservas y cualificación",
+      "Integración multi-canal",
+    ],
+    icon: "🤖",
+    featured: false,
+  },
+];
+
+// Beneficios clave
+const benefits = [
+  {
+    emoji: "📈",
+    title: "Más reservas y mayor ticket medio",
+    description:
+      "Estrategias probadas para aumentar tu ocupación y el valor promedio de cada mesa.",
+  },
+  {
+    emoji: "⏰",
+    title: "Menos no-shows y mejor ocupación",
+    description:
+      "Sistemas de recordatorios y confirmación que reducen cancelaciones de última hora.",
+  },
+  {
+    emoji: "🏆",
+    title: "Visibilidad local superior",
+    description:
+      "Posicionamiento destacado en búsquedas locales frente a tu competencia directa.",
+  },
+  {
+    emoji: "⚡",
+    title: "Operaciones más eficientes",
+    description:
+      "Automatización y sistemas integrados para optimizar sala y cocina.",
+  },
+  {
+    emoji: "🎯",
+    title: "Especialistas en Marina Baixa",
+    description:
+      "Conocimiento profundo del mercado local en Benidorm, Altea, Villajoyosa y alrededores.",
+  },
+  {
+    emoji: "🤝",
+    title: "Soporte técnico continuo",
+    description:
+      "Asistencia preventiva y correctiva con respuesta rápida en horario extendido.",
+  },
+];
+
+// Ciudades de la Marina Baixa
+const cities = [
+  "Benidorm",
+  "Villajoyosa",
+  "Altea",
+  "Callosa d'en Sarrià",
+  "Polop",
+  "La Nucía",
+  "El Albir",
+  "Alfaz del Pi",
+];
+
+// Proceso en 3 pasos
+const process = [
+  {
+    step: "1",
+    title: "Auditoría gratuita",
+    description:
+      "Analizamos tu situación actual, identificamos oportunidades y definimos objetivos claros para tu restaurante.",
+  },
+  {
+    step: "2",
+    title: "Implementación priorizando quick wins",
+    description:
+      "Comenzamos con las acciones de mayor impacto: SEO local, Google Business y campañas iniciales para ver resultados rápidos.",
+  },
+  {
+    step: "3",
+    title: "Optimización continua con analítica",
+    description:
+      "Medimos, experimentamos y mejoramos constantemente basándonos en datos reales de reservas y conversiones.",
+  },
+];
+
+// FAQs
+const faqs = [
+  {
+    question: "¿Qué incluye el SEO local avanzado para restaurantes?",
+    answer:
+      "Incluye auditoría completa, optimización de Google Business Profile, creación de páginas locales por municipio, estrategia de contenidos por intención (reservas, menú, eventos) y plan de reseñas para mejorar tu reputación online.",
+  },
+  {
+    question: "¿Pueden integrar el TPV y el sistema de reservas?",
+    answer:
+      "Sí. Trabajamos con las mejores soluciones de hostelería y conectamos reservas, TPV y menús digitales para evitar duplicidades y mejorar el flujo de trabajo entre sala y cocina.",
+  },
+  {
+    question: "¿El menú digital cumple con alérgenos y multiidioma?",
+    answer:
+      "Sí. Incluimos etiquetado completo de alérgenos según normativa y traducción de cartas a los idiomas que necesites. Se actualiza en tiempo real y genera códigos QR personalizados por sala o mesa.",
+  },
+  {
+    question: "¿Qué campañas de pago funcionan mejor para reservas?",
+    answer:
+      "Depende del público objetivo y la estacionalidad de tu negocio. Generalmente empezamos por búsqueda local en Google Ads y remarketing en Meta, probando diferentes creatividades y ofertas para maximizar reservas y ROAS.",
+  },
+  {
+    question: "¿Cómo es el soporte técnico informático?",
+    answer:
+      "Ofrecemos soporte preventivo y correctivo. Monitorizamos tus sistemas, hacemos copias de seguridad automáticas y damos respuesta rápida en horario extendido, con opción de cobertura los fines de semana.",
+  },
+  {
+    question: "¿Cuánto tiempo tarda en verse resultados con el SEO local?",
+    answer:
+      "Los primeros resultados en Google Business Profile pueden verse en 2-4 semanas. El posicionamiento orgánico completo suele tomar 3-6 meses, pero implementamos quick wins para que veas mejoras desde el principio.",
+  },
+  {
+    question: "¿Trabajan con restaurantes fuera de la Marina Baixa?",
+    answer:
+      "Nuestro foco principal es la Marina Baixa (Benidorm, Villajoyosa, Altea, Callosa d'en Sarrià, Polop, La Nucía, El Albir y Alfaz del Pi), pero podemos valorar proyectos en otras zonas de la provincia de Alicante.",
+  },
+  {
+    question: "¿Ofrecen paquetes todo incluido o servicios por separado?",
+    answer:
+      "Ambos. Puedes contratar servicios específicos (solo SEO, solo TPV, etc.) o paquetes completos que incluyen web, SEO, campañas y soporte. Te recomendamos según tus objetivos y presupuesto.",
+  },
+  {
+    question: "¿Qué diferencia a Frappé de otras agencias digitales?",
+    answer:
+      "Somos especialistas en el sector hostelería de la Marina Baixa, usamos tecnología moderna sin WordPress, y ofrecemos trato directo sin intermediarios. Además, integramos soluciones de IA que realmente ahorran tiempo y dinero.",
+  },
+  {
+    question: "¿Necesito conocimientos técnicos para gestionar mi web o menú digital?",
+    answer:
+      "No. Diseñamos interfaces intuitivas y te formamos en todo lo necesario. La mayoría de nuestros clientes actualizan sus menús y contenidos sin ayuda en cuestión de minutos.",
+  },
+];
+
+// SEO
+const { site } = Astro;
+const pageUrl = `${site}/servicios-web-restaurantes`;
+const image = new URL("splash.png", site);
+const title =
+  "Servicios para restaurantes en Marina Baixa | Frappé";
+const description =
+  "Reservas llenas con SEO local, campañas, TPV, reservas y menú digital con alérgenos. Soporte IT y foto/vídeo. Benidorm, Villajoyosa, Altea y más.";
+const keywords =
+  "servicios restaurantes Benidorm, TPV restaurantes Benidorm, SEO local restaurantes Benidorm, campañas restaurantes Benidorm, reservas restaurantes Benidorm, menú digital QR Benidorm, Marina Baixa, Villajoyosa, Altea, Callosa d'en Sarriá, Polop, La Nucía, El Albir, Alfaz del Pi";
+---
+
+<!doctype html>
+<html lang="es" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={pageUrl} />
+
+    <!-- Control de robots -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Frappé" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={pageUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Metadatos adicionales -->
+    <meta name="author" content="Frappé" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Geolocalización Marina Baixa -->
+    <meta name="geo.region" content="ES-A" />
+    <meta name="geo.placename" content="Marina Baixa" />
+
+    <!-- Schema Markup: LocalBusiness -->
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Frappé",
+        "image": "https://creativefrappe.com/icon_inv_code.svg",
+        "url": pageUrl,
+        "telephone": "+34608962213",
+        "description": "Servicios digitales para restaurantes en Marina Baixa: SEO local, campañas, TPV, reservas y menú digital.",
+        "areaServed": [
+          {"@type": "Place", "name": "Benidorm"},
+          {"@type": "Place", "name": "Villajoyosa"},
+          {"@type": "Place", "name": "Altea"},
+          {"@type": "Place", "name": "Callosa d'en Sarrià"},
+          {"@type": "Place", "name": "Polop"},
+          {"@type": "Place", "name": "La Nucía"},
+          {"@type": "Place", "name": "El Albir"},
+          {"@type": "Place", "name": "Alfaz del Pi"}
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Marina Baixa",
+          "addressRegion": "Alicante",
+          "addressCountry": "ES"
+        }
+      })}
+    </script>
+
+    <!-- Schema Markup: Service -->
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": [
+          "SEO local para restaurantes",
+          "Campañas de pago para reservas",
+          "TPV hostelería",
+          "Software de reservas y gestión de mesas",
+          "Menú digital QR multiidioma con alérgenos",
+          "Foto y vídeo profesional",
+          "Chatbots con IA",
+          "Soporte técnico informático"
+        ],
+        "provider": {
+          "@type": "Organization",
+          "name": "Frappé"
+        },
+        "areaServed": [
+          {"@type": "Place", "name": "Benidorm"},
+          {"@type": "Place", "name": "Villajoyosa"},
+          {"@type": "Place", "name": "Altea"},
+          {"@type": "Place", "name": "Callosa d'en Sarrià"},
+          {"@type": "Place", "name": "Polop"},
+          {"@type": "Place", "name": "La Nucía"},
+          {"@type": "Place", "name": "El Albir"},
+          {"@type": "Place", "name": "Alfaz del Pi"}
+        ],
+        "category": "Restauración"
+      })}
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/frappe_icon.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body
+    class="bg-gray-50 font-sans antialiased dark:bg-gray-900"
+    style="font-family: var(--font-sans);"
+  >
+    <!-- Hero con gradiente y navegación -->
+    <header class="relative overflow-hidden">
+      <!-- Fondo gradiente -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-[#f9d034] via-[#29c1f1] to-[#f5478f]"
+      >
+      </div>
+
+      <!-- Nav -->
+      <nav
+        class="relative z-20 mx-auto flex max-w-7xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8"
+      >
+        <div class="flex items-center gap-2 font-bold text-gray-900 text-xl">
+          <img src="/frappe_icon.svg" alt="Frappé" class="h-10 w-10" />
+          <span>Frappé</span>
+        </div>
+
+        <div class="hidden items-center gap-8 md:flex">
+          {
+            navItems.map((item) => (
+              <a
+                href={item.url}
+                class="font-medium text-gray-900 transition-all hover:scale-110"
+              >
+                {item.text}
+              </a>
+            ))
+          }
+        </div>
+      </nav>
+
+      <!-- Hero -->
+      <div
+        class="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-32"
+      >
+        <div class="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+          <!-- Columna izquierda: Texto -->
+          <div class="text-center lg:text-left">
+            <div class="mb-4 inline-block">
+              <span
+                class="rounded-full bg-white/20 px-6 py-2 font-bold text-[#111827] backdrop-blur-sm"
+                >🍽️ Servicios especializados para restaurantes</span
+              >
+            </div>
+            <h1
+              class="mb-6 font-bold text-[#111827] drop-shadow-lg text-4xl sm:text-5xl lg:text-6xl"
+            >
+              Llenamos tus reservas en la Marina Baixa
+            </h1>
+            <p
+              class="mb-8 text-[#111827] drop-shadow-md text-xl sm:text-2xl lg:text-xl"
+            >
+              <strong>SEO local</strong>, <strong>campañas rentables</strong>, <strong
+                >TPV integrado</strong
+              >, <strong>sistema de reservas</strong> y <strong
+                >menú digital con alérgenos</strong
+              >. Todo lo que necesitas para mejorar tu visibilidad, aumentar ocupación
+              y optimizar operaciones.
+            </p>
+            <div class="mb-8">
+              <p class="text-[#111827] drop-shadow-md text-lg">
+                📍 Trabajamos con restaurantes en <strong
+                  >{cities.slice(0, 3).join(", ")}</strong
+                > y toda la Marina Baixa.
+              </p>
+            </div>
+            <div
+              class="flex flex-col justify-center gap-4 sm:flex-row lg:justify-start"
+            >
+              <a
+                href="#servicios"
+                class="inline-flex items-center justify-center gap-2 rounded-2xl border-2 border-white bg-white/10 px-8 py-4 font-bold text-[#111827] backdrop-blur-sm transition-all hover:bg-white/20"
+              >
+                Ver servicios
+                <svg
+                  class="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  ><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"></path></svg
+                >
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna derecha: Formulario -->
+          <div class="relative">
+            <ContactForm
+              formId="heroContactForm"
+              variant="transparent"
+              title="Solicita tu propuesta gratis"
+              description="Cuéntanos sobre tu restaurante y te enviaremos una auditoría y propuesta personalizada en 24 horas."
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Separador onda -->
+      <svg
+        class="absolute bottom-0 left-0 h-16 w-full text-gray-50 dark:text-gray-900"
+        preserveAspectRatio="none"
+        viewBox="0 0 1440 200"
+        xmlns="http://www.w3.org/2000/svg"
+        ><path
+          fill="currentColor"
+          d="M0,80 Q120,50 240,80 T480,80 Q600,50 720,80 T960,80 Q1080,50 1200,80 T1440,80 L1440,200 L0,200 Z"
+        ></path></svg
+      >
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="bg-gray-50 dark:bg-gray-900">
+      <!-- Servicios comunes -->
+      <section class="px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <div class="mx-auto max-w-7xl">
+          <div class="mb-12 text-center">
+            <h2
+              class="mb-4 font-bold text-gray-900 text-3xl dark:text-white lg:text-4xl"
+            >
+              Servicios comunes para cualquier negocio
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400"
+            >
+              Base digital sólida para empezar con buen pie
+            </p>
+          </div>
+
+          <div
+            class="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-6"
+          >
+            {
+              commonServices.map((service) => (
+                <div class="flex items-start gap-4 rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800">
+                  <svg
+                    class="mt-1 h-6 w-6 flex-shrink-0 text-[#29c1f1]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2.5"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <p class="text-gray-900 dark:text-white">{service}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Servicios específicos para restaurantes -->
+      <section id="servicios" class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="mx-auto max-w-7xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              Servicios específicos para restaurantes
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              Soluciones especializadas para aumentar reservas, mejorar la experiencia
+              del cliente y optimizar tus operaciones en <strong
+                >Benidorm</strong
+              >, <strong>Villajoyosa</strong>, <strong>Altea</strong> y toda la
+              Marina Baixa.
+            </p>
+          </div>
+
+          <div
+            class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+          >
+            {
+              restaurantServices.map((service) => (
+                <div
+                  class={`group relative overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-800 ${service.featured ? "ring-4 ring-[#29c1f1] ring-offset-4 dark:ring-offset-gray-900" : ""}`}
+                >
+                  {service.featured && (
+                    <div class="absolute bottom-6 right-6">
+                      <span class="rounded-full bg-gradient-to-r from-[#29c1f1] to-[#f5478f] px-2 py-2 font-bold text-white shadow-lg text-xs">
+                        ⭐
+                      </span>
+                    </div>
+                  )}
+                  <div class="mb-6">
+                    <div class="mb-4 text-5xl">{service.icon}</div>
+                    <h3 class="mb-3 font-bold text-gray-900 text-xl dark:text-white">
+                      {service.title}
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                      {service.description}
+                    </p>
+                  </div>
+                  <ul class="space-y-3">
+                    {service.features.map((feature) => (
+                      <li class="flex items-start gap-3 text-gray-700 text-sm dark:text-gray-300">
+                        <svg
+                          class="mt-0.5 h-5 w-5 flex-shrink-0 text-[#29c1f1]"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2.5"
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Beneficios -->
+      <section id="beneficios" class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="mx-auto max-w-7xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              Beneficios clave para tu restaurante
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              Resultados reales que impactan directamente en tu cuenta de resultados
+            </p>
+          </div>
+
+          <div
+            class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+          >
+            {
+              benefits.map((benefit) => (
+                <div class="group rounded-3xl bg-white p-8 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-800">
+                  <div class="mb-4 transition-transform duration-300 text-5xl group-hover:scale-110">
+                    {benefit.emoji}
+                  </div>
+                  <h3 class="mb-3 font-bold text-gray-900 text-xl dark:text-white">
+                    {benefit.title}
+                  </h3>
+                  <p class="leading-relaxed text-gray-600 dark:text-gray-400">
+                    {benefit.description}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Dónde trabajamos -->
+      <section class="bg-gradient-to-br from-[#f9d034]/10 to-[#29c1f1]/10 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <div class="mx-auto max-w-7xl">
+          <div class="text-center">
+            <h2
+              class="mb-6 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              Trabajamos en toda la Marina Baixa
+            </h2>
+            <p
+              class="mx-auto mb-10 max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              Conocemos el mercado local y ayudamos a restaurantes en toda la comarca
+            </p>
+            <div
+              class="mx-auto flex max-w-4xl flex-wrap justify-center gap-4"
+            >
+              {
+                cities.map((city) => (
+                  <span class="rounded-2xl bg-white px-6 py-3 font-semibold text-gray-900 shadow-lg dark:bg-gray-800 dark:text-white">
+                    📍 {city}
+                  </span>
+                ))
+              }
+            </div>
+
+            <!-- Mapa de la Marina Baixa -->
+            <div class="mx-auto mt-12 max-w-5xl">
+              <div class="overflow-hidden rounded-3xl shadow-2xl">
+                <div class="relative h-0 w-full pb-[66.67%]">
+                  <iframe
+                    class="absolute left-0 top-0 h-full w-full"
+                    title="Mapa de la Marina Baixa"
+                    frameborder="0"
+                    scrolling="no"
+                    marginheight="0"
+                    marginwidth="0"
+                    src="https://maps.google.com/maps?width=600&height=400&hl=es&q=Marina%20Baixa&t=&z=10&ie=UTF8&iwloc=B&output=embed"
+                    loading="lazy"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Proceso -->
+      <section id="proceso" class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="mx-auto max-w-5xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              Nuestro proceso en 3 pasos
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              Metodología ágil enfocada en resultados rápidos y mejora continua
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            {
+              process.map((step, index) => (
+                <div class="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:bg-gray-800">
+                  <div class="flex items-start gap-6">
+                    <div class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#29c1f1] to-[#f5478f] font-bold text-white shadow-lg text-2xl">
+                      {step.step}
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="mb-3 font-bold text-gray-900 text-xl dark:text-white">
+                        {step.title}
+                      </h3>
+                      <p class="leading-relaxed text-gray-600 dark:text-gray-400">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                  {index < process.length - 1 && (
+                    <div class="absolute bottom-0 left-[3.5rem] h-6 w-0.5 translate-y-full bg-gradient-to-b from-[#29c1f1] to-transparent" />
+                  )}
+                </div>
+              ))
+            }
+          </div>
+
+          <div
+            class="mt-12 rounded-3xl bg-gradient-to-r from-[#29c1f1] to-[#f5478f] p-8 text-center text-white shadow-xl"
+          >
+            <p class="font-bold text-xl lg:text-2xl">
+              ⚡ Empezamos a trabajar en menos de <span
+                class="underline decoration-wavy">1 semana</span
+              > tras la auditoría
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="mx-auto max-w-4xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl"
+            >
+              Preguntas frecuentes
+            </h2>
+            <p
+              class="mx-auto max-w-3xl text-gray-600 text-lg dark:text-gray-400 lg:text-xl"
+            >
+              Resolvemos tus dudas sobre servicios digitales para restaurantes
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            {
+              faqs.map((faq) => (
+                <details class="group rounded-3xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl dark:bg-gray-800">
+                  <summary class="flex cursor-pointer items-center justify-between p-6 font-bold text-gray-900 transition-colors text-lg dark:text-white lg:p-8">
+                    <span class="pr-4">{faq.question}</span>
+                    <svg
+                      class="h-6 w-6 flex-shrink-0 text-[#29c1f1] transition-transform duration-300 group-open:rotate-180"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2.5"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </summary>
+                  <div class="border-t border-gray-100 px-6 pb-6 pt-4 leading-relaxed text-gray-600 dark:border-gray-700 dark:text-gray-400 lg:px-8">
+                    {faq.answer}
+                  </div>
+                </details>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Contacto -->
+      <section
+        id="contacto"
+        class="relative overflow-hidden bg-gradient-to-br from-[#f9d034] via-[#29c1f1] to-[#f5478f] px-4 py-20 sm:px-6 lg:px-8 lg:py-32"
+      >
+        <div class="relative z-10 mx-auto max-w-6xl">
+          <div class="mb-12 text-center">
+            <h2
+              class="mb-6 font-bold text-[#111827] drop-shadow-lg text-4xl lg:text-5xl"
+            >
+              ¿Listo para llenar tu restaurante?
+            </h2>
+            <p class="mb-10 text-[#111827] drop-shadow-md text-xl lg:text-2xl">
+              Cuéntanos sobre tu restaurante y te enviaremos una <strong
+                >auditoría gratuita</strong
+              > con propuesta personalizada en <strong>24&nbsp;h</strong>. Trabajamos
+              con restaurantes en toda la <strong>Marina Baixa</strong>.
+            </p>
+          </div>
+
+          <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
+            <!-- Columna izquierda: Información y contacto rápido -->
+            <div class="space-y-6">
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                <div class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+                  <p class="mb-2 font-bold text-[#111827] text-lg">
+                    ✅ Auditoría gratuita
+                  </p>
+                  <p class="text-[#111827] text-sm">
+                    Análisis completo sin compromiso
+                  </p>
+                </div>
+                <div class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+                  <p class="mb-2 font-bold text-[#111827] text-lg">
+                    ⚡ Respuesta en 24 h
+                  </p>
+                  <p class="text-[#111827] text-sm">Propuesta detallada</p>
+                </div>
+                <div class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+                  <p class="mb-2 font-bold text-[#111827] text-lg">
+                    🍽️ Especialistas en hostelería
+                  </p>
+                  <p class="text-[#111827] text-sm">
+                    Experiencia en restaurantes
+                  </p>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <h3 class="font-bold text-[#111827] text-xl">
+                  ¿Prefieres contactar directamente?
+                </h3>
+                <div class="flex flex-col gap-3">
+                  <a
+                    href="https://wa.me/+34608962213"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-6 py-4 font-bold text-[#29c1f1] shadow-2xl transition-all hover:scale-105"
+                  >
+                    <svg
+                      class="h-6 w-6 transition-transform group-hover:scale-110"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"
+                      ></path></svg
+                    >
+                    Consulta por WhatsApp
+                  </a>
+                  <a
+                    href="mailto:frappecreativity@gmail.com"
+                    class="inline-flex items-center justify-center gap-3 rounded-2xl border-4 border-white bg-white/10 px-6 py-4 font-bold text-[#111827] backdrop-blur-sm transition-all hover:bg-white hover:text-[#29c1f1]"
+                  >
+                    <svg
+                      class="h-6 w-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      ></path></svg
+                    >
+                    Enviar Email
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna derecha: Formulario -->
+            <ContactForm
+              formId="contactForm"
+              variant="transparent"
+              title="Completa el formulario"
+              description="Te responderemos con una auditoría y propuesta personalizada en menos de 24 horas."
+              showWhatsApp={false}
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- AboutFrappeSection -->
+      <AboutFrappeSection
+        title="El desarrollador detrás de tus servicios digitales"
+        description="David Pérez, desarrollador web especializado en soluciones digitales para restaurantes en la Marina Baixa. Creo sistemas que aumentan reservas, mejoran operaciones y ayudan a negocios de hostelería a crecer con tecnología moderna y marketing efectivo. Conoce más sobre mi trayectoria y experiencia."
+      />
+
+      <!-- Sección adicional sobre Frappé -->
+      <section class="bg-gray-100 px-4 py-16 dark:bg-gray-800 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-4xl text-center">
+          <h3 class="mb-6 font-bold text-gray-900 text-2xl dark:text-white">
+            ¿Quieres saber más sobre Frappé?
+          </h3>
+          <p class="mb-8 text-gray-600 text-lg dark:text-gray-400">
+            Descubre cómo trabajo, mi experiencia con empresas como Santander,
+            BBVA y AirEuropa, y por qué elijo tecnología moderna para crear
+            soluciones digitales que realmente funcionan.
+          </p>
+          <a
+            href="/detras-de-frappe"
+            class="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#29c1f1] to-[#f5478f] px-8 py-4 font-bold text-white shadow-xl transition-all hover:scale-105"
+          >
+            Conoce la historia de Frappé
+            <svg
+              class="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
+            >
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 px-4 py-12 text-white sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div
+          class="flex flex-col items-center justify-between gap-6 md:flex-row"
+        >
+          <div class="flex items-center gap-3">
+            <img src="/frappe_icon.svg" alt="Frappé" class="h-10 w-10" />
+            <div>
+              <span class="block font-bold text-xl">Frappé</span>
+              <span class="text-gray-400 text-sm"
+                >Servicios Web para Restaurantes</span
+              >
+            </div>
+          </div>
+          <nav class="flex flex-wrap justify-center gap-6">
+            {
+              navItems.map((item) => (
+                <a
+                  href={item.url}
+                  class="transition-colors hover:text-[#29c1f1]"
+                >
+                  {item.text}
+                </a>
+              ))
+            }
+          </nav>
+          <a
+            href="/privacidad"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="transition-colors hover:text-[#29c1f1]"
+            >Política de Privacidad</a
+          >
+        </div>
+        <div
+          class="mt-8 border-t border-gray-800 pt-8 text-center text-gray-400"
+        >
+          <p>
+            © {new Date().getFullYear()} Frappé. Hecho con 💙 en Marina Baixa.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modales de éxito y error -->
+    <div
+      id="successModal"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      style="display: none;"
+    >
+      <div
+        class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-gray-800"
+      >
+        <div class="mb-4 text-center">
+          <div
+            class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100"
+          >
+            <svg
+              class="h-8 w-8 text-green-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h3 class="mb-2 font-bold text-gray-900 text-2xl dark:text-white">
+            ¡Mensaje enviado!
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Gracias por contactarnos. Te enviaremos tu auditoría y propuesta en
+            menos de 24 horas.
+          </p>
+        </div>
+        <button
+          onclick="document.getElementById('successModal').style.display='none'"
+          class="w-full rounded-xl bg-[#29c1f1] px-6 py-3 font-bold text-white transition-all hover:bg-[#29c1f1]/90"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+
+    <div
+      id="errorModal"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      style="display: none;"
+    >
+      <div
+        class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-gray-800"
+      >
+        <div class="mb-4 text-center">
+          <div
+            class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-100"
+          >
+            <svg
+              class="h-8 w-8 text-red-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </div>
+          <h3 class="mb-2 font-bold text-gray-900 text-2xl dark:text-white">
+            Error al enviar
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Hubo un problema al enviar tu mensaje. Por favor, inténtalo de
+            nuevo o contáctanos por WhatsApp.
+          </p>
+        </div>
+        <button
+          onclick="document.getElementById('errorModal').style.display='none'"
+          class="w-full rounded-xl bg-gray-900 px-6 py-3 font-bold text-white transition-all hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+
+    <!-- Script para cerrar modales al hacer click fuera -->
+    <script>
+      ["successModal", "errorModal"].forEach((modalId) => {
+        const modal = document.getElementById(modalId);
+        modal?.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+      });
+    </script>
+
+    <!-- Force Dark Mode Script -->
+    <script>
+      (function () {
+        document.documentElement.classList.add("dark");
+      })();
+    </script>
+
+    <!-- Animaciones suaves -->
+    <style>
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      html {
+        transition: background-color 0.3s ease;
+        scroll-behavior: smooth;
+      }
+      * {
+        transition:
+          background-color 0.3s ease,
+          border-color 0.3s ease,
+          color 0.3s ease;
+      }
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          "Roboto",
+          sans-serif;
+      }
+      *:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+      details[open] summary ~ * {
+        animation: fadeInUp 0.3s ease-out;
+      }
+    </style>
+  </body>
+</html>
+
