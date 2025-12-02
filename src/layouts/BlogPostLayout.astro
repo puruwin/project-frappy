@@ -1,0 +1,517 @@
+---
+import "~/styles/index.css";
+import ShareButtons from "../components/ShareButtons.astro";
+import BlogCard from "../components/BlogCard.astro";
+import { getAllPosts, getRelatedPosts, formatDate } from "../utils/blog";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  date?: string;
+  author: string;
+  tags?: string[];
+  frontmatter?: {
+    title: string;
+    description: string;
+    image?: string;
+    date?: string;
+    author: string;
+    tags?: string[];
+  };
+}
+
+// Astro pasa las props del frontmatter directamente al layout
+const props = Astro.props.frontmatter || Astro.props;
+const {
+  title,
+  description,
+  image,
+  date = new Date().toISOString().split('T')[0],
+  author,
+  tags = [],
+} = props;
+
+const url = Astro.url.pathname;
+
+const allPosts = await getAllPosts();
+const currentPost = allPosts.find((p) => p.url === url) || {
+  url,
+  frontmatter: { title, description, image, date, author, tags: tags || [] },
+};
+const relatedPosts = getRelatedPosts(currentPost, allPosts, 3);
+const formattedDate = formatDate(date);
+
+// SEO
+const { site } = Astro;
+const pageUrl = `${site}${url}`;
+const ogImage = image
+  ? new URL(image, site)
+  : new URL("splash.png", site);
+---
+
+<!doctype html>
+<html lang="es" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Blog Frappé</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={pageUrl} />
+
+    <!-- Control de robots -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Frappé" />
+    <meta property="article:author" content={author} />
+    <meta property="article:published_time" content={date} />
+    {tags && tags.length > 0 && tags.map((tag) => (
+      <meta property="article:tag" content={tag} />
+    ))}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={pageUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Metadatos adicionales -->
+    <meta name="author" content={author} />
+    <meta name="theme-color" content="#000000" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Schema Markup: BlogPosting -->
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": title,
+        "description": description,
+        "image": ogImage.toString(),
+        "datePublished": date,
+        "author": {
+          "@type": "Person",
+          "name": author
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Frappé",
+          "logo": {
+            "@type": "ImageObject",
+            "url": `${site}/frappe_icon.svg`
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": pageUrl
+        }
+      })}
+    </script>
+
+    <!-- Breadcrumbs Schema -->
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": site
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": `${site}/blog`
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": title,
+            "item": pageUrl
+          }
+        ]
+      })}
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/frappe_icon.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body
+    class="bg-gray-50 font-sans antialiased dark:bg-gray-900"
+    style="font-family: var(--font-sans);"
+  >
+    <!-- Header -->
+    <header class="relative bg-white dark:bg-gray-900">
+      <nav
+        class="mx-auto flex max-w-7xl items-center justify-between border-b border-gray-200 px-4 py-6 dark:border-gray-800 sm:px-6 lg:px-8"
+      >
+        <a href="/" class="flex items-center gap-2 font-bold text-gray-900 text-xl dark:text-white">
+          <img src="/frappe_icon.svg" alt="Frappé" class="h-10 w-10" />
+          <span>Frappé</span>
+        </a>
+
+        <div class="hidden items-center gap-8 md:flex">
+          <a
+            href="/"
+            class="font-medium text-gray-700 transition-all hover:text-[#29c1f1] dark:text-gray-300"
+          >
+            Inicio
+          </a>
+          <a
+            href="/blog"
+            class="font-medium text-gray-700 transition-all hover:text-[#29c1f1] dark:text-gray-300"
+          >
+            Blog
+          </a>
+          <a
+            href="/#contacto"
+            class="font-medium text-gray-700 transition-all hover:text-[#29c1f1] dark:text-gray-300"
+          >
+            Contacto
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="bg-gray-50 dark:bg-gray-900">
+      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <div class="grid gap-8 lg:grid-cols-4">
+          <!-- Columna principal -->
+          <article class="lg:col-span-3">
+            <!-- Breadcrumbs -->
+            <nav class="mb-8" aria-label="Breadcrumb">
+              <ol class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                <li>
+                  <a href="/" class="transition-colors hover:text-[#29c1f1]">
+                    Inicio
+                  </a>
+                </li>
+                <li>/</li>
+                <li>
+                  <a href="/blog" class="transition-colors hover:text-[#29c1f1]">
+                    Blog
+                  </a>
+                </li>
+                <li>/</li>
+                <li class="text-gray-900 dark:text-white">{title}</li>
+              </ol>
+            </nav>
+
+            <!-- Imagen destacada -->
+            {image && image.length > 0 && (
+              <div class="mb-8 overflow-hidden rounded-3xl shadow-xl">
+                <img
+                  src={image}
+                  alt={title}
+                  class="h-auto max-h-[400px] w-full object-cover"
+                  loading="eager"
+                  onerror="console.error('Error loading image:', this.src)"
+                />
+              </div>
+            )}
+
+            <!-- Título -->
+            <h1 class="mb-6 font-bold text-gray-900 text-4xl dark:text-white lg:text-5xl">
+              {title}
+            </h1>
+
+            <!-- Metadata -->
+            <div class="mb-8 flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+              <div class="flex items-center gap-2">
+                <svg
+                  class="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+                <time datetime={date}>{formattedDate}</time>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg
+                  class="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+                <span>{author}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg
+                  class="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span id="reading-time">5 min de lectura</span>
+              </div>
+            </div>
+
+            <!-- Tags -->
+            {tags && tags.length > 0 && (
+              <div class="mb-8 flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <a
+                    href={`/blog?tag=${encodeURIComponent(tag)}`}
+                    class="rounded-full bg-gradient-to-r from-[#29c1f1] to-[#f5478f] px-4 py-2 text-xs font-semibold text-white transition-all hover:scale-105"
+                  >
+                    {tag}
+                  </a>
+                ))}
+              </div>
+            )}
+
+            <!-- Tabla de contenidos -->
+            <div id="toc-container" class="mb-8"></div>
+
+            <!-- Contenido del post -->
+            <div class="prose prose-lg max-w-none dark:prose-invert">
+              <slot />
+            </div>
+
+            <!-- Compartir -->
+            <div class="mt-12">
+              <ShareButtons url={pageUrl} title={title} description={description} />
+            </div>
+          </article>
+
+          <!-- Sidebar -->
+          <aside class="lg:col-span-1">
+            <div class="sticky top-24 space-y-6">
+              <!-- Sobre el autor -->
+              <div class="rounded-3xl bg-white p-6 shadow-lg dark:bg-gray-800">
+                <h3 class="mb-4 font-bold text-gray-900 text-lg dark:text-white">
+                  Sobre el autor
+                </h3>
+                <div class="flex items-start gap-4">
+                  <img
+                    src="/me.jpg"
+                    alt="David Pérez"
+                    class="h-16 w-16 rounded-full object-cover"
+                  />
+                  <div>
+                    <p class="font-semibold text-gray-900 dark:text-white">
+                      {author}
+                    </p>
+                    <p class="mt-2 text-gray-600 text-sm dark:text-gray-400">
+                      Desarrollador web y fundador de Frappé. Especializado en
+                      desarrollo web moderno, SEO y marketing digital para pymes.
+                    </p>
+                    <a
+                      href="/detras-de-frappe"
+                      class="mt-2 inline-block text-sm font-semibold text-[#29c1f1] transition-colors hover:text-[#f5478f]"
+                    >
+                      Conocer más →
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Posts relacionados -->
+              {relatedPosts.length > 0 && (
+                <div class="rounded-3xl bg-white p-6 shadow-lg dark:bg-gray-800">
+                  <h3 class="mb-4 font-bold text-gray-900 text-lg dark:text-white">
+                    Posts relacionados
+                  </h3>
+                  <div class="space-y-4">
+                    {relatedPosts.map((post) => (
+                      <div>
+                        <a
+                          href={post.url}
+                          class="block font-semibold text-gray-900 transition-colors hover:text-[#29c1f1] dark:text-white"
+                        >
+                          {post.frontmatter.title}
+                        </a>
+                        <p class="mt-1 text-gray-600 text-sm dark:text-gray-400">
+                          {post.frontmatter.description.slice(0, 100)}...
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <!-- CTA -->
+              <div class="rounded-3xl bg-gradient-to-br from-[#f9d034] via-[#29c1f1] to-[#f5478f] p-6 text-center text-[#111827] shadow-lg">
+                <h3 class="mb-2 font-bold text-lg">¿Necesitas ayuda?</h3>
+                <p class="mb-4 text-sm opacity-90">
+                  ¿Tienes un proyecto en mente? Contáctame y te ayudo a hacerlo realidad.
+                </p>
+                <a
+                  href="/#contacto"
+                  class="inline-block rounded-full bg-white px-6 py-2 font-semibold text-[#111827] transition-all hover:scale-105"
+                >
+                  Contactar
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 px-4 py-12 text-white sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div
+          class="flex flex-col items-center justify-between gap-6 md:flex-row"
+        >
+          <div class="flex items-center gap-3">
+            <img src="/frappe_icon.svg" alt="Frappé" class="h-10 w-10" />
+            <div>
+              <span class="block font-bold text-xl">Frappé</span>
+              <span class="text-gray-400 text-sm">Desarrollo Web y Marketing Digital</span>
+            </div>
+          </div>
+          <nav class="flex flex-wrap justify-center gap-6">
+            <a href="/" class="transition-colors hover:text-[#29c1f1]">
+              Inicio
+            </a>
+            <a href="/blog" class="transition-colors hover:text-[#29c1f1]">
+              Blog
+            </a>
+            <a href="/#contacto" class="transition-colors hover:text-[#29c1f1]">
+              Contacto
+            </a>
+          </nav>
+          <a
+            href="/privacidad"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="transition-colors hover:text-[#29c1f1]"
+          >
+            Política de Privacidad
+          </a>
+        </div>
+        <div
+          class="mt-8 border-t border-gray-800 pt-8 text-center text-gray-400"
+        >
+          <p>
+            © {new Date().getFullYear()} Frappé. Hecho con 💙 en España.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Force Dark Mode Script -->
+    <script>
+      (function () {
+        document.documentElement.classList.add("dark");
+      })();
+    </script>
+
+    <!-- Smooth scroll para anchors y generar TOC -->
+    <script>
+      // Smooth scroll para anchors
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", (e) => {
+          e.preventDefault();
+          const href = anchor.getAttribute("href");
+          if (href && href !== "#") {
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          }
+        });
+      });
+
+      // Calcular tiempo de lectura del contenido
+      const proseContent = document.querySelector('.prose');
+      if (proseContent) {
+        const text = proseContent.textContent || '';
+        const wordCount = text.split(/\s+/).filter(word => word.length > 0).length;
+        const readingTime = Math.ceil(wordCount / 200);
+        const readingTimeElement = document.getElementById('reading-time');
+        if (readingTimeElement) {
+          readingTimeElement.textContent = `${readingTime} min de lectura`;
+        }
+      }
+
+      // Generar tabla de contenidos desde los headings
+      const headings = document.querySelectorAll('.prose h2, .prose h3');
+      if (headings.length > 0) {
+        const tocContainer = document.getElementById('toc-container');
+        if (tocContainer) {
+          const headingsList = Array.from(headings).map((heading, index) => {
+            const id = heading.id || `heading-${index}`;
+            if (!heading.id) {
+              heading.id = id;
+            }
+            return {
+              depth: parseInt(heading.tagName.charAt(1)),
+              slug: id,
+              text: heading.textContent || ''
+            };
+          });
+          
+          if (headingsList.length > 0) {
+            const tocHTML = `
+              <div class="rounded-3xl bg-white p-6 shadow-lg dark:bg-gray-800">
+                <h3 class="mb-4 font-bold text-gray-900 text-lg dark:text-white">Contenido</h3>
+                <nav>
+                  <ul class="space-y-2">
+                    ${headingsList.map(heading => `
+                      <li class="${heading.depth === 2 ? 'ml-0' : heading.depth === 3 ? 'ml-4' : 'ml-8'}">
+                        <a href="#${heading.slug}" class="text-gray-600 text-sm transition-colors hover:text-[#29c1f1] dark:text-gray-400">
+                          ${heading.text}
+                        </a>
+                      </li>
+                    `).join('')}
+                  </ul>
+                </nav>
+              </div>
+            `;
+            tocContainer.innerHTML = tocHTML;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
+

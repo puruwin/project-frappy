@@ -1,0 +1,88 @@
+---
+interface Props {
+  post: {
+    url: string;
+    frontmatter: {
+      title: string;
+      description: string;
+      image?: string;
+      date: string;
+      author: string;
+      tags: string[];
+    };
+  };
+}
+
+const { post } = Astro.props;
+const { formatDate } = await import('../utils/blog');
+const formattedDate = formatDate(post.frontmatter.date);
+---
+
+<article
+  class="group relative overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-800"
+  data-tags={post.frontmatter.tags?.map(t => t.toLowerCase()).join(',')}
+>
+  {post.frontmatter.image && (
+    <div class="relative h-48 w-full overflow-hidden">
+      <img
+        src={post.frontmatter.image}
+        alt={post.frontmatter.title}
+        class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+        loading="lazy"
+      />
+      {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
+        <div class="absolute right-4 top-4 flex flex-wrap gap-2">
+          {post.frontmatter.tags.slice(0, 2).map((tag) => (
+            <span
+              class="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-gray-900 backdrop-blur-sm"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  )}
+
+  <div class="p-6">
+    <div class="mb-3 flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+      <time datetime={post.frontmatter.date}>{formattedDate}</time>
+      <span>•</span>
+      <span>{post.frontmatter.author}</span>
+    </div>
+
+    <h2 class="mb-3 font-bold text-gray-900 text-xl dark:text-white">
+      <a
+        href={post.url}
+        class="transition-colors hover:text-[#29c1f1]"
+      >
+        {post.frontmatter.title}
+      </a>
+    </h2>
+
+    <p class="mb-4 line-clamp-3 text-gray-600 dark:text-gray-400">
+      {post.frontmatter.description}
+    </p>
+
+    <a
+      href={post.url}
+      class="inline-flex items-center gap-2 font-semibold text-[#29c1f1] transition-all hover:gap-3"
+    >
+      Leer más
+      <svg
+        class="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 5l7 7-7 7"
+        />
+      </svg>
+    </a>
+  </div>
+</article>
+
