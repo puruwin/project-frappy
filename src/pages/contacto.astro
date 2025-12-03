@@ -1,0 +1,417 @@
+---
+// Estilos y fuentes
+import "../styles/theme.css";
+import "@fontsource-variable/montserrat";
+import ContactForm from "../components/ContactForm.astro";
+
+// SEO
+const { site } = Astro;
+const pageUrl = `${site}/contacto`;
+const image = new URL("splash.png", site);
+const title = "Contacto | Frappé - Desarrollo Web";
+const description =
+  "Contacta con Frappé para tu proyecto web. Desarrollo, SEO, Google Ads y mantenimiento. Respuesta en menos de 24 horas. Presupuesto sin compromiso.";
+const keywords =
+  "contacto desarrollo web, presupuesto página web, contacto SEO, consulta desarrollo web";
+---
+
+<!doctype html>
+<html lang="es" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={pageUrl} />
+
+    <!-- Control de robots -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Frappé" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={pageUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Metadatos adicionales -->
+    <meta name="author" content="Frappé" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Schema Markup: LocalBusiness -->
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Frappé",
+        "image": "https://creativefrappe.com/icon_inv_code.svg",
+        "url": pageUrl,
+        "telephone": "+34608962213",
+        "email": "frappecreativity@gmail.com",
+        "description": "Desarrollo web profesional con SEO, Ads y mantenimiento.",
+        "areaServed": "Benidorm, Callosa d'en Sarrià, Altea, La Nucía, Polop, L'Alfàs del Pi, Marina Baixa",
+      })}
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/frappe_icon.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body
+    class="bg-gray-50 font-sans antialiased dark:bg-gray-900"
+    style="font-family: var(--font-sans);"
+  >
+    <!-- Nav transparente -->
+    <nav
+      class="absolute top-0 left-0 right-0 z-50 mx-auto flex max-w-7xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8"
+    >
+      <a
+        href="/"
+        class="flex items-center gap-2 font-bold text-gray-900 text-xl transition-all hover:scale-105"
+      >
+        <img src="/frappe_icon.svg" alt="Frappé" class="h-10 w-10" />
+        <span>Frappé</span>
+      </a>
+
+      <div class="flex items-center gap-6">
+        <a
+          href="/"
+          class="font-medium text-gray-900 transition-all hover:scale-110"
+        >
+          Inicio
+        </a>
+        <a
+          href="/blog"
+          class="font-medium text-gray-900 transition-all hover:scale-110"
+        >
+          Blog
+        </a>
+      </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="bg-gray-50 dark:bg-gray-900">
+      <!-- Sección de contacto -->
+      <section
+        class="relative overflow-hidden bg-gradient-to-br from-[#f9d034] via-[#29c1f1] to-[#f5478f] px-4 pt-32 pb-20 sm:px-6 lg:px-8 lg:pt-40 lg:pb-32"
+      >
+        <div class="relative z-10 mx-auto max-w-6xl">
+          <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
+            <!-- Columna izquierda: Información y contacto rápido -->
+            <div class="space-y-6">
+              <div>
+                <h2
+                  class="mb-4 font-bold text-[#111827] drop-shadow-lg text-3xl lg:text-4xl"
+                >
+                  ¿Hablamos de tu proyecto?
+                </h2>
+                <p class="mb-8 text-[#111827] drop-shadow-md text-lg">
+                  Estamos aquí para ayudarte. Ya sea que necesites una página
+                  web, SEO, Google Ads o servicio técnico, te responderemos lo
+                  antes posible.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 gap-4">
+                <div class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+                  <p class="mb-2 font-bold text-[#111827] text-lg">
+                    ✅ Propuesta detallada
+                  </p>
+                  <p class="text-[#111827] text-sm">Sin costes ocultos</p>
+                </div>
+                <div class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+                  <p class="mb-2 font-bold text-[#111827] text-lg">
+                    ⚡ Respuesta en 24 h
+                  </p>
+                  <p class="text-[#111827] text-sm">Atención cercana</p>
+                </div>
+                <div class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+                  <p class="mb-2 font-bold text-[#111827] text-lg">
+                    📍 En la Marina Baixa
+                  </p>
+                  <p class="text-[#111827] text-sm">Experiencia local</p>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <h3 class="font-bold text-[#111827] text-xl">
+                  ¿Prefieres contactar directamente?
+                </h3>
+                <div class="flex flex-col gap-3">
+                  <a
+                    href="https://wa.me/+34608962213"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-6 py-4 font-bold text-[#29c1f1] shadow-2xl transition-all hover:scale-105"
+                  >
+                    <svg
+                      class="h-6 w-6 transition-transform group-hover:scale-110"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"
+                      ></path></svg
+                    >
+                    Consulta por WhatsApp
+                  </a>
+                  <a
+                    href="mailto:frappecreativity@gmail.com"
+                    class="inline-flex items-center justify-center gap-3 rounded-2xl border-4 border-white bg-white/10 px-6 py-4 font-bold text-[#111827] backdrop-blur-sm transition-all hover:bg-white hover:text-[#29c1f1]"
+                  >
+                    <svg
+                      class="h-6 w-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      ></path></svg
+                    >
+                    Enviar Email
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna derecha: Formulario -->
+            <ContactForm
+              formId="contactPageForm"
+              variant="transparent"
+              title="Completa el formulario"
+              description="Te responderemos con una propuesta personalizada en menos de 24 horas."
+              showWhatsApp={false}
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 px-4 py-12 text-white sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div
+          class="flex flex-col items-center justify-between gap-6 md:flex-row"
+        >
+          <div class="flex items-center gap-3">
+            <img src="/frappe_icon.svg" alt="Frappé" class="h-10 w-10" />
+            <div>
+              <span class="block font-bold text-xl">Frappé</span>
+              <span class="text-gray-400 text-sm">Desarrollo Web</span>
+            </div>
+          </div>
+          <nav class="flex flex-wrap justify-center gap-6">
+            <a
+              href="/"
+              class="transition-colors hover:text-[#29c1f1]"
+            >
+              Inicio
+            </a>
+            <a
+              href="/blog"
+              class="transition-colors hover:text-[#29c1f1]"
+            >
+              Blog
+            </a>
+            <a
+              href="/privacidad"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition-colors hover:text-[#29c1f1]"
+              >Política de Privacidad</a
+            >
+          </nav>
+        </div>
+        <div
+          class="mt-8 border-t border-gray-800 pt-8 text-center text-gray-400"
+        >
+          <p>
+            © {new Date().getFullYear()} Frappé. Hecho con 💙.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modales de éxito y error -->
+    <div
+      id="successModal"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4"
+    >
+      <div
+        class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-gray-800"
+      >
+        <div class="mb-4 text-center">
+          <div
+            class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100"
+          >
+            <svg
+              class="h-8 w-8 text-green-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h3 class="mb-2 font-bold text-gray-900 text-2xl dark:text-white">
+            ¡Mensaje enviado!
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Gracias por contactarnos. Te responderemos en menos de 24 horas.
+          </p>
+        </div>
+        <button
+          onclick="document.getElementById('successModal').classList.add('hidden')"
+          class="w-full rounded-xl bg-[#29c1f1] px-6 py-3 font-bold text-white transition-all hover:bg-[#29c1f1]/90"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+
+    <div
+      id="errorModal"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4"
+    >
+      <div
+        class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-gray-800"
+      >
+        <div class="mb-4 text-center">
+          <div
+            class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-100"
+          >
+            <svg
+              class="h-8 w-8 text-red-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </div>
+          <h3 class="mb-2 font-bold text-gray-900 text-2xl dark:text-white">
+            Error al enviar
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Hubo un problema al enviar tu mensaje. Por favor, inténtalo de nuevo
+            o contáctanos por WhatsApp.
+          </p>
+        </div>
+        <button
+          onclick="document.getElementById('errorModal').classList.add('hidden')"
+          class="w-full rounded-xl bg-gray-900 px-6 py-3 font-bold text-white transition-all hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+
+    <!-- Script para cerrar modales al hacer click fuera y manejar visibilidad -->
+    <script>
+      ["successModal", "errorModal"].forEach((modalId) => {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          // Cerrar al hacer click fuera
+          modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+              modal.classList.add("hidden");
+              modal.classList.remove("flex");
+            }
+          });
+
+          // Observar cuando ContactForm remueve 'hidden' y añadir 'flex'
+          const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+              if (mutation.type === "attributes" && mutation.attributeName === "class") {
+                // Si 'hidden' fue removido (modal se muestra), añadir 'flex'
+                if (!modal.classList.contains("hidden") && !modal.classList.contains("flex")) {
+                  modal.classList.add("flex");
+                }
+              }
+            });
+          });
+
+          observer.observe(modal, {
+            attributes: true,
+            attributeFilter: ["class"],
+          });
+        }
+      });
+    </script>
+
+    <!-- Force Dark Mode Script -->
+    <script>
+      // Forzar modo oscuro siempre
+      (function () {
+        document.documentElement.classList.add("dark");
+      })();
+    </script>
+
+    <!-- Animaciones suaves -->
+    <style>
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      html {
+        transition: background-color 0.3s ease;
+        scroll-behavior: smooth;
+      }
+      * {
+        transition:
+          background-color 0.3s ease,
+          border-color 0.3s ease,
+          color 0.3s ease;
+      }
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          "Roboto",
+          sans-serif;
+      }
+      *:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+    </style>
+  </body>
+</html>

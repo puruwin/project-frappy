@@ -1,4 +1,4 @@
 User-agent: *
 
 # Sitemap
-Sitemap: https://creativefrappe.com/sitemap-index.xml
+Sitemap: https://creativefrappe.com/sitemap.xml

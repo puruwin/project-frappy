@@ -1,0 +1,39 @@
+---
+interface Props {
+  headings: Array<{ depth: number; slug: string; text: string }>;
+}
+
+const { headings } = Astro.props;
+const toc = headings.filter((h) => h.depth <= 3);
+---
+
+{toc.length > 0 && (
+  <div class="rounded-3xl bg-white p-6 shadow-lg dark:bg-gray-800">
+    <h3 class="mb-4 font-bold text-gray-900 text-lg dark:text-white">
+      Contenido
+    </h3>
+    <nav>
+      <ul class="space-y-2">
+        {toc.map((heading) => (
+          <li
+            class={`${
+              heading.depth === 2
+                ? 'ml-0'
+                : heading.depth === 3
+                  ? 'ml-4'
+                  : 'ml-8'
+            }`}
+          >
+            <a
+              href={`#${heading.slug}`}
+              class="text-gray-600 text-sm transition-colors hover:text-[#29c1f1] dark:text-gray-400"
+            >
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+)}
+
