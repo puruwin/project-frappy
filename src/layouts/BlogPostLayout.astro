@@ -442,6 +442,41 @@ const ogImage = image
             <div class="prose prose-xl max-w-none dark:prose-invert">
               <slot />
             </div>
+
+            <!-- Posts relacionados -->
+            {relatedPosts.length > 0 && (
+              <div class="mt-12">
+                <h2 class="mb-6 font-bold text-gray-900 text-2xl dark:text-white">
+                  Posts relacionados
+                </h2>
+                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  {relatedPosts.map((post) => (
+                    <a
+                      href={post.url}
+                      class="group overflow-hidden rounded-2xl bg-white shadow-lg transition-all hover:scale-105 hover:shadow-xl dark:bg-gray-800"
+                    >
+                      {post.frontmatter.image && (
+                        <div class="aspect-video w-full overflow-hidden">
+                          <img
+                            src={post.frontmatter.image}
+                            alt={post.frontmatter.title}
+                            class="h-full w-full object-cover transition-transform group-hover:scale-110"
+                          />
+                        </div>
+                      )}
+                      <div class="p-4">
+                        <h3 class="mb-2 font-semibold text-gray-900 transition-colors group-hover:text-[#29c1f1] dark:text-white">
+                          {post.frontmatter.title}
+                        </h3>
+                        <p class="text-gray-600 text-sm dark:text-gray-400">
+                          {post.frontmatter.description.slice(0, 100)}...
+                        </p>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
           </article>
 
           <!-- Sidebar -->
@@ -475,30 +510,6 @@ const ogImage = image
                   </div>
                 </div>
               </div>
-
-              <!-- Posts relacionados -->
-              {relatedPosts.length > 0 && (
-                <div class="rounded-3xl bg-white p-6 shadow-lg dark:bg-gray-800">
-                  <h3 class="mb-4 font-bold text-gray-900 text-lg dark:text-white">
-                    Posts relacionados
-                  </h3>
-                  <div class="space-y-4">
-                    {relatedPosts.map((post) => (
-                      <div>
-                        <a
-                          href={post.url}
-                          class="block font-semibold text-gray-900 transition-colors hover:text-[#29c1f1] dark:text-white"
-                        >
-                          {post.frontmatter.title}
-                        </a>
-                        <p class="mt-1 text-gray-600 text-sm dark:text-gray-400">
-                          {post.frontmatter.description.slice(0, 100)}...
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
 
               <!-- CTA -->
               <div class="rounded-3xl bg-gradient-to-br from-[#f9d034] via-[#29c1f1] to-[#f5478f] p-6 text-center text-[#111827] shadow-lg">
