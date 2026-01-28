@@ -10,27 +10,27 @@ import "../styles/theme.css";
 // Configuración del perfil
 const profile = {
   name: "David Pérez",
-  title: "Desarrollador Frontend & Diseñador Web",
-  bio: "Experto en programación web y diseño moderno. Creando experiencias digitales excepcionales.",
+  title: "Desarrollador Web & Consultor IA",
+  bio: "Ayudo a negocios y empresas a economizar y optimizar procesos mediante desarrollo web, automatización e inteligencia artificial.",
   avatar: "/me.jpg",
   location: "Benidorm, España",
 };
 
 // Enlaces principales
 const mainLinks = [
-  // {
-  //   href: "/portfolio",
-  //   title: "Portfolio Web",
-  //   description: "Explora mis proyectos y trabajos más recientes",
-  //   icon: "website",
-  //   featured: false,
-  // },
+  {
+    href: "/agencia-automatizacion-ia",
+    title: "Agencia de Automatización con IA",
+    description: "Automatiza tu negocio y ahorra tiempo con inteligencia artificial",
+    icon: "ai",
+    featured: true,
+  },
   {
     href: "/servicios-web-digitales",
     title: "Servicios Digitales para Autónomos y Pymes",
     description: "Servicios informáticos digitales para autónomos y pymes",
     icon: "code",
-    featured: true,
+    featured: false,
   },
   {
     href: "/blog",
@@ -109,7 +109,7 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
     <meta name="description" content={description} />
     <meta
       name="keywords"
-      content="David Pérez, desarrollador web, diseñador web, Benidorm, servicios digitales, contacto profesional"
+      content="David Pérez, desarrollador web, consultor IA, automatización de procesos, inteligencia artificial, Benidorm, servicios digitales, contacto profesional"
     />
     <link rel="canonical" href="https://creativefrappe.com/linktree" />
 
@@ -145,8 +145,8 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "David Pérez",
-        "jobTitle": "Desarrollador Frontend & Diseñador Web",
-        "description": "Experto en programación web y diseño moderno. Creando experiencias digitales excepcionales.",
+        "jobTitle": "Desarrollador Web & Consultor IA",
+        "description": "Ayudo a negocios y empresas a economizar y optimizar procesos mediante desarrollo web, automatización e inteligencia artificial.",
         "url": "https://creativefrappe.com/linktree",
         "image": "https://creativefrappe.com/me.jpg",
         "address": {
@@ -162,7 +162,9 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
         ],
         "knowsAbout": [
           "Desarrollo Web",
-          "Diseño Web",
+          "Consultoría IA",
+          "Automatización de Procesos",
+          "Inteligencia Artificial",
           "Frontend Development",
           "SEO",
           "Google Ads"
@@ -183,7 +185,7 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
   </head>
 
   <body
-    class="bg-gray-50 font-sans antialiased dark:bg-gray-900"
+    class="bg-gray-50 font-sans antialiased"
     style="font-family: var(--font-sans);"
   >
     <!-- Hero Gradient Wave Section -->
@@ -196,7 +198,7 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
 
       <!-- Wave Shape -->
       <svg
-        class="absolute bottom-0 left-0 h-20 w-full text-gray-50 dark:text-gray-900"
+        class="absolute bottom-0 left-0 h-20 w-full text-gray-50"
         preserveAspectRatio="none"
         viewBox="0 0 1440 200"
         xmlns="http://www.w3.org/2000/svg"
@@ -220,52 +222,11 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
         ></path>
       </svg>
 
-      <!-- Content area with padding -->
-      <div
-        class="relative z-10 flex h-full items-center justify-between px-4 sm:px-6 lg:px-8"
-      >
-        <!-- Empty left side -->
-        <div></div>
-
-        <!-- Theme Toggle -->
-        <div>
-          <button
-            id="theme-toggle"
-            type="button"
-            class="rounded-lg p-2.5 text-white/90 ring-4 ring-white/30 transition-all duration-200 text-sm hover:bg-white/20 hover:text-white focus:outline-none"
-            aria-label="Cambiar tema"
-          >
-            <!-- Icono Luna (modo oscuro - se muestra cuando está en modo claro) -->
-            <svg
-              id="theme-toggle-dark-icon"
-              class="h-5 w-5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-              ></path>
-            </svg>
-            <!-- Icono Sol (modo claro - se muestra cuando está en modo oscuro) -->
-            <svg
-              id="theme-toggle-light-icon"
-              class="hidden h-5 w-5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                clip-rule="evenodd"></path>
-            </svg>
-          </button>
-        </div>
-      </div>
     </div>
 
     <!-- Main Container -->
     <div
-      class="relative min-h-screen bg-gray-50 px-4 dark:bg-gray-900 sm:px-6 lg:px-8"
+      class="relative min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8"
     >
       <div class="mx-auto mt-10 max-w-md space-y-8">
         <!-- Profile Section -->
@@ -303,17 +264,27 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
 
         <!-- Footer -->
         <footer class="pt-8 text-center">
+          <!-- Logo Frappé -->
+          <div class="mb-6 flex justify-center">
+            <a href="/" class="transition-opacity hover:opacity-80" aria-label="Ir al inicio">
+              <img 
+                src="/frappe_text.svg" 
+                alt="Frappé Logo" 
+                class="h-8 w-auto"
+              />
+            </a>
+          </div>
           <div class="mb-4">
             <a
               href="/privacidad"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-gray-500 underline transition-colors text-sm hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              class="text-gray-500 underline transition-colors text-sm hover:text-gray-700"
             >
               Política de Privacidad
             </a>
           </div>
-          <p class="text-gray-500 text-sm dark:text-gray-400">
+          <p class="text-gray-500 text-sm">
             © {new Date().getFullYear()}
             {profile.name}. Hecho con 💙.
           </p>
@@ -321,116 +292,7 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
       </div>
     </div>
 
-    <!-- Theme Toggle Script -->
-    <script>
-      // Inicializar tema inmediatamente para evitar flash
-      (function () {
-        const stored = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)",
-        ).matches;
-
-        // Si no hay preferencia guardada, usar la del sistema
-        const theme = stored || (prefersDark ? "dark" : "light");
-
-        if (theme === "dark") {
-          document.documentElement.classList.add("dark");
-        }
-      })();
-
-      document.addEventListener("DOMContentLoaded", function () {
-        const themeToggle = document.getElementById("theme-toggle");
-        const darkIcon = document.getElementById("theme-toggle-dark-icon");
-        const lightIcon = document.getElementById("theme-toggle-light-icon");
-
-        function updateIcons(isDark: boolean) {
-          if (isDark) {
-            // Modo oscuro activo - mostrar icono de sol para cambiar a claro
-            darkIcon?.classList.add("hidden");
-            lightIcon?.classList.remove("hidden");
-          } else {
-            // Modo claro activo - mostrar icono de luna para cambiar a oscuro
-            darkIcon?.classList.remove("hidden");
-            lightIcon?.classList.add("hidden");
-          }
-        }
-
-        function setTheme(theme: string, savePreference: boolean = true) {
-          const isDark = theme === "dark";
-
-          if (isDark) {
-            document.documentElement.classList.add("dark");
-          } else {
-            document.documentElement.classList.remove("dark");
-          }
-
-          // Solo guardar en localStorage si el usuario hace click manual
-          if (savePreference) {
-            localStorage.setItem("theme", theme);
-          }
-
-          updateIcons(isDark);
-        }
-
-        function getCurrentTheme() {
-          const stored = localStorage.getItem("theme");
-          if (stored) {
-            return stored;
-          }
-          // Si no hay preferencia guardada, usar la del sistema
-          return window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
-        }
-
-        function getSystemTheme() {
-          return window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
-        }
-
-        // Inicializar tema
-        const currentTheme = getCurrentTheme();
-        setTheme(currentTheme, false); // No guardar la preferencia inicial
-
-        // Event listener para el toggle manual
-        themeToggle?.addEventListener("click", function () {
-          const current = getCurrentTheme();
-          const newTheme = current === "dark" ? "light" : "dark";
-          setTheme(newTheme, true); // Guardar la preferencia manual
-        });
-
-        // Escuchar cambios en las preferencias del sistema
-        window
-          .matchMedia("(prefers-color-scheme: dark)")
-          .addEventListener("change", function (e) {
-            const hasStoredPreference = localStorage.getItem("theme");
-
-            // Solo cambiar automáticamente si el usuario no ha configurado una preferencia manual
-            if (!hasStoredPreference) {
-              setTheme(e.matches ? "dark" : "light", false);
-            }
-          });
-
-        // Botón para resetear a preferencias del sistema (opcional)
-        // Puedes agregar un doble click para resetear a las preferencias del sistema
-        let clickCount = 0;
-        themeToggle?.addEventListener("click", function () {
-          clickCount++;
-          setTimeout(() => {
-            if (clickCount === 2) {
-              // Doble click: resetear a preferencias del sistema
-              localStorage.removeItem("theme");
-              const systemTheme = getSystemTheme();
-              setTheme(systemTheme, false);
-            }
-            clickCount = 0;
-          }, 300);
-        });
-      });
-    </script>
-
-    <!-- Smooth Animations & Theme Styles -->
+    <!-- Smooth Animations -->
     <style>
       @keyframes fadeInUp {
         from {
@@ -445,19 +307,6 @@ const description = `${profile.bio} Encuentra todos mis enlaces en un solo lugar
 
       .animate-fade-in-up {
         animation: fadeInUp 0.6s ease-out forwards;
-      }
-
-      /* Evitar flash de contenido no temático */
-      html {
-        transition: background-color 0.3s ease;
-      }
-
-      /* Mejorar transiciones en modo oscuro */
-      * {
-        transition:
-          background-color 0.3s ease,
-          border-color 0.3s ease,
-          color 0.3s ease;
       }
 
       /* Stagger animation delays */
