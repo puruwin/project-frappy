@@ -5,83 +5,47 @@ import "@fontsource-variable/montserrat";
 
 // Navegación
 const navItems = [
-  { text: "Qué hacemos", url: "#que-hacemos" },
+  { text: "El problema", url: "#problema" },
+  { text: "Solución", url: "#solucion" },
   { text: "Servicios", url: "#servicios" },
   { text: "Proceso", url: "#proceso" },
-  { text: "FAQ", url: "#faq" },
   { text: "Contacto", url: "#contacto" },
 ];
 
-// Servicios de automatización IA
+// Servicios principales
 const services = [
   {
-    id: "consultoria",
-    emoji: "🎯",
-    title: "Consultoría de automatización IA",
-    description: "Primera sesión de unos 40 minutos donde escuchamos, analizamos y detectamos oportunidades reales.",
+    id: "agentes-ia",
+    emoji: "🤖",
+    title: "Agentes de Voz y Chatbots IA",
+    description: "Atención y captación de leads 24/7 que entienden el contexto y ejecutan acciones reales.",
     features: [
-      "Sin coste",
-      "Sin compromiso",
-      "Análisis personalizado",
+      "Reservas y citas automáticas",
+      "Presupuestos y seguimientos sin intervención",
+      "Respuestas inteligentes por WhatsApp, web o teléfono",
     ],
-    featured: true,
-    badge: "Gratis",
   },
   {
     id: "procesos-internos",
     emoji: "⚙️",
-    title: "Automatización de procesos internos",
-    description: "Eliminamos tareas necesarias pero improductivas, liberando tiempo y reduciendo errores.",
+    title: "Automatización de Procesos Internos",
+    description: "Conectamos tus herramientas actuales (ERP, CRM, Email) para que la información fluya sin intervención humana.",
     features: [
-      "Captación de leads con agentes de voz IA",
-      "Automatización de presupuestos y facturación",
-      "Pipelines de ventas automatizadas",
-      "Procesos administrativos y operativos",
+      "Sincronización automática entre sistemas",
+      "Eliminación de tareas manuales repetitivas",
+      "Integración con las herramientas que ya usas",
     ],
-    featured: false,
   },
   {
-    id: "marketing-contenido",
-    emoji: "📢",
-    title: "Automatización de marketing y contenido",
-    description: "Sistemas consistentes sin carga manual diaria. El ahorro de tiempo es inmediato.",
+    id: "pipelines",
+    emoji: "📈",
+    title: "Pipelines de Ventas y Facturación",
+    description: "Automatizamos desde el primer contacto con el cliente hasta el cobro final.",
     features: [
-      "Generación automática de contenido para blog y RRSS",
-      "Publicación y flujos de contenido automatizados",
-      "Sistemas consistentes sin carga manual",
+      "Seguimiento automático de oportunidades",
+      "Facturación y cobros sin fricción",
+      "Visibilidad total del embudo de ventas",
     ],
-    featured: false,
-  },
-  {
-    id: "integraciones",
-    emoji: "🔗",
-    title: "Integraciones y sistemas IA a medida",
-    description: "Conectamos CRMs, formularios, emails, webs y APIs para crear ecosistemas automatizados estables y escalables.",
-    features: [
-      "Sin necesidad de cambiar tus herramientas actuales",
-      "Ecosistemas automatizados estables",
-      "Soluciones escalables",
-    ],
-    featured: false,
-  },
-];
-
-// Por qué elegirnos
-const reasons = [
-  {
-    emoji: "🚫",
-    title: "Sin hype ni exageraciones",
-    description: "No prometemos revoluciones mágicas. Detectamos una necesidad → diseñamos una solución → medimos resultados.",
-  },
-  {
-    emoji: "🎯",
-    title: "Enfoque práctico y orientado a resultados",
-    description: "Cada automatización tiene un objetivo claro y medible.",
-  },
-  {
-    emoji: "💰",
-    title: "Modelo de costes transparente",
-    description: "Consultoría inicial gratuita. Sin cuotas ocultas. Solo infraestructura, APIs y horas si hay mejoras futuras.",
   },
 ];
 
@@ -89,67 +53,47 @@ const reasons = [
 const process = [
   {
     step: "1",
-    title: "Análisis de procesos",
-    description: "Identificamos dónde se pierde tiempo, dinero o energía en tu empresa.",
+    title: "Análisis (Gratis)",
+    description: "Identificamos dónde pierdes más tiempo y dinero en tu operativa diaria.",
   },
   {
     step: "2",
-    title: "Diseño de la solución automatizada",
-    description: "Creamos un plan de automatización adaptado a tus necesidades específicas.",
+    title: "Diseño",
+    description: "Creamos un plan a medida integrando tus herramientas actuales, sin necesidad de cambiar nada.",
   },
   {
     step: "3",
-    title: "Implementación técnica",
-    description: "Desarrollamos e integramos los sistemas automatizados en tu flujo de trabajo.",
+    title: "Implementación",
+    description: "Sistemas listos y funcionando en semanas, no meses.",
   },
   {
     step: "4",
-    title: "Pruebas y optimización continua",
-    description: "Garantizamos que los sistemas funcionen y se mantengan en el tiempo.",
-  },
-];
-
-// Resultados esperados
-const results = [
-  {
-    emoji: "⏱️",
-    title: "Ahorro de horas de trabajo",
-    description: "Libera tiempo de tu equipo para tareas de mayor valor.",
-  },
-  {
-    emoji: "📉",
-    title: "Reducción de costes operativos",
-    description: "Menos recursos humanos en tareas repetitivas.",
-  },
-  {
-    emoji: "⚡",
-    title: "Procesos más rápidos y fiables",
-    description: "Sistemas que trabajan 24/7 sin errores humanos.",
-  },
-  {
-    emoji: "🧠",
-    title: "Equipos centrados en tareas de valor",
-    description: "Tu equipo se enfoca en lo estratégico, no en lo repetitivo.",
+    title: "Optimización",
+    description: "Medimos resultados y ajustamos para maximizar tu retorno de inversión.",
   },
 ];
 
 // FAQs
 const faqs = [
   {
-    question: "¿Qué hace una agencia de automatización IA?",
-    answer: "Analiza procesos empresariales y diseña sistemas automatizados con inteligencia artificial para ahorrar tiempo y reducir costes.",
+    question: "¿Qué tipo de procesos se pueden automatizar?",
+    answer: "Prácticamente cualquier tarea repetitiva: atención al cliente, gestión de leads, facturación, presupuestos, seguimientos comerciales, publicación de contenido, sincronización de datos entre sistemas y mucho más.",
   },
   {
-    question: "¿Qué procesos se pueden automatizar con IA?",
-    answer: "Ventas, marketing, atención al cliente, administración y otros procesos internos repetitivos.",
-  },
-  {
-    question: "¿La automatización IA sustituye empleados?",
-    answer: "No. Elimina tareas repetitivas para que las personas se centren en tareas de mayor valor.",
+    question: "¿La automatización sustituye a mis empleados?",
+    answer: "No. Elimina las tareas repetitivas y de bajo valor para que tu equipo se centre en lo que realmente importa: estrategia, relaciones con clientes y crecimiento.",
   },
   {
     question: "¿Cuánto se tarda en ver resultados?",
-    answer: "En muchos casos, los resultados se perciben en las primeras semanas tras la implementación.",
+    answer: "En muchos casos, el retorno de inversión se percibe en las primeras semanas tras la implementación. El análisis inicial es gratuito y te damos una estimación realista antes de empezar.",
+  },
+  {
+    question: "¿Necesito cambiar mis herramientas actuales?",
+    answer: "No. Trabajamos con las herramientas que ya usas (CRM, email, hojas de cálculo, ERP...) y las conectamos entre sí para que funcionen de forma coordinada y automática.",
+  },
+  {
+    question: "¿Qué coste tiene la consultoría inicial?",
+    answer: "La consultoría inicial de 40 minutos es completamente gratuita y sin compromiso. Solo proponemos soluciones cuando tienen sentido para tu rentabilidad.",
   },
 ];
 
@@ -157,8 +101,8 @@ const faqs = [
 const { site } = Astro;
 const pageUrl = new URL("/agencia-automatizacion-ia", site).toString();
 const image = new URL("/og-image.jpg", site).toString();
-const title = "Agencia de Automatización IA | Optimiza Procesos y Reduce Costes";
-const description = "Agencia de automatización IA para empresas. Analizamos, automatizamos y optimizamos procesos para ahorrar tiempo, reducir costes y aumentar resultados.";
+const title = "Automatización de Procesos para Empresas | Frappé";
+const description = "Transformamos procesos manuales y repetitivos en sistemas inteligentes que funcionan 24/7. Ahorra tiempo, reduce errores y escala sin contratar más. Consultoría gratuita.";
 ---
 
 <!doctype html>
@@ -177,8 +121,8 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={pageUrl} />
-    <meta property="og:title" content="Agencia de Automatización IA para Empresas" />
-    <meta property="og:description" content="Automatizamos procesos con IA para ahorrar tiempo, reducir costes y obtener resultados reales. Sin hype." />
+    <meta property="og:title" content="Automatización de Procesos para Empresas | Frappé" />
+    <meta property="og:description" content="Sistemas inteligentes que trabajan 24/7 para tu negocio. Ahorra hasta el 70% de tu tiempo en tareas repetitivas. Sin hype, solo resultados." />
     <meta property="og:image" content={image} />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="Frappé" />
@@ -186,8 +130,8 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={pageUrl} />
-    <meta name="twitter:title" content="Agencia de Automatización IA" />
-    <meta name="twitter:description" content="Consultoría y automatización IA orientada a resultados reales." />
+    <meta name="twitter:title" content="Automatización de Procesos para Empresas" />
+    <meta name="twitter:description" content="Sistemas inteligentes que trabajan 24/7. Ahorra tiempo, reduce errores y escala sin contratar más." />
     <meta name="twitter:image" content={image} />
 
     <!-- Metadatos adicionales -->
@@ -203,15 +147,20 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
         "name": "Frappé",
         "url": site,
         "logo": new URL("/frappe_icon.svg", site).toString(),
-        "description": "Agencia especializada en automatización de procesos con inteligencia artificial orientada a resultados reales.",
+        "description": "Automatización de procesos empresariales con inteligencia artificial. Sistemas que ahorran tiempo, reducen costes y funcionan 24/7.",
         "foundingLocation": {
           "@type": "Place",
           "address": {
             "@type": "PostalAddress",
+            "addressLocality": "Benidorm",
+            "addressRegion": "Alicante",
             "addressCountry": "ES"
           }
         },
-        "sameAs": []
+        "sameAs": [
+          "https://linkedin.com/in/davidperez8619",
+          "https://github.com/puruwin"
+        ]
       })}
     </script>
 
@@ -220,9 +169,9 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
       {JSON.stringify({
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Agencia de Automatización IA",
+        "name": "Automatización de Procesos para Empresas",
         "url": pageUrl,
-        "description": "Agencia de automatización IA para empresas que buscan optimizar procesos, reducir costes y ahorrar tiempo.",
+        "description": "Transformamos procesos manuales y repetitivos en sistemas inteligentes que funcionan 24/7.",
         "inLanguage": "es-ES"
       })}
     </script>
@@ -259,14 +208,12 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
     class="bg-gray-50 font-sans antialiased"
     style="font-family: var(--font-sans);"
   >
-    <!-- Hero con imagen de fondo -->
+    <!-- Hero -->
     <header class="relative overflow-hidden">
-      <!-- Imagen de fondo -->
       <div 
         class="absolute inset-0"
         style="background-image: url('/ai_agency_hero.png'); background-size: cover; background-position: center; background-repeat: no-repeat; z-index: 0;"
       ></div>
-      <!-- Overlay blanco con transparencia -->
       <div 
         class="absolute inset-0"
         style="background-color: rgba(255, 255, 255, 0.65); z-index: 1;"
@@ -276,7 +223,7 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
       <nav
         class="relative z-20 mx-auto flex max-w-7xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8"
       >
-        <a href="/" class="flex items-center gap-2 font-bold text-gray-900 text-xl">
+        <a href="/" class="flex items-center gap-2 font-bold text-gray-900 text-xl" aria-label="Ir a inicio">
           <img src="/frappe_icon.svg" alt="Frappé" class="h-10 w-10" />
           <span>Frappé</span>
         </a>
@@ -304,20 +251,20 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
           <span
             class="rounded-full bg-gray-100 px-6 py-2 font-bold text-gray-900"
           >
-            🎯 Sin hype. Solo resultados.
+            Sin hype. Solo resultados reales.
           </span>
         </div>
         
         <h1
           class="mb-6 font-bold text-gray-900 text-4xl sm:text-5xl lg:text-6xl"
         >
-          Agencia de Automatización IA para Empresas que Buscan Resultados Reales
+          Haz que tu negocio trabaje por ti, no al revés.
         </h1>
         
         <p
           class="mx-auto mb-10 max-w-3xl text-gray-900 text-xl sm:text-2xl"
         >
-          Transformamos procesos manuales, lentos y repetitivos en <strong>sistemas automatizados con inteligencia artificial</strong> que ahorran tiempo, reducen costes y funcionan 24/7.
+          Transformamos procesos manuales, lentos y repetitivos en <strong>sistemas inteligentes que funcionan 24/7</strong>, reducen errores humanos y liberan hasta el 70% de tu tiempo.
         </p>
         
         <div
@@ -326,13 +273,16 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
           <a
             href="#contacto"
             class="inline-flex items-center justify-center gap-2 rounded-2xl border-0 bg-gradient-to-r from-[#f9d034] via-[#29c1f1] to-[#f5478f] px-8 py-4 font-bold text-gray-900 shadow-xl transition-all hover:scale-105 hover:shadow-2xl"
+            tabindex="0"
+            aria-label="Solicitar consultoría gratuita de 40 minutos"
           >
-            Solicitar consultoría gratuita
+            Solicitar consultoría gratuita (40 min)
             <svg
               class="h-5 w-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 stroke-linecap="round"
@@ -345,13 +295,16 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
           <a
             href="#servicios"
             class="inline-flex items-center justify-center gap-2 rounded-2xl border-2 border-gray-200 bg-white px-8 py-4 font-bold text-gray-900 transition-all hover:border-gray-300 hover:shadow-lg"
+            tabindex="0"
+            aria-label="Ver qué puedes automatizar"
           >
-            Ver servicios
+            Ver qué puedes automatizar
             <svg
               class="h-5 w-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 stroke-linecap="round"
@@ -367,20 +320,33 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
 
     <!-- Contenido principal -->
     <main class="bg-white">
-      <!-- Problema/Contexto -->
-      <section class="bg-white px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+
+      <!-- El Problema -->
+      <section id="problema" class="bg-white px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <div class="mx-auto max-w-4xl text-center">
           <h2
             class="mb-6 font-bold text-gray-900 text-3xl sm:text-4xl lg:text-5xl"
           >
-            Las empresas ya no quieren escalar contratando más personas
+            ¿Sientes que el día no tiene suficientes horas?
           </h2>
-          <p class="mb-6 text-gray-900 text-lg lg:text-xl">
-            Durante años, crecer significaba contratar más equipo. Hoy, muchas empresas se están dando cuenta de que <strong class="gradient-text">seguir pagando miles de euros al mes por tareas que la IA puede resolver en minutos ya no es sostenible</strong>.
+          <p class="mb-8 text-gray-700 text-lg lg:text-xl">
+            En la mayoría de las empresas, el crecimiento se frena por el exceso de carga en tareas que deberían ejecutarse solas. Si tu equipo (o tú mismo) dedica horas a:
           </p>
-          <p class="text-gray-900 text-lg lg:text-xl">
-            La inteligencia artificial y la automatización permiten construir sistemas que trabajan <strong class="gradient-text">10 veces más rápido, más barato y sin desgaste humano</strong>.
-          </p>
+
+          <div class="mx-auto max-w-2xl space-y-4 text-left">
+            <div class="flex items-start gap-4 rounded-2xl bg-gray-50 p-5">
+              <span class="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-600 text-lg" aria-hidden="true">✕</span>
+              <p class="text-gray-900 text-lg">Introducir datos manualmente en CRMs o Excel</p>
+            </div>
+            <div class="flex items-start gap-4 rounded-2xl bg-gray-50 p-5">
+              <span class="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-600 text-lg" aria-hidden="true">✕</span>
+              <p class="text-gray-900 text-lg">Responder las mismas dudas por WhatsApp o teléfono una y otra vez</p>
+            </div>
+            <div class="flex items-start gap-4 rounded-2xl bg-gray-50 p-5">
+              <span class="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-red-100 text-red-600 text-lg" aria-hidden="true">✕</span>
+              <p class="text-gray-900 text-lg">Gestionar facturas, presupuestos y pedidos de forma artesanal</p>
+            </div>
+          </div>
           
           <div class="mt-10 rounded-3xl bg-gradient-to-r from-[#f9d034]/10 via-[#29c1f1]/10 to-[#f5478f]/10 p-8">
             <p class="text-gray-900 text-lg italic">
@@ -390,23 +356,78 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
         </div>
       </section>
 
-      <!-- Qué hacemos -->
-      <section id="que-hacemos" class="bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-        <div class="mx-auto max-w-4xl text-center">
-          <h2
-            class="mb-6 font-bold text-gray-900 text-3xl sm:text-4xl lg:text-5xl"
-          >
-            Qué hacemos como agencia de automatización con IA
-          </h2>
-          <p class="mb-6 text-gray-900 text-lg lg:text-xl">
-            Somos una <strong class="gradient-text">agencia de automatización IA orientada a negocio</strong>.
-          </p>
-          <p class="text-gray-900 text-lg lg:text-xl">
-            Nuestro trabajo no es vender tecnología, sino <strong class="gradient-text">entender problemas reales y diseñar soluciones automatizadas que los eliminen</strong>.
-          </p>
-          <p class="mt-6 text-gray-900 text-lg lg:text-xl">
-            Analizamos dónde se pierde tiempo, dinero o energía, y construimos sistemas conectados a <strong class="gradient-text">resultados medibles</strong>: más leads, más ventas o más horas liberadas cada semana.
-          </p>
+      <!-- La Solución: Antes vs Después -->
+      <section id="solucion" class="bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="mx-auto max-w-5xl">
+          <div class="mb-12 text-center">
+            <h2
+              class="mb-4 font-bold text-gray-900 text-3xl sm:text-4xl lg:text-5xl"
+            >
+              Sistemas 10 veces más rápidos, más baratos y sin desgaste humano
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
+            <!-- Antes -->
+            <div class="rounded-3xl border-2 border-red-100 bg-white p-8 shadow-lg">
+              <div class="mb-6 flex items-center gap-3">
+                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-red-100 font-bold text-red-600 text-lg" aria-hidden="true">✕</span>
+                <h3 class="font-bold text-gray-900 text-2xl">Antes</h3>
+              </div>
+              <ul class="space-y-4">
+                <li class="flex items-start gap-3 text-gray-700">
+                  <span class="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-red-400" aria-hidden="true"></span>
+                  Horarios de atención limitados
+                </li>
+                <li class="flex items-start gap-3 text-gray-700">
+                  <span class="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-red-400" aria-hidden="true"></span>
+                  Errores manuales frecuentes
+                </li>
+                <li class="flex items-start gap-3 text-gray-700">
+                  <span class="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-red-400" aria-hidden="true"></span>
+                  Costes operativos altos
+                </li>
+                <li class="flex items-start gap-3 text-gray-700">
+                  <span class="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-red-400" aria-hidden="true"></span>
+                  Equipo saturado en tareas repetitivas
+                </li>
+                <li class="flex items-start gap-3 text-gray-700">
+                  <span class="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-red-400" aria-hidden="true"></span>
+                  Clientes sin respuesta fuera de horario
+                </li>
+              </ul>
+            </div>
+
+            <!-- Después -->
+            <div class="rounded-3xl border-2 border-green-100 bg-white p-8 shadow-lg">
+              <div class="mb-6 flex items-center gap-3">
+                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 font-bold text-green-600 text-lg" aria-hidden="true">✓</span>
+                <h3 class="font-bold text-gray-900 text-2xl">Después</h3>
+              </div>
+              <ul class="space-y-4">
+                <li class="flex items-start gap-3 text-gray-700">
+                  <span class="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-green-400" aria-hidden="true"></span>
+                  Disponibilidad 24/7 sin coste adicional
+                </li>
+                <li class="flex items-start gap-3 text-gray-700">
+                  <span class="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-green-400" aria-hidden="true"></span>
+                  Precisión total, sin fallos humanos
+                </li>
+                <li class="flex items-start gap-3 text-gray-700">
+                  <span class="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-green-400" aria-hidden="true"></span>
+                  Reducción drástica de costes operativos
+                </li>
+                <li class="flex items-start gap-3 text-gray-700">
+                  <span class="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-green-400" aria-hidden="true"></span>
+                  Equipo enfocado exclusivamente en estrategia
+                </li>
+                <li class="flex items-start gap-3 text-gray-700">
+                  <span class="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-green-400" aria-hidden="true"></span>
+                  Cada lead atendido al instante, siempre
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -417,31 +438,24 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
             <h2
               class="mb-4 font-bold text-gray-900 text-3xl sm:text-4xl lg:text-5xl"
             >
-              Servicios de automatización IA que implementamos
+              Qué automatizamos para tu negocio
             </h2>
             <p
-              class="mx-auto max-w-3xl text-gray-900 text-lg lg:text-xl"
+              class="mx-auto max-w-3xl text-gray-700 text-lg lg:text-xl"
             >
-              Desde la consultoría inicial hasta la implementación completa de sistemas automatizados.
+              Tres pilares que cubren desde la captación de clientes hasta la operativa interna.
             </p>
           </div>
 
           <div
-            class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8"
+            class="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8"
           >
             {
               services.map((service) => (
                 <div
-                  class={`group relative overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${service.featured ? "ring-4 ring-[#29c1f1] ring-offset-4" : ""}`}
+                  class="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
                 >
-                  {service.badge && (
-                    <div class="absolute top-6 right-6">
-                      <span class="rounded-full bg-gray-900 px-4 py-1 font-bold text-white shadow-lg text-sm">
-                        {service.badge}
-                      </span>
-                    </div>
-                  )}
-                  <div class="mb-4 text-5xl">
+                  <div class="mb-4 text-5xl" aria-hidden="true">
                     {service.emoji}
                   </div>
                   <div class="mb-6">
@@ -460,6 +474,7 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
+                          aria-hidden="true"
                         >
                           <path
                             stroke-linecap="round"
@@ -479,35 +494,38 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
         </div>
       </section>
 
-      <!-- Por qué elegirnos -->
+      <!-- Por qué Frappé -->
       <section class="bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-        <div class="mx-auto max-w-7xl">
-          <div class="mb-16 text-center">
+        <div class="mx-auto max-w-4xl">
+          <div class="mb-12 text-center">
             <h2
               class="mb-4 font-bold text-gray-900 text-3xl sm:text-4xl lg:text-5xl"
             >
-              Por qué elegir nuestra agencia de automatización IA
+              Experiencia real en entornos críticos
             </h2>
           </div>
 
-          <div
-            class="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:gap-8"
-          >
-            {
-              reasons.map((reason) => (
-                <div class="group rounded-3xl bg-white p-8 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-                  <div class="mb-4 transition-transform duration-300 text-5xl group-hover:scale-110">
-                    {reason.emoji}
-                  </div>
-                  <h3 class="mb-3 font-bold text-gray-900 text-xl">
-                    {reason.title}
-                  </h3>
-                  <p class="leading-relaxed text-gray-900">
-                    {reason.description}
+          <div class="space-y-8">
+            <div class="rounded-3xl bg-white p-8 shadow-lg lg:p-10">
+              <p class="mb-6 text-gray-700 text-lg lg:text-xl">
+                No somos una agencia que "experimenta" con IA. Detrás de Frappé está <strong class="text-gray-900">David Pérez</strong>, ingeniero con más de <strong class="gradient-text">5 años de experiencia</strong> desarrollando sistemas para <strong class="gradient-text">BBVA, Santander y Air Europa</strong>.
+              </p>
+              <p class="text-gray-700 text-lg lg:text-xl">
+                Esa experiencia en entornos donde un fallo cuesta millones es lo que aplicamos a cada proyecto: rigor técnico, fiabilidad y resultados medibles.
+              </p>
+            </div>
+
+            <div class="rounded-3xl bg-white p-8 shadow-lg lg:p-10">
+              <div class="flex items-start gap-4">
+                <span class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r from-[#f9d034] via-[#29c1f1] to-[#f5478f] text-2xl" aria-hidden="true">📍</span>
+                <div>
+                  <h3 class="mb-2 font-bold text-gray-900 text-xl">Valor local, capacidad global</h3>
+                  <p class="text-gray-700 text-lg">
+                    Ofrecemos soporte presencial y trato directo en la <strong class="text-gray-900">Marina Baixa</strong> (Benidorm, Altea, Callosa...). Entendemos tu mercado porque estamos en él.
                   </p>
                 </div>
-              ))
-            }
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -522,12 +540,12 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
             <h2
               class="mb-4 font-bold text-gray-900 text-3xl sm:text-4xl lg:text-5xl"
             >
-              Cómo trabajamos la automatización con IA
+              Cómo trabajamos
             </h2>
             <p
-              class="mx-auto max-w-3xl text-gray-900 text-lg lg:text-xl"
+              class="mx-auto max-w-3xl text-gray-700 text-lg lg:text-xl"
             >
-              Este enfoque garantiza sistemas que funcionan y se mantienen en el tiempo.
+              Un proceso claro, transparente y orientado a que veas resultados lo antes posible.
             </p>
           </div>
 
@@ -543,7 +561,7 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
                       <h3 class="mb-3 font-bold text-gray-900 text-xl">
                         {step.title}
                       </h3>
-                      <p class="leading-relaxed text-gray-900">
+                      <p class="leading-relaxed text-gray-700">
                         {step.description}
                       </p>
                     </div>
@@ -558,66 +576,29 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
         </div>
       </section>
 
-      <!-- Resultados esperados -->
-      <section class="bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-        <div class="mx-auto max-w-7xl">
-          <div class="mb-16 text-center">
-            <h2
-              class="mb-4 font-bold text-gray-900 text-3xl sm:text-4xl lg:text-5xl"
-            >
-              Qué resultados puedes esperar
-            </h2>
-            <p
-              class="mx-auto max-w-3xl text-gray-900 text-lg lg:text-xl"
-            >
-              En muchos casos, el retorno se percibe en semanas.
-            </p>
-          </div>
-
-          <div
-            class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8"
-          >
-            {
-              results.map((result) => (
-                <div class="group rounded-3xl bg-white p-8 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-                  <div class="mb-4 transition-transform duration-300 text-5xl group-hover:scale-110">
-                    {result.emoji}
-                  </div>
-                  <h3 class="mb-3 font-bold text-gray-900 text-lg">
-                    {result.title}
-                  </h3>
-                  <p class="leading-relaxed text-gray-900 text-sm">
-                    {result.description}
-                  </p>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </section>
-
       <!-- FAQ -->
-      <section id="faq" class="bg-white px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <section id="faq" class="bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <div class="mx-auto max-w-4xl">
           <div class="mb-16 text-center">
             <h2
               class="mb-4 font-bold text-gray-900 text-3xl sm:text-4xl lg:text-5xl"
             >
-              Preguntas frecuentes sobre automatización IA
+              Preguntas frecuentes
             </h2>
           </div>
 
           <div class="space-y-4">
             {
               faqs.map((faq) => (
-                <details class="group rounded-3xl bg-gray-50 transition-all duration-300 hover:shadow-lg">
-                  <summary class="flex cursor-pointer items-center justify-between p-6 font-bold text-gray-900 transition-colors text-lg lg:p-8">
+                <details class="group rounded-3xl bg-white transition-all duration-300 hover:shadow-lg">
+                  <summary class="flex cursor-pointer items-center justify-between p-6 font-bold text-gray-900 transition-colors text-lg lg:p-8" tabindex="0">
                     <span class="pr-4">{faq.question}</span>
                     <svg
                       class="h-6 w-6 flex-shrink-0 text-[#29c1f1] transition-transform duration-300 group-open:rotate-180"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         stroke-linecap="round"
@@ -637,47 +618,47 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
         </div>
       </section>
 
-      <!-- CTA Contacto -->
+      <!-- CTA Final + Contacto -->
       <section
         id="contacto"
-        class="relative overflow-hidden bg-gray-50 px-4 py-20 sm:px-6 lg:px-8 lg:py-32"
+        class="relative overflow-hidden bg-white px-4 py-20 sm:px-6 lg:px-8 lg:py-32"
       >
         <div class="relative z-10 mx-auto max-w-6xl">
           <div class="mb-12 text-center">
             <h2
               class="mb-6 font-bold text-gray-900 text-3xl sm:text-4xl lg:text-5xl"
             >
-              Consultoría gratuita de automatización IA
+              ¿Listo para dejar de apagar fuegos y empezar a escalar?
             </h2>
-            <p class="mx-auto mb-4 max-w-3xl text-gray-900 text-lg lg:text-xl">
-              Si tu empresa pierde tiempo en tareas repetitivas o procesos manuales, merece la pena hablar.
+            <p class="mx-auto mb-4 max-w-3xl text-gray-700 text-lg lg:text-xl">
+              El retorno de inversión en automatización se percibe a menudo en las primeras semanas tras la implementación.
             </p>
-            <p class="mx-auto max-w-3xl text-gray-900 text-lg lg:text-xl">
-              La sesión inicial es de <strong class="gradient-text">unos 40 minutos</strong>, <strong class="gradient-text">gratuita</strong> y sirve para entender tus necesidades, detectar oportunidades reales y decidir si avanzar o no.
+            <p class="mx-auto max-w-3xl text-gray-700 text-lg lg:text-xl">
+              La sesión inicial es de <strong class="gradient-text">unos 40 minutos</strong>, <strong class="gradient-text">completamente gratuita</strong> y sirve para entender tus necesidades y detectar oportunidades reales.
             </p>
           </div>
 
           <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
-            <!-- Columna izquierda: Información y contacto rápido -->
+            <!-- Columna izquierda: Garantías y contacto directo -->
             <div class="space-y-6">
               <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
-                <div class="rounded-2xl bg-white p-6 shadow-md">
+                <div class="rounded-2xl bg-gray-50 p-6 shadow-md">
                   <p class="mb-2 font-bold text-gray-900 text-lg">
-                    ✅ Sin compromiso
+                    Sin compromiso
                   </p>
-                  <p class="text-gray-900 text-sm">Analizamos sin obligación de contratar</p>
+                  <p class="text-gray-600 text-sm">Solo proponemos lo que tiene sentido para tu rentabilidad</p>
                 </div>
-                <div class="rounded-2xl bg-white p-6 shadow-md">
+                <div class="rounded-2xl bg-gray-50 p-6 shadow-md">
                   <p class="mb-2 font-bold text-gray-900 text-lg">
-                    ⚡ Detección de oportunidades
+                    Detección de oportunidades
                   </p>
-                  <p class="text-gray-900 text-sm">Identificamos procesos automatizables</p>
+                  <p class="text-gray-600 text-sm">Identificamos los procesos que más tiempo y dinero te cuestan</p>
                 </div>
-                <div class="rounded-2xl bg-white p-6 shadow-md">
+                <div class="rounded-2xl bg-gray-50 p-6 shadow-md">
                   <p class="mb-2 font-bold text-gray-900 text-lg">
-                    🎯 Enfoque en resultados
+                    Resultados en semanas
                   </p>
-                  <p class="text-gray-900 text-sm">Solo proponemos lo que tiene sentido</p>
+                  <p class="text-gray-600 text-sm">Sistemas funcionando en semanas, no meses</p>
                 </div>
               </div>
 
@@ -691,11 +672,13 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
                     target="_blank"
                     rel="noopener noreferrer"
                     class="group inline-flex items-center justify-center gap-3 rounded-2xl border-2 border-gray-900 bg-gray-900 px-6 py-4 font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+                    aria-label="Contactar por WhatsApp"
                   >
                     <svg
                       class="h-6 w-6 transition-transform group-hover:scale-110"
                       fill="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"
@@ -706,12 +689,14 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
                   <a
                     href="mailto:frappecreativity@gmail.com"
                     class="inline-flex items-center justify-center gap-3 rounded-2xl border-2 border-gray-200 bg-white px-6 py-4 font-bold text-gray-900 transition-all hover:border-gray-300 hover:shadow-lg"
+                    aria-label="Enviar email"
                   >
                     <svg
                       class="h-6 w-6"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         stroke-linecap="round"
@@ -726,10 +711,10 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
               </div>
             </div>
 
-            <!-- Columna derecha: Formulario nativo con webhook -->
+            <!-- Columna derecha: Formulario -->
             <div class="rounded-3xl bg-[var(--color-background-offset)] p-4 shadow-2xl sm:p-6">
               <h3 class="mb-2 font-bold text-white text-xl sm:text-2xl">
-                Solicita tu consultoría gratuita
+                Agendar llamada de descubrimiento gratuita
               </h3>
               <p class="mb-6 text-white/90 text-sm sm:text-base">
                 Cuéntanos sobre tu empresa y los procesos que te gustaría automatizar.
@@ -855,10 +840,10 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
             <img src="/frappe_icon.svg" alt="Frappé" class="h-10 w-10" />
             <div>
               <span class="block font-bold text-xl">Frappé</span>
-              <span class="text-gray-400 text-sm">Agencia de Automatización IA</span>
+              <span class="text-gray-400 text-sm">Automatización inteligente para empresas</span>
             </div>
           </div>
-          <nav class="flex flex-wrap justify-center gap-6">
+          <nav class="flex flex-wrap justify-center gap-6" aria-label="Navegación del pie de página">
             {
               navItems.map((item) => (
                 <a
@@ -883,7 +868,7 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
           class="mt-8 border-t border-gray-800 pt-8 text-center text-gray-400"
         >
           <p>
-            © {new Date().getFullYear()} Frappé. Automatización IA orientada a resultados.
+            &copy; {new Date().getFullYear()} Frappé. Automatización inteligente orientada a resultados.
           </p>
         </div>
       </div>
@@ -893,6 +878,9 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
     <div
       id="successModal"
       class="modal-overlay fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="successModalTitle"
     >
       <div
         class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl"
@@ -906,6 +894,7 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 stroke-linecap="round"
@@ -915,7 +904,7 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
               />
             </svg>
           </div>
-          <h3 class="mb-2 font-bold text-gray-900 text-2xl">
+          <h3 id="successModalTitle" class="mb-2 font-bold text-gray-900 text-2xl">
             ¡Mensaje enviado!
           </h3>
           <p class="text-gray-600">
@@ -934,6 +923,9 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
     <div
       id="errorModal"
       class="modal-overlay fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="errorModalTitle"
     >
       <div
         class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl"
@@ -947,6 +939,7 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 stroke-linecap="round"
@@ -956,7 +949,7 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
               />
             </svg>
           </div>
-          <h3 class="mb-2 font-bold text-gray-900 text-2xl">
+          <h3 id="errorModalTitle" class="mb-2 font-bold text-gray-900 text-2xl">
             Error al enviar
           </h3>
           <p class="text-gray-600">
@@ -984,6 +977,7 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
         class="h-7 w-7"
         fill="currentColor"
         viewBox="0 0 24 24"
+        aria-hidden="true"
       >
         <path
           d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
@@ -1006,17 +1000,13 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
     <!-- Script del formulario con webhook -->
     <script>
       // @ts-nocheck
-      // ⚠️ CONFIGURA AQUÍ TU WEBHOOK DE MAKE
       const WEBHOOK_URL = "https://hook.eu1.make.com/n5a8nl6djnrkykfecs4cdiovambi0s85";
-      // Opcional: si en Make activaste "API key authentication", ponla aquí.
-      // Nota: si la pones en frontend, será visible públicamente.
       const WEBHOOK_API_KEY = "";
 
       const form = document.getElementById("webhookForm");
       const submitButton = document.getElementById("webhookSubmitButton");
       const requiredInputs = form?.querySelectorAll("input[required], textarea[required]");
 
-      // Validación en tiempo real
       const checkFormValidity = () => {
         if (!requiredInputs) return false;
         const privacyCheckbox = document.getElementById("form-privacy");
@@ -1038,7 +1028,6 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
         if (submitButton) submitButton.disabled = !checkFormValidity();
       });
 
-      // Envío del formulario
       form?.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -1046,14 +1035,13 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
         submitButton.disabled = true;
         submitButton.textContent = "Enviando...";
 
-        // Recoger datos del formulario
         const formData = {
           name: document.getElementById("form-name")?.value?.trim() || "",
           email: document.getElementById("form-email")?.value?.trim() || "",
           phone: document.getElementById("form-phone")?.value?.trim() || "",
           company: document.getElementById("form-company")?.value?.trim() || "",
           message: document.getElementById("form-message")?.value?.trim() || "",
-          source: "Landing Automatización IA",
+          source: "Landing Automatización - Puerta Fría",
           timestamp: new Date().toISOString(),
           page_url: window.location.href,
         };
@@ -1081,7 +1069,6 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
           document.getElementById("successModal")?.classList.remove("hidden");
           submitButton.disabled = true;
 
-          // Analytics (si tienes GTM/dataLayer)
           window.dataLayer?.push({
             event: "form_submit",
             form_name: "webhookForm",
@@ -1103,9 +1090,7 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
       });
     </script>
 
-    <!-- Animaciones suaves -->
     <style>
-      /* Texto con degradado - compatible con todos los navegadores */
       .gradient-text {
         background: linear-gradient(to right, #f9d034, #29c1f1, #f5478f);
         -webkit-background-clip: text;
@@ -1113,7 +1098,6 @@ const description = "Agencia de automatización IA para empresas. Analizamos, au
         background-clip: text;
       }
       
-      /* Modales */
       .modal-overlay {
         display: none;
       }
