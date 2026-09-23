@@ -1,16 +1,14 @@
 ---
 layout: ../../../layouts/BlogPostLayout.astro
 title: "Términos básicos para montar una página web (explicados en lenguaje sencillo)"
-description: "Montar una página web por primera vez puede parecer un mundo: palabras raras, conceptos técnicos, decisiones que afectan al futuro del proyecto… y lo entiendo. En Frappé, mi agencia, hablo cada semana con personas que llegan abrumadas solo por escuchar “hosting”, “CMS” o “frontend”. Por eso, decidí preparar este glosario práctico donde te explico los términos básicos para crear una página web en lenguaje común, tal como se los explico a mis propios clientes. Sin tecnicismos innecesarios y con ejemplos reales."
+description: "Montar una página web por primera vez puede parecer un mundo: palabras raras, conceptos técnicos, decisiones que afectan al futuro del proyecto… y lo entiendo. En Frappé, mi estudio, hablo cada semana con personas que llegan abrumadas solo por escuchar “hosting”, “CMS” o “frontend”. Por eso, decidí preparar este glosario práctico donde te explico los términos básicos para crear una página web en lenguaje común, tal como se los explico a mis propios clientes. Sin tecnicismos innecesarios y con ejemplos reales."
 image: "/blog/diccionario-web.webp"
 date: 2025-12-17
 author: "David P."
 tags: ["formación", "web", "desarrollo web", "2025"]
 ---
 
-# **Términos básicos para montar una página web (explicados en lenguaje sencillo)**
-
-Montar una página web por primera vez puede parecer un mundo: palabras raras, conceptos técnicos, decisiones que afectan al futuro del proyecto… y lo entiendo. En Frappé, mi agencia, hablo cada semana con personas que llegan abrumadas solo por escuchar “hosting”, “CMS” o “frontend”.
+Montar una página web por primera vez puede parecer un mundo: palabras raras, conceptos técnicos, decisiones que afectan al futuro del proyecto… y lo entiendo. En Frappé, mi estudio, hablo cada semana con personas que llegan abrumadas solo por escuchar “hosting”, “CMS” o “frontend”.
 
 Por eso, decidí preparar este glosario práctico donde te explico **los términos básicos para crear una página web en lenguaje común**, tal como se los explico a mis propios clientes. Sin tecnicismos innecesarios y con ejemplos reales.
 
@@ -20,7 +18,7 @@ Por eso, decidí preparar este glosario práctico donde te explico **los términ
 
 ### **Qué implica realmente “montar una página web”**
 
-Crear una web no es solo “hacer que se vea bonita”. Implica tomar decisiones técnicas, de contenido, de seguridad y de estrategia. Cuando acompaño a un cliente nuevo, normalmente le digo algo como: *“Piensa que tu web es una pequeña casa: necesitas terreno, dirección, planos, decoración, mantenimiento y reglas de seguridad”.*
+Crear una web no es solo “hacer que se vea bonita”. Implica tomar decisiones técnicas, de contenido, de seguridad y de estrategia. Cuando acompaño a un cliente nuevo, normalmente le digo algo como: _“Piensa que tu web es una pequeña casa: necesitas terreno, dirección, planos, decoración, mantenimiento y reglas de seguridad”._
 
 En este artículo te explico, paso a paso, cada una de esas partes.
 
@@ -52,7 +50,7 @@ Un dominio bien elegido es la primera pieza de confianza para tus visitantes.
 
 El hosting es **el lugar donde vive tu web**. Me gusta explicarlo así a mis clientes:
 
-*“El dominio es tu dirección; el hosting, tu casa.”*
+_“El dominio es tu dirección; el hosting, tu casa.”_
 
 Tipos básicos:
 
@@ -90,7 +88,7 @@ WordPress suele ser la mejor opción para el 80% de los proyectos que llegan a l
 
 ### **Plantillas y temas: qué debes mirar antes de elegir uno**
 
-Aquí siempre doy el mismo consejo: *"Prioriza rendimiento sobre estética"*.
+Aquí siempre doy el mismo consejo: _"Prioriza rendimiento sobre estética"_.
 
 Más vale un diseño ligero que una plantilla preciosa que hace tu web lentísima.
 
@@ -103,7 +101,7 @@ Más vale un diseño ligero que una plantilla preciosa que hace tu web lentísim
 - **Frontend**: lo que ves — textos, colores, imágenes.
 - **Backend**: lo que no ves — la lógica y el servidor que manejan la web.
 
-Cuando explico esto a clientes, suelo decirles: *“Si el frontend es la decoración, el backend son las tuberías y la electricidad.”*
+Cuando explico esto a clientes, suelo decirles: _“Si el frontend es la decoración, el backend son las tuberías y la electricidad.”_
 
 ### **HTML, CSS y JavaScript: por qué importan aunque no programes**
 
@@ -185,7 +183,7 @@ Web lenta = usuarios que se van.
 
 Google también penaliza la lentitud.
 
-Aquí siempre insisto: *“Puedes gastar 3.000€ en diseño, pero si la web tarda 6 segundos en cargar, nadie la verá.”*
+Aquí siempre insisto: _“Puedes gastar 3.000€ en diseño, pero si la web tarda 6 segundos en cargar, nadie la verá.”_
 
 ---
 
@@ -231,7 +229,7 @@ Cuando cumple su propósito, carga rápido y tú —sin conocimientos técnicos�
 
 ---
 
-# Conclusión
+## Conclusión
 
 Montar una página web no tiene por qué ser un proceso abrumador si entiendes los conceptos básicos. Como desarrollador, he visto que la falta de claridad en estos términos suele provocar decisiones equivocadas o webs que no funcionan como deberían.
 

@@ -1,6 +1,36 @@
-trailing_slash = "never"
-
 [build]
+  command = "npm run build"
   publish = "dist"
 
-
+[[redirects]]
+  from = "/desarrollo-web"
+  to = "/soluciones/presencia-digital"
+  status = 301
+[[redirects]]
+  from = "/servicios-web-digitales"
+  to = "/soluciones/presencia-digital"
+  status = 301
+[[redirects]]
+  from = "/agencia-automatizacion-ia"
+  to = "/soluciones/automatizacion"
+  status = 301
+[[redirects]]
+  from = "/portfolio"
+  to = "/proyectos"
+  status = 301
+[[redirects]]
+  from = "/portfolio/bravo-verticales"
+  to = "/proyectos/bravo-trabajos-verticales"
+  status = 301
+[[redirects]]
+  from = "/detras-de-frappe"
+  to = "/sobre-frappe"
+  status = 301
+[[redirects]]
+  from = "/card"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/linktree"
+  to = "/"
+  status = 301

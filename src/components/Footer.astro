@@ -1,122 +1,43 @@
 ---
-interface Props {
-  navItems?: Array<{
-    text: string;
-    url: string;
-  }>;
-}
-
-const {
-  navItems = [
-    { text: "Servicios Digitales", url: "/servicios-web-digitales" },
-    { text: "Enlaces", url: "/linktree" },
-    { text: "Sobre nosotros", url: "/detras-de-frappe" },
-  ],
-} = Astro.props;
+import { site, navigation } from "../data/site";
+import { solutions } from "../data/solutions";
 ---
 
-<footer class="bg-black py-12 text-white">
-  <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-      <!-- Logo y descripción -->
-      <div class="text-center md:text-left">
-        <img
-          src="/frappe_icon.svg"
-          alt="Frappy Logo"
-          class="mx-auto mb-4 h-12 md:mx-0"
-        />
-        <p class="text-white/80 text-sm">
-          Desarrollo web profesional en Benidorm. Creamos sitios web rápidos,
-          seguros y optimizados para SEO.
+<footer class="site-footer" data-location="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="/"
+          >frappé <small>tech</small><span class="sr-only">, inicio</span></a
+        ><p>
+          Un estudio independiente. Una conversación directa. Tecnología al
+          servicio de tu negocio.
         </p>
       </div>
-
-      <!-- Enlaces de navegación -->
-      {
-        navItems.length > 0 && (
-          <div class="text-center md:text-left">
-            <h3 class="mb-4 font-bold">Navegación</h3>
-            <ul class="space-y-2">
-              {navItems.map((item) => (
-                <li>
-                  <a
-                    href={item.url}
-                    target={item.url === "/detras-de-frappe" ? "_blank" : undefined}
-                    rel={item.url === "/detras-de-frappe" ? "noopener noreferrer" : undefined}
-                    class="text-white/80 transition-colors hover:text-[var(--color-primary)]"
-                  >
-                    {item.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )
-      }
-
-      <!-- Contacto -->
-      <div class="text-center md:text-left">
-        <h3 class="mb-4 font-bold">Contacto</h3>
-        <ul class="space-y-2">
-          <li>
-            <a
-              href="tel:+34608962213"
-              class="text-white/80 transition-colors hover:text-[var(--color-secondary)]"
-            >
-              +34 608 962 213
-            </a>
-          </li>
-          <li>
-            <a
-              href="mailto:frappecreativity@gmail.com"
-              class="text-white/80 transition-colors hover:text-[var(--color-secondary)]"
-            >
-              frappecreativity@gmail.com
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://wa.me/+34608962213"
-              target="_blank"
-              class="text-white/80 transition-colors hover:text-[var(--color-secondary)]"
-            >
-              WhatsApp
-            </a>
-          </li>
-        </ul>
+      <div class="footer-links">
+        <strong>Explora</strong>{
+          navigation.map((item) => <a href={item.href}>{item.label}</a>)
+        }<a href="/blog">Blog</a>{
+          solutions.map((s) => <a href={`/soluciones/${s.slug}`}>{s.name}</a>)
+        }
+      </div>
+      <div class="footer-links">
+        <strong>Hablemos de tu negocio</strong><a href={`mailto:${site.email}`}
+          >{site.email}</a
+        ><a href={`tel:${site.phone}`}>{site.phoneLabel}</a><a
+          href={site.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer">Escríbeme por WhatsApp ↗</a
+        ><p>Desde Benidorm, trabajando contigo estés donde estés.</p>
       </div>
     </div>
-
-    <!-- Copyright y enlaces legales -->
-    <div
-      class="mt-8 border-t border-white/10 pt-8 text-center text-white/60 text-sm"
-    >
-      <div
-        class="mb-4 flex flex-col items-center justify-center gap-4 sm:flex-row"
-      >
-        <a
-          href="/privacidad"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-white/60 underline transition-colors hover:text-[var(--color-primary)]"
+    <div class="footer-bottom">
+      <p>© {new Date().getFullYear()} Frappé Tech · David Pérez</p><div>
+        <a href="/privacidad">Privacidad</a><button
+          type="button"
+          data-cookie-settings>Preferencias de cookies</button
         >
-          Política de Privacidad
-        </a>
       </div>
-      <p>
-        &copy; {new Date().getFullYear()} Frappé. Todos los derechos reservados.
-      </p>
     </div>
   </div>
 </footer>
-
-<script>
-  import { trackButtonClick } from "../utils/analytics";
-
-  document.querySelectorAll("footer a").forEach((link) => {
-    link.addEventListener("click", () => {
-      trackButtonClick("footer_link", link.getAttribute("href") || "");
-    });
-  });
-</script>
-

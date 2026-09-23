@@ -1,0 +1,33 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import CaseStudyPreview from "../../components/CaseStudyPreview.astro";
+import CTASection from "../../components/CTASection.astro";
+import { projects } from "../../data/projects";
+import { breadcrumbSchema } from "../../utils/schema";
+---
+
+<Layout
+  title="Casos de trabajo: de la necesidad a la solución | Frappé Tech"
+  description="Casos reales de presencia online y aplicaciones internas: Bravo, AV Mantenimiento Integral, Paloma Blanca y Menu-hub."
+  schema={breadcrumbSchema([{ name: "Proyectos", path: "/proyectos" }])}
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumbs items={[{ name: "Proyectos" }]} /><span class="eyebrow"
+        >Casos de trabajo</span
+      ><h1>Cada proyecto empieza<br />con algo que resolver.</h1><p
+        class="lead"
+      >
+        Una primera presencia online. Una forma más sencilla de recibir
+        consultas. Una tarea cotidiana que deja de depender del papel.
+      </p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0">
+    <div class="wrap case-list">
+      {projects.map((project) => <CaseStudyPreview {project} />)}
+    </div>
+  </section>
+  <CTASection />
+</Layout>

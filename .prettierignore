@@ -1,3 +1,4 @@
 .vscode
+.codex
 package-lock.json
 dist

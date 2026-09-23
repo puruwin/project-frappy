@@ -1,66 +1,58 @@
 ---
+import fontUrl from "@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2?url";
+import "../styles/index.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import SEOHead from "../components/SEOHead.astro";
 import CookieConsent from "../components/CookieConsent.astro";
-import IntersectionObserver from "../components/IntersectionObserver.astro";
-import WhatsappButton from "../components/WhatsappButton.astro";
-
+import { site } from "../data/site";
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  noindex?: boolean;
+  ogType?: string;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  viewEvent?: "solution_view" | "case_study_view";
+  viewId?: string;
 }
-
-const { title, description } = Astro.props;
+const {
+  title,
+  description = site.description,
+  image,
+  noindex,
+  ogType,
+  schema,
+  viewEvent,
+  viewId,
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" class="h-full motion-safe:scroll-smooth">
+<html lang="es">
   <head>
-    <!-- Google Tag Manager -->
-    <script is:inline>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-WV5P6GRH");
-    </script>
-    <!-- End Google Tag Manager -->
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content="Astro" />
-    <title>{title}</title>
-
-    <!-- Meta tags básicos por defecto -->
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="author" content="Frappé" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="format-detection" content="telephone=no" />
-
-    <!-- Preconnect para optimización -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+    <meta charset="utf-8" /><meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <SEOHead {title} {description} {image} {noindex} {ogType} {schema} />
+    <link
+      rel="preload"
+      href={fontUrl}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="icon" href="/frappe_icon.svg" type="image/svg+xml" />
     <slot name="head" />
   </head>
-  <body class="h-100vh overflow-x-hidden bg-default text-default text-base">
-    <!-- Google Tag Manager (noscript) -->
-    <iframe
-      src="https://www.googletagmanager.com/ns.html?id=GTM-WV5P6GRH"
-      height="0"
-      width="0"
-      style="display:none;visibility:hidden"></iframe>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <slot />
-    <CookieConsent />
-    <IntersectionObserver />
-    <WhatsappButton />
+  <body data-view-event={viewEvent} data-view-id={viewId}>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <Navbar />
+    <main id="contenido"><slot /></main>
+    <Footer /><CookieConsent />
+    <script>
+      import "../scripts/site";
+    </script>
   </body>
 </html>

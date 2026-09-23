@@ -1,76 +1,65 @@
 ---
-import { seoConfig, generateMetaTags } from "../config/seo.ts";
-
+import { site } from "../data/site";
 interface Props {
   title: string;
   description: string;
-  keywords?: string;
-  canonical?: string;
   image?: string;
   noindex?: boolean;
   ogType?: string;
-  twitterCard?: string;
-  schema?: any;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
 }
-
 const {
   title,
   description,
-  keywords,
-  canonical,
-  image,
+  image = "/og-image.jpg",
   noindex = false,
   ogType = "website",
-  twitterCard = "summary_large_image",
   schema,
 } = Astro.props;
-
-const meta = generateMetaTags({
-  title,
-  description,
-  keywords,
-  canonical,
-  image,
-  noindex,
-});
-
-const ogImage = image || seoConfig.images.default;
-const ogUrl = canonical || seoConfig.site.url;
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const canonical = new URL(path, site.url).href;
+const imageUrl = new URL(image, site.url).href;
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${site.url}/#organization`,
+  name: site.name,
+  url: site.url,
+  logo: `${site.url}/frappe_icon.svg`,
+  description: site.description,
+  email: site.email,
+  telephone: site.phone,
+  founder: { "@type": "Person", name: "David Pérez" },
+};
+const schemas = [
+  organization,
+  ...(schema ? (Array.isArray(schema) ? schema : [schema]) : []),
+];
 ---
 
-<!-- SEO básico -->
-<meta name="description" content={meta.description} />
-<meta name="keywords" content={meta.keywords} />
-<link rel="canonical" href={meta.canonical} />
-
-<!-- Control de robots -->
-<meta name="robots" content={meta.robots} />
-<meta name="googlebot" content={meta.googlebot} />
-
-<!-- Open Graph / Facebook -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
+<meta name="author" content="David Pérez" />
+<meta name="theme-color" content="#101a32" />
 <meta property="og:type" content={ogType} />
-<meta property="og:url" content={ogUrl} />
-<meta property="og:title" content={meta.title} />
-<meta property="og:description" content={meta.description} />
-<meta property="og:image" content={ogImage} />
-<meta property="og:locale" content={seoConfig.defaultOG.locale} />
-<meta property="og:site_name" content={seoConfig.defaultOG.siteName} />
-
-<!-- Twitter -->
-<meta name="twitter:card" content={twitterCard} />
-<meta name="twitter:url" content={ogUrl} />
-<meta name="twitter:title" content={meta.title} />
-<meta name="twitter:description" content={meta.description} />
-<meta name="twitter:image" content={ogImage} />
-
-<!-- Metadatos adicionales -->
-<meta name="author" content={seoConfig.defaultMeta.author} />
-<meta name="theme-color" content={seoConfig.defaultMeta.themeColor} />
-<meta name="format-detection" content={seoConfig.defaultMeta.formatDetection} />
-
-<!-- Schema Markup -->
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:site_name" content={site.name} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
 {
-  schema && (
-    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-  )
+  schemas.map((value) => (
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(value).replace(/</g, "\\u003c")}
+    />
+  ))
 }

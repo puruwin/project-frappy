@@ -1,0 +1,57 @@
+---
+import ContactForm from "./ContactForm.astro";
+import { site } from "../data/site";
+interface Props {
+  form?: boolean;
+}
+const { form = false } = Astro.props;
+---
+
+<section
+  class="section contact-section"
+  id="contacto"
+  data-location="contact-section"
+>
+  <div class="wrap split">
+    <div>
+      <span class="eyebrow">Empezamos por una conversación</span><h2>
+        ¿Qué parte de tu negocio te está haciendo perder tiempo o clientes?
+      </h2><p class="lead">
+        Cuéntame qué está pasando. No hace falta que sepas qué tecnología
+        necesitas.
+      </p>
+      <div class="actions">
+        <a
+          class="text-link"
+          href={site.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer">WhatsApp ↗</a
+        ><a class="text-link" href={`mailto:${site.email}`}
+          >Prefiero escribir un email ↗</a
+        >
+      </div>
+    </div>
+    {
+      form ? (
+        <ContactForm />
+      ) : (
+        <div class="about-copy">
+          <>
+            <p class="lead">
+              Hablarás directamente conmigo, David. Primero entendemos el
+              problema; después, si puedo ayudarte, definimos alcance, precio y
+              plazo.
+            </p>
+            <a
+              class="button button-light"
+              style="margin-top:28px"
+              href="/contacto"
+            >
+              Cuéntame el problema ↗
+            </a>
+          </>
+        </div>
+      )
+    }
+  </div>
+</section>

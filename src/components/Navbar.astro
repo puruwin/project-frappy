@@ -1,0 +1,66 @@
+---
+import { navigation } from "../data/site";
+const current = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<header class="site-header" data-location="header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/"
+      ><img src="/frappe_icon.svg" alt="" width="36" height="40" /><img
+        class="brand-wordmark"
+        src="/frappe_text.svg"
+        alt="Frappé"
+        width="90"
+        height="34"
+      /><small>tech</small><span class="sr-only">, inicio</span></a
+    >
+    <nav class="desktop-nav" aria-label="Navegación principal">
+      {
+        navigation.map((item) => (
+          <a
+            href={item.href}
+            aria-current={current === item.href ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a href="/contacto" class="button"
+        >Hablemos <span aria-hidden="true">↗</span></a
+      >
+    </nav>
+    <details class="mobile-nav">
+      <summary>Menú <span aria-hidden="true">＋</span></summary>
+      <nav aria-label="Navegación móvil">
+        {
+          navigation.map((item) => (
+            <a
+              href={item.href}
+              aria-current={current === item.href ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+        <a href="/contacto" class="button">Hablemos ↗</a>
+      </nav>
+    </details>
+  </div>
+</header>
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>(".mobile-nav");
+  menu?.querySelectorAll("a").forEach((link) =>
+    link.addEventListener("click", () => {
+      menu.open = false;
+    }),
+  );
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menu?.open) {
+      menu.open = false;
+      menu.querySelector("summary")?.focus();
+    }
+  });
+  document.addEventListener("click", (event) => {
+    if (menu?.open && !menu.contains(event.target as Node)) menu.open = false;
+  });
+</script>

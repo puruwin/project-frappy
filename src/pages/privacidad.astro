@@ -1,44 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import "@fontsource/public-sans/700.css";
-import "@fontsource-variable/inter";
-import "@fontsource-variable/jetbrains-mono";
-import "@fontsource-variable/montserrat";
-import "~/styles/index.css";
-import BrutalHeader from "../components/BrutalHeader.astro";
-import Footer from "../components/Footer.astro";
-
-const title = "Política de Privacidad | Frappé";
-const email = "frappecreativity@gmail.com";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 ---
 
-<Layout title={title}>
-  <Fragment slot="head">
-    <link rel="icon" href="/frappe_icon.png" type="image/png" />
-    <meta name="robots" content="noindex, follow" />
-  </Fragment>
-
-  <BrutalHeader navItems={[]} />
-
-  <main class="mt-[76px] px-4 py-16 sm:py-24">
-    <div class="mx-auto max-w-4xl">
-      <h1
-        class="mb-12 text-center font-['JetBrains_Mono_Variable'] font-bold text-4xl sm:text-5xl"
-      >
-        Política de Privacidad del Sitio Web
+<Layout
+  title="Política de privacidad | Frappé Tech"
+  description="Información sobre el tratamiento de consultas, los datos personales y las preferencias de analítica de Frappé Tech."
+  noindex
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumbs items={[{ name: "Privacidad" }]} /><h1>
+        Política de privacidad.
       </h1>
-      <h2
-        class="mb-8 text-center font-bold text-[var(--color-secondary)] text-2xl"
-      >
-        creativefrappe.com
-      </h2>
-
-      <div
-        class="prose prose-lg max-w-none rounded-lg bg-white p-8 font-sans shadow-lg"
-      >
-        <h3 class="mb-4 font-['JetBrains_Mono_Variable'] font-bold text-xl">
-          I. POLÍTICA DE PRIVACIDAD Y PROTECCIÓN DE DATOS
-        </h3>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="prose">
+        <h2>I. POLÍTICA DE PRIVACIDAD Y PROTECCIÓN DE DATOS</h2>
         <p>
           Respetando lo establecido en la legislación vigente, <strong
             >Frappé</strong
@@ -47,9 +27,7 @@ const email = "frappecreativity@gmail.com";
           al riesgo de los datos recogidos.
         </p>
 
-        <h4 class="mb-3 font-['JetBrains_Mono_Variable'] font-semibold text-lg">
-          Leyes que incorpora esta política de privacidad
-        </h4>
+        <h3>Leyes que incorpora esta política de privacidad</h3>
         <p>
           Esta política de privacidad está adaptada a la normativa española y
           europea vigente en materia de protección de datos personales en
@@ -77,9 +55,9 @@ const email = "frappecreativity@gmail.com";
           </li>
         </ul>
 
-        <h4 class="mb-3 font-['JetBrains_Mono_Variable'] font-semibold text-lg">
+        <h3>
           Identidad del responsable del tratamiento de los datos personales
-        </h4>
+        </h3>
         <p>
           El responsable del tratamiento de los datos personales recogidos en <strong
             >Frappé</strong
@@ -92,9 +70,7 @@ const email = "frappecreativity@gmail.com";
         <p><strong>Teléfono de contacto:</strong> 608962213</p>
         <p><strong>Email de contacto:</strong> frappecreativity@gmail.com</p>
 
-        <h4 class="mb-3 font-['JetBrains_Mono_Variable'] font-semibold text-lg">
-          Registro de Datos de Carácter Personal
-        </h4>
+        <h3>Registro de Datos de Carácter Personal</h3>
         <p>
           En cumplimiento de lo establecido en el RGPD y la LOPD-GDD, le
           informamos que los datos personales recabados por <strong
@@ -108,9 +84,7 @@ const email = "frappecreativity@gmail.com";
           mismo.
         </p>
 
-        <h4 class="mb-3 font-['JetBrains_Mono_Variable'] font-semibold text-lg">
-          Principios aplicables al tratamiento de los datos personales
-        </h4>
+        <h3>Principios aplicables al tratamiento de los datos personales</h3>
         <p>
           El tratamiento de los datos personales del Usuario se someterá a los
           siguientes principios recogidos en el artículo 5 del RGPD y en el
@@ -151,18 +125,14 @@ const email = "frappecreativity@gmail.com";
           </li>
         </ul>
 
-        <h4 class="mb-3 font-['JetBrains_Mono_Variable'] font-semibold text-lg">
-          Categorías de datos personales
-        </h4>
+        <h3>Categorías de datos personales</h3>
         <p>
           Las categorías de datos que se tratan en <strong>Frappé</strong> son únicamente
           datos identificativos. En ningún caso, se tratan categorías especiales
           de datos personales en el sentido del artículo 9 del RGPD.
         </p>
 
-        <h4 class="mb-3 font-['JetBrains_Mono_Variable'] font-semibold text-lg">
-          Base legal para el tratamiento de los datos personales
-        </h4>
+        <h3>Base legal para el tratamiento de los datos personales</h3>
         <p>
           La base legal para el tratamiento de los datos personales es el
           consentimiento. <strong>Frappé</strong> se compromete a recabar el consentimiento
@@ -174,9 +144,7 @@ const email = "frappecreativity@gmail.com";
           momento. Será tan fácil retirar el consentimiento como darlo.
         </p>
 
-        <h4 class="mb-3 font-['JetBrains_Mono_Variable'] font-semibold text-lg">
-          Fines del tratamiento a que se destinan los datos personales
-        </h4>
+        <h3>Fines del tratamiento a que se destinan los datos personales</h3>
         <p>
           Los datos personales son recabados y gestionados por <strong
             >Frappé</strong
@@ -186,9 +154,7 @@ const email = "frappecreativity@gmail.com";
           una solicitud o consulta.
         </p>
 
-        <h4 class="mb-3 font-['JetBrains_Mono_Variable'] font-semibold text-lg">
-          Períodos de retención de los datos personales
-        </h4>
+        <h3>Períodos de retención de los datos personales</h3>
         <p>
           Los datos personales solo serán retenidos durante el tiempo mínimo
           necesario para los fines de su tratamiento y, en todo caso, únicamente
@@ -196,21 +162,20 @@ const email = "frappecreativity@gmail.com";
           Usuario solicite su supresión.
         </p>
 
-        <h4 class="mb-3 font-['JetBrains_Mono_Variable'] font-semibold text-lg">
-          Destinatarios de los datos personales
-        </h4>
+        <h3>Destinatarios de los datos personales</h3>
         <p>
           Los datos personales del Usuario serán compartidos con los siguientes
           destinatarios o categorías de destinatarios:
         </p>
         <p>
-          <strong>Umami Software, Inc.</strong> con domicilio en 1362 42nd Ave. San
-          Francisco, CA, 94122 UNITED STATES
+          Para recibir las consultas se utiliza <strong>Formspree</strong>, que
+          procesa los datos que envías en el formulario. Con tu consentimiento,
+          se carga <strong>Google Tag Manager</strong> para la analítica del sitio.
+          Los eventos propios de la web no incluyen tu nombre, email, teléfono ni
+          el texto de tu consulta.
         </p>
 
-        <h4 class="mb-3 font-['JetBrains_Mono_Variable'] font-semibold text-lg">
-          Datos personales de menores de edad
-        </h4>
+        <h3>Datos personales de menores de edad</h3>
         <p>
           Respetando lo establecido en los artículos 8 del RGPD y 7 de la Ley
           Orgánica 3/2018, solo los mayores de 14 años podrán otorgar su
@@ -218,9 +183,7 @@ const email = "frappecreativity@gmail.com";
           lícita por <strong>Frappé</strong>.
         </p>
 
-        <h4 class="mb-3 font-['JetBrains_Mono_Variable'] font-semibold text-lg">
-          Secreto y seguridad de los datos personales
-        </h4>
+        <h3>Secreto y seguridad de los datos personales</h3>
         <p>
           <strong>Frappé</strong> se compromete a adoptar las medidas técnicas y
           organizativas necesarias, según el nivel de seguridad adecuado al riesgo
@@ -232,9 +195,7 @@ const email = "frappecreativity@gmail.com";
           confidencial.
         </p>
 
-        <h4 class="mb-3 font-['JetBrains_Mono_Variable'] font-semibold text-lg">
-          Derechos derivados del tratamiento de los datos personales
-        </h4>
+        <h3>Derechos derivados del tratamiento de los datos personales</h3>
         <p>
           El Usuario tiene sobre <strong>Frappé</strong> y podrá, por tanto, ejercer
           frente al Responsable del tratamiento los siguientes derechos reconocidos
@@ -285,18 +246,14 @@ const email = "frappecreativity@gmail.com";
         <p><strong>Dirección postal:</strong> Calle de la Serreta Nº19, 1E</p>
         <p><strong>Correo electrónico:</strong> frappecreativity@gmail.com</p>
 
-        <h4 class="mb-3 font-['JetBrains_Mono_Variable'] font-semibold text-lg">
-          Enlaces a sitios web de terceros
-        </h4>
+        <h3>Enlaces a sitios web de terceros</h3>
         <p>
           El Sitio Web puede incluir hipervínculos o enlaces que permiten
           acceder a páginas web de terceros distintos de <strong>Frappé</strong
           >, y que por tanto no son operados por <strong>Frappé</strong>.
         </p>
 
-        <h4 class="mb-3 font-['JetBrains_Mono_Variable'] font-semibold text-lg">
-          Reclamaciones ante la autoridad de control
-        </h4>
+        <h3>Reclamaciones ante la autoridad de control</h3>
         <p>
           En caso de que el Usuario considere que existe un problema o
           infracción de la normativa vigente, tendrá derecho a presentar una
@@ -304,11 +261,7 @@ const email = "frappecreativity@gmail.com";
           (https://www.aepd.es/).
         </p>
 
-        <h3
-          class="mb-4 mt-8 font-['JetBrains_Mono_Variable'] font-bold text-xl"
-        >
-          II. ACEPTACIÓN Y CAMBIOS EN ESTA POLÍTICA DE PRIVACIDAD
-        </h3>
+        <h2>II. ACEPTACIÓN Y CAMBIOS EN ESTA POLÍTICA DE PRIVACIDAD</h2>
         <p>
           Es necesario que el Usuario haya leído y esté conforme con las
           condiciones sobre la protección de datos de carácter personal
@@ -324,9 +277,28 @@ const email = "frappecreativity@gmail.com";
           Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos
           Personales y garantía de los derechos digitales.
         </p>
+        <h2 id="cookies">Cookies y preferencias de analítica</h2>
+        <p>
+          La web guarda tu elección de analítica en el almacenamiento local del
+          navegador. Google Tag Manager solo se carga si aceptas. Puedes
+          rechazar la analítica y seguir utilizando la web y el formulario de
+          contacto.
+        </p>
+        <p>
+          Si aceptas, se registran interacciones como la consulta de soluciones
+          y casos, los clics de contacto y los envíos confirmados del
+          formulario. Estos eventos incluyen la ruta de la página, sin los datos
+          personales ni el mensaje del formulario.
+        </p>
+        <p>
+          Puedes cambiar tu elección desde <button
+            type="button"
+            data-cookie-settings
+            style="text-decoration:underline;cursor:pointer"
+            >Preferencias de cookies</button
+          >, también disponible al pie de cada página.
+        </p>
       </div>
     </div>
-  </main>
-
-  <Footer navItems={[]} />
-</Layout>
+  </section></Layout
+>

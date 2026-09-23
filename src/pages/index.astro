@@ -1,22 +1,171 @@
 ---
 import Layout from "../layouts/Layout.astro";
-const { site } = Astro;
+import CaseStudyPreview from "../components/CaseStudyPreview.astro";
+import ProcessSteps from "../components/ProcessSteps.astro";
+import CTASection from "../components/CTASection.astro";
+import { solutions } from "../data/solutions";
+import { projects } from "../data/projects";
+import { Image } from "astro:assets";
+import david from "../assets/david.png";
+const problems = [
+  "Tu web lleva años sin tocarse y ya no representa tu negocio.",
+  "Te llegan consultas, pero algunas terminan perdiéndose.",
+  "WhatsApp, correo, formularios y Excel no están conectados.",
+  "Repites a mano tareas que podrían simplificarse.",
+  "Tienes varias herramientas, pero ninguna trabaja bien con las demás.",
+  "No sabes si tu web realmente genera oportunidades.",
+];
 ---
 
-<Layout title="Redirigiendo...">
-  <Fragment slot="head">
-    <meta name="robots" content="noindex, nofollow" />
-    <meta http-equiv="refresh" content="0; url=/linktree" />
-  </Fragment>
-  <div class="min-h-screen flex items-center justify-center bg-[var(--color-background)]">
-    <div class="text-center">
-      <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[var(--color-primary)] mx-auto mb-4"></div>
-      <h1 class="text-2xl font-bold text-[var(--color-text)] mb-2">Redirigiendo...</h1>
-      <p class="text-[var(--color-text)]">Serás redirigido automáticamente a nuestra página de desarrollo web.</p>
+<Layout
+  title="Menos trabajo manual. Menos clientes perdidos. | Frappé Tech"
+  description="Ayudo a pequeños negocios y empresas de servicios a captar mejor clientes y simplificar su trabajo con webs, automatización y herramientas a medida."
+>
+  <section class="home-hero" data-location="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">Tecnología para negocios de verdad</span><h1>
+            Menos trabajo manual.<br />Menos <span>clientes perdidos.</span>
+          </h1><p class="lead">
+            Ayudo a pequeños negocios y empresas de servicios a mejorar cómo
+            consiguen clientes y cómo gestionan el trabajo que ocurre después.
+          </p><div class="actions">
+            <a
+              class="button"
+              href="#contacto"
+              data-event="hero_cta_click"
+              data-cta="primary"
+              >Cuéntame qué está fallando <span aria-hidden="true">↗</span></a
+            ><a
+              class="text-link"
+              href="#soluciones"
+              data-event="hero_cta_click"
+              data-cta="secondary"
+              >Ver cómo puedo ayudarte <span aria-hidden="true">↓</span></a
+            >
+          </div><p class="hero-note">
+            Soy David. Hablarás directamente con quien analiza y construye tu
+            solución.
+          </p>
+        </div>
+        <aside class="hero-aside" aria-label="Cómo puedo ayudarte">
+          <span class="eyebrow">Del primer contacto al trabajo diario</span><ol
+            class="workflow"
+          >
+            <li>
+              <span class="dot" aria-hidden="true"></span><div>
+                <strong>Que te encuentren.</strong><p>
+                  Una presencia que explique bien lo que haces.
+                </p>
+              </div>
+            </li><li>
+              <span class="dot" aria-hidden="true"></span><div>
+                <strong>Que nada se pierda.</strong><p>
+                  Consultas y herramientas mejor conectadas.
+                </p>
+              </div>
+            </li><li>
+              <span class="dot" aria-hidden="true"></span><div>
+                <strong>Que el trabajo fluya.</strong><p>
+                  Menos pasos manuales. Más tiempo para tu negocio.
+                </p>
+              </div>
+            </li>
+          </ol>
+        </aside>
+      </div>
+      <div class="hero-proof">
+        <span
+          ><strong>Estudio independiente</strong> · Trato directo con David</span
+        ><span>Experiencia en aplicaciones empresariales</span><a
+          href="/proyectos">Trabajo real, explicado con claridad ↗</a
+        >
+      </div>
     </div>
-  </div>
+  </section>
+  <section class="section section-tint">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <span class="eyebrow">¿Te resulta familiar?</span><h2>
+            Tu negocio funciona.<br />Pero algunas cosas te frenan.
+          </h2>
+        </div><ul class="problem-list">
+          {problems.map((problem) => <li>{problem}</li>)}
+        </ul>
+      </div><p class="problem-outro">
+        Primero analizo el problema. Después construyo lo necesario. A veces
+        será una web. Otras, una automatización, una integración o una
+        herramienta interna.
+      </p>
+    </div>
+  </section>
+  <section class="section" id="soluciones">
+    <div class="wrap">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Tres formas de ayudarte</span><h2>
+            La solución depende<br />de lo que está fallando.
+          </h2>
+        </div>
+      </div><div class="solutions-grid">
+        {
+          solutions.map((solution) => (
+            <article class="solution">
+              <>
+                <span class="number">{solution.number}</span>
+                <h3>{solution.name}</h3>
+                <div class="tagline">{solution.tagline}</div>
+                <p>{solution.description}</p>
+                <a class="text-link" href={`/soluciones/${solution.slug}`}>
+                  Explorar {solution.name.toLowerCase()}{" "}
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <section class="section section-tint">
+    <div class="wrap">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Casos de trabajo</span><h2>
+            Problemas concretos.<br />Soluciones que se usan.
+          </h2>
+        </div><a class="text-link" href="/proyectos">Todos los proyectos ↗</a>
+      </div><div class="case-list">
+        {projects.slice(0, 3).map((project) => <CaseStudyPreview {project} />)}
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap split">
+      <Image
+        class="about-photo"
+        src={david}
+        alt="David Pérez, la persona detrás de Frappé Tech"
+        widths={[340, 500, 680]}
+        sizes="(max-width: 760px) 85vw, 430px"
+        format="webp"
+        loading="lazy"
+      /><div class="about-copy">
+        <span class="eyebrow">Detrás de Frappé</span><h2>
+          Una persona al otro lado.<br />De principio a fin.
+        </h2><p>
+          Soy David, ingeniero de software y la persona detrás de Frappé Tech.
+          Trabajo directamente contigo para entender tu negocio y construir
+          únicamente lo necesario.
+        </p><p>
+          Mi experiencia en aplicaciones empresariales, frontend, backend e
+          integraciones me permite mirar más allá de la web y entender el
+          trabajo que hay detrás.
+        </p><a class="text-link" href="/sobre-frappe">Conoce cómo trabajo ↗</a>
+      </div>
+    </div>
+  </section>
+  <ProcessSteps /><CTASection form />
 </Layout>
-
-<script define:vars={{ site }}>
-  window.location.replace(`/linktree`);
-</script>

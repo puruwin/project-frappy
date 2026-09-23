@@ -1,72 +1,22 @@
-<div 
-  id="cookieConsent" 
-  class="fixed bottom-0 left-0 right-0 bg-black text-white p-4 z-50" 
-  style="display: none;"
+<section
+  class="cookie-banner"
+  id="cookie-consent"
+  aria-labelledby="cookie-title"
+  hidden
+  tabindex="-1"
 >
-  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-    <div class="text-sm font-sans">
-      <p class="mb-2">
-        Utilizamos cookies para mejorar tu experiencia y analizar el tráfico del sitio. 
-        Puedes aceptar todas las cookies o gestionar tus preferencias.
-      </p>
-    </div>
-    <div class="flex gap-3">
-      <button 
-        id="acceptCookies"
-        class="bg-[var(--color-primary)] text-black px-4 py-2 text-sm font-['JetBrains_Mono_Variable']"
-        style="border: var(--border-brutal);"
-      >
-        Aceptar
-      </button>
-      <button 
-        id="rejectCookies"
-        class="bg-white text-black px-4 py-2 text-sm font-['JetBrains_Mono_Variable']"
-        style="border: var(--border-brutal);"
-      >
-        Rechazar
-      </button>
-    </div>
+  <strong id="cookie-title">Tú decides sobre las cookies</strong>
+  <p>
+    Con tu permiso, utilizo analítica para entender qué páginas ayudan a iniciar
+    conversaciones. Puedes navegar y contactar sin aceptarla. <a
+      href="/privacidad#cookies">Cómo uso las cookies</a
+    >.
+  </p>
+  <div class="actions">
+    <button class="button" type="button" data-consent="accepted"
+      >Aceptar analítica</button
+    ><button class="button button-outline" type="button" data-consent="rejected"
+      >Rechazar</button
+    >
   </div>
-</div>
-
-<script>
-  // @ts-ignore
-  if (!window.cookieConsentInitialized) {
-    // @ts-ignore
-    window.cookieConsentInitialized = true;
-    
-    const cookieConsentBanner = document.getElementById('cookieConsent');
-    const acceptButton = document.getElementById('acceptCookies');
-    const rejectButton = document.getElementById('rejectCookies');
-
-    const cookieConsentStatus = localStorage.getItem('cookieConsent');
-    
-    if (!cookieConsentStatus && cookieConsentBanner) {
-      cookieConsentBanner.style.display = 'block';
-    }
-
-    // @ts-ignore
-    function handleConsent(accepted) {
-      localStorage.setItem('cookieConsent', accepted ? 'accepted' : 'rejected');
-      
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: 'cookie_consent_update',
-        cookie_consent: accepted ? 'accepted' : 'rejected'
-      });
-
-      if (cookieConsentBanner) {
-        cookieConsentBanner.style.display = 'none';
-      }
-    }
-
-    acceptButton?.addEventListener('click', () => handleConsent(true));
-    rejectButton?.addEventListener('click', () => handleConsent(false));
-  }
-</script>
-
-<style>
-  #cookieConsent {
-    box-shadow: 0 -4px 0 0 black;
-  }
-</style> 
+</section>
