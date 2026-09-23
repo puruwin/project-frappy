@@ -132,7 +132,13 @@ for (const contact of ["persona@example.com", "+34 608 123 456"]) {
     await page.getByRole("button", { name: "Aceptar analítica" }).click();
     await fillForm(page, contact);
     await page.getByRole("button", { name: "Cuéntame el problema" }).click();
-    await expect(page.getByRole("status")).toContainText("Gracias");
+    await expect(page.getByRole("status")).toContainText(
+      "Tu consulta se ha enviado correctamente",
+    );
+    await expect(page.getByRole("status")).toHaveAttribute(
+      "data-state",
+      "success",
+    );
     expect(submissions).toHaveLength(1);
     expect(body).toContain(contact);
     await expect(page.getByLabel("Nombre", { exact: true })).toHaveValue("");
@@ -173,6 +179,10 @@ test("invalid contact is blocked; provider failures preserve input and retry wor
   await page.getByRole("button", { name: "Cuéntame el problema" }).click();
   await expect(page.getByRole("status")).toContainText(
     "No se ha podido confirmar",
+  );
+  await expect(page.getByRole("status")).toHaveAttribute(
+    "data-state",
+    "error",
   );
   await expect(page.getByLabel("Nombre", { exact: true })).toHaveValue(
     "Prueba automatizada",
@@ -303,6 +313,7 @@ const routes = [
   "/proyectos/paloma-blanca",
   "/sobre-frappe",
   "/contacto",
+  "/linktree",
   "/blog",
   "/blog/posts/diccionario-web",
   "/blog/posts/cuanto-cuesta-web-2025",
@@ -361,7 +372,7 @@ for (const route of routes) {
   });
 }
 
-test("all built internal links and assets resolve, sitemap excludes retired URLs", async () => {
+test("all built internal links and assets resolve, sitemap excludes redirects and noindex URLs", async () => {
   function htmlFiles(dir: string): string[] {
     return readdirSync(dir, { withFileTypes: true }).flatMap((entry) =>
       entry.isDirectory()
@@ -414,7 +425,9 @@ test("all built internal links and assets resolve, sitemap excludes retired URLs
   const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(
     ([, url]) => new URL(url).href,
   );
-  for (const route of routes.filter((route) => route !== "/privacidad"))
+  for (const route of routes.filter(
+    (route) => !["/privacidad", "/linktree"].includes(route),
+  ))
     expect(sitemapUrls).toContain(
       new URL(route, "https://creativefrappe.com").href,
     );
@@ -449,6 +462,11 @@ test("migration destinations exist and redirects are permanent without chains", 
       to: rule.match(/to\s*=\s*"([^"]+)"/)![1],
       status: Number(rule.match(/status\s*=\s*(\d+)/)![1]),
     }));
+  expect(rules).toContainEqual({
+    from: "/card",
+    to: "/linktree",
+    status: 301,
+  });
   const sources = new Set(rules.map((rule) => rule.from));
   for (const rule of rules) {
     expect(rule.status).toBe(301);
