@@ -599,6 +599,25 @@ p {
   margin-top: 18px;
   font-size: 0.9rem;
 }
+.form-status:empty {
+  display: none;
+}
+.form-status[data-state] {
+  padding: 14px 16px;
+  border: 1px solid;
+  border-radius: 3px;
+  font-weight: 550;
+}
+.form-status[data-state="success"] {
+  border-color: #80c99a;
+  color: #e5ffed;
+  background: #163d29;
+}
+.form-status[data-state="error"] {
+  border-color: #e2a29c;
+  color: #fff0ee;
+  background: #512725;
+}
 .honeypot {
   position: absolute;
   left: -9999px;

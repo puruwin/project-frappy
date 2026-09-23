@@ -132,7 +132,13 @@ for (const contact of ["persona@example.com", "+34 608 123 456"]) {
     await page.getByRole("button", { name: "Aceptar analítica" }).click();
     await fillForm(page, contact);
     await page.getByRole("button", { name: "Cuéntame el problema" }).click();
-    await expect(page.getByRole("status")).toContainText("Gracias");
+    await expect(page.getByRole("status")).toContainText(
+      "Tu consulta se ha enviado correctamente",
+    );
+    await expect(page.getByRole("status")).toHaveAttribute(
+      "data-state",
+      "success",
+    );
     expect(submissions).toHaveLength(1);
     expect(body).toContain(contact);
     await expect(page.getByLabel("Nombre", { exact: true })).toHaveValue("");
@@ -173,6 +179,10 @@ test("invalid contact is blocked; provider failures preserve input and retry wor
   await page.getByRole("button", { name: "Cuéntame el problema" }).click();
   await expect(page.getByRole("status")).toContainText(
     "No se ha podido confirmar",
+  );
+  await expect(page.getByRole("status")).toHaveAttribute(
+    "data-state",
+    "error",
   );
   await expect(page.getByLabel("Nombre", { exact: true })).toHaveValue(
     "Prueba automatizada",

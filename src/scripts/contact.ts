@@ -36,6 +36,7 @@ document
       submit.disabled = true;
       submit.textContent = "Enviando…";
       status.textContent = "";
+      delete status.dataset.state;
       const controller = new AbortController();
       const timeout = window.setTimeout(() => controller.abort(), 15000);
       try {
@@ -59,9 +60,11 @@ document
         form.reset();
         contact.setCustomValidity("");
         started = false;
+        status.dataset.state = "success";
         status.textContent =
-          "Gracias por contarme qué está pasando. Te responderé por el medio que has indicado.";
+          "Tu consulta se ha enviado correctamente. Gracias por escribir; te responderé por el medio que has indicado.";
       } catch {
+        status.dataset.state = "error";
         status.textContent =
           "No se ha podido confirmar el envío. Tus datos siguen aquí: puedes reintentarlo o escribirme por WhatsApp o email.";
       } finally {
