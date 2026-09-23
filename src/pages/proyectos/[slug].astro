@@ -1,0 +1,121 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import CTASection from "../../components/CTASection.astro";
+import { Image } from "astro:assets";
+import { projects } from "../../data/projects";
+import { breadcrumbSchema } from "../../utils/schema";
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+const { project } = Astro.props;
+const solutionPath =
+  project.category === "Sistemas"
+    ? "/soluciones/sistemas-a-medida"
+    : "/soluciones/presencia-digital";
+---
+
+<Layout
+  title={`${project.name}: ${project.title} | Frappé Tech`}
+  description={project.summary}
+  schema={breadcrumbSchema([
+    { name: "Proyectos", path: "/proyectos" },
+    { name: project.name, path: `/proyectos/${project.slug}` },
+  ])}
+  viewEvent="case_study_view"
+  viewId={project.slug}
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumbs
+        items={[
+          { name: "Proyectos", href: "/proyectos" },
+          { name: project.name },
+        ]}
+      /><span class="eyebrow"
+        >{project.category} · {project.name}{
+          project.historical ? " · Proyecto histórico" : ""
+        }</span
+      ><h1>{project.title}</h1><p class="lead">{project.summary}</p>{
+        project.url && (
+          <a
+            class="text-link"
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visitar la web de {project.name} ↗
+          </a>
+        )
+      }
+    </div>
+  </section>
+  {
+    project.image && (
+      <div class="wrap">
+        <Image
+          class="case-detail-image"
+          src={project.image}
+          alt={project.imageAlt || project.name}
+          widths={[640, 1000, 1400]}
+          sizes="(max-width: 760px) 90vw, 1184px"
+          format="webp"
+          loading="lazy"
+        />
+      </div>
+    )
+  }
+  <section class="section">
+    <div class="wrap detail-grid">
+      <div>
+        {
+          [
+            { title: "El problema", text: project.problem },
+            { title: "La solución", text: project.solution },
+            { title: "El resultado", text: project.result },
+          ].map((block) => (
+            <section class="detail-block">
+              <>
+                <h2>{block.title}</h2>
+                <p>{block.text}</p>
+              </>
+            </section>
+          ))
+        }
+      </div><aside>
+        <span class="eyebrow">Qué incluyó el trabajo</span><ul
+          class="problem-list"
+        >
+          {project.deliverables.map((item) => <li>{item}</li>)}
+        </ul>{
+          project.slug === "menu-hub" && (
+            <div class="example">
+              <p>
+                <strong>Un alcance concreto.</strong> Menu-hub gestiona menús,
+                platos y alérgenos. No incluye control de existencias ni gestión
+                de ingredientes.
+              </p>
+            </div>
+          )
+        }{
+          project.historical && (
+            <div class="example">
+              <p>
+                El negocio está cerrado. La captura es histórica y la web ya no
+                está disponible.
+              </p>
+            </div>
+          )
+        }<a class="text-link" style="margin-top:24px" href={solutionPath}
+          >Explorar {project.category.toLowerCase()} ↗</a
+        >
+      </aside>
+    </div>
+  </section>
+  <div class="wrap" style="padding-bottom:48px">
+    <a class="text-link" href="/proyectos">← Ver todos los casos</a>
+  </div><CTASection />
+</Layout>

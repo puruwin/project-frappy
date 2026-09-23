@@ -8,8 +8,6 @@ export interface BlogPost {
     author: string;
     tags: string[];
   };
-  Content?: any;
-  getHeadings?: () => Array<{ depth: number; slug: string; text: string }>;
 }
 
 /**
@@ -17,24 +15,13 @@ export interface BlogPost {
  */
 export const getAllPosts = async (): Promise<BlogPost[]> => {
   const posts = Object.values(
-    import.meta.glob<BlogPost>('../pages/blog/posts/*.md', { eager: true })
+    import.meta.glob<BlogPost>("../pages/blog/posts/*.md", { eager: true }),
   ) as BlogPost[];
 
   return posts.sort(
     (a, b) =>
       new Date(b.frontmatter.date).getTime() -
-      new Date(a.frontmatter.date).getTime()
-  );
-};
-
-/**
- * Filtra posts por tag
- */
-export const getPostsByTag = (posts: BlogPost[], tag: string): BlogPost[] => {
-  return posts.filter((post) =>
-    post.frontmatter.tags?.some(
-      (t) => t.toLowerCase() === tag.toLowerCase()
-    )
+      new Date(a.frontmatter.date).getTime(),
   );
 };
 
@@ -55,15 +42,14 @@ export const getAllTags = (posts: BlogPost[]): string[] => {
 export const getRelatedPosts = (
   currentPost: BlogPost,
   allPosts: BlogPost[],
-  limit: number = 3
+  limit: number = 3,
 ): BlogPost[] => {
   const currentTags = currentPost.frontmatter.tags || [];
   const related = allPosts
     .filter((post) => post.url !== currentPost.url)
     .map((post) => {
-      const sharedTags = post.frontmatter.tags?.filter((tag) =>
-        currentTags.includes(tag)
-      ) || [];
+      const sharedTags =
+        post.frontmatter.tags?.filter((tag) => currentTags.includes(tag)) || [];
       return { post, score: sharedTags.length };
     })
     .filter((item) => item.score > 0)
@@ -72,28 +58,6 @@ export const getRelatedPosts = (
     .map((item) => item.post);
 
   return related;
-};
-
-/**
- * Calcula el tiempo estimado de lectura en minutos
- * Basado en ~200 palabras por minuto
- * Si no se proporciona contenido, retorna un valor por defecto
- */
-export const estimateReadingTime = (content?: string): number => {
-  if (!content) return 5;
-  const wordsPerMinute = 200;
-  const wordCount = content.split(/\s+/).length;
-  const minutes = Math.ceil(wordCount / wordsPerMinute);
-  return minutes;
-};
-
-/**
- * Genera una tabla de contenidos a partir de los headings del contenido
- */
-export const generateTableOfContents = (
-  headings: Array<{ depth: number; slug: string; text: string }>
-): Array<{ depth: number; slug: string; text: string }> => {
-  return headings.filter((heading) => heading.depth <= 3);
 };
 
 /**
@@ -107,23 +71,25 @@ export const formatDate = (dateString: string | Date): string => {
   } else {
     // Intentar parsear la fecha de string
     // Si es formato YYYY-MM-DD, agregar tiempo para evitar problemas de zona horaria
-    if (typeof dateString === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
-      date = new Date(dateString + 'T00:00:00');
+    if (
+      typeof dateString === "string" &&
+      /^\d{4}-\d{2}-\d{2}$/.test(dateString)
+    ) {
+      date = new Date(dateString + "T00:00:00");
     } else {
       date = new Date(dateString);
     }
   }
-  
+
   // Validar que la fecha sea válida
   if (isNaN(date.getTime())) {
-    console.error('Invalid date:', dateString);
-    return 'Fecha no disponible';
+    console.error("Invalid date:", dateString);
+    return "Fecha no disponible";
   }
-  
-  return new Intl.DateTimeFormat('es-ES', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+
+  return new Intl.DateTimeFormat("es-ES", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   }).format(date);
 };
-

@@ -7,7 +7,6 @@ date: 2025-12-04
 author: "David P."
 tags: ["web", "asesoramiento digital", "desarrollo web", "2025"]
 ---
-# **En qué casos NO necesitas una web (y cómo decidirlo de forma honesta)**
 
 Decir que “no necesitas una web” desde una agencia de desarrollo web puede sonar raro. Pero si algo he aprendido liderando proyectos en Frappé es que **no todos los negocios están en el momento adecuado para invertir en una página web**, y muchas veces lo mejor es ser transparente. Sí: yo diseño sitios rápidos, accesibles, listos para SEO, con modelos de contenido escalables y automatizaciones… pero también he visto casos en los que una web no iba a aportar nada nuevo.
 

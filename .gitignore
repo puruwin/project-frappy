@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # Agent Context
 docs/agent-page-context/
+# Browser validation artifacts
+test-results/
+playwright-report/

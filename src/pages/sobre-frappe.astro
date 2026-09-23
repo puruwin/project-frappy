@@ -1,0 +1,77 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import CTASection from "../components/CTASection.astro";
+import ProcessSteps from "../components/ProcessSteps.astro";
+import { Image } from "astro:assets";
+import david from "../assets/david.jpg";
+import { breadcrumbSchema } from "../utils/schema";
+---
+
+<Layout
+  title="Sobre Frappé: trabajarás directamente con David | Frappé Tech"
+  description="Frappé Tech es el estudio independiente de David Pérez. Ingeniería de software, automatización e integraciones con trato directo de principio a fin."
+  schema={breadcrumbSchema([{ name: "Sobre Frappé", path: "/sobre-frappe" }])}
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumbs items={[{ name: "Sobre Frappé" }]} /><span class="eyebrow"
+        >Estudio independiente · David Pérez</span
+      ><h1>La persona con la que hablas<br />es la que construye.</h1>
+    </div>
+  </section>
+  <section class="section" style="padding-top:20px">
+    <div class="wrap split">
+      <Image
+        class="about-photo"
+        src={david}
+        alt="David Pérez, fundador de Frappé Tech"
+        widths={[340, 500, 680]}
+        sizes="(max-width: 760px) 85vw, 430px"
+        format="webp"
+        loading="eager"
+      /><div class="about-copy">
+        <h2>Soy David.<br />Esto es Frappé Tech.</h2><p>
+          Un estudio independiente de software y automatización. Trabajo
+          directamente con cada negocio para entender primero el problema y
+          construir después únicamente lo necesario.
+        </p><p>
+          He trabajado en aplicaciones empresariales de sectores como banca,
+          seguros y aviación, tanto en frontend como en backend, APIs e
+          integraciones. Esa experiencia me ayuda a entender cómo encajan las
+          pantallas, los datos y los procesos.
+        </p><p>
+          Con Frappé pongo esa capacidad al servicio de pequeños negocios. Puede
+          ser una web para empezar a recibir consultas o una aplicación que
+          resuelva una tarea muy específica. Lo importante es que tenga sentido
+          para quien la usa.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="section section-tint">
+    <div class="wrap">
+      <span class="eyebrow">Qué puedes esperar</span><div
+        class="solutions-grid"
+      >
+        <div class="solution">
+          <h3>Trato directo</h3><p>
+            Me cuentas el problema a mí. Analizo, desarrollo y te acompaño en la
+            puesta en marcha.
+          </p>
+        </div><div class="solution">
+          <h3>Criterio antes que herramientas</h3><p>
+            Revisamos lo que ya funciona y lo que merece la pena cambiar. La
+            solución no tiene por qué ser grande.
+          </p>
+        </div><div class="solution">
+          <h3>Acuerdos claros</h3><p>
+            Sabes qué vamos a construir, cuánto cuesta y qué incluye el
+            seguimiento antes de empezar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <ProcessSteps /><CTASection />
+</Layout>

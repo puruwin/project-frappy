@@ -1,0 +1,29 @@
+---
+import { process } from "../data/site";
+---
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">Así trabajaremos</span><h2>
+          Primero entender.<br />Después construir.
+        </h2>
+      </div>
+    </div><ol class="process-list">
+      {
+        process.map((step) => (
+          <li>
+            <>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </>
+          </li>
+        ))
+      }
+    </ol><p class="budget-note">
+      <strong>Presupuesto cerrado antes de empezar.</strong> Una propuesta con alcance
+      y precio claros, adaptada al problema.
+    </p>
+  </div>
+</section>

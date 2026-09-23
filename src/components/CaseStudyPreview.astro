@@ -1,0 +1,73 @@
+---
+import { Image } from "astro:assets";
+import type { Project } from "../data/projects";
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+---
+
+<article class="case-preview">
+  <div
+    class:list={[
+      "project-visual",
+      {
+        system: project.category === "Sistemas",
+        av: project.slug === "av-mantenimiento-integral",
+      },
+    ]}
+  >
+    {
+      project.image ? (
+        <Image
+          src={project.image}
+          alt={project.imageAlt || project.name}
+          widths={[400, 640, 960]}
+          sizes="(max-width: 760px) 90vw, 45vw"
+          format="webp"
+          loading="lazy"
+        />
+      ) : project.category === "Sistemas" ? (
+        <>
+          <>
+            <span class="eyebrow">Una herramienta para el comedor</span>
+            <strong>Menu-hub</strong>
+            <div class="visual-rule" />
+            <p>Platos y alérgenos → Menú del día → Pantalla</p>
+          </>
+        </>
+      ) : (
+        <>
+          <>
+            <span class="eyebrow">Mantenimiento · Marina Baixa</span>
+            <strong>
+              AV Mantenimiento
+              <br />
+              Integral
+            </strong>
+            <p>
+              Servicios claros.
+              <br />
+              Contacto a un paso.
+            </p>
+          </>
+        </>
+      )
+    }
+  </div>
+  <div>
+    <span class="eyebrow"
+      >{project.category}{
+        project.historical ? " · Proyecto histórico" : ""
+      }</span
+    ><p>{project.name}</p><h3>
+      <a href={`/proyectos/${project.slug}`}>{project.title}</a>
+    </h3><p>{project.summary}</p><a
+      class="text-link"
+      href={`/proyectos/${project.slug}`}
+      >Ver el caso <span class="sr-only">de {project.name}</span><span
+        aria-hidden="true">↗</span
+      ></a
+    >
+  </div>
+</article>
