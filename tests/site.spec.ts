@@ -180,10 +180,7 @@ test("invalid contact is blocked; provider failures preserve input and retry wor
   await expect(page.getByRole("status")).toContainText(
     "No se ha podido confirmar",
   );
-  await expect(page.getByRole("status")).toHaveAttribute(
-    "data-state",
-    "error",
-  );
+  await expect(page.getByRole("status")).toHaveAttribute("data-state", "error");
   await expect(page.getByLabel("Nombre", { exact: true })).toHaveValue(
     "Prueba automatizada",
   );
@@ -472,8 +469,17 @@ test("migration destinations exist and redirects are permanent without chains", 
     expect(rule.status).toBe(301);
     expect(sources.has(rule.to)).toBe(false);
     expect(existsSync(resolve("dist", `.${rule.to}`, "index.html"))).toBe(true);
-    expect(existsSync(resolve("dist", `.${rule.from}`, "index.html"))).toBe(
-      false,
-    );
+    if (rule.from !== "/card")
+      expect(existsSync(resolve("dist", `.${rule.from}`, "index.html"))).toBe(
+        false,
+      );
   }
+});
+
+test("card is navigable and redirects to the digital contact card", async ({
+  page,
+}) => {
+  const response = await page.goto("/card");
+  expect(response?.status()).toBe(200);
+  await expect(page).toHaveURL(/\/linktree$/);
 });

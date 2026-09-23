@@ -1,0 +1,34 @@
+---
+import { site } from "../data/site";
+
+const destination = "/linktree";
+const canonical = new URL(destination, site.url).href;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirigiendo a la tarjeta de contacto | Frappé Tech</title>
+    <meta
+      name="description"
+      content="Redirección a la tarjeta digital de contacto de David Pérez."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href={canonical} />
+    <meta http-equiv="refresh" content={`0; url=${destination}`} />
+    <link rel="icon" href="/frappe_icon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <main>
+      <p>
+        Redirigiendo a la tarjeta de contacto…
+        <a href={destination}>Continuar manualmente</a>.
+      </p>
+    </main>
+    <script is:inline define:vars={{ destination }}>
+      window.location.replace(destination);
+    </script>
+  </body>
+</html>
