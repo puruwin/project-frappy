@@ -23,7 +23,8 @@ Se contrastó el sitemap publicado en https://creativefrappe.com/sitemap.xml el 
 | `/detras-de-frappe`                  | 301 a `/sobre-frappe`                                              |
 | `/portfolio`                         | 301 a `/proyectos`                                                 |
 | `/portfolio/bravo-verticales`        | 301 a `/proyectos/bravo-trabajos-verticales` (antiguo enlace roto) |
-| `/card`, `/linktree`                 | 301 a `/`                                                          |
+| `/card`                              | 301 a `/linktree`, URL estable para el QR de las tarjetas          |
+| `/linktree`                          | Tarjeta digital de contacto (`noindex, follow`)                    |
 | `/desarrollo-web-benidorm`           | Conservada y adaptada                                              |
 | `/diseno-web-benidorm`               | Conservada y adaptada                                              |
 | `/desarrollo-web-callosa-den-sarria` | Conservada y adaptada                                              |

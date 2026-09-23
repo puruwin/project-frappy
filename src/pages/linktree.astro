@@ -1,0 +1,196 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import david from "../assets/david.jpg";
+import { site } from "../data/site";
+
+const links = [
+  {
+    href: site.whatsapp,
+    title: "WhatsApp",
+    description: "La forma más rápida de hablar conmigo",
+    external: true,
+  },
+  {
+    href: `mailto:${site.email}`,
+    title: "Email",
+    description: site.email,
+  },
+  {
+    href: `tel:${site.phone}`,
+    title: "Teléfono",
+    description: site.phoneLabel,
+  },
+  {
+    href: "https://www.linkedin.com/in/davidperez8619",
+    title: "LinkedIn",
+    description: "Perfil profesional",
+    external: true,
+  },
+  {
+    href: "/#soluciones",
+    title: "Soluciones para tu negocio",
+    description: "Web, automatización y sistemas a medida",
+  },
+  {
+    href: "/proyectos",
+    title: "Proyectos",
+    description: "Casos reales y trabajo reciente",
+  },
+];
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "David Pérez",
+  jobTitle: "Desarrollador web y consultor tecnológico",
+  url: `${site.url}/linktree`,
+  image: `${site.url}${david.src}`,
+  email: site.email,
+  telephone: site.phone,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Benidorm",
+    addressCountry: "ES",
+  },
+  sameAs: ["https://www.linkedin.com/in/davidperez8619"],
+};
+---
+
+<Layout
+  title="David Pérez | Contacto"
+  description="Tarjeta digital de David Pérez, fundador de Frappé Tech. Contacto directo y enlaces profesionales."
+  noindex
+  schema={personSchema}
+>
+  <section class="contact-card-section">
+    <div class="contact-card-wrap">
+      <div class="contact-profile">
+        <Image
+          src={david}
+          alt="David Pérez"
+          width={144}
+          height={144}
+          loading="eager"
+          class="contact-avatar"
+        />
+        <span class="eyebrow">Frappé Tech</span>
+        <h1>David Pérez</h1>
+        <p class="contact-role">Desarrollo web y consultoría tecnológica</p>
+        <p class="contact-intro">
+          Ayudo a pequeños negocios y empresas de servicios a captar mejor
+          clientes, reducir trabajo manual y conectar sus herramientas.
+        </p>
+      </div>
+
+      <nav class="contact-links" aria-label="Enlaces de contacto">
+        {
+          links.map((link) => (
+            <a
+              href={link.href}
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noopener noreferrer" : undefined}
+            >
+              <span>
+                <strong>{link.title}</strong>
+                <small>{link.description}</small>
+              </span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-card-section {
+    min-height: 70vh;
+    padding: 64px 20px 88px;
+    background:
+      linear-gradient(135deg, rgb(245 71 143 / 10%), transparent 38%),
+      linear-gradient(315deg, rgb(41 193 241 / 12%), transparent 42%),
+      var(--paper);
+  }
+  .contact-card-wrap {
+    width: min(100%, 620px);
+    margin-inline: auto;
+  }
+  .contact-profile {
+    text-align: center;
+  }
+  .contact-avatar {
+    width: 144px;
+    height: 144px;
+    margin: 0 auto 28px;
+    border: 5px solid white;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 30%;
+    box-shadow: 0 12px 35px rgb(16 26 50 / 16%);
+  }
+  .contact-profile .eyebrow {
+    margin-bottom: 12px;
+  }
+  .contact-profile h1 {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+  .contact-role {
+    margin-top: 12px;
+    font-weight: 600;
+  }
+  .contact-intro {
+    max-width: 560px;
+    margin: 18px auto 0;
+    color: var(--muted);
+  }
+  .contact-links {
+    display: grid;
+    gap: 12px;
+    margin-top: 42px;
+  }
+  .contact-links a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 82px;
+    padding: 17px 22px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: white;
+    box-shadow: 0 5px 16px rgb(16 26 50 / 5%);
+    transition:
+      transform 0.15s,
+      border-color 0.15s;
+  }
+  .contact-links a:hover {
+    transform: translateY(-2px);
+    border-color: var(--ink);
+  }
+  .contact-links span:first-child {
+    display: grid;
+    text-align: left;
+  }
+  .contact-links strong {
+    font-size: 1rem;
+  }
+  .contact-links small {
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+  .contact-links a > span:last-child {
+    font-size: 1.25rem;
+  }
+  @media (max-width: 480px) {
+    .contact-card-section {
+      padding-top: 44px;
+    }
+    .contact-links a {
+      min-height: 76px;
+      padding-inline: 18px;
+    }
+  }
+</style>

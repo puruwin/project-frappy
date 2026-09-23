@@ -313,6 +313,7 @@ const routes = [
   "/proyectos/paloma-blanca",
   "/sobre-frappe",
   "/contacto",
+  "/linktree",
   "/blog",
   "/blog/posts/diccionario-web",
   "/blog/posts/cuanto-cuesta-web-2025",
@@ -371,7 +372,7 @@ for (const route of routes) {
   });
 }
 
-test("all built internal links and assets resolve, sitemap excludes retired URLs", async () => {
+test("all built internal links and assets resolve, sitemap excludes redirects and noindex URLs", async () => {
   function htmlFiles(dir: string): string[] {
     return readdirSync(dir, { withFileTypes: true }).flatMap((entry) =>
       entry.isDirectory()
@@ -424,7 +425,9 @@ test("all built internal links and assets resolve, sitemap excludes retired URLs
   const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(
     ([, url]) => new URL(url).href,
   );
-  for (const route of routes.filter((route) => route !== "/privacidad"))
+  for (const route of routes.filter(
+    (route) => !["/privacidad", "/linktree"].includes(route),
+  ))
     expect(sitemapUrls).toContain(
       new URL(route, "https://creativefrappe.com").href,
     );
@@ -459,6 +462,11 @@ test("migration destinations exist and redirects are permanent without chains", 
       to: rule.match(/to\s*=\s*"([^"]+)"/)![1],
       status: Number(rule.match(/status\s*=\s*(\d+)/)![1]),
     }));
+  expect(rules).toContainEqual({
+    from: "/card",
+    to: "/linktree",
+    status: 301,
+  });
   const sources = new Set(rules.map((rule) => rule.from));
   for (const rule of rules) {
     expect(rule.status).toBe(301);

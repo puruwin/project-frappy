@@ -28,9 +28,5 @@
   status = 301
 [[redirects]]
   from = "/card"
-  to = "/"
-  status = 301
-[[redirects]]
-  from = "/linktree"
-  to = "/"
+  to = "/linktree"
   status = 301

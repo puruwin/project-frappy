@@ -25,7 +25,7 @@ export default defineConfig({
     tailwind({ applyBaseStyles: false }),
     sitemap({
       filter: (url) =>
-        !["/privacidad", "/404"].includes(
+        !["/privacidad", "/linktree", "/404"].includes(
           new URL(url).pathname.replace(/\/$/, ""),
         ),
     }),
