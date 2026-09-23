@@ -12,9 +12,9 @@ export const site = {
 };
 export const navigation = [
   { label: "Soluciones", href: "/#soluciones" },
-  { label: "Proyectos", href: "/proyectos" },
-  { label: "Sobre Frappé", href: "/sobre-frappe" },
-  { label: "Contacto", href: "/contacto" },
+  { label: "Proyectos", href: "/proyectos/" },
+  { label: "Sobre Frappé", href: "/sobre-frappe/" },
+  { label: "Contacto", href: "/contacto/" },
 ];
 export const process = [
   {

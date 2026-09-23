@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Legacy URLs preserved as permanent, single-hop redirects.
+RewriteRule ^desarrollo-web/?$ /soluciones/presencia-digital/ [R=301,L]
+RewriteRule ^servicios-web-digitales/?$ /soluciones/presencia-digital/ [R=301,L]
+RewriteRule ^agencia-automatizacion-ia/?$ /soluciones/automatizacion/ [R=301,L]
+RewriteRule ^portfolio/?$ /proyectos/ [R=301,L]
+RewriteRule ^portfolio/bravo-verticales/?$ /proyectos/bravo-trabajos-verticales/ [R=301,L]
+RewriteRule ^detras-de-frappe/?$ /sobre-frappe/ [R=301,L]
+RewriteRule ^card/?$ /linktree/ [R=301,L]

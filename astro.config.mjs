@@ -20,7 +20,9 @@ const publicSitemap = {
 export default defineConfig({
   site: "https://creativefrappe.com",
   output: "static",
-  trailingSlash: "never",
+  // Hostinger serves the generated directory routes with a trailing slash.
+  // Generate matching routes, canonicals and sitemap entries.
+  trailingSlash: "always",
   integrations: [
     tailwind({ applyBaseStyles: false }),
     sitemap({
