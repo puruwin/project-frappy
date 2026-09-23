@@ -54,7 +54,7 @@ test("home and mobile navigation work, including keyboard and reduced motion", a
       .getByRole("link", { name: "Proyectos", exact: true })
       .click();
   }
-  await expect(page).toHaveURL(/\/proyectos$/);
+  await expect(page).toHaveURL(/\/proyectos\/$/);
   await page.emulateMedia({ reducedMotion: "reduce" });
   expect(
     await page
@@ -75,7 +75,7 @@ test("consent gates loading and events and supports withdrawal", async ({
   page.on("request", (req) => {
     if (req.url().includes("googletagmanager.com")) requests.push(req.url());
   });
-  await page.goto("/soluciones/automatizacion");
+  await page.goto("/soluciones/automatizacion/");
   expect(requests).toHaveLength(0);
   await reject(page);
   await page.reload();
@@ -92,7 +92,7 @@ test("consent gates loading and events and supports withdrawal", async ({
   expect(views).toHaveLength(1);
   expect(views[0]).toMatchObject({
     content_id: "automatizacion",
-    page_path: "/soluciones/automatizacion",
+    page_path: "/soluciones/automatizacion/",
   });
   await page.getByRole("button", { name: "Preferencias de cookies" }).click();
   await page.getByRole("button", { name: "Aceptar analítica" }).click();
@@ -128,7 +128,7 @@ for (const contact of ["persona@example.com", "+34 608 123 456"]) {
         body: '{"ok":true}',
       });
     });
-    await page.goto("/contacto");
+    await page.goto("/contacto/");
     await page.getByRole("button", { name: "Aceptar analítica" }).click();
     await fillForm(page, contact);
     await page.getByRole("button", { name: "Cuéntame el problema" }).click();
@@ -151,7 +151,7 @@ for (const contact of ["persona@example.com", "+34 608 123 456"]) {
     expect(events[1]).toMatchObject({
       event: "contact_form_submit",
       form_status: "success",
-      page_path: "/contacto",
+      page_path: "/contacto/",
     });
     expect(JSON.stringify(events)).not.toContain(contact);
     expect(JSON.stringify(events)).not.toContain("Prueba automatizada");
@@ -170,7 +170,7 @@ test("invalid contact is blocked; provider failures preserve input and retry wor
       body: '{"errors":[{"message":"Rejected"}]}',
     });
   });
-  await page.goto("/contacto");
+  await page.goto("/contacto/");
   await reject(page);
   await fillForm(page, "no es un contacto");
   await page.getByRole("button", { name: "Cuéntame el problema" }).click();
@@ -217,7 +217,7 @@ test("privacy is required and duplicate submits are prevented", async ({
       body: '{"ok":true}',
     });
   });
-  await page.goto("/contacto");
+  await page.goto("/contacto/");
   await reject(page);
   await fillForm(page);
   await page.getByRole("checkbox").uncheck();
@@ -235,7 +235,7 @@ test("privacy is required and duplicate submits are prevented", async ({
 test("case views and contact clicks are tracked without destinations or personal data", async ({
   page,
 }) => {
-  await page.goto("/proyectos/menu-hub");
+  await page.goto("/proyectos/menu-hub/");
   await page.getByRole("button", { name: "Aceptar analítica" }).click();
   expect(
     await page.evaluate(
@@ -264,12 +264,12 @@ test("case views and contact clicks are tracked without destinations or personal
 test("blog filters exact tags and keeps existing article URLs", async ({
   page,
 }) => {
-  await page.goto("/blog?tag=formaci%C3%B3n");
+  await page.goto("/blog/?tag=formaci%C3%B3n");
   await reject(page);
   await expect(page.locator("[data-post-tags]:visible")).toHaveCount(1);
   await page.getByRole("button", { name: "Todos", exact: true }).click();
   await expect(page.locator("[data-post-tags]:visible")).toHaveCount(3);
-  await page.goto("/blog/posts/diccionario-web");
+  await page.goto("/blog/posts/diccionario-web/");
   await expect(page.locator("h1")).toHaveCount(1);
   await expect(page.locator(".prose")).toContainText("Hosting");
 });
@@ -284,7 +284,7 @@ test("navigation and form remain available with JavaScript disabled", async ({
     viewport: { width: isMobile ? 390 : 1440, height: 900 },
   });
   const page = await context.newPage();
-  await page.goto(`${baseURL}/contacto`);
+  await page.goto(`${baseURL}/contacto/`);
   if (isMobile) {
     await page.locator(".mobile-nav summary").click();
     await expect(page.locator(".mobile-nav nav")).toBeVisible();
@@ -300,26 +300,26 @@ test("navigation and form remain available with JavaScript disabled", async ({
 
 const routes = [
   "/",
-  "/soluciones/presencia-digital",
-  "/soluciones/automatizacion",
-  "/soluciones/sistemas-a-medida",
-  "/proyectos",
-  "/proyectos/bravo-trabajos-verticales",
-  "/proyectos/menu-hub",
-  "/proyectos/av-mantenimiento-integral",
-  "/proyectos/paloma-blanca",
-  "/sobre-frappe",
-  "/contacto",
-  "/linktree",
-  "/blog",
-  "/blog/posts/diccionario-web",
-  "/blog/posts/cuanto-cuesta-web-2025",
-  "/blog/posts/en-que-casos-no-necesitas-web",
-  "/desarrollo-web-benidorm",
-  "/diseno-web-benidorm",
-  "/desarrollo-web-callosa-den-sarria",
-  "/servicios-web-restaurantes",
-  "/privacidad",
+  "/soluciones/presencia-digital/",
+  "/soluciones/automatizacion/",
+  "/soluciones/sistemas-a-medida/",
+  "/proyectos/",
+  "/proyectos/bravo-trabajos-verticales/",
+  "/proyectos/menu-hub/",
+  "/proyectos/av-mantenimiento-integral/",
+  "/proyectos/paloma-blanca/",
+  "/sobre-frappe/",
+  "/contacto/",
+  "/linktree/",
+  "/blog/",
+  "/blog/posts/diccionario-web/",
+  "/blog/posts/cuanto-cuesta-web-2025/",
+  "/blog/posts/en-que-casos-no-necesitas-web/",
+  "/desarrollo-web-benidorm/",
+  "/diseno-web-benidorm/",
+  "/desarrollo-web-callosa-den-sarria/",
+  "/servicios-web-restaurantes/",
+  "/privacidad/",
 ];
 for (const route of routes) {
   test(`accessible, complete and responsive: ${route}`, async ({
@@ -423,7 +423,7 @@ test("all built internal links and assets resolve, sitemap excludes redirects an
     ([, url]) => new URL(url).href,
   );
   for (const route of routes.filter(
-    (route) => !["/privacidad", "/linktree"].includes(route),
+    (route) => !["/privacidad/", "/linktree/"].includes(route),
   ))
     expect(sitemapUrls).toContain(
       new URL(route, "https://creativefrappe.com").href,
@@ -441,7 +441,7 @@ test("narrow mobile and tablet retain readable layouts without overflow", async 
         () => document.documentElement.scrollWidth <= innerWidth,
       ),
     ).toBe(true);
-    await page.goto("/contacto");
+    await page.goto("/contacto/");
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,
@@ -450,7 +450,7 @@ test("narrow mobile and tablet retain readable layouts without overflow", async 
   }
 });
 
-test("migration destinations exist and redirects are permanent without chains", async () => {
+test("migration destinations exist and Hostinger redirects are permanent without chains", async () => {
   const rules = readFileSync("netlify.toml", "utf8")
     .split("[[redirects]]")
     .slice(1)
@@ -474,12 +474,34 @@ test("migration destinations exist and redirects are permanent without chains", 
         false,
       );
   }
+
+  const hostingerRules = [
+    ...readFileSync("dist/.htaccess", "utf8").matchAll(
+      /^RewriteRule \^(.+?)\/\?\$ (\S+) \[R=(\d+),L\]$/gm,
+    ),
+  ].map(([, from, to, status]) => ({
+    from: `/${from}`,
+    to,
+    status: Number(status),
+  }));
+  expect(hostingerRules).toHaveLength(rules.length);
+  expect(hostingerRules).toContainEqual({
+    from: "/card",
+    to: "/linktree/",
+    status: 301,
+  });
+  const hostingerSources = new Set(hostingerRules.map((rule) => rule.from));
+  for (const rule of hostingerRules) {
+    expect(rule.status).toBe(301);
+    expect(hostingerSources.has(rule.to.replace(/\/$/, ""))).toBe(false);
+    expect(existsSync(resolve("dist", `.${rule.to}`, "index.html"))).toBe(true);
+  }
 });
 
 test("card is navigable and redirects to the digital contact card", async ({
   page,
 }) => {
-  const response = await page.goto("/card");
+  const response = await page.goto("/card/");
   expect(response?.status()).toBe(200);
-  await expect(page).toHaveURL(/\/linktree$/);
+  await expect(page).toHaveURL(/\/linktree\/$/);
 });

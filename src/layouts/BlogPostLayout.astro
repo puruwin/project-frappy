@@ -13,6 +13,7 @@ import {
 import { blogImages, blogDescriptions } from "../data/blog";
 import { breadcrumbSchema } from "../utils/schema";
 import { site } from "../data/site";
+import { canonicalUrl } from "../utils/url";
 interface Props {
   frontmatter: BlogPost["frontmatter"];
 }
@@ -26,7 +27,7 @@ const {
 } = Astro.props.frontmatter;
 const url = Astro.url.pathname.replace(/\/$/, "");
 const posts = await getAllPosts();
-const current = posts.find((post) => post.url === url)!;
+const current = posts.find((post) => post.url.replace(/\/$/, "") === url)!;
 const related = getRelatedPosts(current, posts, 2);
 const photo = blogImages[image || ""];
 const summary = blogDescriptions[url] || description;
@@ -38,7 +39,7 @@ const articleSchema = {
   datePublished: new Date(date).toISOString(),
   author: { "@type": "Person", name: author },
   publisher: { "@id": `${site.url}/#organization` },
-  mainEntityOfPage: new URL(url, site.url).href,
+  mainEntityOfPage: canonicalUrl(url),
   ...(image ? { image: new URL(image, site.url).href } : {}),
 };
 ---
@@ -51,7 +52,7 @@ const articleSchema = {
   schema={[
     articleSchema,
     breadcrumbSchema([
-      { name: "Blog", path: "/blog" },
+      { name: "Blog", path: "/blog/" },
       { name: title, path: url },
     ]),
   ]}
@@ -59,7 +60,7 @@ const articleSchema = {
   <section class="page-hero">
     <div class="wrap">
       <Breadcrumbs
-        items={[{ name: "Blog", href: "/blog" }, { name: title }]}
+        items={[{ name: "Blog", href: "/blog/" }, { name: title }]}
       /><span class="eyebrow">Ideas y criterio</span><h1>{title}</h1><p
         class="blog-meta"
       >
@@ -69,7 +70,7 @@ const articleSchema = {
       </p><div class="tag-list">
         {
           tags.map((tag) => (
-            <a class="tag" href={`/blog?tag=${encodeURIComponent(tag)}`}>
+            <a class="tag" href={`/blog/?tag=${encodeURIComponent(tag)}`}>
               {tag}
             </a>
           ))

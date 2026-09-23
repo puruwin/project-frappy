@@ -2,7 +2,7 @@
 
 ## Auditoría y decisiones
 
-La base recibida usa Astro 5.16.15, TypeScript 5.9.2 y Tailwind 3.4.17, con salida estática y Netlify. El build inicial generaba 18 páginas; `astro check` detectaba errores previos y una colección inexistente. La raíz redirigía a `/linktree`. Había layouts completos duplicados, varios formularios y metadatos contradictorios. GTM cargaba sin esperar al consentimiento.
+La base recibida usa Astro 5.16.15, TypeScript 5.9.2 y Tailwind 3.4.17, con salida estática. El build inicial generaba 18 páginas; `astro check` detectaba errores previos y una colección inexistente. La raíz redirigía a `/linktree`. Había layouts completos duplicados, varios formularios y metadatos contradictorios. GTM cargaba sin esperar al consentimiento.
 
 Se conservan Astro, Tailwind, el alojamiento, el endpoint Formspree y el contenedor GTM existentes. Se centralizan los datos y componentes, y se mantiene una sola fuente de metadatos. No se añade un framework de cliente ni un proveedor de analítica. Playwright y axe son dependencias de desarrollo para validar comportamiento y accesibilidad.
 
@@ -32,7 +32,7 @@ Se contrastó el sitemap publicado en https://creativefrappe.com/sitemap.xml el 
 | `/blog` y sus tres artículos         | Mismas URLs y contenido editorial conservado                       |
 | `/contacto`, `/privacidad`           | Conservadas                                                        |
 
-Las reglas HTTP están en `netlify.toml`. Astro preview no aplica reglas de Netlify: los 301 efectivos deben comprobarse en el entorno de Netlify al publicar. No hay páginas HTML de redirección ni cadenas intencionadas. URLs canónicas sin barra final, salvo `/`; sitemap sin redirecciones, página 404 ni privacidad (`noindex, follow`). El hook mantiene `/sitemap.xml` sin el temporizador anterior.
+Las reglas HTTP están en `public/.htaccess`, que Astro copia a `dist` para el despliegue estático de Hostinger. `netlify.toml` conserva una copia para despliegues en Netlify. Los 301 efectivos deben comprobarse después de publicar. No hay cadenas intencionadas. Las URLs canónicas, el sitemap y los enlaces internos usan barra final, igual que las rutas servidas por Hostinger. El sitemap excluye redirecciones, página 404 y privacidad (`noindex, follow`). El hook mantiene `/sitemap.xml` sin el temporizador anterior.
 
 El plan no contempla publicar el sitio. Después de publicarlo: verificar estados HTTP y destinos de estas reglas (también sus variantes con barra final), solicitar lectura del sitemap en Search Console y revisar errores 404 e indexación. No se eliminan las landings locales por falta de datos de tráfico.
 

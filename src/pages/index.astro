@@ -79,7 +79,7 @@ const problems = [
         <span
           ><strong>Estudio independiente</strong> · Trato directo con David</span
         ><span>Experiencia en aplicaciones empresariales</span><a
-          href="/proyectos">Trabajo real, explicado con claridad ↗</a
+          href="/proyectos/">Trabajo real, explicado con claridad ↗</a
         >
       </div>
     </div>
@@ -118,7 +118,7 @@ const problems = [
                 <h3>{solution.name}</h3>
                 <div class="tagline">{solution.tagline}</div>
                 <p>{solution.description}</p>
-                <a class="text-link" href={`/soluciones/${solution.slug}`}>
+                <a class="text-link" href={`/soluciones/${solution.slug}/`}>
                   Explorar {solution.name.toLowerCase()}{" "}
                   <span aria-hidden="true">↗</span>
                 </a>
@@ -136,7 +136,7 @@ const problems = [
           <span class="eyebrow">Casos de trabajo</span><h2>
             Problemas concretos.<br />Soluciones que se usan.
           </h2>
-        </div><a class="text-link" href="/proyectos">Todos los proyectos ↗</a>
+        </div><a class="text-link" href="/proyectos/">Todos los proyectos ↗</a>
       </div><div class="case-list">
         {projects.slice(0, 3).map((project) => <CaseStudyPreview {project} />)}
       </div>
@@ -163,7 +163,8 @@ const problems = [
           Mi experiencia en aplicaciones empresariales, frontend, backend e
           integraciones me permite mirar más allá de la web y entender el
           trabajo que hay detrás.
-        </p><a class="text-link" href="/sobre-frappe">Conoce cómo trabajo ↗</a>
+        </p><a class="text-link" href="/sobre-frappe/">Conoce cómo trabajo ↗</a
+        >
       </div>
     </div>
   </section>

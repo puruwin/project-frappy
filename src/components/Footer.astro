@@ -17,8 +17,8 @@ import { solutions } from "../data/solutions";
       <div class="footer-links">
         <strong>Explora</strong>{
           navigation.map((item) => <a href={item.href}>{item.label}</a>)
-        }<a href="/blog">Blog</a>{
-          solutions.map((s) => <a href={`/soluciones/${s.slug}`}>{s.name}</a>)
+        }<a href="/blog/">Blog</a>{
+          solutions.map((s) => <a href={`/soluciones/${s.slug}/`}>{s.name}</a>)
         }
       </div>
       <div class="footer-links">
@@ -33,7 +33,7 @@ import { solutions } from "../data/solutions";
     </div>
     <div class="footer-bottom">
       <p>© {new Date().getFullYear()} Frappé Tech · David Pérez</p><div>
-        <a href="/privacidad">Privacidad</a><button
+        <a href="/privacidad/">Privacidad</a><button
           type="button"
           data-cookie-settings>Preferencias de cookies</button
         >

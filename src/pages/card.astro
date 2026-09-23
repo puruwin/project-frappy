@@ -1,8 +1,8 @@
 ---
-import { site } from "../data/site";
+import { canonicalUrl } from "../utils/url";
 
-const destination = "/linktree";
-const canonical = new URL(destination, site.url).href;
+const destination = "/linktree/";
+const canonical = canonicalUrl(destination);
 ---
 
 <!doctype html>

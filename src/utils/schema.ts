@@ -1,4 +1,5 @@
 import { site } from "../data/site";
+import { canonicalUrl } from "./url";
 export function breadcrumbSchema(items: { name: string; path: string }[]) {
   return {
     "@context": "https://schema.org",
@@ -8,7 +9,7 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
         "@type": "ListItem",
         position: index + 1,
         name: item.name,
-        item: new URL(item.path, site.url).href,
+        item: canonicalUrl(item.path),
       }),
     ),
   };
@@ -19,7 +20,7 @@ export function serviceSchema(name: string, description: string, path: string) {
     "@type": "Service",
     name,
     description,
-    url: new URL(path, site.url).href,
+    url: canonicalUrl(path),
     provider: { "@id": `${site.url}/#organization` },
   };
 }

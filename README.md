@@ -32,7 +32,8 @@ PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/google-chrome-stable npm test
 - `src/pages/blog/posts/`: artículos Markdown, conservando sus URLs.
 - `src/assets/`: imágenes optimizadas por Astro.
 - `src/layouts/Layout.astro`: estructura, SEO, navegación y consentimiento comunes.
-- `netlify.toml`: build estático y redirecciones HTTP 301; no las aplica Astro preview.
+- `public/.htaccess`: redirecciones HTTP 301 que Astro copia a `dist` para Hostinger.
+- `netlify.toml`: copia heredada de las reglas para despliegues en Netlify.
 
 La analítica solo se carga tras aceptar. Formspree y GTM mantienen los identificadores existentes, centralizados en `src/data/site.ts`.
 
